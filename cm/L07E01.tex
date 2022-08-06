@@ -1,0 +1,92 @@
+\documentclass[solutions.tex]{subfiles}
+
+\title{L07E01}
+
+\begin{document}
+\maketitle
+\begin{exercise}
+Derive Equations $(2)$ and explain the sign difference.
+\end{exercise}
+
+Let us recall Equations $(2)$:
+\begin{align*}
+	\dot{p_1} &= -V'(q_1-q_2) &
+	\dot{p_2} &= +V'(q_1-q_2)
+\end{align*}
+
+We have to derive them from the Lagrangian given in Equation $(1)$,
+which represents a system of two generalized coordinates $q_1$
+and $q_2$:
+\begin{align}
+	L = \frac{1}{2}(\dot{q_1}^2+\dot{q_2}^2) - V(q_1-q_2)
+	\label{eqn:l07e01:lagrangian}
+\end{align}
+
+To retrieve the equations of motions from a Lagrangian, we need
+to use Euler-Lagrange's equations, for instance recalled as
+Equation $(13)$ of the previous chapter ("Lecture $6$:
+The Principle of Least Action"):
+\[
+	\frac{d}{dt}\biggl(\frac{\partial}{\partial \dot{q_i}}L\biggr)
+	= \frac{\partial}{\partial q_i}L
+\]
+
+Let us also recall, again from previous chapter, right after
+Equation $(13)$, that the conjugate momentum is defined by
+\[
+	p_i = \frac{\partial}{\partial \dot{q_1}}L
+\]
+
+For our Lagrangian \eqref{eqn:l07e01:lagrangian}, we have
+for the first half of Euler-Lagrange equations:
+\begin{align}
+	p_1 &\equiv \frac{\partial}{\partial \dot{q_1}}L = \dot{q_1} &
+	p_2 &\equiv \frac{\partial}{\partial \dot{q_2}}L = \dot{q_2} \label{eqn:l07e01:p1} \\
+	\frac{d}{dt}p_1 &= \dot{p_1} = \ddot{q_1} &
+	\frac{d}{dt}p_2 &= \dot{p_2} = \ddot{q_2} \label{eqn:l07e01:p2}
+\end{align}
+Using the chain
+rule\footnote{\url{https://en.wikipedia.org/wiki/Chain\_rule}}
+for the other half, with $\varphi(q_i) = q_1-q_2$, we get:
+\begin{align}
+	\frac{\partial}{\partial q_1}L &=
+		-\frac{\partial}{\partial q_1}V(\varphi(q_1)) &
+	\frac{\partial}{\partial q_2}L &=
+		-\frac{\partial}{\partial q_2}V(\varphi(q_2)) \nonumber \\
+	~ &= -\frac{\partial}{\partial q_1}\varphi(q_1)
+		\frac{\partial}{\partial q_1}V(\varphi(q_1)) &
+	~ &= -\frac{\partial}{\partial q_2}\varphi(q_2)
+		\frac{\partial}{\partial q_2}V(\varphi(q_2)) \nonumber \\
+	~ &= -(\frac{\partial}{\partial q_1}V)(q_1-q_2) &
+	~ &= +(\frac{\partial}{\partial q_2}V)(q_1-q_2) \label{eqn:l07e01:p3}
+\end{align}
+
+By noting $V' = \dfrac{\partial}{\partial q_i}V$, and combining equations
+$\eqref{eqn:l07e01:p1}$, $\eqref{eqn:l07e01:p2}$ and $\eqref{eqn:l07e01:p3}$,
+we indeed obtain the expected equations of motion $\qed$.
+
+\begin{remark}
+That is, assuming, $\dfrac{\partial}{\partial q_1}V(q_1) =
+\dfrac{\partial}{\partial q_2}V(q_2)$: for all the energy
+potential presented earlier in the book, there's indeed such
+a symmetry, e.g.
+
+\begin{align*}
+	V &= \frac{1}{2}k(x^2+y^2),& p103 \\
+	V &= \frac{1}{2}\frac{k}{x^2+y^2},& p103 \\
+	V &= -m \omega^2 (X^2+Y^2),& p120 \\
+\end{align*}
+
+A similar tacit assumption seems to exists in Herbert Goldstein's
+\textit{Classical Mechanics}\footnote{\url{https://physics.stackexchange.com/a/107141}}.
+
+\end{remark}
+
+Mathematically, the sign difference comes from the fact that the
+potential depends on one side from $q_1$ and on the other from $-q_2$,
+which will persist when differentiating the potential $V$. Physically,
+it reflects that there's an order relation between the two "positions"
+$q_1$ and $q_2$: one will come before the other, and our potential $V$
+depends on this ordering.
+
+\end{document}

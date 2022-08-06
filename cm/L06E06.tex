@@ -1,0 +1,62 @@
+\documentclass[solutions.tex]{subfiles}
+
+\xtitle{L06E06}
+
+\begin{document}
+\maketitle
+\begin{exercise}
+Explain how we derived this.
+\end{exercise}
+
+Let us recall that "this" refers to the following expression for the
+kinetic energy:
+
+\[
+	T = m (\dot{x_+}^2+\dot{x_-}^2)
+\]
+
+Starting from the following Lagrangian, involving two particles
+moving on a line with respective position and velocity $x_i$, $\dot{x_i}$:
+
+\begin{align}\label{l06e06:lagrangian}
+	L = \frac{m}{2}(\dot{x_1}^2+\dot{x_2}^2)-V(x_1-x_2)
+\end{align}
+
+After having performed the following change of coordinates:
+
+\begin{align}
+	x_+ &= \dfrac{x_1+x_2}{2} &
+	x_- &= \dfrac{x_1-x_2}{2} \label{l06e06:coord-update}
+\end{align}
+
+From the Lagrangian, \eqref{l06e06:lagrangian} we have the kinetic energy:
+
+\begin{align}\label{l06e06:k}
+	T = \frac{m}{2}(\dot{x_1}^2+\dot{x_2}^2)
+\end{align}
+
+By first both summing and substracting the two equations of
+\eqref{l06e06:coord-update}, and then by linearity of the derivation,
+we get:
+\begin{align}
+	x_+ + x_- &= x_1 &
+	x_+ - x_- &= x_2 \nonumber \\
+	\dot{x_+} + \dot{x_-} &= \dot{x_1} &
+	\dot{x_+} - \dot{x_-} &= \dot{x_2} \label{l06e06:coord-update-bis}
+\end{align}
+
+It's now simply a matter of injecting \eqref{l06e06:coord-update-bis}
+into \eqref{l06e06:k}:
+
+\begin{align*}
+	T &= \dfrac{m}{2}(\dot{x_1}^2+\dot{x_2}^2) \\
+	~ &= \dfrac{m}{2}((\dot{x_+} + \dot{x_-})^2+(\dot{x_+} - \dot{x_-})^2) \\
+	~ &= \dfrac{m}{2}(
+		2\dot{x_+}^2 +
+		2\dot{x_-}^2 +
+		2\dot{x_+}\dot{x_-} - 2\dot{x_+}\dot{x_-}
+	) \\
+	~ &= m(\dot{x_+}^2 +\dot{x_-}^2) \qed
+\end{align*}
+
+\end{document}

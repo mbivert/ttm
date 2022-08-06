@@ -1,0 +1,125 @@
+\documentclass[solutions.tex]{subfiles}
+\title{TTM - QM - L01E02}
+
+\begin{document}
+\maketitle
+\begin{exercise}\ \\
+Show that the inner product defined by Eq. $1.2$ satisfies all the
+axioms of inner products.
+\end{exercise}
+\hrr
+Let us recall the two axioms in question:
+\begin{axiom}\ \\
+$$ \bra{C} \Big( \ket{A} + \ket{B} \Big) = \braket{C}{A} + \braket{C}{B} $$
+\end{axiom}
+\begin{axiom}
+$$ \braket{B}{A} = \braket{A}{B}^{*} $$
+Where $z^{*}$ is the complex conjugate of $z\in\mathbb{C}$
+\end{axiom}
+
+And let us recall Eq. $1.2$ of the book:
+
+\begin{align*}
+	\braket{B}{A} &=
+		\begin{pmatrix}
+			\beta_1^* & \beta_2^* & \beta_3^* & \beta_4^* & \beta_5^* \\
+		\end{pmatrix}
+		\begin{pmatrix}
+			\alpha_1 \\
+			\alpha_2 \\
+			\alpha_3 \\
+			\alpha_4 \\
+			\alpha_5 \\
+		\end{pmatrix} \\
+	~ &= \beta_1^*\alpha_1 + \beta_2^*\alpha_2 + \beta_3^*\alpha_3 +
+	\beta_4^*\alpha_4 + \beta_5^*\alpha_5 \\
+\end{align*}
+
+For the first axiom, considering $\bra{C} = (\gamma_i^*)$:
+
+\begin{align*}
+\bra{C} \Big( \ket{A} + \ket{B} \Big) &=
+\begin{pmatrix}
+\gamma_1^* & \gamma_2^* & \gamma_3^* & \gamma_4^* & \gamma_5^* \\
+\end{pmatrix}
+\begin{pmatrix}
+\alpha_1 + \beta_1 \\
+\alpha_2 + \beta_2 \\
+\alpha_3 + \beta_3 \\
+\alpha_4 + \beta_4 \\
+\alpha_5 + \beta_5 \\
+\end{pmatrix}
+\\
+~ &= \gamma_1^*(\alpha_1+\beta_1) + \gamma_2^*(\alpha_2+\beta_2) +
+\gamma_3^*(\alpha_3+\beta_3) + \gamma_4^*(\alpha_4+\beta_4) +
+\gamma_5^*(\alpha_5+\beta_5) \\
+~ &= \big(\gamma_1^*\alpha_1 + \gamma_2^*\alpha_2 + \gamma_3^*\alpha_3 +
+\gamma_4^*\alpha_4 + \gamma_5^*\alpha_5 \big) +
+\big(\gamma_1^*\beta_1 + \gamma_2^*\beta_2 + \gamma_3^*\beta_3 +
+\gamma_4^*\beta_4 + \gamma_5^*\beta_5 \big) \\
+~ &=
+\begin{pmatrix}
+	\gamma_1^* & \gamma_2^* & \gamma_3^* & \gamma_4^* & \gamma_5^* \\
+\end{pmatrix}
+\begin{pmatrix}
+	\alpha_1 \\
+	\alpha_2 \\
+	\alpha_3 \\
+	\alpha_4 \\
+	\alpha_5 \\
+\end{pmatrix} +
+\begin{pmatrix}
+	\gamma_1^* & \gamma_2^* & \gamma_3^* & \gamma_4^* & \gamma_5^* \\
+\end{pmatrix}
+\begin{pmatrix}
+	\beta_1 \\
+	\beta_2 \\
+	\beta_3 \\
+	\beta_4 \\
+	\beta_5 \\
+\end{pmatrix} \\
+~ &= \braket{C}{A} + \braket{C}{B} \qed
+\end{align*}
+
+Before diving into the second axiom, let us observe that for
+$(a, b) = (x_a+iy_a, x_b+iy_b) \in\mathbb{C}^2$:
+\begin{align*}
+	(ab)^* &= \Big((x_a+iy_a)\times(x_b+iy_b)\Big)^* \\
+	~ &= \Big(x_ax_b - y_ay_b +i(x_by_a +x_ay_b)\Big)^* \\
+	~ &= x_ax_b - y_ay_b -i(x_by_a +x_ay_b) \\
+	~ &= (x_a-iy_a)\times(x_b-iy_b) \\
+	~ &= a^*b^* \\
+\end{align*}
+
+Or, perhaps more simply using complex numbers' exponential's form:
+\begin{align*}
+	(ab)^* &= \Big(r_ar_be^{i(\theta_a+\theta_b)}\Big)^* \\
+	~ &= r_ar_be^{-i(\theta_a+\theta_b)} \\
+	~ &= a^*b^* \\
+\end{align*}
+
+Hence, regarding the second axiom:
+
+\begin{align*}
+	\braket{B}{A} &= \Big(\big(\braket{B}{A}\big)^*\Big)^* \\
+	~ &= \Big(\big(\beta_1^*\alpha_1 + \beta_2^*\alpha_2 + \beta_3^*\alpha_3 +
+	\beta_4^*\alpha_4 + \beta_5^*\alpha_5\big)^*\Big)^* \\
+	~ &= \Big(\beta_1\alpha_1^* + \beta_2\alpha_2^* + \beta_3\alpha_3^* +
+	\beta_4\alpha_4^* + \beta_5\alpha_5^*\Big)*\\
+	~ &= \Big(\alpha_1^*\beta_1 + \alpha_2^*\beta_2 + \alpha_3^*\beta_3 +
+	\alpha_4^*\beta_4 + \alpha_5^*\beta_5\Big)*\\
+	~ &= \Big(
+		\begin{pmatrix}
+			\alpha_1^* & \alpha_2^* & \alpha_3^* & \alpha_4^* & \alpha_5^* \\
+		\end{pmatrix}
+		\begin{pmatrix}
+			\beta_1 \\
+			\beta_2 \\
+			\beta_3 \\
+			\beta_4 \\
+			\beta_5 \\
+		\end{pmatrix} \Big)^*\\
+	~ &= \braket{A}{B}^* \qed
+\end{align*}
+
+\end{document}

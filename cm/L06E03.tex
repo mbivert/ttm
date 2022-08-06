@@ -1,0 +1,60 @@
+\documentclass[solutions.tex]{subfiles}
+
+\xtitle{L06E03}
+
+\begin{document}
+\maketitle
+\begin{exercise}
+Use the Euler-Lagrange equations to derive the equations of motions
+from the Lagrangian in Eq. $(12)$.
+\end{exercise}
+Again, let us recall the general form of Euler-Lagrange equations
+for a configuration space of size $n\in\mathbb{N}$: $(\forall i \in\llbracket 1, n\rrbracket)$,
+\begin{align}
+	\frac{d}{dt}\left(\frac{\partial}{\partial\dot{x_i}}L\right)
+		= \frac{\partial}{\partial x_i}L
+	\label{eqn:l06e03:euler-lagrange}
+\end{align}
+
+In the case of this exercice, the Lagrangian $L$ is defined in Eq. $(12)$ as:
+\begin{align}
+	L = \frac{m}{2}(\dot{X}^2+\dot{Y}^2)
+	  + \frac{m\omega^2}{2}(X^2+Y^2)
+	  + m\omega(\dot{X}Y-\dot{Y}X) \nonumber
+\end{align}
+
+Let's compute the partial derivatives of $L$ on $\dot{X}$, $X$, $\dot{Y}$ and $Y$:
+\begin{align}
+	\frac{\partial}{\partial\dot{X}}L &=
+		\frac{\partial}{\partial\dot{X}}
+			\left(\frac{m}{2}\dot{X}^2 + m\omega\dot{X}Y\right)
+	& \frac{\partial}{\partial X}L &=
+		\frac{\partial}{\partial X}
+			\left(\frac{m\omega^2}{2}X^2 - m\omega\dot{Y}X\right)
+		\nonumber \\
+	~ &= m\dot{X} + m\omega Y & ~ &= m\omega^2 X - m\omega\dot{Y} \nonumber\\
+	~ & ~ & ~ & \nonumber \\
+	\frac{\partial}{\partial\dot{Y}}L &=
+		\frac{\partial}{\partial\dot{Y}}
+			\left(\frac{m}{2}\dot{Y}^2 - m\omega\dot{Y}X\right)
+	& \frac{\partial}{\partial Y}L &=
+		\frac{\partial}{\partial Y}
+			\left(\frac{m\omega^2}{2}Y^2 + m\omega\dot{X}Y\right)
+		\nonumber \\
+	~ &= m\dot{Y} - m\omega X & ~ &= m\omega^2 Y + m\omega\dot{X}
+	\label{eqn:l06e03:euler-lagrange-split}
+\end{align}
+
+Finally, by plugging \eqref{eqn:l06e03:euler-lagrange-split} into
+\eqref{eqn:l06e03:euler-lagrange}, we obtain:
+\begin{align*}
+	~ & \frac{d}{dt}\left(m\dot{X} + m\omega Y\right) = m\omega^2 X - m\omega\dot{Y}
+	& ~ & \frac{d}{dt}\left(m\dot{Y} - m\omega X\right) = m\omega^2 Y + m\omega\dot{X}\\
+	\Leftrightarrow & \boxed{m\ddot{X} = m\omega^2X-2m\omega\dot{Y}}
+	& ~ \Leftrightarrow & \boxed{m\ddot{Y} = m\omega^2Y+2m\omega\dot{X}} \qed
+\end{align*}
+\begin{remark} Those results indeed matches the equations proposed
+in the book just slightly before this exercice.
+\end{remark}
+
+\end{document}

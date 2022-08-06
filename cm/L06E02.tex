@@ -1,0 +1,61 @@
+\documentclass[solutions.tex]{subfiles}
+
+\xtitle{L06E02}
+
+\begin{document}
+\maketitle
+\begin{exercise}
+Show that Eq. $(6)$ is just another form of Newton's
+equation of motion $F_i = m_i \ddot{x_i}$.
+\end{exercise}
+Where Eq. $(6)$ are the following set of equation, defined for
+all $i\in\llbracket 1, n\rrbracket$:
+\begin{align}
+	\frac{d}{dt}\left(\frac{\partial}{\partial\dot{x_i}}L\right)
+		= \frac{\partial}{\partial x_i}L
+	\label{eqn:l06e02:euler-lagrange}
+\end{align}
+
+\begin{remark} This exercice is simply a generalization
+of the previous exercice (L06E01) to a configuration space
+of size $n\in\mathbb{N}$.
+\end{remark}
+
+Then again, let us recall the Lagrangian defined slightly earlier
+in the related section of the book:
+\begin{align}
+	L = \sum_{i=1}^n\left(\frac{1}{2}m_i\dot{x_i}^2\right)-V(\{x\})
+	\label{eqn:l06e02:lagrangian}
+\end{align}
+
+Hence, $(\forall i \in\llbracket 1, n\rrbracket)$:
+\begin{align}
+	\frac{\partial}{\partial\dot{x_i}}L &=
+		\frac{\partial}{\partial\dot{x_i}}
+			\sum_{j=1}^n\frac{1}{2}m_j\dot{x_j}^2
+	& \frac{\partial}{\partial x_i}L &= -\frac{\partial}{\partial x_i}V(\{x\})
+		\nonumber \\
+	~ &= \sum_{j=1}^n m_j \dot{x_j}\delta_{ij} & ~ & ~\nonumber \\
+	~ &= m_i \dot{x_i} & ~ & ~
+	\label{eqn:l06e02:euler-lagrange-split}
+\end{align}
+
+Again, we need the \textit{potential energy principle}, stated
+as Eq. $(5)$ of the previous chapter \textit{Lecture 5: Energy},
+for abstract configuration space $\{x\} = \{x_i\}$, as:
+\begin{align}
+	F_i(\{x\}) = -\frac{\partial}{\partial x_i}V(\{x\})
+	\label{eqn:l06e02:potential}
+\end{align}
+
+From which we can conclude, by injecting \eqref{eqn:l06e02:potential}
+in the second half of \eqref{eqn:l06e02:euler-lagrange-split}, and
+connecting each side with Euler-Lagrange's equations
+\eqref{eqn:l06e02:euler-lagrange}, $(\forall i \in\llbracket 1, n\rrbracket)$:
+\begin{align*}
+	~ & \frac{d}{dt}\left(\frac{\partial}{\partial\dot{x_i}}L\right)
+		= \frac{\partial}{\partial x_i}L \\
+	\Leftrightarrow & \frac{d}{dt}m_i \dot{x_i} = F_i(\{x\}) \\
+	\Leftrightarrow & \boxed{F_i = m_i \ddot{x_i}} \qed
+\end{align*}
+\end{document}

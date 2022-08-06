@@ -1,0 +1,53 @@
+\documentclass[solutions.tex]{subfiles}
+
+\xtitle{L07E04}
+
+\begin{document}
+\maketitle
+\begin{exercise}
+Show this to be true.
+\end{exercise}
+Where "this" refers to the fact that this Lagrangian (Equation ($8$)):
+\begin{align}
+	L = \frac{m}{2}(\dot{x}^2+\dot{y}^2)-V(x^2 + y^2)
+	\label{eqn:l07e04:lagrangian}
+\end{align}
+does not change to first order in $\delta$, for the infinitesimal
+transformation described by e.g. Equations ($12$):
+\begin{align}
+	\delta_v x &= y\delta \nonumber\\
+	\delta_v y &= -x\delta
+	\label{eqn:l07e04:cov}
+\end{align}
+
+The transformation to the derivatives over time of $x$ and $y$
+has already been established in Equations ($11$):
+\begin{align}
+	\dot{x} &\rightarrow \dot{x}+\dot{y}\delta \nonumber\\
+	\dot{y} &\rightarrow \dot{y}-\dot{x}\delta
+	\label{eqn:l07e04:dot-cov}
+\end{align}
+
+Let's then perform the substitution described by \eqref{eqn:l07e04:cov}
+and \eqref{eqn:l07e04:dot-cov} in the Lagrangian \eqref{eqn:l07e04:lagrangian}:
+\begin{align*}
+	L &= \frac{m}{2}((\dot{x}+\dot{y}\delta)^2+(\dot{y}-\dot{x}\delta)^2)
+		-V((x+y\delta)^2 + (y-x\delta)^2) \\
+	~ &= \frac{m}{2}\Biggl(
+		\Bigl(\dot{x}^2+2\dot{x}\dot{y}\delta+(\dot{y}\delta)^2\Bigr)
+		+\Bigl(\dot{y}^2-2\dot{y}\dot{x}\delta+(\dot{x}\delta)^2\Bigr)
+	\Biggr) \\
+	~ &\quad -V\Biggl(
+		\Bigl(x^2+2xy\delta+(y\delta)^2\Bigr)
+		+\Bigl(y^2-2yx\delta+(x\delta)^2\Bigr)
+	\Biggr) \\
+	~ &=\frac{m}{2}\Bigl(\dot{x}^2+\dot{y}^2+\delta^2(\dot{x}^2+\dot{y}^2)\Bigr)
+		-V\Bigl(x^2+y^2+\delta^2(x^2+y^2)\Bigr)
+\end{align*}
+Now, as we care about first-order changes in $\delta$ only, changes proportional
+to $\delta^n\rvert_{n\geq 2}$ will be negligible; it follows that the Lagrangian
+is indeed unchanged:
+\[
+	L = \frac{m}{2}(\dot{x}^2+\dot{y}^2)-V(x^2+y^2) \qed
+\]
+\end{document}

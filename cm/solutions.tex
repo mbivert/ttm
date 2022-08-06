@@ -1,0 +1,185 @@
+\documentclass[a4paper]{article}
+
+% TODO: improve solutions.tex exercice title formatting
+
+\author{M. Bivert}
+\title{The Theoretical Minimum \\
+	{\Large Classical Mechanics - Solutions}
+}
+
+\usepackage{subfiles}
+
+\usepackage[margin=1in]{geometry}
+\usepackage{hyperref}
+
+\usepackage[utf8]{inputenc}
+
+% \noindent everywhere
+\setlength\parindent{0pt}
+
+\usepackage{mathtools}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{bm}
+
+\usepackage{stmaryrd}
+
+\usepackage{float} % \begin{figure}[H]
+
+\usepackage{titlesec}
+\usepackage{titletoc}
+
+\usepackage{tikz}
+\usetikzlibrary{snakes,calc,patterns,angles,quotes,decorations.pathmorphing,math,decorations.pathreplacing}
+
+\newtheorem{exercise}{Exercise}
+\newtheorem{axiom}{Axiom}
+\newtheorem{remark}{Remark}
+
+\newcommand{\hr}{\noindent\rule{\textwidth}{0.4pt} \\}
+\newcommand{\hrr}{\begin{center}\noindent\rule{0.5\textwidth}{0.4pt} \\\end{center}}
+
+\newcommand{\bra}[1]{\langle #1|}
+\newcommand{\ket}[1]{|#1\rangle}
+\newcommand{\braket}[2]{\left\langle #1 \middle| #2 \right\rangle}
+\newcommand\omicron{o}
+\newcommand\Omicron{O}
+\newcommand{\norm}[1]{\lVert #1 \rVert}
+
+% \title for subfiles
+\newcommand{\xtitle}[1]{\title{The Theoretical Minimum \\
+	{\Large Classical Mechanics - Solutions} \\
+	{\large #1}
+}}
+
+% Essentially, https://tex.stackexchange.com/a/329928
+\newcounter{interludes}
+\renewcommand{\theinterludes}{\arabic{interludes}}
+\newcommand{\interlude}[1]{\refstepcounter{interludes}
+	\section*{Interlude \theinterludes: #1}
+	\addcontentsline{toc}{section}{Interlude \theinterludes: #1}
+}
+
+% Awful way to alter both the ToC and *section formats.
+\newcounter{lectures}
+\renewcommand{\thelectures}{\arabic{lectures}}
+\newcommand{\lecture}[1]{\refstepcounter{lectures}
+	\section*{Lecture \thelectures: #1}
+	\addcontentsline{toc}{section}{Lecture \thelectures: #1}
+}
+
+\newcounter{sublectures}
+\renewcommand{\thesublectures}{\arabic{sublectures}}
+\newcommand{\sublecture}[1]{\refstepcounter{sublectures}
+	\subsection*{#1}
+	\addcontentsline{toc}{subsection}{#1}
+}
+
+\newcounter{subsublectures}
+\renewcommand{\thesubsublectures}{\arabic{subsublectures}}
+\newcommand{\subsublecture}[1]{\refstepcounter{subsublectures}
+	\subsubsection*{#1}
+	\addcontentsline{toc}{subsubsection}{#1}
+}
+
+\begin{document}
+\maketitle
+\begin{abstract}
+Below are solution proposals to the exercises of
+\textit{The Theoretical Minimum - Classical Mechanics}, written
+by Leonard Susskind and George Hrabovsky. An effort has been
+so as to recall from the book all the referenced equations,
+and to be rather verbose regarding mathematical details, rather
+in line with the general tone of the serie.
+\end{abstract}
+
+\tableofcontents
+
+% --------------------------------------------------------
+\lecture{The Nature of Classical Physics}
+
+% --------------------------------------------------------
+\interlude{Spaces, Trigonometry, and Vectors}
+
+% --------------------------------------------------------
+\lecture{Motion}
+
+% --------------------------------------------------------
+\interlude{Integral Calculus}
+
+% --------------------------------------------------------
+\lecture{Dynamics}
+\sublecture{Aristotle's Law of Motion}
+\subsublecture{Exercise 1/4}
+\subfile{L03E01.tex}
+\sublecture{Mass, Acceleration and Force}
+\sublecture{Some Simple Examples of Solving Newton's Equations}
+\subsublecture{Exercise 2/4}
+\subfile{L03E02.tex}
+\subsublecture{Exercise 3/4}
+\subfile{L03E03.tex}
+\subsublecture{Exercise 4/4}
+\subfile{L03E04.tex}
+
+% --------------------------------------------------------
+\interlude{Partial Differentiation}
+
+% --------------------------------------------------------
+\lecture{Systems of More Than One Particle}
+
+% --------------------------------------------------------
+\lecture{Energy}
+\sublecture{More than one dimension}
+\subsublecture{Exercise 2/3}
+\subfile{L05E02.tex}
+\subsublecture{Exercise 3/3}
+%\subfile{L05E03.tex}
+
+% --------------------------------------------------------
+\lecture{The Principle of Least Action}
+\sublecture{The Transition to Advanced Mechanics}
+\sublecture{Action and the Lagrangian}
+
+\sublecture{Derivation of the Euler-Lagrange Equation}
+\subsublecture{Exercise 1/6}
+\subfile{L06E01.tex}
+
+\sublecture{More Particles and More dimensions}
+\subsublecture{Exercise 2/6}
+\subfile{L06E02.tex}
+
+\sublecture{What's Good about Least Action?}
+\subsublecture{Exercise 3/6}
+\subfile{L06E03.tex}
+\subsublecture{Exercise 4/6}
+\subfile{L06E04.tex}
+
+\sublecture{Generalized Coordinates and Momenta}
+\subsublecture{Exercise 5/6}
+%\subfile{L06E05.tex}
+\sublecture{Cyclic coordinates}
+\subsublecture{Exercise 6/6}
+\subfile{L06E06.tex}
+
+% --------------------------------------------------------
+\lecture{Symmetries and Conservation Laws}
+\sublecture{Preliminaries}
+\subsublecture{Exercise 1/7}
+\subfile{L07E01.tex}
+\subsublecture{Exercise 2/7}
+\subfile{L07E02.tex}
+\sublecture{Examples of symmetries}
+\subsublecture{Exercise 3/7}
+\subfile{L07E03.tex}
+\subsublecture{Exercise 4/7}
+\subfile{L07E04.tex}
+\sublecture{Back to examples}
+\subsublecture{Exercise 5/7}
+%\subfile{L07E05.tex}
+%\subsublecture{Exercise 6/7}
+%\subfile{L07E06.tex}
+%\subsublecture{Exercise 7/7}
+%\subfile{L07E07.tex}
+
+\end{document}

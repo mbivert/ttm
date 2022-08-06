@@ -1,0 +1,32 @@
+\documentclass[solutions.tex]{subfiles}
+
+\xtitle{L03E02}
+
+\begin{document}
+\maketitle
+\begin{exercise}
+Integrate this equation. \textit{Hint}: Use \textit{definite
+integrals}.
+\end{exercise}
+The equation in question resulting from Newton's second law in
+the case of a constant force $F_z$ being applied to an object
+of mass $m$ following the $z$-axis:
+\[
+	\dot{v_z} = \dot{v_z(t)} = \frac{F_z}{m}
+\]
+By integrating both sides, thanks to the
+\href{https://en.wikipedia.org/wiki/Fundamental\_theorem_of\_calculus}
+{fundamental theorem of calculus}, assuming the mass is constant over
+time, we obtain:
+\begin{align*}
+	v_z(t) &= \int \frac{F_z}{m}\,dt \\
+	~ &= \frac{F_z}{m}\int\,dt \\
+	~ &= \frac{F_z}{m}t + c,\,c\in\mathbb{R}
+\end{align*}
+Generally, $c$ would be determine from an initial condition $v_z(0)$,
+which is our case, would precisely be $c$, hence:
+\[
+	\boxed{v_z(t) = v_z(0) + \frac{F_z}{m}t}\qed
+\]
+Which is exactly the solution proposed in the book.
+\end{document}

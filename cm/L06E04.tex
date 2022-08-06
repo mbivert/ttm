@@ -1,0 +1,255 @@
+\documentclass[solutions.tex]{subfiles}
+
+\xtitle{L06E04}
+
+\begin{document}
+\maketitle
+\begin{exercise}
+Work out George's Lagrangian and Euler-Lagrange equations
+in polar coordinates.
+\end{exercise}
+As always, let us recall the general form of Euler-Lagrange equations
+for a configuration space of size $n\in\mathbb{N}$:
+$(\forall i \in\llbracket 1, n\rrbracket)$,
+\begin{align}
+	\frac{d}{dt}\left(\frac{\partial}{\partial\dot{x_i}}L\right)
+		= \frac{\partial}{\partial x_i}L
+	\label{eqn:l06e04:euler-lagrange}
+\end{align}
+The original Lagrangian $L$ in our case is defined by the Eq. $(10)$
+of this chapter as:
+\begin{align}
+	L = \frac{m}{2}\left(\dot{x}^2+\dot{y}^2\right)
+	\label{eqn:l06e04:lagrangian}
+\end{align}
+After the following coordinate shift (Eq. $(9)$ of the book):
+\begin{align}
+	x &= X\cos(\omega t) + Y\sin(\omega t)& y &= -X \sin(\omega t)+Y\cos(\omega t)
+	\label{eqn:l06e04-1st-shift}
+\end{align}
+We obtained this Lagrangian (Eq. $(12)$ of the book):
+\begin{align}
+	L = \frac{m}{2}(\dot{X}^2+\dot{Y}^2)
+	  + \frac{m\omega^2}{2}(X^2+Y^2)
+	  + m\omega(\dot{X}Y-\dot{Y}X)
+	\label{eqn:l06e04:lagrangian-1st-shift}
+\end{align}
+
+For the current exercice, the coordinate shift to polar equations is:
+\begin{align}
+	X &= R \cos\theta & Y &= R \sin\theta
+	\label{eqn:l06e04:coordinate-shift}
+\end{align}
+Where, implicitely, both $R$ and $\theta$ are, as $X$ and $Y$, functions of
+time. \\
+
+Now, we have at least two ways of solving this exercice:
+\begin{enumerate}
+	\item Either perform the coordinate shit \eqref{eqn:l06e04:coordinate-shift}
+	in \eqref{eqn:l06e04:lagrangian-1st-shift}: this will be a tedious
+	but very similar developement as the one performed in the book to obtain
+	\eqref{eqn:l06e04:lagrangian-1st-shift} from \eqref{eqn:l06e04:lagrangian}
+	and \eqref{eqn:l06e04-1st-shift};
+	\item or perform this new coordinate shift \eqref{eqn:l06e04:coordinate-shift}
+	directly in the first coordinate shift \eqref{eqn:l06e04-1st-shift}, and
+	work from the first Lagrangian \eqref{eqn:l06e04:lagrangian} instead: some
+	trigonometric identities are likely to ease at least the beginning of the
+	work here.
+\end{enumerate}
+We will try both aproaches, and expect to find the exact same solutions in
+the end. \\
+\hr
+\textbf{First approach}\\
+Let use start by computing the time derivative of $X$ and $Y$ as defined
+by \eqref{eqn:l06e04:coordinate-shift}, using the both the product
+\footnote{\url{https://en.wikipedia.org/wiki/Product\_rule}}
+and the chain rule
+\footnote{\url{https://en.wikipedia.org/wiki/Chain\_rule}}:
+\begin{align}
+	\dot{X} &= \dot{R}\cos\theta - R\dot\theta\sin\theta
+	& \dot{Y} &= \dot{R}\sin\theta + R\dot\theta\cos\theta
+	\label{eqn:l06e04:coordinate-shift-speeds}
+\end{align}
+
+\begin{remark} For clarity, as a similar developement will happen
+a few times, let's go into details for the first one:
+the product rule for two functions $u$ and $v$ of a single variable, of
+respective derivatives $u'$ and $v'$ is
+\[ (u v)' = u'v+uv' \]
+Now the chain rule is, again for the same kind of functions:
+\[ (u(v(x))' = v'(x)u'(v(x)) \]
+In the present case, we have a $X(t)$ defined as the product of two
+functions: $X(t) = R(t)\cos(\omega(t))$, where the second one is
+itself a composition of two functions $\cos(\omega(t))$. Hence,
+by applying first the product rule, we obtain:
+\[
+	X'(t) = R'(t)\cos(\omega(t)) + R(t)\left(\cos(\omega(t))\right)'
+\]
+While the chain rule gives us:
+\[
+	(\cos(\omega(t)))' = -\omega'(t)\sin(\omega(t))
+\]
+Hence,
+\[
+	X'(t) = R'(t)\cos(\omega(t)) - R(t)\omega'(t)\sin(\omega(t))
+\]
+\end{remark}
+Now, our goal will be to plug \eqref{eqn:l06e04:coordinate-shift} and
+\eqref{eqn:l06e04:coordinate-shift-speeds} into the Lagrangian
+\eqref{eqn:l06e04:lagrangian-1st-shift} obtained after the first
+coordinate shift, but doing that transformation at once will gives
+a difficult to read equation. Instead, we'll work in smaller steps,
+simplying our results using trigonometric identities along the way. \\
+
+Let us start with $X^2+Y^2$, using the fact that
+$\sin^2\theta+\cos^2\theta = 1$:
+\begin{align}
+	X^2+Y^2 &= R^2\cos^2\theta + R^2\sin^2\theta\nonumber\\
+	~ &= R^2(\cos^2\theta + \sin^2\theta) \nonumber\\
+	~ &= R^2
+	\label{eqn:l06e04:sum-squares}
+\end{align}
+
+Now for $\dot{X}^2+\dot{Y}^2$, using the same trigonometric
+identity:
+\begin{align*}
+	\dot{X}^2 &= (\dot{R}\cos\theta-R\dot\theta\sin\theta)^2 &
+	\dot{Y}^2 &= (\dot{R}\sin\theta+R\dot\theta\cos\theta)^2\\
+	~ &= \dot{R}^2\cos^2\theta
+		-2R\dot{R}\dot\theta\cos\theta\sin\theta
+		+R^2\dot\theta^2\sin^2\theta &
+	~ & = \dot{R}^2\sin^2\theta
+		+2R\dot{R}\dot\theta\sin\theta\cos\theta
+		+R^2\dot\theta^2\cos^2\theta
+\end{align*}
+\begin{align}
+	\dot{X}^2+\dot{Y}^2 &= \dot{R}^2(\cos^2\theta+\sin^2\theta)
+		+R^2\dot\theta^2(\cos^2\theta+\sin^2\theta) \nonumber\\
+	~ &= \dot{R}^2 + R^2\dot\theta^2
+	\label{eqn:l06e04:sum-squares-dot}
+\end{align}
+Finally, for $\dot{X}Y-\dot{Y}X$:
+\begin{align*}
+	\dot{X}Y &= (\dot{R}\cos\theta-R\dot\theta\sin\theta)R\sin\theta &
+	\dot{Y}X &= (\dot{R}\sin\theta+R\dot\theta\cos\theta)R\cos\theta \\
+	~ &= R\dot{R}\cos\theta\sin\theta-R^2\dot\theta\sin^2\theta &
+	~ &= R\dot{R}\cos\theta\sin\theta+R^2\dot\theta\cos^2\theta
+\end{align*}
+\begin{align}
+	\dot{X}Y-\dot{Y}X &= -R^2\dot\theta(\sin^2\theta+\cos^2\theta)\nonumber\\
+	~ &= -R^2\dot\theta
+	\label{eqn:l06e04:diff-mixed}
+\end{align}
+Now we're ready to plug \eqref{eqn:l06e04:sum-squares},
+\eqref{eqn:l06e04:sum-squares-dot} and \eqref{eqn:l06e04:diff-mixed}
+into \eqref{eqn:l06e04:lagrangian-1st-shift}:
+\begin{align}
+	L &= \boxed{\frac{m}{2}(\dot{R}^2 +R^2\dot\theta^2)
+		+\frac{m\omega^2}{2}R^2-m\omega R^2\dot\theta}
+	\label{eqn:l06e04:lagrangian-2nd-shift}
+\end{align}
+Now, let's compute the partial derivatives of our new Lagrangian:
+\begin{align}
+	\frac{\partial}{\partial\dot{R}}L &=
+		\frac{\partial}{\partial\dot{R}}
+			\left(\frac{m}{2}\dot{R}^2\right)
+	&  \frac{\partial}{\partial R}L &=
+		\frac{\partial}{\partial R}
+			\left(\frac{m}{2}R^2\dot\theta^2+
+			\frac{m\omega^2}{2}R^2 - m\omega R^2\dot\theta\right)\nonumber\\
+	~ &= m\dot{R}
+	& ~ &= (\dot\theta^2+\omega^2-2\omega\dot\theta)mR\nonumber\\
+	~ & ~
+	& ~ &= (\dot\theta-\omega)^2mR\nonumber\\
+	\frac{\partial}{\partial\dot\theta}L &=
+		\frac{\partial}{\partial\dot\theta}
+			\left(\frac{m}{2}R^2\dot\theta^2-m\omega R^2\dot\theta\right)
+	& \frac{\partial}{\partial\theta}L &= 0\nonumber\\
+	~ &= mR^2(\dot\theta-\omega)
+	& ~ & ~
+	\label{eqn:l06e04:partial-derivs}
+\end{align}
+And from there, plug \eqref{eqn:l06e04:partial-derivs} in
+Euler-Lagrange \eqref{eqn:l06e04:euler-lagrange} to derive the
+equations of motion (again for the second one, we use a combination
+of the product and chain rules for derivatives):
+\begin{align*}
+	~ & \frac{d}{dt}\left(m\dot{R}\right) = (\dot\theta-\omega)^2mR
+	& ~ & \frac{d}{dt}\left(mR^2(\dot\theta-\omega)\right) = 0\\
+	\Leftrightarrow & \boxed{\ddot{R} = (\dot\theta-\omega)^2R}
+	& ~ \Leftrightarrow & m\left((\dot\theta-\omega)2\dot{R}R+R^2\ddot\theta\right)=0 \\
+	~ & ~
+	& ~ \Leftrightarrow & \boxed{R\ddot\theta = (\omega-\dot\theta)2\dot{R}} \qed
+\end{align*}
+\hr
+\textbf{Second approach}\\
+We'll now try to see if we can get a cleaner derivation, hopefully
+with the same results, by combining the two coordinate shifts
+\eqref{eqn:l06e04-1st-shift} and \eqref{eqn:l06e04:coordinate-shift}
+first, and then rely on the original Lagrangian \eqref{eqn:l06e04:lagrangian}.\\
+
+The combined coordinate shift is:
+\begin{align*}
+	x &= R\cos\theta\cos(\omega t) + R\sin\theta\sin(\omega t)\\
+	y &= -R\cos\theta\sin(\omega t) + R\sin\theta\cos(\omega t)
+\end{align*}
+We have the four following trigonometric identities\footnote{
+\url{https://en.wikipedia.org/wiki/List\_of\_trigonometric\_identities\#Product-to-sum\_and\_sum-to-product\_identities}}:
+\begin{align*}
+	cos\theta\cos\varphi &= \frac{\cos(\theta-\varphi)+cos(\theta+\varphi)}{2}
+	& sin\theta\sin\varphi &= \frac{\cos(\theta-\varphi)-cos(\theta+\varphi)}{2}\\
+	cos\theta\sin\varphi &= \frac{\sin(\theta+\varphi)-sin(\theta-\varphi)}{2}
+	& sin\theta\cos\varphi &= \frac{\sin(\theta+\varphi)+sin(\theta-\varphi)}{2}
+\end{align*}
+Hence the coordinate shift can be rewritten:
+\begin{align}
+	x &= R\cos(\theta-\omega t)\nonumber\\
+	y &= R\sin(\theta-\omega t)
+	\label{eqn:l06e04:combined-shift}
+\end{align}
+To inject it in the original Lagrangian \eqref{eqn:l06e04:lagrangian},
+we need to compute $\dot{x}^2+\dot{y}^2$. For the derivation, as previously,
+we'll rely on a combination of the product/chain rule; we'll note
+$\varphi=\theta-\omega t$:
+\begin{align*}
+	\dot{x} &= \dot{R}\cos\varphi - R(\dot\theta-\omega)\sin\varphi \\
+	\dot{y} &= \dot{R}\sin\varphi + R(\dot\theta-\omega)\cos\varphi
+\end{align*}
+\begin{align*}
+	\dot{x}^2 &= \dot{R}^2\cos^2\varphi
+		- 2R\dot{R}(\dot\theta-\omega)\cos\varphi\sin\varphi
+		+ R^2(\dot\theta-\omega)^2\sin^2\varphi \\
+	\dot{y}^2 &= \dot{R}^2\sin^2\varphi
+		+ 2R\dot{R}(\dot\theta-\omega)\cos\varphi\sin\varphi
+		+R^2(\dot\theta-\omega)^2\cos^2\varphi
+\end{align*}
+Hence the Lagrangian becomes, again using the pythagorean trigonometric
+identity $\cos^2\theta+\sin^2\theta = 1$:
+\begin{align*}
+	L &= \frac{m}{2}\left(\dot{x}^2+\dot{y}^2\right) \\
+	~ &= \boxed{\frac{m}{2}\left(\dot{R}^2+R^2(\dot\theta-\omega)^2\right)} \\
+	~ &= \frac{m}{2}\left(\dot{R}^2+R^2(\dot\theta^2-2\dot\theta\omega+\omega^2)\right) \\
+	~ &= \frac{m}{2}(\dot{R}^2+R^2\dot\theta^2)+\frac{m}{2}R^2\omega^2-m\omega R^2\dot\theta
+\end{align*}
+Which is the same Lagrangian we had before in
+\eqref{eqn:l06e04:lagrangian-2nd-shift}, from which
+we would obviously derive the exact same equation of motion. $\qed$.
+
+\begin{remark} As expected, the derivation is overall less tedious,
+but only because the complexity is now hidden behind the
+trigonometric identities.
+\end{remark}
+\begin{remark} A little later in the book, a solution to this
+exercice is proposed: it starts with this Lagrangian:
+\[
+	L = \frac{m}{2}\left(\dot{r}^2+r^2\dot\theta^2\right)
+\]
+Which is exactly our Lagrangian, however assuming for some
+reason that $\omega = 0$. From which follows the same equation
+of motions, again with the same assumption regarding $\omega$:
+\begin{align*}
+	\ddot{r} &= r\dot\theta^2 \\
+	\frac{d}{dt}\left(mr^2\dot\theta\right) &= 0
+\end{align*}
+\end{remark}
+\end{document}

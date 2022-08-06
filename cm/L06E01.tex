@@ -1,0 +1,65 @@
+\documentclass[solutions.tex]{subfiles}
+
+\title{The Theoretical Minimum \\
+	{\Large Classical Mechanics - Solutions} \\
+	{\large L06E01}
+}
+
+\begin{document}
+\maketitle
+\begin{exercise}
+Show that Eq. $(4)$ is just another form of Newton's
+equation of motion $F = ma$.
+\end{exercise}
+Where Eq. $(4)$ are the freshly derived Euler-Lagrange
+equations of motions:
+\begin{align}
+	\frac{d}{dt}\frac{\partial}{\partial\dot{x}}L - \frac{\partial}{\partial x}L = 0
+	\label{eqn:l06e01:euler-lagrange}
+\end{align}
+In the context of a single particle moving in one dimension, with
+kinetic and potential energy given by:
+\begin{align*}
+	T &= \frac{1}{2} m\dot{x}^2 \\
+	V &= V(x)
+\end{align*}
+From which results the Lagrangian:
+\begin{align}
+	L &= T-V \nonumber\\
+	~ &= \frac{1}{2}m\dot{x}^2-V(x)
+	\label{eqn:l06e01:lagrangian}
+\end{align}
+
+Let us recall that we also have the \textit{potential energy
+principle}, stated in one-dimension as Eq. $(1)$ of the previous
+chapter, \textit{Lecture 5: Energy}:
+\begin{align}
+	F(x) = -\frac{d}{dx}V(x)
+	\label{eqn:l06e01:potential}
+\end{align}
+
+Which is also stated more generally in that same chapter, for an
+abstract configuration space $\{x\} = \{x_i\}$, as Eq. $(5)$:
+\[
+	F_i(\{x\}) = -\frac{\partial}{\partial x_i}V(\{x\})
+\]
+
+Thus, deriving each part of \eqref{eqn:l06e01:euler-lagrange} with
+our Lagrangian \eqref{eqn:l06e01:lagrangian}, and considering the
+\textit{definition} of a potential energy $V(x)$ \eqref{eqn:l06e01:potential}
+yields:
+\begin{align*}
+	\frac{d}{dt}\frac{\partial}{\partial\dot{x}}L &=
+		\frac{d}{dt}m\dot{x} &
+	\frac{\partial}{\partial x}L &=
+		\frac{\partial}{\partial x}V(x) \\
+	~ &= m\ddot{x} & ~ &= -F
+\end{align*}
+
+Then indeed, Euler-Lagrange equations become equivalent to Newton's law of motion:
+\begin{align*}
+	~ & \frac{d}{dt}\frac{\partial}{\partial\dot{x}}L - \frac{\partial}{\partial x}L = 0 \\
+	\Leftrightarrow & m\ddot{x}-(-F) = 0 \\
+	\Leftrightarrow & \boxed{F = m\ddot{x} = ma} \qed
+\end{align*}
+\end{document}

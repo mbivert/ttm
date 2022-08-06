@@ -1,0 +1,59 @@
+\documentclass[a4paper]{article}
+
+\author{M. Bivert}
+\title{TTM - QM - Solutions}
+
+\usepackage{subfiles}
+
+\usepackage[margin=1in]{geometry}
+\usepackage{hyperref}
+
+% \noindent everywhere
+\setlength\parindent{0pt}
+
+\usepackage{mathtools}
+\usepackage{amsmath}
+\usepackage{amsthm}   % \qed
+\usepackage{amsfonts} % \mathbb
+
+\newtheorem{exercise}{Exercise}
+\newtheorem{axiom}{Axiom}
+\newtheorem{remark}{Remark}
+
+\newcommand{\hr}{\noindent\rule{\textwidth}{0.4pt} \\}
+\newcommand{\hrr}{\begin{center}\noindent\rule{0.5\textwidth}{0.4pt} \\\end{center}}
+
+\newcommand{\bra}[1]{\langle #1|}
+\newcommand{\ket}[1]{|#1\rangle}
+\newcommand{\braket}[2]{\left\langle #1 \middle| #2 \right\rangle}
+\newcommand\omicron{o}
+\newcommand\Omicron{O}
+
+\begin{document}
+\maketitle
+\begin{abstract}
+Below are solution proposals to the exercises of
+\textit{The Theoretical Minimum - Quantum Mechanics}, written
+by Leonard Susskind and Art Friedman. An effort has been
+so as to recall from the book all the referenced equations,
+and to be rather verbose regarding mathematical details, rather
+in line with the general tone of the serie.
+\end{abstract}
+
+\tableofcontents
+
+\section{Systems and Experiments}
+\subsection{Inner Products}
+\subfile{L01E01.tex}
+\subfile{L01E02.tex}
+\section{Quantum States}
+\subsection{Along the $x$ Axis}
+\subfile{L02E01.tex}
+\subsection{Along the $y$ Axis}
+\subfile{L02E02.tex}
+\subfile{L02E03.tex}
+\section{Principles of Quantum Mechanics}
+\subsection{Mathematical Interlude: Linear Operators}
+\subsubsection{Hermitian Operators and Orthonormal Bases}
+%\subfile{L03E01.tex}
+\end{document}

@@ -1,0 +1,98 @@
+\documentclass[solutions.tex]{subfiles}
+
+\title{L07E02}
+
+\begin{document}
+\maketitle
+\begin{exercise}
+Explain this conservation.
+\end{exercise}
+Let us recall that the referred conserved quantity is:
+\[
+	b p_1 + a p_2
+\]
+In the context of the following Lagrangian:
+\begin{align}
+	L = \frac{1}{2}(\dot{q_1}^2+\dot{q_2}^2) - V(a q_1-b q_2)
+	\label{eqn:l07e02:lagrangian}
+\end{align}
+
+Because the question is a unclear, we'll make the conservation explicit
+mathematically, and we'll try to understand the physical meaning
+of such a quantity being conserved.
+
+\hrr
+
+As for the previous exercice, we can start by recalling
+Euler-Lagrange's equations, for instance taken from
+Equation $(13)$ of the previous chapter ("Lecture $6$:
+The Principle of Least Action"):
+\[
+	\frac{d}{dt}\biggl(\frac{\partial}{\partial \dot{q_i}}L\biggr)
+	= \frac{\partial}{\partial q_i}L
+\]
+
+Which was in the book followed by the definition of the
+conjugate momentum $p_i$:
+\[
+	p_i = \frac{\partial}{\partial \dot{q_1}}L
+\]
+
+For our Lagrangian \eqref{eqn:l07e02:lagrangian}, we have
+for the first half of Euler-Lagrange equations:
+\begin{align}
+	p_1 &\equiv \frac{\partial}{\partial \dot{q_1}}L = \dot{q_1} &
+	p_2 &\equiv \frac{\partial}{\partial \dot{q_2}}L = \dot{q_2} \label{eqns:l07e02:p1} \\
+	\frac{d}{dt}p_1 &= \dot{p_1} = \ddot{q_1} &
+	\frac{d}{dt}p_2 &= \dot{p_2} = \ddot{q_2} \label{eqns:l07e02:p2}
+\end{align}
+
+Using the chain
+rule\footnote{\url{https://en.wikipedia.org/wiki/Chain\_rule}}
+for the other half, with $\varphi(q_i) = a q_1 - b q_2$, we get:
+\begin{align}
+	\frac{\partial}{\partial q_1}L &=
+		-\frac{\partial}{\partial q_1}V(\varphi(q_1)) &
+	\frac{\partial}{\partial q_2}L &=
+		-\frac{\partial}{\partial q_2}V(\varphi(q_2)) \nonumber \\
+	~ &= -\frac{\partial}{\partial q_1}\varphi(q_1)
+		\frac{\partial}{\partial q_1}V(\varphi(q_1)) &
+	~ &= -\frac{\partial}{\partial q_2}\varphi(q_2)
+		\frac{\partial}{\partial q_2}V(\varphi(q_2)) \nonumber \\
+	~ &= -(a\frac{\partial}{\partial q_1}V)(a q_1 - b q_2) &
+	~ &= +(b\frac{\partial}{\partial q_2}V)(a q_1 - b q_2) \label{eqns:l07e02:p3}
+\end{align}
+
+As for the previous exercice, it seems that there a tacit assumption
+of a symmetry within the potential $V$ so that we can write
+$V' = \dfrac{\partial}{\partial q_i}V$; then, combining $\eqref{eqns:l07e02:p1}$,
+$\eqref{eqns:l07e02:p2}$ and $\eqref{eqns:l07e02:p3}$:
+
+\begin{align*}
+	\dot{p_1} &= -aV'(a q_1 - b q_2) &
+	\dot{p_2} &= +bV'(a q_1 - b q_2)
+\end{align*}
+
+As suggested, let's multiply the first equation by $b$, the second by $a$,
+and sum the result:
+\[
+	b\dot{p_1} + a\dot{p_2} = -baV'(a q_1 - b q_2) +abV'(a q_1 - b q_2) = 0
+\]
+By linearity of the derivation, this is equivalent to say that:
+\[
+	\frac{d}{dt}(b p_1(t) + a p_2(t)) = 0
+\]
+Which indeed means that $b p_1(t) + a p_2(t) \in \mathbb{R}$ is a indeed
+a constant over time, i.e. that it is conserved (over time).
+
+\hrr
+
+Now, let's see if we can understand what this means physically: essentially,
+$a q_1 - b q_2$ means that we're scaling the "position" of the particules
+respectively by $a$ and $b$, and make the potential depends on the resulting
+distance. \\
+
+The conserved quantity is the "conjugate" of this distance
+
+
+\end{document}

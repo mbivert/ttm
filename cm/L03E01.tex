@@ -1,0 +1,36 @@
+\documentclass[solutions.tex]{subfiles}
+
+\xtitle{L03E01}
+
+\begin{document}
+\maketitle
+\begin{exercise}
+Given a force that varies with time according to $F = 2t^2$,
+and with the initial condition at time zero, $x(0) = \pi$, use
+Aristotle's law to find $x(t)$ at all times.
+\end{exercise}
+Let us recall that Aristotle's law of motion is defined, for a
+one-dimensional particle (otherwise, $F(t)$ and $x(t)$ would be
+vector-values functions $\bm{F}(t)$ and $\bm{x}(t)$) earlier
+in the book as:
+\[
+	\frac{d}{dt}x(t) = \frac{F(t)}{m}
+\]
+And that by integrating both sides, thanks to the fundamental
+theorem of calculus\footnote{\url{
+https://en.wikipedia.org/wiki/Fundamental\_theorem_of\_calculus}},
+assuming the mass is constant over time, we obtain:
+\[
+	x(t) = \frac{1}{m} \int F(t)\,dt
+\]
+Which is our case, for $F(t) = 2t^2$, develops in:
+\begin{align*}
+	x(t) &= \frac{1}{m} \int 2t^2\,dt \\
+	~ &= \frac{2}{3m}t^3+c,\,c\in\mathbb{R}
+\end{align*}
+The initial condition $x(0)=\pi$ implies that $c=\pi$, hence the position
+at all time would be:
+\[
+	\boxed{x(t) = \frac{2}{3m}t^3+\pi} \qed
+\]
+\end{document}

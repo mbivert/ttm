@@ -1,0 +1,297 @@
+\documentclass[solutions.tex]{subfiles}
+
+\xtitle{L05E02}
+
+\begin{document}
+\maketitle
+\begin{exercise}
+Consider a particle in two dimensions,
+$x$ and $y$. The particle has mass $m$. The potential energy
+is $V=\frac{1}{2}k(x^2+y^2)$. Work out the equations of motion.
+Show that there are circular orbits and that all orbits have
+the same period. Prove explicitely that the total energy is
+conserved.
+\end{exercise}
+
+\hfill \break
+
+\textbf{Equations of motion}: For this system, the potential
+energy $V$ is:
+
+\begin{equation}
+\label{eqn:L05E02:epot}
+V = \frac12k(x^2+y^2)
+\end{equation}
+
+By Newton's \href{https://en.wikipedia.org/wiki/Newton\%27s\_laws\_of\_motion\#Second}{
+second law of motion}, given $\bm{r}=(x,y)$, we have:
+
+\begin{equation}
+	\bm{F} = m\bm{a} = m\dot{\bm{v}} = m\ddot{\bm{r}}
+\end{equation}
+
+Or,
+
+\begin{equation}
+	\label{eqn:L05E02:n2l}
+	\begin{aligned}
+		F_x &=& m\ddot{x} \\
+		F_y &=& m\ddot{y}
+	\end{aligned}
+\end{equation}
+
+We know by equation $(5)$ of this lecture that to each coordinate
+$x_i$ of the configuration space $\{x\}$, there is a force $F_i$,
+derived from the potential energy $V$:
+
+\begin{equation}
+	F_i(\{x\}) = -\frac{\partial}{\partial x_i}V(\{x\})
+\end{equation}
+
+Which in our case, translates to:
+
+\begin{equation}
+	\label{eqn:L05E02:fp}
+	\begin{aligned}
+		F_x(x, y) = -\frac{\partial}{\partial x}V(x, y) = -kx \\
+		F_y(x, y) = -\frac{\partial}{\partial y}V(x, y) = -ky
+	\end{aligned}
+\end{equation}
+
+Combining \eqref{eqn:L05E02:n2l} and \eqref{eqn:L05E02:fp}:
+
+\begin{equation}
+	\label{eqn:L05E02:ediff}
+	\begin{aligned}
+		m\ddot{x}(t) = -kx(t) \\
+		m\ddot{y}(t) = -ky(t) \\
+	\end{aligned}
+\end{equation}
+
+Which are known by \textit{L03E04} to be differential equations
+associated to harmonic motion, and solved by a slightly more general
+solution that the one proposed in
+\href{https://tales.mbivert.com/on-the-harmonic-oscillator/}{L03E04}:
+
+\begin{equation}
+	\label{eqn:L05E02:sols}
+	\begin{aligned}
+		x(t) &= \alpha_x\cos(\omega t-\theta_x)+\beta_x\sin(\omega t-\theta_x) \\
+		y(t) &= \alpha_y\cos(\omega t-\theta_y)+\beta_y\sin(\omega t-\theta_y) \\
+		\omega^2 &= \frac{k}{m}
+	\end{aligned}
+\end{equation}
+
+Indeed, considering e.g. $x(t)$, with simplified variable names:
+
+\begin{equation}
+%	\label{eqn:L05E02:sols-proof}
+	\begin{aligned}
+		v(t) &=& \dot{x}(t) &=& \omega&(-\alpha\sin(\omega t-\theta)+\beta\cos(\omega t-\theta) \\
+		a(t) &=& \ddot{x}(t) &=& -\omega^2&(\alpha\cos(\omega t-\theta)+\beta\sin(\omega t-\theta)) \\
+		~ &~& ~ &=& -\omega^2&x(t)
+	\end{aligned}
+\end{equation}
+
+Where, to differentiate e.g. $\alpha\cos(\omega t - \theta)$, we define
+$\phi(\omega) = \omega t - \theta$, so as to use the
+\href{https://en.wikipedia.org/wiki/Chain\_rule}{chain rule}
+for derivation:
+
+\begin{equation}
+	\frac{d}{dx}f(g(x)) = g'(x)f'(g(x))
+\end{equation}
+
+Note that, in this case, as already suggested on
+\href{https://tales.mbivert.com/on-the-harmonic-oscillator/}{L03E04}
+$\alpha_{x,y}$ and $\beta_{x,y}$ can be
+determined from the initial position and velocity, that is, from
+$x(t=0), \dot{x}(t=0), y(t=0), \dot{y}(t=0)$. For instance,
+assuming $\theta_{x,y}=0$ to simplify the calculus:
+
+\begin{equation}
+	\begin{aligned}
+		x(0) &= \alpha_x\cos(0)+\beta_x\sin(0) \\
+		~ &= \alpha \\
+		\dot{x}(0) &= \omega(-\alpha\sin(0)+\beta\cos(0)) \\
+		~ &= \omega\beta \\
+		~ &= \sqrt\frac{k}{m}\beta
+	\end{aligned}
+\end{equation}
+
+\hfill \break
+
+\textbf{Circular orbits}: The existence of a (potential) circular orbit
+is determined an additional constraint tying the equation of $x(t)$ and
+$y(t)$. Namely, the equation of motion will describe a circle of radius
+$r$, centered on point $(a, b)$, with $(a, b, r)\in\mathbb{R}^3$ if:
+
+\begin{equation}
+	\label{eqn:L05E02:circle-constraint}
+	(\forall t \geq 0),\ (x(t)-a)^2+(y(t)-b)^2 = r^2
+\end{equation}
+
+Before developing this constraint, we will simplify
+the expression of our equation of motion. First, let us recall
+the following
+\href{https://en.wikipedia.org/wiki/List\_of\_trigonometric\_identities\#Angle\_sum\_and\_difference\_identities}
+{trigonometric identity}:
+\[
+	\sin(\theta \pm \varphi) = \sin\theta\cos\varphi \pm \cos\theta\sin\varphi
+\]
+
+Then, let's introduce two angles $\varphi_x$ and $\varphi_y$ such as:
+
+\begin{equation*} \begin{aligned}
+	\sin\varphi_x &= \alpha_x & \sin\varphi_y &= \alpha_y \\
+	\cos\varphi_x &= \beta_x  & \cos\varphi_y &= \beta_y
+\end{aligned} \end{equation*}
+
+From, there, we can use the previous identity to rewrite our equations of
+motions \eqref{eqn:L05E02:sols} as:
+\begin{equation} \label{eqn:L0502:sols-simpl} \begin{aligned}
+	x(t) &= \sin\varphi_x\cos(\omega t-\theta_x)+\cos\varphi_x\sin(\omega t-\theta_x)
+	&= \sin(\omega t + \varphi_x - \theta_x) &= \sin\Omega_x \\
+	y(t) &= \sin\varphi_y\cos(\omega t-\theta_y)+\cos\varphi_y\sin(\omega t-\theta_y)
+	&= \sin(\omega t + \varphi_y -\theta_y) &= \sin\Omega_y
+\end{aligned} \end{equation}
+
+Obvoiusly with $\Omega_x = \Omega_x(t) = \omega t + \varphi_x - \theta_x$
+and $\Omega_y = \Omega_y(t) = \omega t + \varphi_y -\theta_y$. \\
+
+Let us now develop \eqref{eqn:L05E02:circle-constraint} with those two
+versions of $x(t)$ and $y(t)$:
+
+\begin{equation*} \begin{aligned}
+	~ & (x(t)-a)^2+(y(t)-b)^2 &= r^2 \\
+	\Leftrightarrow & (\sin\Omega_x - a)^2
+	+(\sin\Omega_y-b)^2 &= r^2 \\
+	\Leftrightarrow & \sin^2\Omega_x+\sin^2\Omega_y -2(a\sin\Omega_x+b\sin\Omega_y))+a^2+b^2 &= r^2 \\
+\end{aligned} \end{equation*}
+
+For simplicity, we can assume that the circular orbits, if any, will be centered
+on $(a,b)=(0,0)$; after all, the choice of the origin is purely conventional,
+and the law of physics shouldn't change depending on where we decide to place
+our origin. Which gives:
+\[
+	\sin^2\Omega_x+\sin^2\Omega_y = r^2 \\
+\]
+
+Which we can rewrite a little bit using the fact that
+$\sin\varphi = \cos(\varphi-\pi/2)$:
+\[
+	\sin^2\Omega_x+\cos^2(\Omega_y-\frac{\pi}{2}) = r^2 \\
+\]
+
+But we know the pythagorean identity $\sin^2\varphi+\cos^2\varphi = 1$,
+hence we know there will be circular orbits when:
+\begin{equation*}
+	\left\{
+	\begin{array}{lll}
+		r &=& 1 \\
+		\Omega_x &=& \Omega_y - \dfrac{\pi}{2} \\
+	\end{array}
+	\right.
+	\Leftrightarrow
+	\left\{
+	\begin{array}{lll}
+		r &=& 1 \\
+		\omega t + \varphi_x - \theta_x &=& \omega t + \varphi_y -\theta_y - \dfrac{\pi}{2} \\
+	\end{array}
+	\right.
+	\Leftrightarrow
+	\left\{
+	\begin{array}{lll}
+		r &=& 1 \\
+		\varphi_x - \theta_x &=& \varphi_y -\theta_y - \dfrac{\pi}{2} \\
+	\end{array}
+	\right.
+\end{equation*}
+
+Hence we can see that the only condition relating $x(t)$ and $y(t)$ is that
+a \textit{phase shift} condition:
+\[
+	\boxed{\varphi_x - \theta_x = \varphi_y -\theta_y - \dfrac{\pi}{2}}
+\]
+
+For all the solutions satisfying that phase-shifts, the period $T$ that
+we can observed from \eqref{eqn:L0502:sols-simpl} will be the same:
+\[
+	\boxed{T=\dfrac{2\pi}{\omega}}
+\]
+
+\begin{remark} For a wave function $z(t)=\sin(\omega t+\varphi)$,
+\textit{by definition}, $2\pi/\omega$ is the period, and $\varphi$
+the phase shift.
+\end{remark}
+\begin{remark} The phase shift condition could be rewritten in terms
+of $\alpha_{x,y}$ and $\beta_{x,y}$.
+\end{remark}
+
+\hr
+
+\textbf{Energy conservation}: Earlier in the lecture, the kinetic
+energy has been defined to be \textit{the sum of all the kinetic energies
+for each coordinate}:
+
+\begin{equation}
+	T=\frac12\sum_i m_i \dot{x_i}^2
+\end{equation}
+
+Which gives us for this system, expliciting the time-dependancies:
+
+\begin{equation}
+	T(t)=\frac12 m \dot{x}(t)^2 + \frac12 m \dot{y}(t)^2=\frac12m(\dot{x}(t)^2+\dot{y}(t)^2)
+\end{equation}
+
+From which we can compute the variation of kinetic energy
+over time, again using the chain rule:
+
+\begin{equation}
+	\label{eqn:L05E02:dkint}
+	\begin{aligned}
+		\frac{d}{dt}T(t) &= \frac12m(2\dot{x}(t)\ddot{x}(t)+2\dot{y}(t)\ddot{y}(t)) \\
+		~ &= m(\dot{x}\ddot{x}+\dot{y}\ddot{y})
+	\end{aligned}
+\end{equation}
+
+On the other hand, we can compute the variation of
+potential energy over time from \eqref{eqn:L05E02:epot},
+again using the chain rule:
+
+\begin{equation}
+	\label{eqn:L05E02:dpott}
+	\begin{aligned}
+		\frac{d}{dt}V(t) &= \frac12k(\frac{d}{dt}x(t)^2+\frac{d}{dt}y(t)^2) \\
+		~ &= \frac12k(2x(t)\dot{x}(t)+2y(t)\dot{y}(t))\\
+		~ &= k(x(t)\dot{x}(t)+y(t)\dot{y}(t))\\
+	\end{aligned}
+\end{equation}
+
+From \eqref{eqn:L05E02:ediff}, we have:
+\begin{equation}
+	\begin{aligned}
+		x(t) &= -\frac{m}{k}\ddot{x}(t) \\
+		y(t) &= -\frac{m}{k}\ddot{y}(t)
+	\end{aligned}
+\end{equation}
+
+Injecting in \eqref{eqn:L05E02:dpott}:
+
+\begin{equation}
+	\label{eqn:L05E02:dpott2}
+	\begin{aligned}
+		\frac{d}{dt}V(t) &= -m(\dot{x}(t)\ddot{x}(t)+\dot{y}(t)\ddot{y}(t))\\
+		~ &= -m(\dot{x}\ddot{x}+\dot{y}\ddot{y})
+	\end{aligned}
+\end{equation}
+
+Thus from \eqref{eqn:L05E02:dkint} and \eqref{eqn:L05E02:dpott2}:
+
+\begin{equation}
+	\frac{d}{dt}E(t) = \frac{d}{dt}T(t) + \frac{d}{dt}V(t) = 0 \qed
+\end{equation}
+
+That is, total energy $E$ over time doesn't change.
+
+\end{document}

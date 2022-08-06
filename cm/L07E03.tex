@@ -1,0 +1,80 @@
+\documentclass[solutions.tex]{subfiles}
+
+\title{L07E03}
+
+\begin{document}
+\maketitle
+\begin{exercise}
+Show that the combination $a q_1 + b q_2$, along with the Lagrangian,
+is invariant under Equations $(7)$.
+\end{exercise}
+Let us first recall the equations for the potential (Equations $(3)$):
+\[
+	V(q_1, q_2) = V(a q_1 - b q_2)
+\]
+
+Which is meant to be considered in the case of the following
+Lagrangian:
+\begin{align}
+	L = \frac{1}{2}(\dot{q_1}^2+\dot{q_2}^2) - V(a q_1-b q_2)
+	\label{eqn:l07e03:lagrangian}
+\end{align}
+
+Finally, the "Equations $(7)$" relate to the following change of
+coordinates:
+\begin{align}
+	q_1 &\rightarrow q_1 - b\delta \nonumber\\
+	q_2 &\rightarrow q_2 + a\delta
+	\label{eqn:l07e03:cov}
+\end{align}
+
+\begin{remark} There are typos around here in the book. In my printed
+version, it is as previously described, but in an online version, it is given
+by (mind the signs):
+\begin{align*}
+	q_1 &\rightarrow q_1 + b\delta \nonumber\\
+	q_2 &\rightarrow q_2 - a\delta
+\end{align*}
+yet in that same online version, the potential is said to depend on $a q_1 + b q_2$
+in accordance to Equations $(3)$, but said Equations $(3)$ actually make
+it depend on $a q_1 - b q_2$! \\
+
+To summarize, with a $V(a q_1 + b q_2)$, the two previous transformations
+will keep the Lagrangian unchanged.
+
+But with a $V(a q_1 - b q_2)$, none of the previous transformations will keep
+the Lagrangian; those two will:
+\begin{align}
+	q_1 &\rightarrow q_1 - b\delta
+	& q_1 &\rightarrow q_1 + b\delta \nonumber\\
+	q_2 &\rightarrow q_2 - a\delta
+	& q_2 &\rightarrow q_2 + b\delta \nonumber\\
+	\label{eqn:l07e03:cov2}
+\end{align}
+
+In what follows, we will arbitrarily assume a $V(a q_1 - b q_2)$, and,
+say, the first transformation of \eqref{eqn:l07e03:cov2}.
+\end{remark}
+
+Assuming $a$, $b$ and $\delta$ are time-invariant, it follows that
+$\dot{q_1}$ and $\dot{q_2}$ are unchanged by this transformation, hence
+\begin{align*}
+	\dot{q_i} &\rightarrow \dot{q_i}\\
+	\dot{q_1}^2+\dot{q_2}^2 &\rightarrow \dot{q_1}^2+\dot{q_2}^2
+\end{align*}
+
+Injecting \eqref{eqn:l07e03:cov} into \eqref{eqn:l07e03:lagrangian} gives
+us the following Lagrangian:
+\begin{align*}
+	L &= \frac{1}{2}(\dot{q_1}^2+\dot{q_2}^2)
+		- V(a(q_1-b\delta) - b(q_2-a\delta))\\
+	~ &= \frac{1}{2}(
+		\dot{q_1}^2+\dot{q_2}^2
+	) - V(a q_1 - b q_2)
+\end{align*}
+
+We can see that indeed, the Lagrangian is unchanged; because the
+$\dot{q_i}$ are also unchanged, we would derive the exact
+same equation of motions as we did for the previous exercise.
+
+\end{document}

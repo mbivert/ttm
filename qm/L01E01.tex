@@ -1,0 +1,55 @@
+\documentclass[solutions.tex]{subfiles}
+\title{TTM - QM - L01E01}
+
+\begin{document}
+\maketitle
+\begin{exercise}\ \\
+a) Using the axioms for inner products, prove
+$$ \Big( \bra{A} + \bra{B}\Big) \ket{C} = \braket{A}{C} + \braket{B}{C} $$
+b) Prove $\braket{A}{A}$ is a real number.
+\end{exercise}
+\hrr
+
+a) Let us recall the two axioms in question:
+\begin{axiom}\ \\
+$$ \bra{C} \Big( \ket{A} + \ket{B} \Big) = \braket{C}{A} + \braket{C}{B} $$
+\end{axiom}
+\begin{axiom}
+$$ \braket{B}{A} = \braket{A}{B}^{*} $$
+Where $z^{*}$ is the complex conjugate of $z\in\mathbb{C}$
+\end{axiom}
+
+Let us recall also that if
+\begin{itemize}
+	\item $\bra{A}$ is the bra of $\ket{A}$
+	\item $\bra{B}$ is the bra of $\ket{B}$
+\end{itemize}
+Then $\bra{A}+\bra{B}$ is the bra of $\ket{A}+\ket{B}$. \\
+
+Let us also observe that for
+$(a, b) = (x_a+iy_a, x_b+iy_b) \in\mathbb{C}^2$:
+\begin{align*}
+	(a+b)^* &= (x_a+iy_a+x_b+iy_b)^* \\
+	~ &= x_a-iy_a+x_b-iy_b \\
+	~ &= a^* + b^*
+\end{align*}
+
+We thus have:
+\begin{align*}
+	\Big( \bra{A} + \bra{B}\Big) \ket{C} &= \bra{C}\Big( \ket{A} + \ket{B}\Big)^* \\
+	~ &= \Big(\braket{C}{A} + \braket{C}{B}\Big)^* \\
+	~ &= \braket{C}{A}^* + \braket{C}{B}^* \\
+	~ &= \braket{A}{C} + \braket{B}{C} \qed
+\end{align*}
+
+b) Mainly from the second axiom:
+\begin{align*}
+	x+iy &= \braket{A}{A} \\
+	~ &= \braket{A}{A}^* \\
+	~ &= x-iy \\
+	~ &\Rightarrow 2iy = 0 \\
+	~ &\Rightarrow y = 0 \\
+	~ &\Rightarrow \braket{A}{A}=x\in\mathbb{R}\qed
+\end{align*}
+
+\end{document}

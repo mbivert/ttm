@@ -1,0 +1,26 @@
+\documentclass[solutions.tex]{subfiles}
+
+\xtitle{L03E03}
+
+\begin{document}
+\maketitle
+\begin{exercise}
+Show by differentiation that this satisfies the equation of motion.
+\end{exercise}
+Contrary to the previous exercice, instead of integrating to find
+the solution, we start from the solution and climb back to our original
+equation of motion, which are, in the case of a constant force $F_z$
+applied to a mass $m$ following the $z$-axis:
+\[
+	v_z(t) = \dot{z}(t) = v_z(0) - \frac{F_z}{m}t
+\]
+The proposed solution is:
+\[
+	z(t) = z_0 + v_z(0)t + \frac{F_z}{2m}t^2
+\]
+Immediately, by derivation, constants goes to $0$, $t$ becomes $1$ and
+$t^2$ becomes $2t$, we indeed obtain:
+\[
+	\boxed{\frac{d}{dt}z(t) = \dot{z}(t) = v_z(t) = v_z(0) + \frac{F_z}{m}t}\qed
+\]
+\end{document}

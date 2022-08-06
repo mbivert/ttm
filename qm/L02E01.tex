@@ -1,0 +1,69 @@
+\documentclass[solutions.tex]{subfiles}
+\title{TTM - QM - L02E01}
+
+\begin{document}
+\maketitle
+\begin{exercise}\ \\
+Prove that the vector $\ket{r}$ in Eq. $2.5$ is orthogonal to vector
+$\ket{l}$ in Eq. $2.6$.
+\end{exercise}
+\hrr
+
+Let us recall respectively Eq. $2.5$ and Eq. $2.6$:
+\begin{align*}
+\ket{r} &= \frac{1}{\sqrt2}\ket{u} + \frac{1}{\sqrt2}\ket{d} &
+\ket{l} &= \frac{1}{\sqrt2}\ket{u} - \frac{1}{\sqrt2}\ket{d} \\
+\end{align*}
+
+Orthogonality can be detected with the inner-product: $\ket{l}$
+and $\ket{r}$ are orthogonals $\Leftrightarrow \braket{r}{l} =
+\braket{l}{r} = 0$.
+
+\begin{remark}\ \\
+The nullity of either inner-product is sufficient, because
+of the $\braket{A}{B} = \braket{B}{A}^*$ axiom.
+\end{remark}
+
+For instance:
+\begin{align*}
+\braket{l}{r} & =
+\begin{pmatrix}
+	\lambda_u^* & \lambda_d^* \\
+\end{pmatrix}
+\begin{pmatrix}
+	\rho_u \\
+	\rho_d \\
+\end{pmatrix} \\
+~ & = \begin{pmatrix}
+	\frac1{\sqrt2} & -\frac1{\sqrt2} \\
+\end{pmatrix}
+\begin{pmatrix}
+	\frac1{\sqrt2} \\
+	\frac1{\sqrt2} \\
+\end{pmatrix} \\
+~ & = \frac1{\sqrt2}\frac1{\sqrt2}-\frac1{\sqrt2}\frac1{\sqrt2} \\
+~ & = 0 \qed\\
+\end{align*}
+
+Or, similarly:
+\begin{align*}
+\braket{r}{l} & =
+\begin{pmatrix}
+	\rho_u^* & \rho_d^* \\
+\end{pmatrix}
+\begin{pmatrix}
+	\lambda_u \\
+	\lambda_d \\
+\end{pmatrix} \\
+~ & = \begin{pmatrix}
+	\frac1{\sqrt2} & \frac1{\sqrt2} \\
+\end{pmatrix}
+\begin{pmatrix}
+	\frac1{\sqrt2} \\
+	-\frac1{\sqrt2} \\
+\end{pmatrix} \\
+~ & = \frac1{\sqrt2}\frac1{\sqrt2}-\frac1{\sqrt2}\frac1{\sqrt2} \\
+~ & = 0 \qed\\
+\end{align*}
+
+\end{document}
