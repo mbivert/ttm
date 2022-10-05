@@ -1,0 +1,151 @@
+\documentclass[solutions.tex]{subfiles}
+
+\xtitle
+
+\begin{document}
+\maketitle
+\begin{exercise}
+Determine which of the dynamical laws shown in Eq.s $(2)$ through
+$(5)$ are allowable.
+\end{exercise}
+Let's recall that laws are said to be allowable if they are both
+deterministic (i.e. the future behavior of the system is completely
+determined by the initial state) and reversible (i.e. the law is
+still deterministic even by reversing the direction of all the arrows). \\
+
+Now, the dynamical laws refered to be the exercise are:
+\begin{equation*} \begin{aligned}
+	N(n+1) &&=&& N(n)-1 &\qquad\qquad \text{(2)} \\
+	N(n+1) &&=&& N(n)+2 &\qquad\qquad \text{(3)} \\
+	N(n+1) &&=&& N(n)^2 &\qquad\qquad \text{(4)} \\
+	N(n+1) &&=&& -1^{N(n)}N(n) &\qquad\qquad \text{(5)} \\
+\end{aligned} \end{equation*}
+
+\hr
+
+\begin{figure}[H]
+	\centering
+	\begin{tikzpicture}
+		\node (qminf) [state]                   {...};
+		\node (qm2)   [state, right = of qminf] {$-2$};
+		\node (qm1)   [state, right = of qm2]   {$-1$};
+		\node (q0)    [state, right = of qm1]   {$0$};
+		\node (q1)    [state, right = of q0]    {$1$};
+		\node (q2)    [state, right = of q1]    {$2$};
+		\node (qinf)  [state, right = of q2]    {...};
+
+		\path [-stealth, thick, <-]
+			(qminf) edge (qm2)
+			(qm2)   edge (qm1)
+			(qm1)   edge (q0)
+			(q0)    edge (q1)
+			(q1)    edge (q2)
+			(q2)    edge (qinf);
+	\end{tikzpicture}
+\end{figure}
+
+$(2)$ is simply $(1)$ (described by $N(n+1)= N(n)+1$) with reversed
+arrows; and $(1)$ has already be established as being allowed. Hence,
+\fbox{(2) is allowed}.
+
+\hr
+
+\begin{figure}[H]
+	\centering
+	\begin{tikzpicture}
+		\node (qminf) [state]                   {...};
+		\node (qm2)   [state, right = of qminf] {$-2$};
+		\node (q0)    [state, right = of qm2]   {$0$};
+		\node (q2)    [state, right = of q0]    {$2$};
+		\node (qinf)  [state, right = of q2]    {...};
+
+		\node (qminf2) [state, below = of qminf]  {...};
+		\node (qm3)    [state, right = of qminf2] {$-3$};
+		\node (qm1)    [state, right = of qm3]    {$-1$};
+		\node (q1)     [state, right = of qm1]    {$1$};
+		\node (q3)     [state, right = of q1]     {$3$};
+		\node (qinf2)  [state, right = of q3]     {...};
+
+		\path [->]
+			(qminf) edge (qm2)
+			(qm2)   edge (q0)
+			(q0)    edge (q2)
+			(q2)    edge (qinf);
+
+		\path [->]
+			(qminf2) edge (qm3)
+			(qm3)    edge (qm1)
+			(qm1)    edge (q1)
+			(q1)     edge (q3)
+			(q3)     edge (qinf2);
+	\end{tikzpicture}
+\end{figure}
+
+$(3)$ is very similar to $(1)$ or $(2)$, only, it has two infinite
+cycles instead of one. Both are deterministic, and reversing
+the arrows lead to deterministic cycles. Hence, \fbox{$(3)$ is allowed}.
+
+\hr
+
+\begin{figure}[H]
+	\centering
+	\begin{tikzpicture}
+		\node (q4)    [state]                      {$4$};
+		\node (qm2)   [state, above left = of q4]  {$-2$};
+		\node (q2)    [state, above right = of q4] {$2$};
+		\node (qinf)  [state, below = of q4]       {$...$};
+
+		\path [-stealth, thick, ->]
+			(qm2) edge (q4)
+			(q2)  edge (q4)
+			(q4)  edge (qinf);
+	\end{tikzpicture}
+\end{figure}
+
+We didn't plot $(4)$ exhaustively, just enough to illustrate
+its irreversibility: if we start at either $-2$ or $2$,
+we end up on $4$. By reversing the arrows, we see that we can't decide
+where we came from. Furthermore, states such as $-2$ cannot be
+reached, because there's no number $n$ such as $-2 = n^2$). Actually,
+even $2$ cannot be reached, because there's no \textit{integer} $n$ such
+as $2 = n^2$. \\
+
+Hence, \fbox{$(4)$ is \textbf{not} allowed}.
+
+\hr
+
+\begin{figure}[H]
+	\centering
+	\begin{tikzpicture}
+		\node (qnp)    [state]    {$n \equiv 0\ [2]$};
+
+		\node (qmp)    [state,below right = of qnp, align=center] {$m > 0$ \\ $m \equiv 1\ [2]$};
+		\node (qmn)    [state,below left = of qnp, align=center]  {$m < 0$ \\ $m \equiv 1\ [2]$};
+
+		\path [-stealth, thick, ->]
+			(qnp) edge [loop above] (qnp);
+
+		\path [-stealth, thick, ->]
+			(qmp) edge [bend left] (qmn)
+			(qmn) edge [bend left] (qmp);
+	\end{tikzpicture}
+\end{figure}
+
+By sketching a few cycles for $(5)$, we see a pattern emerging, summed
+up in the diagram above:
+\begin{itemize}
+	\item if we start on an even number, positive or negative, we'll loop
+	on this number indefinitely;
+	\item if we start with an odd number, positive or negative,
+	we'll loop between the positive and negative version of
+	that number;
+\end{itemize}
+
+Perhaps a mathematical subtetly would be in considering $-1$ raised to
+a negative power. But,
+
+\[ (\forall n \in \mathbb{N}^*),\quad -1^{-n} = (-1/1)^{-n} \equiv (1/-1)^n = (-1)^n \]
+
+Hence, \fbox{$(5)$ is allowed}.
+
+\end{document}
