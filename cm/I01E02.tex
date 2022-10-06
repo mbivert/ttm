@@ -1,0 +1,59 @@
+\documentclass[solutions.tex]{subfiles}
+
+\xtitle
+
+\begin{document}
+\maketitle
+\begin{exercise} Work out the rule for vector substraction.
+\end{exercise}
+This exercise is about getting a (visual) feel for vector
+manipulation; it is \textit{not} about vector coordinates manipulation.
+We were previously taught how to multiple vectors by a negative
+scalar:
+\begin{quote}
+For example, $-2\vec{r}$ is the vector that is twice as long
+as $\vec{r}$, but points in the opposite direction.
+\end{quote}
+And how to add vectors:
+\begin{quote}
+To add $\vec{A}$ and $\vec{B}$, place them as shown in Figure $13$
+to form a quadrilateral (this way the directions of the vectors are
+preserved). The sum of the vectors is the length and angle of the
+diagonal
+\end{quote}
+So, by observing that (we'll use a \textbf{bold} font to denote
+vectors instead of arrows, e.g. $\bm{v}$ is a vector):
+\[
+	\bm{u}-\bm{v} = \bm{u} + (-1\bm{v})
+\]
+We conclude that we first need to reverse the direction of the
+vector to be substracted, and add this to the other vector.
+Visually:
+\begin{figure}[H]
+	\centering
+	\begin{tikzpicture}
+		\tikzmath{
+			\xmin = -2;
+			\xmax = 3;
+			\ymin = -3;
+			\ymax = 3;
+		}
+		\coordinate (orig) at (0,0);
+		\coordinate (u) at (3, 2);
+		\coordinate (v) at (1, 3);
+		\coordinate (mv) at (-1, -3);
+		\coordinate (umv) at (2, -1);
+
+		\draw[->] (\xmin-1, 0) -- (\xmax+1, 0) node[right] {$x$};
+		\draw[->] (0, \ymin-1) -- (0, \ymax+1) node[above] {$y$};
+		\draw[help lines, color=gray!30, dashed]
+			(\xmin-1,\ymin-1) grid (\xmax+1,\ymax+1);
+		\draw[->, black] (orig) -- (u) node() [below,midway,xshift=4]{$\bm{u}$};
+
+		\draw[->] (orig) -- (v) node() [below,midway,xshift=4]{$\bm{v}$};
+		\draw[->, gray] (orig) -- (mv) node() [below,midway,xshift=8]{$\bm{-v}$};
+		\draw[->, gray, dashed] (u) -- (umv) node() [below,midway,xshift=8]{$-\bm{v}$};
+		\draw[->, line width=2] (orig) -- (umv) node() [below,midway,yshift=-5]{$\bm{u}-\bm{v}$};
+	\end{tikzpicture}
+\end{figure}
+\end{document}

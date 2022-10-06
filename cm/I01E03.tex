@@ -1,0 +1,31 @@
+\documentclass[solutions.tex]{subfiles}
+
+\xtitle
+
+\begin{document}
+\maketitle
+\begin{exercise} Show that the magnitude of a vector satisfies
+$|\vec{A}|^2 = \vec{A}\cdot\vec{A}$.
+\end{exercise}
+\begin{remark} We'll again use a \textbf{bold} font to denote
+vectors instead of arrows and use a sligthly different symbol
+for the magnitude, a change which is summed up by:
+$\norm{\bm{u}} = |\vec{u}|$.
+\end{remark}
+Let's recall that the magnitude of a vector was \textit{defined} as:
+\[
+	\norm{\bm{u}} = \sqrt{u_x^2 + u_y^2 + u_z^2}
+\]
+And the dot product between two vectors as:
+\[
+	\bm{u}\cdot\bm{v} = u_xv_x + u_yv_y + u_zv_z
+\]
+From there, we quickly reach the expected result:
+\begin{equation*} \begin{aligned}
+	\bm{u}\cdot\bm{u} &&=\quad& u_xu_x + u_yu_y + u_zu_z \\
+	~ &&=\quad& u_x^2 + u_y^2 + u_z^2 \\
+	~ &&=\quad& \left(\sqrt{u_x^2 + u_y^2 + u_z^2}\right)^2 \\
+	~ &&=\quad& \norm{\bm{u}}^2 \qed
+\end{aligned} \end{equation*}
+
+\end{document}
