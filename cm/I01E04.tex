@@ -1,0 +1,100 @@
+\documentclass[solutions.tex]{subfiles}
+
+\xtitle
+
+\begin{document}
+\maketitle
+\begin{exercise} Let $(A_x = 2, A_y = -3, A_z = 1)$ and
+$(B_x = -4, B_y = -3, B_z = 2)$. Compute the magnitude of
+$\vec{A}$ and $\vec{B}$, their dot product, and the angle
+between them.
+\end{exercise}
+This is an immediate application of the formulas. Let's
+start by plotting those vectors:
+\begin{figure}[H]
+	\centering
+	\tdplotsetmaincoords{60}{-60}
+	\begin{tikzpicture}[scale=2,tdplot_main_coords]
+		\tikzmath{
+			\xmin = -4.5;
+			\xmax = 3;
+			\ymin = -3.5;
+			\ymax = 2;
+			\zmin = -1;
+			\zmax = 3;
+			\Ax = 2;
+			\Ay = -3;
+			\Az = 1;
+			\Bx = -4;
+			\By = -3;
+			\Bz = 2;
+		}
+
+		\coordinate (orig) at (0,0,0);
+		\coordinate (A) at (\Ax, \Ay, \Az);
+		\coordinate (B) at (\Bx, \By, \Bz);
+
+		\draw[->] (orig) -- (1,0,0) node[anchor=north east,xshift=10]{$\uvec{x}$};
+		\draw[->] (orig) -- (0,1,0) node[anchor=north west]{$\uvec{y}$};
+		\draw[->] (orig) -- (0,0,1) node[anchor=south,xshift=10]{$\uvec{z}$};
+
+		\draw[->,dashed] (\xmin,0,0) -- (\xmax,0,0) node[anchor=north west]{$x$};
+		\draw[->,dashed] (0,\ymin,0) -- (0,\ymax,0) node[anchor=north west]{$y$};
+		\draw[->,dashed] (0,0,\zmin) -- (0,0,\zmax) node[anchor=north west]{$z$};
+
+		\draw[->] (orig) -- (A) node [yshift=10]{$\bm{A}$};
+		\draw[->] (orig) -- (B) node [xshift=10]{$\bm{B}$};
+
+		\draw[dashed,gray] (0,0,0) -- (\Ax,\Ay,0);
+		\draw[dashed,gray] (\Ax,\Ay,0) -- (A);
+		\draw[dashed,gray]         (A) -- (0,0,\Az) node [xshift=10,yshift=-3]{$\Az$};
+		\draw[dashed,gray] (\Ax,\Ay,0) -- (0,\Ay,0) node [yshift=12,xshift=-2]{$\Ay$};
+		\draw[dashed,gray] (\Ax,\Ay,0) -- (\Ax,0,0) node [xshift=10,yshift=-3]{$\Ax$};
+
+		\draw[dashed,gray] (0,0,0) -- (\Bx,\By,0);
+		\draw[dashed,gray] (\Bx,\By,0) -- (B);
+		\draw[dashed,gray]         (B) -- (0,0,\Bz) node [xshift=10,yshift=-3]{$\Bz$};
+		\draw[dashed,gray] (\Bx,\By,0) -- (0,\By,0) node [yshift=12,xshift=-2]{$\Ay$};
+		\draw[dashed,gray] (\Bx,\By,0) -- (\Bx,0,0) node [xshift=10,yshift=-3]{$\Bx$};
+	\end{tikzpicture}
+\end{figure}
+
+Uusing slightly different notations, let us then recall first
+how the magnitude of a vector $\bm{u}$ is defined:
+\begin{equation}
+	\norm{\bm{u}} = \sqrt{u_x^2 + u_y^2 + u_z^2} = u
+	\label{I01E04:thm:norm}
+\end{equation}
+There are two formulas for the dot product: one involving
+the magnitudes and the angle between the vectors, and the
+other one involving the components:
+\begin{equation} \begin{aligned}
+	\bm{u}\cdot\bm{v} &&=\quad& u_xv_x + u_yv_y + u_zv_z \\
+	~ &&=\quad& \norm{\bm{u}}\norm{\bm{v}}\cos\theta_{uv}
+	\label{I01E04:thm:dotp}
+\end{aligned} \end{equation}
+By applying \eqref{I01E04:thm:norm}, we have:
+\begin{equation*} \begin{aligned}
+	A &&=\quad& \sqrt{2^2+(-3)^2+1^2} &&& B &&=\quad& \sqrt{(-4)^2+(-3)^2+2^2} \\
+	~ &&=\quad& \sqrt{4+9+1} &&& ~ &&=\quad& \sqrt{16+9+4} \\
+	~ &&=\quad& \boxed{\sqrt{14}} &&& ~ &&=\quad& \boxed{\sqrt{29}}
+\end{aligned} \end{equation*}
+We can also compute the dot product from the vectors' components,
+using the first form of \eqref{I01E04:thm:dotp}:
+\begin{equation*} \begin{aligned}
+	\bm{A} \cdot \bm{B} &&=\quad& 2(-4) + (-3)(-3) + 1\times 2 \\
+	~ &&=\quad& \boxed{3}
+\end{aligned} \end{equation*}
+From the second form of \eqref{I01E04:thm:dotp}, we can deduce
+a formula for the angle between $\bm{A}$ and $\bm{B}$, $\theta_{AB}$:
+\begin{equation*} \begin{aligned}
+	~ && \cos\theta_{AB} &=& \frac{\bm{A}\cdot\bm{B}}{\norm{\bm{A}}\norm{\bm{B}}} \\
+	\Leftrightarrow && \theta_{AB} &=& \cos^{-1}\left(
+		\frac{\bm{A}\cdot\bm{B}}{\norm{\bm{A}}\norm{\bm{B}}}\right) \\
+	\Leftrightarrow && ~ &=& \cos^{-1}\left(\frac{3}{\sqrt{14\times 29}}\right) \\
+	\Leftrightarrow && ~ &=& \boxed{81.43753893^\circ}
+\end{aligned} \end{equation*}
+\begin{remark} Looking at our plots, the angle feels to be something a little less
+than $90^\circ$, which is coherent with what we've found.
+\end{remark}
+\end{document}

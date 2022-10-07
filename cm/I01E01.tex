@@ -2,7 +2,6 @@
 
 \xtitle
 
-
 \begin{document}
 \maketitle
 \begin{exercise}
@@ -29,7 +28,7 @@ are unfamiliar with the trigonometric functions.
 		}
 		\draw[->] (\xmin-1, 0) -- (\xmax+1, 0) node[right] {$t$};
 		\draw[->] (0, \ymin-1) -- (0, \ymax+1) node[above] {$f(t)$};
-		\draw[help lines, color=gray!30, dashed] (\xmin-1,\ymin-1) grid (\xmax+1,\ymax+1);
+		\draw[color=gray!30, dashed] (\xmin-1,\ymin-1) grid (\xmax+1,\ymax+1);
 		\draw[scale=1, domain=\xmin:\xmax, smooth, variable=\t, blue] plot ({\t}, {\t^4+3*\t^3-12*\t^2+\t-6});
 	\end{tikzpicture}
 	\caption{$f(t) = t^4 + 3t^3 - 12t^2 + t - 6$}
@@ -46,7 +45,7 @@ are unfamiliar with the trigonometric functions.
 		}
 		\draw[->] (\xmin-1, 0) -- (\xmax+1, 0) node[right] {$x$};
 		\draw[->] (0, \ymin-1) -- (0, \ymax+1) node[above] {$g(x)$};
-		\draw[help lines, color=gray!30, dashed] (\xmin-1,\ymin-1) grid (\xmax+1,\ymax+1);
+		\draw[color=gray!30, dashed] (\xmin-1,\ymin-1) grid (\xmax+1,\ymax+1);
 		\draw[scale=1, domain=\xmin:\xmax, smooth, variable=\x, samples=100, blue] plot ({\x}, {sin(\x r)-cos(\x r)});
 	\end{tikzpicture}
 	\caption{$g(x) = \sin x - \cos x$}
@@ -63,7 +62,7 @@ are unfamiliar with the trigonometric functions.
 		}
 		\draw[->] (\xmin-1, 0) -- (\xmax+1, 0) node[right] {$\alpha$};
 		\draw[->] (0, \ymin-1) -- (0, \ymax+1) node[above] {$\theta(\alpha)$};
-		\draw[help lines, color=gray!30, dashed] (\xmin-1,\ymin-1) grid (\xmax+1,\ymax+1);
+		\draw[color=gray!30, dashed] (\xmin-1,\ymin-1) grid (\xmax+1,\ymax+1);
 		\draw[scale=1, domain=\xmin:\xmax, smooth, variable=\x, blue] plot ({\x}, {exp(\x)+\x*ln(\x)});
 	\end{tikzpicture}
 	\caption{$\theta(\alpha) = e^\alpha + \alpha\ln\alpha$}
@@ -80,7 +79,7 @@ are unfamiliar with the trigonometric functions.
 		}
 		\draw[->] (\xmin-1, 0) -- (\xmax+1, 0) node[right] {$t$};
 		\draw[->] (0, \ymin-1) -- (0, \ymax+1) node[above] {$x(t)$};
-		\draw[help lines, color=gray!30, dashed]
+		\draw[color=gray!30, dashed]
 			(\xmin-1,\ymin-1) grid (\xmax+1,\ymax+1);
 		\draw[scale=1, domain=\xmin:\xmax, smooth, samples=100, variable=\t, blue]
 			plot ({\t}, {sin(\t r)^2 - cos(\t r)});
@@ -103,7 +102,7 @@ For instance, here's the code for the last plot:
 		}
 		\draw[->] (\xmin-1, 0) -- (\xmax+1, 0) node[right] {$t$};
 		\draw[->] (0, \ymin-1) -- (0, \ymax+1) node[above] {$x(t)$};
-		\draw[help lines, color=gray!30, dashed]
+		\draw[color=gray!30, dashed]
 			(\xmin-1,\ymin-1) grid (\xmax+1,\ymax+1);
 		\draw[scale=1, domain=\xmin:\xmax, smooth, samples=100, variable=\t, blue]
 			plot ({\t}, {sin(\t r)^2 - cos(\t r)});
@@ -111,6 +110,5 @@ For instance, here's the code for the last plot:
 	\caption{$x(t) =  \sin^2t - \cos t$}
 \end{figure}
 \end{verbatimtab}
-
 \end{remark}
 \end{document}

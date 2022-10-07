@@ -1,0 +1,20 @@
+\documentclass[solutions.tex]{subfiles}
+
+\xtitle
+
+\begin{document}
+\maketitle
+\begin{exercise} Can you explain why the dot product of
+two vectors that are orthogonal is $0$?
+\end{exercise}
+The dot product between two vectors is defined in two ways
+in the book; one of them involves the magnitudes of the vectors
+and the angle between them:
+\begin{equation*} \begin{aligned}
+	\bm{u}\cdot\bm{v} &&=\quad& \norm{\bm{u}}\norm{\bm{v}}\cos\theta_{uv}
+\end{aligned} \end{equation*}
+By definition, two vectors are orthogonals if the angle between
+them is $\pi/2$, or $90^\circ$. But, $\cos(\pi/2) = 0$, so it follows
+from the previous dot product formula that, for two orthogonal
+vectors, their dot product must be $0$.
+\end{document}

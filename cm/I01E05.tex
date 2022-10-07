@@ -1,0 +1,115 @@
+\documentclass[solutions.tex]{subfiles}
+
+\xtitle
+
+\begin{document}
+\maketitle
+\begin{exercise} Determine which pair of vectors
+are orthogonal. $(1,1,1), (2,-1,3), (3,1,0), (-3,0,2)$.
+\end{exercise}
+This is again an immediate application of dot product formula.
+We'll respectively name the vectors $\bm{A}$, $\bm{B}$, $\bm{C}$
+and $\bm{D}$; let's start by plotting them:
+\begin{figure}[H]
+	\centering
+	\tdplotsetmaincoords{60}{120}
+	\begin{tikzpicture}[scale=2,tdplot_main_coords]
+		\tikzmath{
+			\xmin = -4.5;
+			\xmax = 3;
+			\ymin = -3.5;
+			\ymax = 2;
+			\zmin = -1;
+			\zmax = 3;
+			\Ax = 1;
+			\Ay = 1;
+			\Az = 1;
+			\Bx = 2;
+			\By = -1;
+			\Bz = 3;
+			\Cx = 3;
+			\Cy = 1;
+			\Cz = 0;
+			\Dx = -3;
+			\Dy = 0;
+			\Dz = 2;
+		}
+
+		\coordinate (orig) at (0,0,0);
+		\coordinate (A) at (\Ax, \Ay, \Az);
+		\coordinate (B) at (\Bx, \By, \Bz);
+		\coordinate (C) at (\Cx, \Cy, \Cz);
+		\coordinate (D) at (\Dx, \Dy, \Dz);
+
+		\draw[->] (orig) -- (1,0,0) node[anchor=north east,xshift=10]{$\uvec{x}$};
+		\draw[->] (orig) -- (0,1,0) node[anchor=north west]{$\uvec{y}$};
+		\draw[->] (orig) -- (0,0,1) node[anchor=south,xshift=10]{$\uvec{z}$};
+
+		\draw[->,dashed] (\xmin,0,0) -- (\xmax,0,0) node[anchor=north west]{$x$};
+		\draw[->,dashed] (0,\ymin,0) -- (0,\ymax,0) node[anchor=north west]{$y$};
+		\draw[->,dashed] (0,0,\zmin) -- (0,0,\zmax) node[anchor=north west]{$z$};
+
+		\draw[->] (orig) -- (A) node [yshift=10]{$\bm{A}$};
+		\draw[->] (orig) -- (B) node [xshift=10]{$\bm{B}$};
+		\draw[->] (orig) -- (C) node [xshift=10]{$\bm{C}$};
+		\draw[->] (orig) -- (D) node [xshift=10]{$\bm{D}$};
+
+		\draw[dashed,gray] (0,0,0) -- (\Ax,\Ay,0);
+		\draw[dashed,gray] (\Ax,\Ay,0) -- (A);
+		\draw[dashed,gray]         (A) -- (0,0,\Az) node [xshift=10,yshift=-3]{$\Az$};
+		\draw[dashed,gray] (\Ax,\Ay,0) -- (0,\Ay,0) node [yshift=12,xshift=-2]{$\Ay$};
+		\draw[dashed,gray] (\Ax,\Ay,0) -- (\Ax,0,0) node [xshift=10,yshift=-3]{$\Ax$};
+
+		\draw[dashed,gray] (0,0,0) -- (\Bx,\By,0);
+		\draw[dashed,gray] (\Bx,\By,0) -- (B);
+		\draw[dashed,gray]         (B) -- (0,0,\Bz) node [xshift=10,yshift=-3]{$\Bz$};
+		\draw[dashed,gray] (\Bx,\By,0) -- (0,\By,0) node [yshift=12,xshift=-2]{$\Ay$};
+		\draw[dashed,gray] (\Bx,\By,0) -- (\Bx,0,0) node [xshift=10,yshift=-3]{$\Bx$};
+
+		\draw[dashed,gray] (0,0,0) -- (\Cx,\Cy,0);
+		\draw[dashed,gray] (\Cx,\Cy,0) -- (C);
+		\draw[dashed,gray]         (C) -- (0,0,\Cz) node [xshift=10,yshift=-3]{$\Cz$};
+		\draw[dashed,gray] (\Cx,\Cy,0) -- (0,\Cy,0) node [yshift=12,xshift=-2]{$\Ay$};
+		\draw[dashed,gray] (\Cx,\Cy,0) -- (\Cx,0,0) node [xshift=10,yshift=-3]{$\Cx$};
+
+		\draw[dashed,gray] (0,0,0) -- (\Dx,\Dy,0);
+		\draw[dashed,gray] (\Dx,\Dy,0) -- (D);
+		\draw[dashed,gray]         (D) -- (0,0,\Dz) node [xshift=10,yshift=-3]{$\Dz$};
+		\draw[dashed,gray] (\Dx,\Dy,0) -- (0,\Dy,0) node [yshift=12,xshift=-2]{$\Ay$};
+		\draw[dashed,gray] (\Dx,\Dy,0) -- (\Dx,0,0) node [xshift=10,yshift=-3]{$\Dx$};
+	\end{tikzpicture}
+\end{figure}
+Right before this exercise, the authors wrote:
+\begin{quote}
+An important property of the dot product is that it is zero
+if the vectors are \textit{orthogonal}.
+\end{quote}
+Let us recall the "components-based" dot product formula we'll
+be using:
+\begin{equation*} \begin{aligned}
+	\bm{u}\cdot\bm{v} &&=\quad& u_xv_x + u_yv_y + u_zv_z
+\end{aligned} \end{equation*}
+Then, it's just a matter of crunching numbers:
+\begin{equation*} \begin{aligned}
+	\bm{A}\cdot\bm{B} &&=\quad& A_xB_x + A_yB_y + A_zB_z &&&
+		\bm{A}\cdot\bm{C} &&=\quad& A_xC_x + A_yC_y + A_zC_z \\
+	~ &&=\quad& (1\times 2) + (1\times (-1)) + (1\times 3) &&&
+		~ &&=\quad& (1\times 3) + (1\times 1) + (1\times 0) \\
+	~ &&=\quad& \boxed{4} &&&
+		~ &&=\quad& \boxed{4} \\
+	\bm{A}\cdot\bm{D} &&=\quad& A_xD_x + A_yD_y + A_zD_z &&&
+		\bm{B}\cdot\bm{C} &&=\quad& B_xC_x + B_yC_y + B_zC_z \\
+	~ &&=\quad& (1\times (-3)) + (1\times 0) + (1\times 2) &&&
+		~ &&=\quad& (2\times 3) + (-1\times 1) + (3\times 0) \\
+	~ &&=\quad& \boxed{-1} &&&
+		~ &&=\quad& \boxed{5} \\
+	\bm{B}\cdot\bm{D} &&=\quad& B_xD_x + B_yD_y + B_zD_z &&&
+		\bm{D}\cdot\bm{C} &&=\quad& D_xC_x + D_yC_y + D_zC_z \\
+	~ &&=\quad& (2\times (-3)) + (-1\times 0) + (3\times 2) &&&
+		~ &&=\quad& (-3\times 3) + (0\times 1) + (2\times 0) \\
+	~ &&=\quad& \boxed{0} &&&
+		~ &&=\quad& \boxed{-9} \\
+\end{aligned} \end{equation*}
+Hence, the only two orthogonal vectors are $\bm{B}$ and $\bm{D}$, or
+$(2,-1,3)$ and $(-3,0,2)$.
+\end{document}
