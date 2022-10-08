@@ -1,0 +1,142 @@
+\documentclass[solutions.tex]{subfiles}
+
+\xtitle
+
+\begin{document}
+\maketitle
+\begin{exercise}
+Calculate the derivatives of each of these functions.
+
+\begin{equation*} \begin{aligned}
+	f(t) &&=\quad& t^4 + 3t^3 - 12t^2 + t - 6 \\
+	g(x) &&=\quad& \sin x - \cos x \\
+	\theta(\alpha) &&=\quad& e^\alpha + \alpha\ln\alpha \\
+	x(t) &&=\quad& \sin^2t - \cos t
+\end{aligned} \end{equation*}
+\end{exercise}
+\begin{remark} Those are exactly the functions graphed
+in\href{https://github.com/mbivert/ttm/blob/master/cm/I01E01.pdf}{I01E01}
+\end{remark}
+\hr
+$\bm{f(t) = t^4 + 3t^3 - 12t^2 + t - 6}$ \\, \\
+To find the derivative of $f$, we need to apply four rules that
+were mentioned (the first one was proved) in the book:
+\begin{enumerate}
+	\item the formula for the derivative of a general power;
+	for $n\in\mathbb{N}$:
+	\[
+		\frac{d}{dt}(t^n) = n t^{n-1}
+	\]
+	\item the fact that the derivative of a constant is zero;
+	for $c\in\mathbb{R}$:
+	\[
+		\frac{d}{dt}c = 0
+	\]
+	\item the fact that the derivative of a constant times
+	a function is the same as the constant times the derivative
+	of the function; for $c\in\mathbb{R}$ and $\varphi$ a function
+	of $t$:
+	\[
+		\frac{d}{dt}(c\varphi) = c\frac{d}{dt}\varphi
+	\]
+	\item the \textit{sum rule} (also referred to as the
+	\textit{linearity of differentiation} in mathematics); for
+	both $\varphi$ and $\psi$ functions of $t$:
+	\[
+		\frac{d}{dt}(\varphi+\psi) = \frac{d}{dt}\varphi+\frac{d}{dt}\psi
+	\]
+\end{enumerate}
+\begin{remark} Two simpler notations are common to denote the derivative
+of a function of a single variable:
+\[
+	\frac{d}{dt}\varphi = \varphi' = \dot\varphi
+\]
+While the first one is used mostly in mathematics, for abstract functions,
+the second one is used almost exclusively in physics, to denote
+a \textit{time} derivative. We'll use them both in such ways from
+now on. For instance, as this exercise is rather mathematical, we'll
+use the prime notation. \\
+
+While we're here, bear in mind that the prime notation can also be used
+to denote the derivative of a more or less complex expression, wrapped
+in parenthesis, e.g.:
+\[
+	(\varphi(x)+\psi(x)+\cos^2 x)' = \frac{d}{dx}(\varphi(x)+\psi(x)+\cos^2 x)
+\]
+\end{remark}
+By application of the \textit{sum rule}, the rule regarding the derivative
+of a constant, and the rule regarding a function multiplied by a constant:
+\[
+	f'(t) = (t^4)' + 3(t^3)'-12(t^2)'+(t)'-0
+\]
+Then, it's just a matter of applying the formula for the derivative of a general
+power to each individual term:
+\[
+	\boxed{f'(t) = 4t^3 + 9t^2-24t+1}
+\]
+
+\hr
+$\bm{g(x) = \sin x - \cos x}$ \\, \\
+In addition the the previously mentioned \textit{sum rule}, we will also
+need two more rules to compute the derivative of $g$, also presented in
+the book, regarding the derivative of $\sin$ and $\cos$:
+\begin{equation*} \begin{aligned}
+	\cos'(t) &&=\,& -\sin(t); &&&
+	\sin'(t) &&=\,& \cos(t)
+\end{aligned} \end{equation*}
+We then have successively:
+\begin{equation*} \begin{aligned}
+	g'(x) &&=\,& \sin'(x)-\cos'(x) \\
+	~ &&=\,& \boxed{\cos(x)+\sin(x)}
+\end{aligned} \end{equation*}
+
+\hr
+$\bm{\theta(\alpha) = e^\alpha + \alpha\ln\alpha}$ \\, \\
+To compute $\theta'$, in addition to the \textit{sum rule}
+and the formula for a general power (with $n=1$), we need two
+additional rules pertaining to the derivatives of both the
+exponential and the log:
+\begin{equation*} \begin{aligned}
+	(e^t)' &&=\quad& e^t; &&&
+	\ln'(t) &&=\quad& \frac{1}{t}
+\end{aligned} \end{equation*}
+And the \textit{product rule}; for $\varphi$ and $\psi$ functions
+of $t$:
+\[
+	\frac{d}{dt}(\varphi\psi) = \varphi'\psi + \varphi\psi'
+\]
+Where all those rules were mentioned in the book. We then obtain:
+\begin{equation*} \begin{aligned}
+	\theta'(\alpha) &&=\,& (e^\alpha)'+(\alpha\ln(\alpha))' \\
+	~ &&=\,& e^\alpha+(\frac{d}{d\alpha}\alpha)\ln(\alpha)+\alpha \ln'(\alpha) \\
+	~ &&=\,& \boxed{e^\alpha+\ln(\alpha)+1}
+\end{aligned} \end{equation*}
+
+\hr
+$\bm{x(t) = (\sin t)^2 - \cos t}$ \\, \\
+Besides the \textit{sum rule}, the rules regarding the derivative
+of $\cos$ and $\sin$, and the formula for the derivative of a general
+power, we will only need a single new rule to compute $x'$, the \textit{chain rule};
+for $\varphi$ a function of $t$, and $\psi$ and function whose domain (input)
+is the codomain (output) of $\varphi$:
+\[
+	\frac{d}{dt}(\psi\circ\varphi) = \frac{d}{dt}(\psi(\varphi(t)) = \varphi'(t)\psi'(\varphi(t))
+\]
+Then,
+\begin{equation*} \begin{aligned}
+	x'(t) &&=\,& ((\sin t)^2)'-(\cos t)' \\
+	~ &&=\,& (\sin t)'(u \mapsto u^2)'(\sin t) + \sin t \\
+	~ &&=\,& \cos t (u \mapsto 2u)(\sin t) + \sin t \\
+	~ &&=\,& 2\cos t\sin t + \sin t \\
+	~ &&=\,& \boxed{(1+2\cos t)\sin t} \\
+\end{aligned} \end{equation*}
+\begin{remark} We used a bit of mathematical notation to avoid us the need
+to explicitly name the function which squares its argument. More explicitly,
+to compute the derivative of $\mu(t) = sin^2t$, we could have define
+$\nu(u) = u^2$. Then, $\mu(t) = \nu(\sin(t))$, and $\nu'(u) = 2u$;
+by the \textit{chain rule}
+\[
+	(\sin^2 t)' = \mu'(t) = (\sin t)'\nu'(\sin(t)) = 2\cos t\sin t
+\]
+\end{remark}
+\end{document}
