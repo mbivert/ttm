@@ -132,11 +132,18 @@ Then,
 \end{aligned} \end{equation*}
 \begin{remark} We used a bit of mathematical notation to avoid us the need
 to explicitly name the function which squares its argument. More explicitly,
-to compute the derivative of $\mu(t) = sin^2t$, we could have define
+to compute the derivative of $\mu(t) = \sin^2t$, we could have define
 $\nu(u) = u^2$. Then, $\mu(t) = \nu(\sin(t))$, and $\nu'(u) = 2u$;
 by the \textit{chain rule}
 \[
 	(\sin^2 t)' = \mu'(t) = (\sin t)'\nu'(\sin(t)) = 2\cos t\sin t
+\]
+\end{remark}
+\begin{remark} Instead of using the \textit{chain rule} to compute the
+derivative of $\sin^2t$, we could instead have used the \textit{product rule}:
+\[
+	(\sin^2t)' = (\sin t \times \sin t)' = (\sin t)' \sin t + \sin t(\sin t)'
+		= 2\sin t(\sin t)' = 2\sin t\cos t
 \]
 \end{remark}
 \end{document}

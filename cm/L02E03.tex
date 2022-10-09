@@ -1,0 +1,70 @@
+\documentclass[solutions.tex]{subfiles}
+
+\xtitle
+
+\begin{document}
+\maketitle
+\begin{exercise} Use the chain rule to find the derivatives
+on each of the following functions:
+\begin{equation*} \begin{aligned}
+	g_0(t) &&=\quad& \sin(t^2) - \cos(t^2) \\
+	\theta_0(\alpha) &&=\quad& e^{3\alpha} + 3\alpha\ln(3\alpha) \\
+	x_0(t) &&=\quad& \sin^2(t^2) - \cos(t^2)
+\end{aligned} \end{equation*}
+\end{exercise}
+\begin{remark} We've slightly altered the functions names compared
+to what they have in the book. The reason will be apparent very soon.
+\end{remark}
+\begin{remark} As in previous exercises (e.g.
+\href{https://github.com/mbivert/ttm/blob/master/cm/L02E01.pdf}{L02E01}),
+we'll be using some additional mathematical notation to avoid us
+the need to define functions. The meaning should be obvious from the
+context. \\
+
+We will also use the prime notation to denote differentiation, as we also did
+in earlier exercises.
+\end{remark}
+There are two main ways of proceeding: either applying the \textit{chain
+rule} to each individual term of each function, for instance to
+compute $g'$, we would fist compute $(\sin(t^2))' = (\sin((u \mapsto u^2)(t)))'$,
+using the chain rule, then $(\cos(t^2))'$ in a similar fashion, etc. \\
+
+Or, and we're going to use this approach as it's likely to have been
+expected one, we can consider each function "globally" as
+a composition of two smaller functions. While doing so, we will find
+that $g_0$, $\theta_0$ and $x_0$ are respectively created by composing
+functions $f$, $\theta$ and $x$ of an earlier exercise, with two simple
+functions $(v \mapsto v^2)$ and $(v \mapsto 3v)$:
+\begin{equation*} \begin{aligned}
+	g_0(t) &&=\quad&
+		(\underbrace{(u \mapsto \sin(u) - \cos(u))}_g\circ(v \mapsto v^2))(t) \\
+	\theta_0(\alpha) &&=\quad&
+		(\underbrace{(u \mapsto e^{u} + u\ln(u))}_\theta\circ(v \mapsto 3v))(t) \\
+	x_0(t) &&=\quad&
+		(\underbrace{(u \mapsto \sin^2(u) - \cos(u))}_x\circ(v \mapsto v^2))(t)
+\end{aligned} \end{equation*}
+
+Let's remember the derivative of $g$, $\theta$ and $x$, that we've
+computed in
+\href{https://github.com/mbivert/ttm/blob/master/cm/L02E01.pdf}{L02E01}:
+\begin{equation*} \begin{aligned}
+	g'(x) &&=\quad& \cos(x)+\sin(x) \\
+	\theta'(\alpha) &&=\quad& e^\alpha+\ln(\alpha)+1 \\
+	x'(t) &&=\quad& (1+2\cos t)\sin t
+\end{aligned} \end{equation*}
+
+Finally, let's recall the \textit{chain rule}:
+\[
+	\frac{d}{dt}(\psi\circ\varphi) = \frac{d}{dt}(\psi(\varphi(t)) = \varphi'(t)\psi'(\varphi(t))
+\]
+
+Then, the derivative of $(v \mapsto v^2)$ and $(v \mapsto 3v)$ being respectively
+$(v \mapsto 2v)$ and $(v \mapsto 3)$ (constant function), we have the following
+derivatives for our functions:
+\begin{equation*} \begin{aligned}
+	g_0'(t) &&=\quad& \boxed{2t(\cos t^2 + \sin t^2)} \\
+	\theta_0'(\alpha) &&=\quad& \boxed{3(e^{3\alpha}+\ln(3\alpha)+1)} \\
+	x_0'(t) &&=\quad& \boxed{2t((1+2\cos t^2)\sin t^2)}
+\end{aligned} \end{equation*}
+
+\end{document}

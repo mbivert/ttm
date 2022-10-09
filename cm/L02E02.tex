@@ -1,0 +1,53 @@
+\documentclass[solutions.tex]{subfiles}
+
+\xtitle
+
+\begin{document}
+\maketitle
+\begin{exercise} The derivative of a derivative is called the
+second derivative and is written $\dfrac{d^2 f(t)}{dt^2}$. Take
+the second derivative of each of the functions listed above.
+\end{exercise}
+\begin{remark} As for the first derivative, there are
+two common notations for second derivatives:
+\[
+	\frac{d^2}{dt^2}\varphi = \varphi'' = \ddot\varphi
+\]
+Again, the dot notation is used in physics to denote time differentiation,
+while the prime notation is often used in mathematics, in a more abstract context.
+\end{remark}
+Let's start by recalling the functions:
+\begin{equation*} \begin{aligned}
+	f(t) &&=\quad& t^4 + 3t^3 - 12t^2 + t - 6 \\
+	g(x) &&=\quad& \sin x - \cos x \\
+	\theta(\alpha) &&=\quad& e^\alpha + \alpha\ln\alpha \\
+	x(t) &&=\quad& \sin^2t - \cos t
+\end{aligned} \end{equation*}
+
+And their derivatives, computed in the previous exercise:
+
+\begin{equation*} \begin{aligned}
+	f'(t)  &&=\quad& 4t^3 + 9t^2-24t+1 \\
+	g'(x) &&=\quad& \cos(x)+\sin(x) \\
+	\theta'(\alpha) &&=\quad& e^\alpha+\ln(\alpha)+1 \\
+	x'(t) &&=\quad& (1+2\cos t)\sin t
+\end{aligned} \end{equation*}
+
+While in the previous exercise
+(\href{https://github.com/mbivert/ttm/blob/master/cm/L02E01.pdf}{L02E01})
+the derivation were rather slow and detailled, because the process
+is essentially the same, we're going to go (much) faster here, the most
+difficult part being in the application of the product rule for $x''$.
+\begin{equation*} \begin{aligned}
+	f''(t)  &&=\quad& \boxed{12t^2 + 18t-24} \\
+	g''(x) &&=\quad& \boxed{\cos(x)-\sin(x) = -g(x)} \\
+	\theta''(\alpha) &&=\quad& \boxed{e^\alpha+\frac{1}\alpha} \\
+	x''(t) &&=\quad& (1+2\cos t)\cos t -2\sin t\sin t \\
+	~ &&=\quad& \boxed{\cos t +2(\cos^2 t - \sin^2t)}
+\end{aligned} \end{equation*}
+\begin{remark} $x''$ could be slightly improved by using
+the trigonometric identity $\cos^2x-\sin^2x = \cos2x$, which hasn't
+been introduced in the book.
+\end{remark}
+
+\end{document}
