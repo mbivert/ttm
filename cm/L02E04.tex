@@ -1,0 +1,189 @@
+\documentclass[solutions.tex]{subfiles}
+
+\xtitle
+
+\begin{document}
+
+\maketitle
+\begin{exercise} Prove the sum rule (fairly easy), the
+product rule (easy if you know the trick), and the chain rule
+(fairly easy).
+\end{exercise}
+You may want to refer to a \textit{real} mathematical textbook for a
+finer, more rigorous treatment of those exercises. We'll give reasonably
+solid proofs, that should be sufficient in the context of an
+introductory physics textbook. A interesting middle-ground, that we won't
+explore here, would be to study the proofs that one can obtain from an
+alternative (but equivalent) formulation of the derivative known as the
+Carathéodory's derivative, which allows for simple proofs of such results. \\
+
+Let's start by recalling how differentiation is defined.
+
+\begin{definition} A function $\varphi : E \rightarrow \mathbb{R}$ is
+said to be differentiable at a point $e\in E$ if the following limit exists:
+\[
+	\varphi'(e) = \frac{d}{dx}\varphi(e) =
+		\boxed{\lim_{\epsilon \rightarrow 0}\frac{\varphi(e+\epsilon)-\varphi(e)}{\epsilon}}
+\]
+If this limit exists for all points $x$ of $E$ (we note, $(\forall x \in E)$), then
+$\varphi$ is said to be differentiable on $E$, or simply differentiable. The function
+which associate to each points of $E$ this limit is called the \textit{derivative}
+of $\varphi$, and is called $\varphi$.
+\end{definition}
+
+\begin{theorem}[sum rule] Let $\varphi, \psi : E \rightarrow \mathbb{R}$,
+both differentiable on $E$. Then,
+\[
+	\boxed{(\varphi+\psi)' = \varphi' + \psi'}
+\]
+\end{theorem}
+\begin{proof} We have, by definition of the differentiation, and after
+re-ordering the terms
+\begin{equation*} \begin{aligned}
+	(\forall x \in E),\quad(\varphi+\psi)'(x) &&=\quad&
+		\lim_{\epsilon \rightarrow 0}\frac{(\varphi+\psi)(x+\epsilon)-(\varphi+\psi)(x)}{\epsilon} \\
+	~ &&=\quad &
+		\lim_{\epsilon \rightarrow 0}\frac{\varphi(x+\epsilon)+\psi(x+\epsilon)-\varphi(x)-\psi(x)}{\epsilon} \\
+	~ &&=\quad &
+		\lim_{\epsilon \rightarrow 0}\left(\frac{\varphi(x+\epsilon)-\varphi(x)}{\epsilon}+
+			\frac{\psi(x+\epsilon)-\psi(x)}{\epsilon}\right) \\
+	~ &&=\quad &
+		\lim_{\epsilon \rightarrow 0}\frac{\varphi(x+\epsilon)-\varphi(x)}{\epsilon}
+		+\lim_{\epsilon \rightarrow 0}\frac{\psi(x+\epsilon)-\psi(x)}{\epsilon} \\
+	~ &&=\quad & \boxed{\varphi'(x)+\psi'(x)}
+\end{aligned} \end{equation*}
+\end{proof}
+\begin{remark} As a rigorous proof is a bit tedious\footnote{if you want one,
+have a look at \textit{Paul's Online Notes}:
+\url{https://tutorial.math.lamar.edu/classes/calci/limitproofs.aspx}},
+we \underline{assumed} for the last step that a limit of a sum is the
+sum of the limits, \underline{when all the involved limits exist} (which
+is the case here, because those limits are equivalent to saying our functions
+are differentiable, which they are, per hypothesis)
+\[
+	\lim_{x \rightarrow a}\left(\varphi(x)+\psi(x)\right) =
+		\lim_{x \rightarrow a}\varphi(x)
+		+ \lim_{x \rightarrow a}\psi(x))
+\]
+\end{remark}
+
+\begin{theorem}[product rule] Let $\varphi, \psi : E \rightarrow \mathbb{R}$,
+both differentiable on $E$. Then,
+\[
+	\boxed{(\varphi\psi)' = \varphi'\psi + \varphi\psi'}
+\]
+\end{theorem}
+\begin{proof} This is a simple and often used theorem, but unfortunately,
+the proof of it is a bit "magic": if we start by applying the definition
+of the differentiation to $(\varphi\psi)'$, we have to introduce a well-crafted
+term (in the form $-a+a=0$) so as to factorize things to meet our goal. We would
+furthermore be implicitly assuming that $(\varphi\psi)'$ exists, but we have
+no guarantee of it. \\
+
+We can solve those issues by starting from the definition of the
+differentiation of $\varphi'\psi + \varphi\psi'$, but assuming we already
+know the result we're trying to prove, is conceptually clumsy. Perhaps
+calling this a "verification" rather than a proof would be more correct
+then. \\
+
+Using the former derivation, we have:
+\begin{equation*} \begin{aligned}
+	(\forall x \in E),\quad(\varphi\psi)'(x) &&=\quad&
+		\lim_{\epsilon \rightarrow 0}\frac{(\varphi\psi)(x+\epsilon)-(\varphi\psi)(x)}{\epsilon} \\
+	~ &&=\quad &
+		\lim_{\epsilon \rightarrow 0}\frac{\varphi(x+\epsilon)\psi(x+\epsilon)-\varphi(x)\psi(x)}{\epsilon} \\
+	~ &&=\quad &
+		\lim_{\epsilon \rightarrow 0}\frac{
+			\varphi(x+\epsilon)\psi(x+\epsilon)-\varphi(x)\psi(x)
+			\overbrace{-\varphi(x+\epsilon)\psi(x)
+			+\varphi(x+\epsilon)\psi(x)}^{=0}
+		}{\epsilon} \\
+	~ &&=\quad &
+		\lim_{\epsilon \rightarrow 0}\frac{
+			\varphi(x+\epsilon)(\psi(x+\epsilon)-\psi(x))
+			+
+			\psi(x)(\varphi(x+\epsilon)-\varphi(x))
+		}{\epsilon} \\
+	~ &&=\quad &
+		\lim_{\epsilon \rightarrow 0}\varphi(x+\epsilon)\frac{
+			(\psi(x+\epsilon)-\psi(x))
+		}{\epsilon}
+		+
+		\psi(x)\lim_{\epsilon \rightarrow 0}\frac{
+			\varphi(x+\epsilon)-\varphi(x)
+		}{\epsilon} \\
+	~ &&=\quad &
+		\left(\lim_{\epsilon \rightarrow 0}\varphi(x+\epsilon)\right)
+		\lim_{\epsilon \rightarrow 0}\frac{
+			\psi(x+\epsilon)-\psi(x)
+		}{\epsilon}
+		+
+		\psi(x)\lim_{\epsilon \rightarrow 0}\frac{
+			\varphi(x+\epsilon)-\varphi(x)
+		}{\epsilon} \\
+	~ &&=\quad & \boxed{\varphi(x)\psi'(x) + \psi(x)\varphi'(x)}
+\end{aligned} \end{equation*}
+\end{proof}
+\begin{remark} We \underline{assumed} another result on limits
+\footnote{If you want a rigorous proof of it, you can refer to the
+same resource as before:
+\url{https://tutorial.math.lamar.edu/classes/calci/limitproofs.aspx}},
+again assuming individual limits exists (and they do in our case, as
+our functions are differentiable, and (thus) continuous):
+\[
+	\lim_{x \rightarrow a}\left(\varphi(x)\psi(x)\right) =
+		\lim_{x \rightarrow a}\varphi(x)
+		\times\lim_{x \rightarrow a}\psi(x))
+\]
+
+\end{remark}
+\begin{theorem}[chain rule] Let $\varphi, \psi : E \rightarrow \mathbb{R}$,
+both differentiable on $E$. Then,
+\[
+	\boxed{(\varphi\circ\psi)' = \psi'\times(\varphi'\circ\psi)}
+\]
+\end{theorem}
+\begin{proof} Again, the proof is a bit "magical" in that we're going
+to multiply by a well-crafted term, of the form $a/a=1$:
+\begin{equation*} \begin{aligned}
+	(\forall x \in E),\, (\varphi\circ\psi)(x)) &&=\quad &
+		\lim_{\epsilon \rightarrow 0}\frac{
+			(\varphi\circ\psi)(x+\epsilon)-(\varphi\circ\psi)(x))
+		}{\epsilon} \\
+	~ &&=\quad &
+		\lim_{\epsilon \rightarrow 0}\left(\frac{
+			\varphi(\psi(x+\epsilon))-\varphi(\psi(x)))
+		}{\epsilon}\times\overbrace{
+			\frac{\psi(x+\epsilon)-\psi(x)}{\psi(x+\epsilon)-\psi(x)}
+		}^{=1}\right) \\
+	~ &&=\quad &
+		\lim_{\epsilon \rightarrow 0}\left(\frac{
+			\varphi(\psi(x+\epsilon))-\varphi(\psi(x)))
+		}{\psi(x+\epsilon)-\psi(x)}\times
+			\frac{\psi(x+\epsilon)-\psi(x)}{\epsilon}
+		\right) \\
+	~ &&=\quad &
+		\lim_{\epsilon \rightarrow 0}\frac{
+			\varphi(\psi(x+\epsilon))-\varphi(\psi(x)))
+		}{\psi(x+\epsilon)-\psi(x)}
+		\times
+		\underbrace{\lim_{\epsilon \rightarrow 0}
+			\frac{\psi(x+\epsilon)-\psi(x)}{\epsilon}}_{\psi'(x)}\\
+\end{aligned} \end{equation*}
+Again for that last step, we've used the aforementioned rule on products
+of existing limits. To conclude, we need to compute the first limit: let's
+define $h=\psi(x+\epsilon)-\psi(x) \Leftrightarrow \psi(x+\epsilon) = \psi(x)+h$.
+Note that $\epsilon \rightarrow 0 \Rightarrow h \rightarrow 0$. So the first
+limit can be rewritten:
+\[
+	\lim_{h \rightarrow 0}\frac{
+		\varphi(\psi(x)+h)-\varphi(\psi(x)))
+	}{h} \triangleq \varphi'(\psi(x))
+\]
+\end{proof}
+Now a problem with this previous proof is that it is invalid if $\psi$ is
+a constant function for example, because $\psi(x+\epsilon)-\psi(x)$ is zero,
+and we're dividing by zero when performing our magical "multiplication" by 1.
+If you're interested, you can find an alternative proof using the other,
+equivalent form of the derivative here: \url{https://www.youtube.com/watch?v=COLwYhEAt7Q}.
+\end{document}
