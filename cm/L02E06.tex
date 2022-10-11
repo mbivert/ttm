@@ -1,0 +1,68 @@
+\documentclass[solutions.tex]{subfiles}
+
+\xtitle
+
+\begin{document}
+\maketitle
+\begin{exercise} How long does it take for the oscillating
+particle to go through one full cycle of motion?
+\end{exercise}
+We're in the case of a particle oscillating in one dimension.
+Its motion, known as the \textit{simple harmonic motion},
+is described by:
+\[
+	x(t) = \sin(\omega t)
+\]
+Essentially, $x(t)$ will correspond to the vertical component of
+a point moving on the unit circle, located by an angle $\omega t$.
+\begin{figure}[H]
+	\centering
+	\begin{tikzpicture}
+		\tikzmath{
+			\xmin = -5;
+			\xmax = 5;
+			\ymin = -5;
+			\ymax = 5;
+			\r = 4;
+			\rd = 2*\r; % \r * 2cm, where 2cm is the default x length
+			\t = 30;
+			\px = \r * cos(\t);
+			\py = \r * sin(\t);
+		}
+		\coordinate (O) at (0, 0);
+		\coordinate (p) at (\t:\r);
+
+		\draw[color=gray!30, dashed] (\xmin,\ymin) grid (\xmax,\ymax);
+		% axises
+		\draw[dashed,gray,->] (\xmin,0) -- (\xmax,0) node (xaxis) []{};
+		\draw[dashed,gray,->] (0,\ymin) -- (0,\ymax) node (yaxis) [gray,right]{$\vec{x}$};
+
+		% \rd = \r * 2cm (where 2cm is the default x length)
+		\node[draw,circle, minimum size=\rd cm,inner sep=0,gray!40] (c) at (0,0){};
+		\draw[-,gray!40] (O) -- (p) node (pvec) [midway,yshift=10,xshift=-2,gray]{$r=1$};
+
+		\pic [draw,"$\omega t$",angle eccentricity=1.5,gray] {angle = xaxis--O--pvec};
+		\draw[dashed,gray] (p) -- (0,\py) node () [xshift=-40,yshift=5,black]{$x(t) = \sin(\omega t)$};
+		\filldraw[color=black!80, fill=black!5, thick] (0,\py) circle (0.2);
+		\filldraw[fill=black!80] (p) circle (0.05);
+	\end{tikzpicture}
+\end{figure}
+
+To fix things, consider the case of a particle starting at an
+extreme position, say $x=1$ (at the top of the north hemisphere of
+the unit circle). It will need to go down to $x=-1$, and then back
+up to $x=1$. In the mean time, the corresponding point on the unit
+circle would have walked a full circle, or $2\pi$ radians. \\
+
+So we're looking for the time $T$ that it will take for us
+to move by an angle $2\pi$, knowing that we move at a speed
+of $\omega$ radians per unit of time (i.e. $\omega_{t=0}=0$,
+$\omega_{t=1}=\omega$, $\omega_{t=2}=2\omega$, ...):
+\[
+	\omega T = 2\pi \Leftrightarrow \boxed{T = \frac{2\pi}\omega}
+\]
+
+\begin{remark}$T$ is commonly called the \textit{period} of motion.
+\end{remark}
+
+\end{document}
