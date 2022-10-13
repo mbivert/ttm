@@ -1,0 +1,562 @@
+\documentclass[solutions.tex]{subfiles}
+
+\xtitle
+
+\begin{document}
+\maketitle
+\begin{exercise} Calculate the velocity, speed and acceleration
+for each of the following position vectors. If you have
+graphing software, plot each position vector, each velocity
+vector, and each acceleration vector.
+\begin{equation*} \begin{aligned}
+	\vec{r} &&=\quad& (\cos\omega t, e^{\omega t}) \\
+	\vec{r} &&=\quad& (\cos(\omega t-\phi), \sin(\omega t - \phi)) \\
+	\vec{r} &&=\quad& (c\cos^3t, c\sin^3 t) \\
+	\vec{r} &&=\quad& (c(t-\sin t),c(1-\cos t)) \\
+\end{aligned} \end{equation*}
+\end{exercise}
+Let's recall that each component of the velocity and acceleration
+vectors are defined respectively as the derivative and second derivative
+of the corresponding component of the position vector:
+\begin{equation*} \begin{aligned}
+	\bm{r}(t) &&=\quad& (x(t), y(t)) \\
+	\bm{v}(t) = \dot{\bm{r}(t)} &&=\quad& (\dot{x}(t), \dot{y}(t)) \\
+	\bm{a}(t) = \dot{\bm{v}(t)} = \ddot{\bm{r}(t)} &&=\quad& (\ddot{x}(t), \ddot{y}(t)) \\
+\end{aligned} \end{equation*}
+So this is just a differentiation exercise in disguise. We'll
+be using a fast pace here ($80\%$ of the work is about applying
+the chain rule); if you need a slower approach, see for instance
+\href{https://github.com/mbivert/ttm/blob/master/cm/L02E01.pdf}{L02E01},
+where we go in-depth on how to apply common differentiation rules.
+
+\hr
+$\bm{r_0(t) = (\cos(\omega t), e^{\omega t})}$\ \\
+
+\begin{equation*} \begin{aligned}
+	\bm{r_0}(t) &&=\quad&
+		(\cos(\omega t), e^{\omega t}) \\
+	\bm{v_0}(t) = \dot{\bm{r_0}(t)} &&=\quad&
+		\boxed{(-\omega\sin(\omega t), \omega e^{\omega t})} \\
+	\bm{a_0}(t) = \dot{\bm{v_0}(t)} = \ddot{\bm{r_0}(t)} &&=\quad&
+		\boxed{(-\omega^2\cos(\omega t), \omega^2 e^{\omega t})}\\
+\end{aligned} \end{equation*}
+
+\begin{figure}[H]
+	\centering
+	\begin{minipage}{0.31\textwidth}
+		\centering
+		\begin{tikzpicture}[yscale=0.05]
+			\tikzmath{
+				\xmin = -1;
+				\xmax = 1;
+				\ymin = 0;
+				\ymax = 75;
+				\omeg = 1;
+			}
+			\draw[->] (\xmin-0.5, 0) -- (\xmax+0.5, 0) node[right] {$x_0(t)$};
+			\draw[->] (0, \ymin-1) -- (0, \ymax+1) node[above] {$y_0(t)$};
+
+			\draw[domain=-4:4, smooth, samples=100, variable=\t, blue]
+				plot ({cos(\omeg*\t r)}, {exp(\omeg*\t)});
+		\end{tikzpicture}
+		\caption{$\omega=1$;\\$\bm{r}_0(t) = (\cos(\omega t), e^{\omega t})$}
+	\end{minipage}\hfill
+	\begin{minipage}{0.31\textwidth}
+		\centering
+		\begin{tikzpicture}[yscale=0.05]
+			\tikzmath{
+				\xmin = -1;
+				\xmax = 1;
+				\ymin = 0;
+				\ymax = 75;
+				\omeg = 1;
+			}
+			\draw[->] (\xmin-0.5, 0) -- (\xmax+0.5, 0) node[right] {$v_{0,x}(t)$};
+			\draw[->] (0, \ymin-1) -- (0, \ymax+1) node[above] {$v_{0,y}(t)$};
+
+			\draw[domain=-4:4, smooth, samples=100, variable=\t, blue]
+				plot ({-\omeg*sin(\omeg*\t r)}, {\omeg*exp(\omeg*\t)});
+		\end{tikzpicture}
+		\caption{$\omega=1$; \\$\bm{v}_0(t) = (-\omega\sin(\omega t), \omega e^{\omega t})$}
+	\end{minipage}\hfill
+	\begin{minipage}{0.31\textwidth}
+		\centering
+		\begin{tikzpicture}[yscale=0.05]
+			\tikzmath{
+				\xmin = -1;
+				\xmax = 1;
+				\ymin = 0;
+				\ymax = 75;
+				\omeg = 1;
+			}
+			\draw[->] (\xmin-0.5, 0) -- (\xmax+0.5, 0) node[right] {$a_{0,x}(t)$};
+			\draw[->] (0, \ymin-1) -- (0, \ymax+1) node[above] {$a_{0,y}(t)$};
+
+			\draw[domain=-4:4, smooth, samples=100, variable=\t, blue]
+				plot ({-\omeg^2*cos(\omeg*\t r)}, {\omeg^2*exp(\omeg*\t)});
+		\end{tikzpicture}
+		\caption{$\omega=1$;\\ $\bm{a}_0(t) = (-\omega^2\cos(\omega t), \omega^2 e^{\omega t})$}
+	\end{minipage}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\begin{minipage}{0.31\textwidth}
+		\centering
+		\begin{tikzpicture}[yscale=0.05]
+			\tikzmath{
+				\xmin = -1;
+				\xmax = 1;
+				\ymin = 0;
+				\ymax = 180;
+				\oomeg = 1;
+				\omeg = 1.2;
+			}
+			\draw[->] (\xmin-0.5, 0) -- (\xmax+0.5, 0) node[right] {$x_0(t)$};
+			\draw[->] (0, \ymin-1) -- (0, \ymax+1) node[above] {$y_0(t)$};
+
+			\draw[domain=-4:4, smooth, samples=100, variable=\t, blue]
+				plot ({cos(\oomeg*\t r)}, {exp(\oomeg*\t)});
+			\draw[domain=-4:4, smooth, samples=100, variable=\t, blue]
+				plot ({cos(\omeg*\t r)}, {exp(\omeg*\t)});
+		\end{tikzpicture}
+		\caption{$\omega=1.2$;\\$\bm{r}_0(t) = (\cos(\omega t), e^{\omega t})$}
+	\end{minipage}\hfill
+	\begin{minipage}{0.31\textwidth}
+		\centering
+		\begin{tikzpicture}[yscale=0.05]
+			\tikzmath{
+				\xmin = -1;
+				\xmax = 1;
+				\ymin = 0;
+				\ymax = 180;
+				\oomeg = 1;
+				\omeg = 1.2;
+			}
+			\draw[->] (\xmin-0.5, 0) -- (\xmax+0.5, 0) node[right] {$v_{0,x}(t)$};
+			\draw[->] (0, \ymin-1) -- (0, \ymax+1) node[above] {$v_{0,y}(t)$};
+
+			\draw[domain=-4:4, smooth, samples=100, variable=\t, blue!20]
+				plot ({-\oomeg*sin(\oomeg*\t r)}, {\oomeg*exp(\oomeg*\t)});
+			\draw[domain=-4:4, smooth, samples=100, variable=\t, blue]
+				plot ({-\omeg*sin(\omeg*\t r)}, {\omeg*exp(\omeg*\t)});
+		\end{tikzpicture}
+		\caption{$\omega=1.2$; \\$\bm{v}_0(t) = (-\omega\sin(\omega t), \omega e^{\omega t})$}
+	\end{minipage}\hfill
+	\begin{minipage}{0.31\textwidth}
+		\centering
+		\begin{tikzpicture}[yscale=0.05]
+			\tikzmath{
+				\xmin = -1;
+				\xmax = 1;
+				\ymin = 0;
+				\ymax = 180;
+				\oomeg = 1;
+				\omeg = 1.2;
+			}
+			\draw[->] (\xmin-0.5, 0) -- (\xmax+0.5, 0) node[right] {$a_{0,x}(t)$};
+			\draw[->] (0, \ymin-1) -- (0, \ymax+1) node[above] {$a_{0,y}(t)$};
+
+			\draw[domain=-4:4, smooth, samples=100, variable=\t, blue!20]
+				plot ({-\oomeg^2*cos(\oomeg*\t r)}, {\oomeg^2*exp(\oomeg*\t)});
+			\draw[domain=-4:4, smooth, samples=100, variable=\t, blue]
+				plot ({-\omeg^2*cos(\omeg*\t r)}, {\omeg^2*exp(\omeg*\t)});
+		\end{tikzpicture}
+		\caption{$\omega=1.2$;\\ $\bm{a}_0(t) = (-\omega^2\cos(\omega t), \omega^2 e^{\omega t})$}
+	\end{minipage}
+\end{figure}
+
+\begin{remark} Increasing $\omega$ will:
+\begin{itemize}
+	\item For the position, increase the distance at which we travel in the
+	$y$ direction; the distance in the $x$ direction will be the same, because
+	it's constrained by a $\cos$, but we'll get there faster:
+	\item For the velocity, we will go faster in both the $x$ and $y$
+	directions; we've plotted in a fainted blue on the second graph
+	the $\bm{v}_0(t)$ for $\omega=1$ for comparison, because the effect
+	in the $x$ direction is small;
+	\item And obviously if the velocity increases, the acceleration must
+	increase accordingly, which it does, quadratically, both in the $x$
+	and $y$ directions (again, we've plotted in a fainted blue on the
+	second graph $\bm{a}_0(t)$ for $\omega=1$ for comparison).
+\end{itemize}
+\end{remark}
+
+\hr
+$\bm{r_1(t) = (\cos(\omega t-\phi), \sin(\omega t-\phi))}$\ \\
+
+\begin{equation*} \begin{aligned}
+	\bm{r_1}(t) &&=\quad&
+		(\cos(\omega t-\phi), \sin(\omega t-\phi)) \\
+	\bm{v_1}(t) = \dot{\bm{r_1}(t)} &&=\quad&
+		\boxed{(-\omega\sin(\omega t-\phi), \omega\cos(\omega t-\phi))} \\
+	\bm{a_1}(t) = \dot{\bm{v_1}(t)} = \ddot{\bm{r_1}(t)} &&=\quad&
+		\boxed{(-\omega^2\cos(\omega t-\phi), -\omega^2\sin(\omega t-\phi))}
+		\quad= -\omega^2\bm{r}_1(t)
+\end{aligned} \end{equation*}
+
+\begin{figure}[H]
+	\centering
+	\begin{minipage}{0.31\textwidth}
+		\centering
+		\begin{tikzpicture}[]
+			\tikzmath{
+				\xmin = -1;
+				\xmax = 1;
+				\ymin = -1;
+				\ymax = 1;
+				\omeg = 1;
+				\ph = 0;
+			}
+			\draw[->] (\xmin-0.5, 0) -- (\xmax+0.5, 0) node[right] {$x_1(t)$};
+			\draw[->] (0, \ymin-1) -- (0, \ymax+1) node[above] {$y_1(t)$};
+			\draw[color=gray!30, dashed]
+				(\xmin-1,\ymin-1) grid (\xmax+1,\ymax+1);
+			\draw[->,domain=-45:33, smooth, samples=100, variable=\t, blue]
+				plot ({cos(\omeg*\t-\ph r)}, {sin(\omeg*\t-\ph r)});
+		\end{tikzpicture}
+		\caption{$\omega=1, \varphi=0$;\\
+			$\bm{r}_1(t) = (\cos(\omega t-\phi), \sin(\omega t-\phi))$}
+	\end{minipage}\hfill
+	\begin{minipage}{0.31\textwidth}
+		\centering
+		\begin{tikzpicture}[]
+			\tikzmath{
+				\xmin = -1;
+				\xmax = 1;
+				\ymin = -1;
+				\ymax = 1;
+				\omeg = 1;
+				\ph = 0;
+			}
+			\draw[->] (\xmin-0.5, 0) -- (\xmax+0.5, 0) node[right] {$v_{1,x}(t)$};
+			\draw[->] (0, \ymin-1) -- (0, \ymax+1) node[above] {$v_{1,y}(t)$};
+			\draw[color=gray!30, dashed]
+				(\xmin-1,\ymin-1) grid (\xmax+1,\ymax+1);
+			\draw[->,domain=-45:33, smooth, samples=100, variable=\t, blue]
+				plot ({-\omeg*sin(\omeg*\t-\ph r)}, {\omeg*cos(\omeg*\t-\ph r)});
+		\end{tikzpicture}
+		\caption{$\omega=1, \varphi=0$;
+			$\bm{v}_1(t) = \omega(-\sin(\omega t-\phi), \cos(\omega t-\phi))$}
+	\end{minipage}\hfill
+	\begin{minipage}{0.31\textwidth}
+		\centering
+		\begin{tikzpicture}[]
+			\tikzmath{
+				\xmin = -1;
+				\xmax = 1;
+				\ymin = -1;
+				\ymax = 1;
+				\omeg = 1;
+				\ph = 0;
+			}
+			\draw[->] (\xmin-0.5, 0) -- (\xmax+0.5, 0) node[right] {$a_{1,x}(t)$};
+			\draw[->] (0, \ymin-1) -- (0, \ymax+1) node[above] {$a_{1,y}(t)$};
+			\draw[color=gray!30, dashed]
+				(\xmin-1,\ymin-1) grid (\xmax+1,\ymax+1);
+			\draw[->,domain=-45:33, smooth, samples=100, variable=\t, blue]
+				plot ({-\omeg^2*cos(\omeg*\t-\ph r)}, {-\omeg^2*sin(\omeg*\t-\ph r)});
+		\end{tikzpicture}
+		\caption{$\omega=1, \varphi=0$;\\
+			$\bm{a}_1(t) = -\omega^2\bm{r}_1(t))$}
+	\end{minipage}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\begin{minipage}{0.31\textwidth}
+		\centering
+		\begin{tikzpicture}[]
+			\tikzmath{
+				\xmin = -1;
+				\xmax = 1;
+				\ymin = -1;
+				\ymax = 1;
+				\omeg = 1.3;
+				\ph = 0.5;
+			}
+			\draw[->] (\xmin-0.5, 0) -- (\xmax+0.5, 0) node[right] {$x_1(t)$};
+			\draw[->] (0, \ymin-1) -- (0, \ymax+1) node[above] {$y_1(t)$};
+			\draw[color=gray!30, dashed]
+				(\xmin-1,\ymin-1) grid (\xmax+1,\ymax+1);
+			\draw[->,domain=-45:33, smooth, samples=100, variable=\t, blue]
+				plot ({cos(\omeg*\t-\ph r)}, {sin(\omeg*\t-\ph r)});
+		\end{tikzpicture}
+		\caption{$\omega=1.3, \varphi=0.5$;\\
+			$\bm{r}_1(t) = (\cos(\omega t-\phi), \sin(\omega t-\phi))$}
+	\end{minipage}\hfill
+	\begin{minipage}{0.31\textwidth}
+		\centering
+		\begin{tikzpicture}[]
+			\tikzmath{
+				\xmin = -1;
+				\xmax = 1;
+				\ymin = -1;
+				\ymax = 1;
+				\omeg = 1.3;
+				\ph = 0.5;
+			}
+			\draw[->] (\xmin-0.5, 0) -- (\xmax+0.5, 0) node[right] {$v_{1,x}(t)$};
+			\draw[->] (0, \ymin-1) -- (0, \ymax+1) node[above] {$v_{1,y}(t)$};
+			\draw[color=gray!30, dashed]
+				(\xmin-1,\ymin-1) grid (\xmax+1,\ymax+1);
+			\draw[->,domain=-45:33, smooth, samples=100, variable=\t, blue]
+				plot ({-\omeg*sin(\omeg*\t-\ph r)}, {\omeg*cos(\omeg*\t-\ph r)});
+		\end{tikzpicture}
+		\caption{$\omega=1.3, \varphi=0.5$;
+			$\bm{v}_1(t) = \omega(-\sin(\omega t-\phi), \cos(\omega t-\phi))$}
+	\end{minipage}\hfill
+	\begin{minipage}{0.31\textwidth}
+		\centering
+		\begin{tikzpicture}[]
+			\tikzmath{
+				\xmin = -1;
+				\xmax = 1;
+				\ymin = -1;
+				\ymax = 1;
+				\omeg = 1.3;
+				\ph = 0.5;
+			}
+			\draw[->] (\xmin-0.5, 0) -- (\xmax+0.5, 0) node[right] {$a_{1,x}(t)$};
+			\draw[->] (0, \ymin-1) -- (0, \ymax+1) node[above] {$a_{1,y}(t)$};
+			\draw[color=gray!30, dashed]
+				(\xmin-1,\ymin-1) grid (\xmax+1,\ymax+1);
+			\draw[->,domain=-45:33, smooth, samples=100, variable=\t, blue]
+				plot ({-\omeg^2*cos(\omeg*\t-\ph r)}, {-\omeg^2*sin(\omeg*\t-\ph r)});
+		\end{tikzpicture}
+		\caption{$\omega=1.3, \varphi=0.5$;\\
+			$\bm{a}_1(t) = -\omega^2\bm{r}_1(t))$}
+	\end{minipage}
+\end{figure}
+\begin{remark} All those plots were made with $t\in[-\pi/4,\pi/3]$ so as to
+make more visible the effect of changing the phase $\phi$, which only
+alters our starting/ending point. The alteration would have been hidden were
+$t$ to have gone through an interval wider or equal than $2\pi$. An
+arrow has been added to indicate the ending point.\\
+
+$\omega$ is the angular velocity, or the number of radians the particle move
+per unit of time. Naturally, if it's increased, the particle will go further,
+faster; the increase in speed will demand a corresponding increase in
+acceleration.
+\end{remark}
+
+\hr
+$\bm{r_2(t) = c(\cos t)^3, c(\sin t)^3)}$\ \\
+$\bm{a_2}$ is the most complex derivative for this
+exercise. We start by applying the product rule ($uv=u'v + uv'$),
+and the chain rule on one of the resulting factor.
+
+\begin{equation*} \begin{aligned}
+	\bm{r_2}(t) &&=\quad&
+		(c\cos^3t, c\sin^3 t) \\
+	\bm{v_2}(t) = \dot{\bm{r_2}(t)} &&=\quad&
+		\boxed{3c(-\sin t\cos^2t, \cos t\sin^2t)} \\
+	\bm{a_2}(t) = \dot{\bm{v_2}(t)} = \ddot{\bm{r_2}(t)} &&=\quad&
+		3c(
+			-\cos t\cos^2t + (-\sin t)(-\sin t)(2\cos t),
+			-\sin t\sin^2t + \cos t\cos t2\sin t
+		)\\
+	~ &&=\quad&
+		\boxed{3c((\cos t)(2\sin^2t-\cos^2t),
+		(\sin t)(2\cos^2t-\sin^2t))}
+\end{aligned} \end{equation*}
+
+\begin{remark} We may be able to simplify the expression of
+the acceleration $\bm{a}_2$.
+\end{remark}
+
+\begin{figure}[H]
+	\centering
+	\begin{minipage}{0.5\textwidth}
+		\centering
+		\begin{tikzpicture}[]
+			\tikzmath{
+				\xmin = -1;
+				\xmax = 1;
+				\ymin = -1;
+				\ymax = 1;
+				\c = 1;
+				\cm = 0.5;
+				\cp = 1.5;
+			}
+			\draw[->] (\xmin-0.5, 0) -- (\xmax+0.5, 0) node[right] {$x_2(t)$};
+			\draw[->] (0, \ymin-1) -- (0, \ymax+1) node[above] {$y_2(t)$};
+			\draw[color=gray!30, dashed]
+				(\xmin-1,\ymin-1) grid (\xmax+1,\ymax+1);
+			\draw[domain=-10:10, smooth, samples=100, variable=\t, blue!50]
+				plot ({\c*cos(\t r)^3}, {\c*sin(\t r)^3});
+			\draw[domain=-10:10, smooth, samples=100, variable=\t, blue!90]
+				plot ({\cp*cos(\t r)^3}, {\cp*sin(\t r)^3});
+			\draw[domain=-10:10, smooth, samples=100, variable=\t, blue!20]
+				plot ({\cm*cos(\t r)^3}, {\cm*sin(\t r)^3});
+		\end{tikzpicture}
+		\caption{$c=0.5,\,1,\,1.5$;\\
+			$\bm{r}_2(t) = (c\cos^3t, c\sin^3 t)$}
+	\end{minipage}\hfill
+	\begin{minipage}{0.5\textwidth}
+		\centering
+		\begin{tikzpicture}[]
+			\tikzmath{
+				\xmin = -1;
+				\xmax = 1;
+				\ymin = -1;
+				\ymax = 1;
+				\c = 1;
+				\cm = 0.5;
+				\cp = 1.5;
+			}
+			\draw[->] (\xmin-0.5, 0) -- (\xmax+0.5, 0) node[right] {$v_{1,x}(t)$};
+			\draw[->] (0, \ymin-1) -- (0, \ymax+1) node[above] {$v_{1,y}(t)$};
+			\draw[color=gray!30, dashed]
+				(\xmin-1,\ymin-1) grid (\xmax+1,\ymax+1);
+			\draw[domain=-10:10, smooth, samples=200, variable=\t, blue!50]
+				plot ({3*\c*(-sin(\t r)*cos(\t r)^2)}, {3*\c*cos(\t r)*sin(\t r)^2});
+			\draw[domain=-10:10, smooth, samples=200, variable=\t, blue!90]
+				plot ({3*\cp*(-sin(\t r)*cos(\t r)^2)}, {3*\cp*cos(\t r)*sin(\t r)^2});
+			\draw[domain=-10:10, smooth, samples=200, variable=\t, blue!20]
+				plot ({3*\cm*(-sin(\t r)*cos(\t r)^2)}, {3*\cm*cos(\t r)*sin(\t r)^2});
+		\end{tikzpicture}
+		\caption{$c=0.5,\,1,\,1.5$;\\
+			$\bm{v}_2(t) = 3c(-\sin t\cos^2t, \cos t\sin^2t)$}
+	\end{minipage}
+\end{figure}
+\begin{figure}[H]
+	\centering
+	\begin{tikzpicture}[]
+		\tikzmath{
+			\xmin = -4;
+			\xmax = 4;
+			\ymin = -4;
+			\ymax = 4;
+			\c = 1;
+			\cm = 0.5;
+			\cp = 1.5;
+		}
+		\draw[->] (\xmin-0.5, 0) -- (\xmax+0.5, 0) node[right] {$a_{3,x}(t)$};
+		\draw[->] (0, \ymin-1) -- (0, \ymax+1) node[above] {$a_{3,y}(t)$};
+		\draw[color=gray!30, dashed]
+			(\xmin-1,\ymin-1) grid (\xmax+1,\ymax+1);
+		\draw[domain=-10:10, smooth, samples=200, variable=\t, orange!50]
+			plot (
+				{3*\c*cos(\t r)*(2*sin(\t r)^2-cos(\t r)^2)},
+				{3*\c*sin(\t r)*(2*cos(\t r)^2-sin(\t r)^2)}
+			);
+		\draw[domain=-10:10, smooth, samples=200, variable=\t, red!90]
+			plot (
+				{3*\cp*cos(\t r)*(2*sin(\t r)^2-cos(\t r)^2)},
+				{3*\cp*sin(\t r)*(2*cos(\t r)^2-sin(\t r)^2)}
+			);
+		\draw[domain=-10:10, smooth, samples=200, variable=\t, blue!20]
+			plot (
+				{3*\cm*cos(\t r)*(2*sin(\t r)^2-cos(\t r)^2)},
+				{3*\cm*sin(\t r)*(2*cos(\t r)^2-sin(\t r)^2)}
+			);
+	\end{tikzpicture}
+	\caption{$c=0.5,\,1,\,1.5$\,(blue, orange, red);\,\\
+		$\bm{a}_2(t) = 3c((\cos t)(2\sin^2t-\cos^2t),
+	(\sin t)(2\cos^2t-\sin^2t))$}
+\end{figure}
+\begin{remark} We see from the equations that $c$ is a scaling
+factor, operating on both axes. If we increase it, we will go
+higher ($y$-axis) and further away ($x$-axis) in the same amount of time
+$t$, hence we'll need greater speed, in both axis, and greater
+acceleration, again on both axes.
+\end{remark}
+
+\hr
+$\bm{r_3(t) = (c(t-\sin t),c(1-\cos t))}$\ \\
+
+\begin{equation*} \begin{aligned}
+	\bm{r_3}(t) &&=\quad&
+		(c(t-\sin t),c(1-\cos t)) \\
+	\bm{v_3}(t) = \dot{\bm{r_3}(t)} &&=\quad&
+		\boxed{c(1-\cos t,\sin t)} \\
+	\bm{a_3}(t) = \dot{\bm{v_3}(t)} = \ddot{\bm{r_3}(t)} &&=\quad&
+		\boxed{c(\sin t, \cos t)}\\
+\end{aligned} \end{equation*}
+
+\begin{figure}[H]
+	\centering
+	\begin{minipage}{0.4\textwidth}
+		\centering
+		\begin{tikzpicture}[scale=.35]
+			\tikzmath{
+				\xmin = -9;
+				\xmax = 9;
+				\ymin = -0.5;
+				\ymax = 3;
+				\c = 1;
+				\cp = 0.5;
+				\cm = 1.5;
+			}
+			\draw[->] (\xmin-0.5, 0) -- (\xmax+0.5, 0) node[right] {$x_3(t)$};
+			\draw[->] (0, \ymin-1) -- (0, \ymax+1) node[above] {$y_3(t)$};
+			\draw[color=gray!30, dashed]
+				(\xmin-1,\ymin-1) grid (\xmax+1,\ymax+1);
+			\draw[domain=-5:5, smooth, samples=300, variable=\t, blue!50]
+				plot ({\c*(\t-sin(\t r))}, {\c*(1-cos(\t r))});
+			\draw[domain=-5:5, smooth, samples=300, variable=\t, blue!90]
+				plot ({\cm*(\t-sin(\t r))}, {\cm*(1-cos(\t r))});
+			\draw[domain=-5:5, smooth, samples=300, variable=\t, blue!20]
+				plot ({\cp*(\t-sin(\t r))}, {\cp*(1-cos(\t r))});
+		\end{tikzpicture}
+		\caption{\\$c=0.5,\,1,\,1.5$;\\
+			$\bm{r}_3(t) = (c(t-\sin t),c(1-\cos t))$}
+	\end{minipage}\hfill
+	\begin{minipage}{0.2\textwidth}
+		\centering
+		\begin{tikzpicture}[scale=.6]
+			\tikzmath{
+				\xmin = -0.1;
+				\xmax = 3;
+				\ymin = -2;
+				\ymax = 2;
+				\c = 1;
+				\cp = 0.5;
+				\cm = 1.5;
+			}
+			\draw[->] (\xmin-0.5, 0) -- (\xmax+0.5, 0) node[right] {$v_{3,x}(t)$};
+			\draw[->] (0, \ymin-1) -- (0, \ymax+1) node[above] {$v_{3,y}(t)$};
+			\draw[color=gray!30, dashed]
+				(\xmin-1,\ymin-1) grid (\xmax+1,\ymax+1);
+			\draw[domain=-5:5, smooth, samples=300, variable=\t, blue!50]
+				plot ({\c*(1-cos(\t r))}, {\c*sin(\t r)});
+			\draw[domain=-5:5, smooth, samples=300, variable=\t, blue!90]
+				plot ({\cm*(1-cos(\t r))}, {\cm*sin(\t r)});
+			\draw[domain=-5:5, smooth, samples=300, variable=\t, blue!20]
+				plot ({\cp*(1-cos(\t r))}, {\cp*sin(\t r)});
+		\end{tikzpicture}
+		\caption{\\$c=0.5,\,1,\,1.5$;\\
+			$\bm{v}_3(t) = c(1-\cos t,\sin t)$}
+	\end{minipage}\hfill
+	\begin{minipage}{0.2\textwidth}
+		\centering
+		\begin{tikzpicture}[scale=.5]
+			\tikzmath{
+				\xmin = -2;
+				\xmax = 2;
+				\ymin = -2;
+				\ymax = 2;
+				\c = 1;
+				\cp = 0.5;
+				\cm = 1.5;
+			}
+			\draw[->] (\xmin-0.5, 0) -- (\xmax+0.5, 0) node[right] {$a_{3,x}(t)$};
+			\draw[->] (0, \ymin-1) -- (0, \ymax+1) node[above] {$a_{3,y}(t)$};
+			\draw[color=gray!30, dashed]
+				(\xmin-1,\ymin-1) grid (\xmax+1,\ymax+1);
+			\draw[domain=-5:5, smooth, samples=300, variable=\t, blue!50]
+				plot ({\c*sin(\t r)}, {\c*cos(\t r)});
+			\draw[domain=-5:5, smooth, samples=300, variable=\t, blue!90]
+				plot ({\cm*sin(\t r)}, {\cm*cos(\t r)});
+			\draw[domain=-5:5, smooth, samples=300, variable=\t, blue!20]
+				plot ({\cp*sin(\t r)}, {\cp*cos(\t r)});
+		\end{tikzpicture}
+		\caption{\\$c=0.5,\,1,\,1.5$;\\
+			$\bm{a}_3(t) = c(\sin t, \cos t)$}
+	\end{minipage}
+\end{figure}
+\begin{remark} As for the previous exercise, $c$ is a scaling factor,
+with the same kind of impact as before.
+\end{remark}
+\end{document}
