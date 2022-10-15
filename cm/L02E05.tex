@@ -1,0 +1,464 @@
+\documentclass[solutions.tex]{subfiles}
+
+\xtitle
+
+\begin{document}
+\maketitle
+\begin{remark} This is a WIP; an important limit still isn't proved
+for instance. This should however largely cover what have been expected
+by the authors of the book from the students.
+\end{remark}
+\begin{exercise} Prove each of the formulas in Eq.s $(2)$.
+\textit{Hint}: Look up trigonometric identities and limit
+properties in a reference book.
+\end{exercise}
+
+Let's recall the formulas of Eq.s $(2)$:
+\begin{equation*} \begin{aligned}
+	\frac{d}{dt}(\sin t) &&=&& \cos t \\
+	\frac{d}{dt}(\cos t) &&=&& \sin t \\
+	\frac{d}{dt}(e^t) &&=&& e^t \\
+	\frac{d}{dt}(\ln t) &&=&& \frac{1}{t}
+\end{aligned} \end{equation*}
+
+\begin{remark}
+Interestingly, there are multiple ways of \textit{defining}
+those functions\footnote{For instance, consider this page
+containing $6$ equivalent definitions of the exponentials:
+\url{https://en.wikipedia.org/wiki/Characterizations\_of\_the\_exponential\_function}}.
+As a result, they are different ways to compute the derivatives,
+depending on which definitions we choose. \\
+
+As the definitions given in the book for $\sin$, $\cos$ and
+the exponential are rather standard, we'll recall them and use
+those. The natural logarithm hasn't been clearly defined though,
+so we'll have to do it.
+\end{remark}
+\begin{remark} While the book suggest to look up trigonometric
+identities and common properties in some reference material, we
+will actually take the time to prove the intermediate results. \\
+
+One reason to do so for a physicist would be that this is an
+interesting mathematical exercise, but also to useful to sharpen
+one's rigor and reasoning skills.
+\end{remark}
+
+Let's start by recalling that a function $\varphi : E \rightarrow \mathbb{R}$
+is said to be differentiable at a point $e\in E$ if the following limit exists:
+\[
+	\varphi'(e) = \frac{d}{dx}\varphi(e) =
+		\boxed{\lim_{\epsilon \rightarrow 0}\frac{\varphi(e+\epsilon)-\varphi(e)}{\epsilon}}
+\]
+
+\hr
+$\bm{d\sin t/dt}$\,\\
+Then, let's remind ourselves of the common definitions of $\cos$ and $\sin$,
+in the context of a right triangle:
+
+\begin{equation*}
+%\begin{figure}[H]
+%	\centering
+\vcenter{\hbox{
+	\begin{tikzpicture}
+		\coordinate (angleat) at (4, 0);
+		\draw (0, 0) -- (angleat) node (a) [midway,yshift=-10] {$a$};
+		\draw (0, 0) -- (0, 3) node (b) [midway,xshift=-10] {$b$};
+		\draw (0, 3) -- (4, 0) node (c) [midway,xshift=10,yshift=2] {$c$};
+		% right angle
+		\draw [gray] (0,.5)-|(.5,0);
+		% \theta angle
+		\pic [draw,"$\theta$",angle eccentricity=1.5,gray] {angle = c--angleat--a};
+	\end{tikzpicture}}}
+%\end{figure}
+\quad\quad
+\begin{aligned}
+	\boxed{\cos \theta \triangleq \frac{c}{a}} \\
+	\boxed{\sin \theta \triangleq \frac{b}{c}}
+\end{aligned}
+\end{equation*}
+
+In particular, we can identify points on the unit-circle
+by the angle between the $x$ axis and the radius connecting
+the center of the circle to such points. Then, each point will
+then be located in the $xy$-plane as $(\cos\theta, \sin\theta)$,
+where $\theta$ is the angle previously described, associated
+to the point.
+
+\begin{figure}[H]
+	\centering
+	\begin{tikzpicture}
+		\tikzmath{
+			\xmin = -5;
+			\xmax = 5;
+			\ymin = -5;
+			\ymax = 5;
+			\r = 4;
+			\rd = 2*\r; % \r * 2cm, where 2cm is the default x length
+			\t = 30;
+			\px = \r * cos(\t);
+			\py = \r * sin(\t);
+		}
+		\coordinate (O) at (0, 0);
+		\coordinate (p) at (\t:\r);
+
+		\draw[color=gray!30, dashed] (\xmin,\ymin) grid (\xmax,\ymax);
+		% axes
+		\draw[dashed,gray,->] (\xmin,0) -- (\xmax,0) node (xaxis) [gray,right]{$\vec{x}$};
+		\draw[dashed,gray,->] (0,\ymin) -- (0,\ymax) node (yaxis) [gray,right]{$\vec{y}$};
+
+		% 8cm = \r * 2cm (which is the default x length)
+		\node[draw,circle, minimum size=\rd cm,inner sep=0] (c) at (0,0){};
+		\draw[->] (O) -- (p) node (pvec) [midway,yshift=10,xshift=-2]{$r=1$};
+
+		\pic [draw,"$\theta$",angle eccentricity=1.5,gray] {angle = xaxis--O--pvec};
+		\draw[dashed,gray] (p) -- (\px,0) node () [yshift=-10]{$\cos(\theta)$};
+		\draw[dashed,gray] (p) -- (0,\py) node () [xshift=-20]{$\sin(\theta)$};
+	\end{tikzpicture}
+\end{figure}
+Note that we have:
+\begin{theorem}
+\[
+	(\forall x \in \mathbb{R}),\quad \boxed{\sin^2 x + \cos^2 x = 1}
+\]
+\end{theorem}
+\begin{proof} This follows immediately from the Pythagorean theorem applied
+to the right triangle formed by $r=1$, $\cos\theta$ and $\sin\theta$.
+\end{proof}
+
+In order to establish $\sin'$, we will need a few intermediate
+results that we're going to prove now. First will be to find a formula
+for $\sin(\alpha+\beta)$. Indeed, if you try to apply the definition of the
+derivative to $\sin$, you should see a $\sin(x+\epsilon)$: we will need
+to have it expressed differently to develop the proof.
+\[
+	\sin'(x) \triangleq \lim_{\epsilon \rightarrow 0}
+		\frac{\sin(x+\epsilon)-\sin x}{\epsilon}
+\]
+
+\begin{theorem}[$\sin(\alpha+\beta)$]
+\begin{equation}
+	(\forall(\alpha, \beta)\in\mathbb{R}^2),\quad
+		\boxed{\sin(\alpha+\beta) = \sin\alpha\cos\beta +\cos\alpha\sin\beta}
+	\label{L02E05:thm:sinsum}
+\end{equation}
+\end{theorem}
+There's a also a formula for the cosine of a sum of angles, that we will
+need later, for the derivative of $\cos$, but that will be rather immediate
+to prove along the one regarding the sine of a sum of angles.
+\begin{theorem}[$\cos(\alpha+\beta)$]
+\begin{equation}
+	(\forall(\alpha, \beta)\in\mathbb{R}^2),\quad
+		\boxed{\cos(\alpha+\beta) = \cos\alpha\cos\beta +\sin\alpha\sin\beta}
+	\label{L02E05:thm:cossum}
+\end{equation}
+\end{theorem}
+\begin{proof} This will be a "visual proof". Besides the aforementioned
+definitions of $\sin$ and $\cos$, we will also use the "fact" that sum of
+angles in a right triangle is $\pi$, which is actually the \textit{triangle
+postulate}, an axiom of Euclidean geometry, equivalent to the
+\href{https://en.wikipedia.org/wiki/Parallel\_postulate}{parallel postulate}.
+\begin{figure}[H]
+	% see https://tex.stackexchange.com/a/383890
+	\def\rightangle[size=#1](#2,#3,#4){%
+		\draw ($(#3)!#1!(#2)$) --
+			($($(#3)!#1!(#2)$)!#1!90:(#2)$) --
+			($(#3)!#1!(#4)$);
+	}
+	\centering
+	\begin{tikzpicture}[scale=2]
+		\tikzmath{
+			\xmin = -0.5;
+			\xmax = 4;
+			\ymin = -0.5;
+			\ymax = 5.5;
+			\c = 4;
+			\a = 30;
+			\b = 40;
+			\d = \c/cos(\b);
+			\dy = \d*cos(90-\a-\b);
+			\dx = \d*sin(90-\a-\b);
+			\cx = \c*cos(\a);
+			\cy = \c*sin(\a);
+		}
+		\coordinate (O) at (0, 0);
+		\coordinate (pa) at (\a:\c);
+		\coordinate (pb) at (\a+\b:\d);
+		\coordinate (dy) at (0, \dy);
+		\coordinate (dx) at (\dx, 0);
+		\coordinate (cx) at (\cx, 0);
+		\coordinate (cy) at (0, \cy);
+		\coordinate (cxdy) at (\cx, \dy);
+
+		\draw (O)  -- (pa) node [midway,right,xshift=15,yshift=3] {$c$};
+		\draw[blue,line width=.5mm] (O) -- (pb) node [black,midway,above,xshift=-5] {$d$};
+		\draw (pa) -- (pb) node [midway,above,xshift=3]  {$e$};
+		\rightangle[size=10pt](pb,pa,O);
+
+		\draw[dashed,gray] (\xmin,0)      -- (\xmax,0)   node (xaxis) []{};
+		\draw[dashed,gray] (0,\ymin)      -- (0,\ymax)   node (yaxis) []{};
+		\draw[dashed,gray] (-.5,\dy)        -- (\xmax,\dy) node (dyaxis) []{};
+		\draw[dashed,gray] (\dx,\ymin+.5) -- (\dx,\ymax) node (dxaxis) []{};
+		\draw[dashed,gray] (\cx,\ymin)    -- (\cx,\ymax) node (cxaxis) []{};
+		\draw[dashed,gray] (pa)           -- (\xmax,\cy) node (cyaxis) []{};
+
+		\draw[blue,line width=.5mm] (O) -- (\dx,0);
+		\draw[blue,line width=.5mm] (\dx,0) -- (\dx,\dy);
+
+		\draw[gray,<->] (\cx+.5,\cy) -- (\cx+.5,\dy) node (ecosa)
+			[midway,right,black]{$e\cos\alpha$};
+		\draw[gray,<->] (\cx+.5,0)   -- (\cx+.5,\cy) node (csina)
+			[midway,right,black]{$c\sin\alpha$};
+
+		\draw[gray,<->] (\dx,\dy+.5) -- (\cx,\dy+.5) node (esina)
+			[midway,above,black]{$e\sin\alpha$};
+		\draw[gray,<->] (0,-.5) -- (\cx,-.5) node (ccosa)
+			[midway,above,black]{$c\cos\alpha$};
+
+		\draw[gray,<->] (0,\dy+.5) -- (\dx,\dy+.5) node (dcosab)
+			[midway,above,black]{$\bm{d\cos(\alpha+\beta)}$};
+		\draw[gray,<->] (-.5,0) -- (-.5,\dy) node (dsinab)
+			[midway,left,black]{$\bm{d\sin(\alpha+\beta)}$};
+
+		\rightangle[size=10pt](O,dy,dyaxis);
+		\rightangle[size=10pt](dxaxis,dx,O);
+		\rightangle[size=10pt](cxaxis,cx,O);
+		\rightangle[size=10pt](dy,cxdy,cx);
+
+		\pic [draw,"$\alpha$",angle eccentricity=2,gray] {angle = xaxis--O--pa};
+		\pic [draw,"$\beta$",angle eccentricity=2,gray] {angle = pa--O--pb};
+		\pic [draw,"$\dfrac{\pi}2-\alpha$",angle eccentricity=2.1,gray] {angle = O--pa--cx};
+		\pic [draw,"$\alpha$",angle eccentricity=2,gray] {angle = cxdy--pa--pb};
+%		\pic [draw,"$\dfrac{\pi}2-\alpha$",angle eccentricity=3,gray] {angle = pa--pb--cxdy};
+%		\pic [draw,"$\alpha$",angle eccentricity=2,gray] {angle = dx--pb--pa};
+	\end{tikzpicture}
+\end{figure}
+In the previous picture, considering the right triangle formed by $c$, $d$
+and $e$, we have:
+\begin{equation*} \begin{aligned}
+	c &&=\quad& d\cos\beta; &&\quad& e &&=\quad& d\sin\beta
+\end{aligned} \end{equation*}
+If we look at the blue/thick triangle right triangle (of hypotenuse
+$d$, with an angle of $\beta+\alpha$, and whose other sides are
+created by projecting the point formed by $d$ and $e$ down to the
+bottom), we find a new relation, to which we can inject our previous
+results for $c$ and $e$:
+\begin{equation*} \begin{aligned}
+	~ && d\sin(\alpha+\beta) &&=\quad& c\sin\alpha+e\cos\alpha \\
+	\Leftrightarrow && ~ &&=\quad& (d\cos\beta)\sin\alpha+(d\sin\beta)\cos\alpha \\
+	\Leftrightarrow && \sin(\alpha+\beta) &&=\quad& \boxed{\cos\beta\sin\alpha+\sin\beta\cos\alpha}
+\end{aligned} \end{equation*}\hfill$\qed$\\
+In the same blue/thick triangle, we can also establish a relation
+for $\cos(\alpha+\beta)$, using the same definition of $c$ and $e$
+as before to conclude:
+\begin{equation*} \begin{aligned}
+	~ && d\cos(\alpha+\beta) &&=\quad& c\cos\alpha-e\sin\alpha \\
+	\Leftrightarrow && ~ &&=\quad& (d\cos\beta)\cos\alpha-(d\sin\beta)\sin\alpha \\
+	\Leftrightarrow && \cos(\alpha+\beta) &&=\quad& \boxed{\cos\beta\cos\alpha-\sin\beta\sin\alpha}
+\end{aligned} \end{equation*}
+
+\end{proof}
+
+Now if you try to write down $\sin'$ as previously suggested,
+and if you decompose $\cos(x+\epsilon)$ with that formula, you see
+that this will give birth to two limits:
+\begin{equation*} \begin{aligned}
+	\sin'(x) &\triangleq&& \lim_{\epsilon \rightarrow 0}
+		\frac{\sin(x+\epsilon)-\sin x}{\epsilon} \\
+	~ &=&& \lim_{\epsilon \rightarrow 0}
+		\frac{\sin x\cos\epsilon+\cos x\sin\epsilon-\sin x}{\epsilon} \\
+	~ &=&& \lim_{\epsilon \rightarrow 0}\left(
+		\frac{\sin x\cos\epsilon-1}{\epsilon}+\frac{\cos x\sin\epsilon}{\epsilon}
+		\right) \\
+\end{aligned} \end{equation*}
+
+As we've already explained in
+\href{https://github.com/mbivert/ttm/blob/master/cm/L02E04.pdf}{L02E04},
+we can recursively split the previous limits, assuming each individual
+limit exists:
+\[
+	\lim_{x \rightarrow a}\left(\varphi(x)+\psi(x)\right) =
+		\lim_{x \rightarrow a}\varphi(x)
+		+ \lim_{x \rightarrow a}\psi(x))
+\]
+\[
+	\lim_{x \rightarrow a}\left(\varphi(x)\psi(x)\right) =
+		\lim_{x \rightarrow a}\varphi(x)
+		\times\lim_{x \rightarrow a}\psi(x))
+\]
+Again, you may want to refer to \textit{Paul's Online Notes}
+\footnote{\url{https://tutorial.math.lamar.edu/classes/calci/limitproofs.aspx}}
+for a proof. So we need to see if those limits actually exists, and
+because we want to compute $\sin'$ in the end, we also want to know
+their value.
+
+\begin{theorem}
+\[
+	\boxed{\lim_{\epsilon\rightarrow 0} \frac{\sin\epsilon}{\epsilon} = 1}
+\]
+\end{theorem}
+\begin{proof}
+TODO (the usual  the limit requires the squeeze
+theorem\footnote{\url{
+https://en.wikipedia.org/wiki/Squeeze\_theorem}} applied to
+the area of a circular sector
+\footnote{\url{https://en.wikipedia.org/wiki/Circular\_sector}},
+itself demanding to know the area of a circle. Unfortunately,
+I'm not sure we can be simpler, given our definition of sine
+at least).
+\end{proof}
+
+As for the other limit:
+\begin{theorem}
+\[
+	\boxed{\lim_{\epsilon\rightarrow 0} \frac{\cos\epsilon-1}{\epsilon} = 0}
+\]
+\end{theorem}
+\begin{proof} We will rely on the previous limit; this will be a "proof
+with a trick" (multiplying by $a/a=1$; in the present context, $a$ will
+always be non-zero). Note also at the end that we can
+apply the product rules for limits given the existence of both sublimits.
+\begin{equation*} \begin{aligned}
+	\lim_{\epsilon\rightarrow 0} \frac{\cos\epsilon-1}{\epsilon}
+		&=&& \lim_{\epsilon\rightarrow 0}\left(
+			\frac{\cos\epsilon-1}{\epsilon}
+			\times\frac{\cos\epsilon+1)}{\cos\epsilon+1)}
+		\right) \\
+	~ &=&& \lim_{\epsilon\rightarrow 0}\left(
+			\frac{\cos^2\epsilon-1}{\epsilon(\cos\epsilon+1))}
+		\right) \\
+	~ &=&& -\lim_{\epsilon\rightarrow 0}\left(
+			\frac{\sin^2\epsilon}{\epsilon(\cos\epsilon+1))}
+		\right) \\
+	~ &=&& -\lim_{\epsilon\rightarrow 0}\left(
+			\frac{\sin\epsilon}{\epsilon}\times\frac{\sin\epsilon}{\cos\epsilon+1}
+		\right) \\
+	~ &=&& -\underbrace{\lim_{\epsilon\rightarrow 0}(
+			\frac{\sin\epsilon}{\epsilon})}_{\rightarrow 1}
+		\times\underbrace{
+			\lim_{\epsilon\rightarrow 0}(\frac{\sin\epsilon}{\cos\epsilon+1})
+		}_{\rightarrow 0/2=0} \\
+	~ &=&& \boxed{0} \\
+\end{aligned} \end{equation*}
+\end{proof}
+
+We now have everything to conclude: let's recapitulate all the
+intermediate steps to compute $\sin'$:
+\begin{theorem}[sine derivative]
+\[
+	(\forall x\in\mathbb{R}),\quad \boxed{\sin'(x) = \cos(x)}
+\]
+\end{theorem}
+
+\begin{proof}
+\begin{equation*} \begin{aligned}
+	(\forall x \in\mathbb{R}),\quad\sin'(x) &\triangleq&& \lim_{\epsilon \rightarrow 0}
+		\frac{\sin(x+\epsilon)-\sin x}{\epsilon} \\
+	~ &=&& \lim_{\epsilon \rightarrow 0}
+		\frac{\sin x\cos\epsilon+\cos x\sin\epsilon-\sin x}{\epsilon} \\
+	~ &=&& \lim_{\epsilon \rightarrow 0}\left(
+		\frac{\sin x(\cos\epsilon-1)}{\epsilon}+\frac{\cos x\sin\epsilon}{\epsilon}
+		\right) \\
+	~ &=&& \sin x\underbrace{
+			\lim_{\epsilon \rightarrow 0}\frac{\cos\epsilon-1}{\epsilon}
+		}_{=0}
+		+\cos x\underbrace{
+			\lim_{\epsilon\rightarrow 0}\frac{\sin\epsilon}{\epsilon}
+		}_{=1} \\
+	~ &=&& \boxed{\cos x}
+\end{aligned} \end{equation*}
+\end{proof}
+\hr
+$\bm{d\cos t/dt}$\,\\
+If we apply our previous formulas \eqref{L02E05:thm:sinsum} and
+\eqref{L02E05:thm:cossum} regarding respectively the sine and
+cosine of a sum of two angles, in the case where one angle is
+$\pi/2$, we have:
+If one of those angle is $\pi/2$, we have:
+\begin{equation*} \begin{aligned}
+	(\forall x\in\mathbb{R}),\quad \sin(x+\frac{\pi}2) &&=\quad&
+		\sin x\underbrace{\cos\frac{\pi}{2}}_{=0}
+		+\cos x\underbrace{\sin \frac{\pi}{2}}_{=1} \\
+	~ &&=\quad& \boxed{\cos x} \\
+	(\forall x\in\mathbb{R}),\quad \cos(x+\frac{\pi}2) &&=\quad&
+		\cos x\underbrace{\cos\frac{\pi}{2}}_{=0}
+		-\sin x\underbrace{\sin \frac{\pi}{2}}_{=1} \\
+	~ &&=\quad& \boxed{-\sin x}
+\end{aligned} \end{equation*}
+
+From there:
+\begin{theorem}[cosine derivative]
+\[
+	(\forall x\in\mathbb{R}),\quad \boxed{\cos'(x) = -\sin(x)}
+\]
+\end{theorem}
+\begin{proof}
+\begin{equation*} \begin{aligned}
+	(\forall x\in\mathbb{R}),\quad \cos'(x) &&=\quad&
+		\sin'(x+\frac\pi2) \\
+	~ &&=\quad& (\sin\circ(y \rightarrow y+\frac\pi2))'(x) \\
+	~ &&=\quad& \cos(x+\frac\pi2) \\
+	~ &&=\quad& \boxed{-\sin(x)}
+\end{aligned} \end{equation*}
+\end{proof}
+
+\hr
+$\bm{d e^t/dt}$\,\\
+This one, as mentioned in the book, is "trivial" when we define the
+exponential function to be precisely the function which is equal to
+its derivative (and such as $e^0$ = 1). \\
+
+And this is usually the way the exponential function will be first
+introduced to students. You may want to have a look at other equivalent
+characterisation of the function\footnote
+{\url{https://en.wikipedia.org/wiki/Characterizations\_of\_the\_exponential\_function}}.
+Trying to compute an exponential defined on a development in infinite
+series carries a certain aesthetic for instance.
+
+\[ \boxed{\frac{d}{dt}e^t \triangleq e^t} \]
+
+\hr
+$\bm{d\ln t/dt}$\,\\
+As for the exponential, there can be some variety here depending
+on how we \textit{characterize} the $\ln$ function
+\footnote{\url{https://en.wikipedia.org/wiki/Natural\_logarithm\#Definitions}}.
+Usually, it will be introduced as the \textit{inverse function} of
+the exponential:
+\begin{definition}[natural logarithm]
+The natural logarithm function is defined as the function $\ln$ such that:
+\[
+	(\forall x\in\mathbb{R}),\quad \boxed{e^{\ln(x)} = x}
+\]
+\end{definition}
+\begin{remark} To rigorously establish this definition, would have
+needed to prove that the exponential is invertible.
+% TODO?
+%	Strictly positive => 1-to-1 => invertible
+%	e-x * e^x = e^0 = 1 \forall x so e^x can't be zero \forall x
+%		and e^0 = 1 => exp strictly positive
+%	suffice to prove that e^x * e^y = e^x+y then
+%	https://math.stackexchange.com/a/749179
+\end{remark}
+
+\begin{theorem}[natural logarithm derivative]
+\[
+	(\forall x\in\mathbb{R}),\quad \boxed{\ln'(x) = \frac1x}
+\]
+\end{theorem}
+\begin{proof}
+The proof develops from the previous definition of the logarithm
+by integrating both side and then applying the chain rule:
+\begin{equation*} \begin{aligned}
+	~ && (\forall x\in\mathbb{R}),\quad e^{\ln(x)} &&=\quad& x \\
+	\Leftrightarrow && \frac{d}{dx}e^{\ln(x)} &&=\quad& \frac{d}{dx}x \\
+	\Leftrightarrow && \ln'(x)\underbrace{e^{\ln(x)}}_{=x} &&=\quad& 1 \\
+	\Leftrightarrow && \ln'(x) &&=\quad& \boxed{\frac1x}
+\end{aligned} \end{equation*}
+\end{proof}
+
+\begin{remark} For the sake of completeness, some authors\footnote{
+\url{https://www.whitman.edu/mathematics/calculus\_late\_online/section09.02.html}},
+will for instance start by defining the logarithm as an integral,
+and then define the exponential as the inverse of the logarithm. From which
+they can prove that the derivative of the exponential is the exponential.
+\end{remark}
+\end{document}
