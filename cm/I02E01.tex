@@ -1,0 +1,125 @@
+\documentclass[solutions.tex]{subfiles}
+
+\xtitle
+
+\begin{document}
+\maketitle
+\begin{exercise} Determine the indefinite integral
+of each of the following expressions by reversing the process
+of differentiation and adding a constant.
+\end{exercise}
+Because this is the first integration exercise, we'll go slow.
+We will "implement" the reversing of the process of differentiation
+by applying the \textit{fundamental theorem of calculus}, on a few
+previously established differentiation results; let's recall those:
+\begin{equation*} \begin{aligned}
+	\frac{d}{dt}t^n &&=\quad& nt^{n-1} \\
+	\frac{d}{dt}\sin t &&=\quad& \cos t
+\end{aligned} \end{equation*}
+
+Let's start by integrating both sides of each equation:
+\begin{equation*} \begin{aligned}
+	\int\frac{d}{dt}t^n\,dt &&=\quad& \int nt^{n-1}\,dt \\
+	\int\frac{d}{dt}\sin t\,dt &&=\quad& \int\cos t\,dt
+\end{aligned} \end{equation*}
+Let's then recall the second form of the \textit{fundamental
+theorem of calculus} given in the book:
+\[
+	\int\frac{d}{dt}f\,dt = f(t) + c,\quad c\in\mathbb{R}
+\]
+So our previous equations can be rewritten as:
+\begin{equation*} \begin{aligned}
+	t^n + c &&=\quad& \int nt^{n-1}\,dt,&\quad c\in\mathbb{R} \\
+	\sin t + c &&=\quad& \int\cos t\,dt,&\quad c\in\mathbb{R}
+\end{aligned} \end{equation*}
+Which are, to syntactical differences, the formulas given in
+the book. In addition to those, we will also rely on the
+\textit{linearity of the integration}, which essentially
+is the combination of the \textit{sum rule for integration}
+and \textit{multiplication by a constant rule for integration},
+both being analogues of what we had for differentiation, and
+which can be summed up by:
+\begin{theorem}[linearity of integration]
+\[
+	\left(\forall (\alpha,\beta)\in\mathbb{R}^2\right), \left(\forall
+	(\varphi,\psi)\in(C^0)^2\right) \quad
+		\boxed{\int\alpha\varphi+\beta\psi = \alpha\int\varphi+\beta\int\psi}
+\]
+\end{theorem}
+\begin{remark} $C^0$ refers to the class ("set") of continuous functions;
+actually, mathematically-wise, it would suffice for the functions
+to be "partially continuous" so as to be integrable; in the context of
+physics, requiring them to be continuous is reasonable.
+\end{remark}
+\begin{remark} We're using the following "shortcut" notation:
+\[
+	\int\varphi = \int\varphi(t)\,dt
+\]
+or for a more involved expression:
+\[
+	\int\alpha\varphi+\beta\psi = \int\left(\alpha\varphi(t)+\beta\psi(t)\right)\,dt
+\]
+\end{remark}
+\begin{proof}
+We can establish this result, again to syntactical differences, for instance
+through a similar process as we've just used for $t^n$ and $\cos$, that is, by
+integrating differentiation results:
+\begin{equation*} \begin{aligned}
+	~ && \frac{d}{dt}(\alpha\varphi+\beta\psi)(t) &&=\quad& \alpha\varphi'(t)+\beta\psi'(t) \\
+	\Leftrightarrow && \int\frac{d}{dt}(\alpha\varphi+\beta\psi)(t) &&=\quad&
+		\int\alpha\varphi'(t)+\beta\psi'(t) dt \\
+	\Leftrightarrow && (\alpha\varphi+\beta\psi)(t) &&=\quad&
+		\int\alpha\varphi'(t)+\beta\psi'(t) dt \\
+	\Leftrightarrow && \int\alpha\varphi'+\beta\psi' &&=\quad&
+		\alpha\int\varphi'+\beta\int\psi'
+\end{aligned} \end{equation*}
+\end{proof}
+
+\hr
+$\bm{f(t) = t^4}$\ \\
+This is a simple application of:
+\[
+	\int nt^{n-1}\,dt = t^n + c,\quad c\in\mathbb{R}
+\]
+with $n=4$; using the \textit{linearity of integration}:
+\begin{equation*} \begin{aligned}
+	~ & \int 5t^{5-1}\,dt &&=\quad& t^5 + c,\quad c\in\mathbb{R} \\
+	\Leftrightarrow & \int t^4\,dt &&=\quad& \boxed{\frac15t^5 + c}
+\end{aligned} \end{equation*}
+
+\begin{remark} We can check the result by differentiating it
+\end{remark}
+
+\hr
+$\bm{f(t) = \cos t}$\ \\
+An even more direct application of the formulas established earlier:
+\[
+	\int\cos t\,dt = \boxed{\sin t + c},\quad c\in\mathbb{R}
+\]
+\begin{remark} Again, we can check the result using differentiation:
+we know from earlier that the derivative of a constant is zero, that
+of sine is cosine, and that the derivative of a sum is the sum
+of the derivatives.
+\end{remark}
+
+\hr
+$\bm{f(t) = t^2 - 2}$\ \\
+Note that there's a special case for:
+\[
+	\int nt^{n-1}\,dt = t^n + c,\quad c\in\mathbb{R}
+\]
+when $n=1$:
+\[
+	\int 1\times t^{0}\,dt = \int dt = t^1 + c = t + c,\quad c\in\mathbb{R}
+\]
+More generally, by \textit{linearity of the integration}:
+\[
+	(\forall \alpha\in\mathbb{R})\quad \int\alpha\,dt =
+		\alpha\int dt = \alpha t + c,\quad c\in\mathbb{R}
+\]
+And so we have:
+\[
+	\int t^2-2\,dt = \int t^2\,dt - 2\int dt = \boxed{\frac13t^3-2t+c},\quad c\in\mathbb{R}
+\]
+Which again is elementary to verify by differentiation.
+\end{document}
