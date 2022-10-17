@@ -1,0 +1,49 @@
+\documentclass[solutions.tex]{subfiles}
+
+\xtitle
+
+\begin{document}
+\maketitle
+\begin{exercise} Use the fundamental theorem of calculus to
+evaluate each integral from Exercise $1$ with limits of
+integration being $t=0$ to $t=T$.
+\end{exercise}
+We're going to build on the indefinite integrals we've just computed in
+\href{https://github.com/mbivert/ttm/blob/master/cm/I02E01.pdf}{I02E01},
+and simply evaluate the difference of the primitives between $t=T$ and $t=0$.
+\begin{remark} There are two common notations to evaluate a primitive between
+two values; I'll use the second one, out of habit. Let's recall the fundamental
+theorem of calculus along the way:
+\[
+	\boxed{\left.F(t)\right|_a^b = \left[F(t)\right]_a^b \triangleq \int_a^bF'(t)\,dt = F(b)-F(a)}
+\]
+\end{remark}
+\hr
+$\bm{f(t) = t^4}$\ \\
+The primitive was:
+\[ \frac15t^5 + c,\quad c\in\mathbb{R} \]
+Evaluated as expected gives:
+\[
+	\left[\frac15t^5 + c\right]_0^T = \frac15T^5+c-(\frac150^5+c)=\boxed{\frac15T^5}
+\]
+\begin{remark} Note how the constant of integration gets canceled. This will
+happen systematically here.
+\end{remark}
+\hr
+$\bm{f(t) = \cos t}$\ \\
+The primitive was:
+\[ \sin t + c,\quad c\in\mathbb{R} \]
+Evaluated as expected gives:
+\[
+	\left[\sin t + c\right]_0^T = \sin T - \underbrace{\sin 0}_{=0} = \boxed{\sin T}
+\]
+
+\hr
+$\bm{f(t) = t^2 - 2}$\ \\
+The primitive was:
+\[ \frac13t^3-2t+c,\quad c\in\mathbb{R} \]
+Evaluated as expected gives:
+\[
+	\left[\frac13t^3-2t+c\right]_0^T = \boxed{\frac13T^3-2T}
+\]
+\end{document}
