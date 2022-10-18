@@ -1,0 +1,82 @@
+\documentclass[solutions.tex]{subfiles}
+
+\xtitle
+
+\begin{document}
+\maketitle
+\begin{exercise} Treat the expressions from Exercise $1$
+as expressions for the acceleration of a particle. Integrate
+them once, with respect to time, and determine the velocities,
+and a second time to determine the trajectories. Because we
+will use $t$ as one of the limits of integration we will
+adopt the dummy integration variable $t'$. Integrate them
+from $t'=0$ to $t'=t$.
+\begin{equation*} \begin{aligned}
+	v(t) &&=\quad& \int_0^t t'^4\,dt' \\
+	v(t) &&=\quad& \int_0^t \cos t'\,dt' \\
+	v(t) &&=\quad& \int_0^t (t'^2-2)\,dt'
+\end{aligned} \end{equation*}
+\end{exercise}
+
+Conceptually, the exercise seems to be about creating functions
+from integrals, by having a variable of the integration limit
+being a function parameter, which forces to use a different name
+for the integration variable; multiple choices are obviously
+possible, as long as the result is consistent:
+\[
+	v(t) = \int_0^t a(T)\,dT
+\]
+
+\hr
+$\bm{v(t) = \int_0^t t^{'4} dt'}$\\
+Let's recall our results from either
+\href{https://github.com/mbivert/ttm/blob/master/cm/I02E01.pdf}{I02E01}
+or
+\href{https://github.com/mbivert/ttm/blob/master/cm/I02E02.pdf}{I02E02}.
+If we work from the former, we first would need to change the variable
+name from the primitive, say to $t'$, and evaluate the indefinite integral
+between $t$ and $0$. Working from the later, we would need to replace
+$T$ by $t$.
+
+\begin{equation*} \begin{aligned}
+	v(t) &&=\quad& \int_0^t t'^4 dt' \\
+	~ &&=\quad& \left[\frac15t'^5 + c\right]_0^t,\quad c\in\mathbb{R} \\
+	~ &&=\quad& \boxed{\frac15t^5}
+\end{aligned} \end{equation*}
+Now we can repeat the same process to compute the position $x(t)$:
+\begin{equation*} \begin{aligned}
+	x(t) &&=\quad& \int_0^t v(t')\,dt' \\
+	~ &&=\quad& \int_0^t\frac15t'^5\,dt' \\
+	~ &&=\quad& \left[\frac1{30}t'^6+c\right]_0^t,\quad c\in\mathbb{R} \\
+	~ &&=\quad& \boxed{\frac1{30}t^6}
+\end{aligned} \end{equation*}
+
+\hr
+$\bm{v(t) = \int_0^t \cos t' dt'}$\\
+Same exact process:
+
+\begin{equation*} \begin{aligned}
+	v(t) &&=\quad& \int_0^t \cos t'\,dt' \\
+	~ &&=\quad& \left[\sin t' + c\right]_0^t,\quad c\in\mathbb{R} \\
+	~ &&=\quad& \boxed{\sin t} \\
+	x(t) &&=\quad& \int_0^t v(t')\,dt' \\
+	~ &&=\quad& \int_0^t \sin t'\,dt' \\
+	~ &&=\quad& \left[-\cos t' + c\right]_0^t,\quad c\in\mathbb{R} \\
+	~ &&=\quad& \boxed{-\cos t}
+\end{aligned} \end{equation*}
+
+\hr
+$\bm{v(t) = \int_0^t (t^{'2}-2)\,dt'}$\\
+No surprises here either:
+
+\begin{equation*} \begin{aligned}
+	v(t) &&=\quad& \int_0^t (t'^2-2)\,dt' \\
+	~ &&=\quad& \left[\frac13t'^3 -2t' + c\right]_0^t,\quad c\in\mathbb{R} \\
+	~ &&=\quad& \boxed{\frac13t^3-2t} \\
+	x(t) &&=\quad& \int_0^t v(t')\,dt' \\
+	~ &&=\quad& \int_0^t \frac13t'^3-2t'\,dt' \\
+	~ &&=\quad& \left[\frac1{12}t'^4 -t'^2 + c\right]_0^t,\quad c\in\mathbb{R} \\
+	~ &&=\quad& \boxed{\left(\frac1{12}t^2 -1\right)t^2}
+\end{aligned} \end{equation*}
+
+\end{document}
