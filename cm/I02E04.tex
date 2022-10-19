@@ -1,0 +1,63 @@
+\documentclass[solutions.tex]{subfiles}
+
+\xtitle
+
+\begin{document}
+\maketitle
+\begin{exercise} Finish evaluating
+\[
+	\int_0^{\frac\pi2}x\cos x\,dx
+\]
+\end{exercise}
+We will re-compute the integral from the beginning. \\
+
+Let's start by recalling the formula for the integration by parts,
+given two real valued functions $\varphi$
+and $\psi$ continuously differentiable on $[a,b]\subset\mathbb{R}$:
+\[
+	\boxed{\int_a^b\varphi'(x)\psi(x)\,dx =
+		\left[\varphi(x)\psi(x)\right]_a^b
+		- \int_a^b\varphi(x)\psi'(x)\,dx}
+\]
+Now, in our integral, let's identify:
+\begin{equation*} \begin{aligned}
+	\varphi'(x) &&=\quad& x \\
+	\psi(x) &&=\quad& \cos x
+\end{aligned} \end{equation*}
+
+From which we have immediately:
+\begin{equation*} \begin{aligned}
+	\varphi(x) &&=\quad& \frac12x^2 \\
+	\psi'(x) &&=\quad& \sin x
+\end{aligned} \end{equation*}
+
+Our integral then becomes:
+\begin{equation*} \begin{aligned}
+	\int_0^{\pi/2}x\cos x\,dx &&=\quad&
+		\left[\frac12x^2\cos x\right]_0^{\pi/2}
+		- \int_0^{\pi/2}\frac12x^2\sin x\,dx
+\end{aligned} \end{equation*}
+
+Well, it didn't really helped us, didn't it? But this
+gives us a clue on what perhaps we should try: while
+the sine/cosine will essentially oscillate between each
+other when integrating/differentiating, the $x$ will
+square when being integrated, but will vanish when being
+differentiated. So instead, let's identify things this
+way:
+
+\begin{equation*} \begin{aligned}
+	\varphi'(x) &&=\quad& \cos x; &\quad& \varphi(x) &&=\quad& \sin x \\
+	\psi(x) &&=\quad& x; &\quad& \psi'(x) &&=\quad& 1
+\end{aligned} \end{equation*}
+
+And now the integral becomes:
+\begin{equation*} \begin{aligned}
+	\int_0^{\pi/2}x\cos x\,dx &&=\quad&
+		\left[x\sin x\right]_0^{\pi/2}
+		- \int_0^{\pi/2}\sin x\,dx \\
+	~ &&=\quad& \frac\pi2 + \left[\cos x\right]_0^{\pi/2} \\
+	~ &&=\quad& \boxed{\frac\pi2 - 1}
+\end{aligned} \end{equation*}
+
+\end{document}
