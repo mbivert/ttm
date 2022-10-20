@@ -1,0 +1,136 @@
+\documentclass[solutions.tex]{subfiles}
+
+\xtitle
+
+\begin{document}
+\maketitle
+\begin{exercise} Compute all first and second partial derivatives
+\textemdash including mixed derivatives\textemdash of the following
+functions.
+\[ x^2+y^2 = \sin(xy) \]
+\[ \frac{x}ye^{(x^2+y^2)} \]
+\[ e^x\cos y \]
+\end{exercise}
+This is again a simple differentiation exercise. We're not going to
+go too much in details; you may want to refer to
+\href{https://github.com/mbivert/ttm/blob/master/cm/L02E01.pdf}{L02E01}
+if you need a more detailed treatment. The process is very mechanical:
+use linearity to isolate constants and propagate differentiation to individual
+terms, if there's a product of functions, use the product rule, and if
+you can represent an expression as a composition of functions, often by
+introducing intermediate functions, apply the chain rule. \\
+
+Regarding partial differentiation, the key thing is to consider all
+arguments of a function to be constants but the one we're differentiating
+the function against.
+
+\hr
+$\bm{E(x,y): x^2+y^2 = \sin(xy)}$\\
+This looks more like an expression than a function; we'll interpret
+its differentiation to be the differentiation of each part of the equality.
+\begin{equation*} \begin{aligned}
+	\boxed{\frac{\partial}{\partial x}E(x,y) : 2x  =y\cos(xy);} &\quad&
+	\boxed{\frac{\partial}{\partial y}E(x,y) : 2y  =x\cos(xy)}
+\end{aligned} \end{equation*}
+We may now compute second order derivatives:
+\begin{equation*} \begin{aligned}
+	\boxed{\frac{\partial^2}{\partial x^2}E(x,y) : 2  =-y^2\sin(xy);} &\quad&
+	\boxed{\frac{\partial^2}{\partial y^2}E(x,y) : 2  =-x^2\sin(xy)}
+\end{aligned} \end{equation*}
+
+And assuming the symmetry of second derivatives:
+\[
+	\frac{\partial^2}{\partial x\partial y}E(x,y)
+	= \frac{\partial^2}{\partial y\partial x} E(x,y) :
+	\boxed{2  =\cos(xy)-xy\sin(xy)}
+\]
+
+\begin{remark} The fact that:
+\[
+	\frac{\partial^2}{\partial x\partial y}\varphi
+	= \frac{\partial^2}{\partial y\partial x}\varphi
+\]
+Isn't so obvious, mathematically speaking: the result is called
+Clairaut's theorem, or Schwarz's theorem\footnote{
+\url{https://en.wikipedia.org/wiki/Symmetry\_of\_second\_derivatives}}.
+It requires $\varphi$ to have \textbf{continuous second partial derivatives}.
+In the context of classical mechanics, almost always we'll be dealing
+with smooth\footnote{\url{https://en.wikipedia.org/wiki/Smoothness}}
+functions of time (positions/velocities/accelerations, so we'll always
+assume it to be true.
+\end{remark}
+
+\hr
+$\bm{\varphi(x,y) = \frac{x}ye^{(x^2+y^2)}}$\\
+First order derivatives; we can go a little slower here. Essentially,
+reserve the constant ($1/y$), apply the product rule followed by a chain
+rule:
+\begin{equation*} \begin{aligned}
+	\frac{\partial}{\partial x}\varphi(x,y) &&=\quad&
+		\frac1y\frac{\partial}{\partial x}xe^{(x^2+y^2)} \\
+	~ &&=\quad&\frac1y\left(
+		(\frac{\partial}{\partial x}x)e^{(x^2+y^2)}
+		+x(\frac{\partial}{\partial x}e^{(x^2+y^2)})
+	\right) \\
+	~ &&=\quad&\frac1y\left(
+		e^{(x^2+y^2)}
+		+x(\frac{\partial}{\partial x}x^2+y^2)e^{(x^2+y^2)})
+	\right) \\
+	~ &&=\quad& \boxed{\frac1y(2x^2+1)e^{(x^2+y^2)}}
+\end{aligned} \end{equation*}
+\begin{remark} As I don't think this has been encountered before,
+note that we'll use the following "identity":
+\[
+	x^{-n} = \frac{1}{x^n}
+\]
+to help compute the derivatives of $x^{-n}$ using the rule to
+derivate $x^n$:
+\[
+	\frac{d}{dx}\frac1{x^n} = \frac{d}{dx}x^{-n} = -nx^{-n-1} = -n\frac{1}{x^{n+1}}
+\]
+\end{remark}
+And so for the other first order-derivative:
+\begin{equation*} \begin{aligned}
+	\frac{\partial}{\partial y}\varphi(x,y) &&=\quad&
+		x\frac{\partial}{\partial y}y^{-1}e^{(x^2+y^2)} \\
+	~ &&=\quad& \boxed{x e^{(x^2+y^2)}(2-\frac{1}{y^2})}
+\end{aligned} \end{equation*}
+Then for the (non-mixed) second order derivatives:
+\begin{equation*} \begin{aligned}
+	\frac{\partial^2}{\partial x^2}\varphi(x,y) &&=\quad&
+		\frac1y\frac{\partial^2}{\partial x^2}(2x^2+1)e^{(x^2+y^2)};&&\quad&
+	\frac{\partial^2}{\partial y^2}\varphi(x,y) &&=\quad&
+		x\frac{\partial^2}{\partial y^2} e^{(x^2+y^2)}(2-y^{-2}) \\
+	~ &&=\quad& \frac1ye^{(x^2+y^2)}(4x+(2x^2+1)2x);&&\quad&
+	~ &&=\quad& xe^{(x^2+y^2)}((2-y^{-2})2y + 2y^{-3}) \\
+	~ &&=\quad& \boxed{\frac{x}y(4x^2+6)e^{(x^2+y^2)};}&&\quad&
+	~ &&=\quad& \boxed{2xe^{(x^2+y^2)}(2y-\frac1y + \frac1{y^3})} \\
+\end{aligned} \end{equation*}
+Finally, for the mixed second derivatives:
+\[
+	\frac{\partial^2}{\partial x\partial y}\varphi(x,y)
+	=(2x^2+1)e^{(x^2+y^2)}(-y^{-2}+y^{-1}2y)
+	=\boxed{(2x^2+1)e^{(x^2+y^2)})(2-\frac1{y^2})}
+\]
+\begin{remark} There's a common shortcut notation for partial derivatives that
+we will use from now on:
+\begin{equation*} \begin{aligned}
+	\frac\partial{\partial x}\varphi = \varphi_x;\quad
+	\frac{\partial^2}{\partial x^2}\varphi = \varphi_{x,x};\quad
+	\frac{\partial^2}{\partial y\partial x}\varphi = \varphi_{x,y}
+\end{aligned} \end{equation*}
+\end{remark}
+
+\hr
+$\bm{\phi(x,y) = e^x\cos y}$\\
+\begin{equation*} \begin{aligned}
+	\phi_x(x,y) &&=\quad& \boxed{e^x\cos y;}&\quad&&
+	\phi_y(x,y) &&=\quad& \boxed{-e^x\sin y} \\
+	\phi_{x,x}(x,y) &&=\quad& \boxed{e^x\cos y;}&\quad&&
+	\phi_{y,y}(x,y) &&=\quad& \boxed{-e^x\cos y} \\
+\end{aligned} \end{equation*}
+\[
+	\phi_{x,y}(x,y)=\phi_{y,x}(x,y) = \boxed{-e^x\sin y}
+\]
+
+\end{document}
