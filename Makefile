@@ -3,9 +3,13 @@
 PDFLATEX   = pdflatex
 # -halt-on-error:
 #	exits LaTeX on almost all errors
-# interaction=nonstopmode
+# -interaction=nonstopmode:
 #	exits LaTeX on file not found errors (e.g. \usepackage{...})
-LATEXFLAGS = -halt-on-error -interaction=nonstopmode
+# -shell-escape:
+#	used for TikZ so as to compile the images in separate files,
+#	and recompile them only upon change rather than systematically
+#	(cm/I03E02.tex has two 3D pgfplots that are really slow to build)
+LATEXFLAGS = -halt-on-error -interaction=nonstopmode -shell-escape
 
 COMPILE = $(PDFLATEX) $(LATEXFLAGS)
 
