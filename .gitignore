@@ -1,3 +1,5 @@
+cm/tikz/*
+*.auxlock
 *.log
 *.aux
 *.out
