@@ -1,0 +1,64 @@
+\documentclass[solutions.tex]{subfiles}
+
+\xtitle
+
+\begin{document}
+\maketitle
+\begin{exercise} Prove Eq. $(3)$. \textit{Hint: Use the product rule
+for differentiation.}
+\end{exercise}
+This is a very simple differentiation exercise. I'm going to be very slow,
+because using a "normal" pace would essentially mean stating the result,
+as it's been done in the book, hence negating the need for this exercise.
+If you can't compute this kind of derivative in your head at this stage,
+I would recommend practising until it becomes second nature. For instance,
+\textit{Paul's Online Notes}\footnote{
+\url{https://tutorial.math.lamar.edu/Problems/CalcI/DerivativeIntro.aspx}}
+has plenty of corrected exercises on differentiation. \\
+
+Let's recall the context a little bit: we're in the case of a single
+particle moving along the $\vec{x}-axis$ under the influence of a force
+$F(x)$. The \textit{kinetic energy} of that particle, that is, the energy
+that the particle has because of its motion, is noted $T$ and is "defined"
+as:
+\[
+	T = \frac12mv^2
+\]
+Eq. $(3)$ refers to the time derivative of $v^2$, in the context of
+its usage in the formulation of kinetic energy. There are (at least)
+two ways to evaluate this derivative; let's start by using the
+authors' hint regarding the product rule; let's make the time
+dependency more obvious:
+\[
+	\frac{d}{dt}v(t)^2 = \frac{d}{dt}v(t)v(t)
+\]
+Now let's recall the \textit{product rule} is, for $\varphi$ and
+$\psi$ two real-valued functions of $t$:
+\[
+	(\varphi\psi)' = \varphi'\psi + \varphi\psi'
+\]
+Hence, in the case of $\varphi=\psi=v$, we have:
+\begin{equation*} \begin{aligned}
+	\frac{d}{dt}v(t)^2 &&=\quad& \frac{d}{dt}v(t)v(t) \\
+	~ &&=\quad&\dot{v}(t)v(t)+v(t)\dot{v}(t) \\
+	~ &&=\quad&\boxed{2v\dot{v}(t)} \qed
+\end{aligned} \end{equation*}
+\begin{remark} We could have also used the \textit{chain rule};
+for $\varphi$ a function of $t$, and $\psi$ and function whose domain (input)
+is the codomain (output) of $\varphi$:
+\[
+	(\psi\circ\varphi)'(t) = (\psi(\varphi(t))' = \varphi'(t)\psi'(\varphi(t))
+\]
+In this case, $\psi=(x\mapsto x^2)$ and $\varphi=v$, so:
+\begin{equation*} \begin{aligned}
+	\frac{d}{dt}v(t)^2 &&=\quad& \frac{d}{dt}(x\mapsto x^2)(v(t)) \\
+	~ &&=\quad&\dot{v}(t)(x\mapsto x^2)'(v(t)) \\
+	~ &&=\quad&\dot{v}(t)(x\mapsto 2x)(v(t)) \\
+	~ &&=\quad&\boxed{2v\dot{v}(t)} \qed
+\end{aligned} \end{equation*}
+\end{remark}
+\begin{remark} As a reminder, both the product rule and the chain rule have
+been proved in
+\href{https://github.com/mbivert/ttm/blob/master/cm/L02E04.pdf}{L02E04}. \\
+\end{remark}
+\end{document}
