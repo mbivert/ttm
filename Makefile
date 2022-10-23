@@ -25,8 +25,8 @@ help:
 	@echo "clean         : remove .aux/.log/.out/.toc/.pdf files"
 
 distclean:
-	@echo "Removing .aux/.log/.out/.toc files..."
-	@rm -f */*.aux */*.log */*.out */*.toc
+	@echo "Removing .aux/.log/.out/.toc/.auxlock files..."
+	@rm -f */*.aux */*.log */*.out */*.toc */*.auxlock
 
 .PHONY: clean
 clean: distclean
