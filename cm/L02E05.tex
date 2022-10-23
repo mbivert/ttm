@@ -4,9 +4,8 @@
 
 \begin{document}
 \maketitle
-\begin{remark} This is a WIP; an important limit still isn't proved
-for instance. This should however largely cover what have been expected
-by the authors of the book from the students.
+\begin{remark} This is a WIP; some intermediate results still
+aren't proved.
 \end{remark}
 \begin{exercise} Prove each of the formulas in Eq.s $(2)$.
 \textit{Hint}: Look up trigonometric identities and limit
@@ -40,7 +39,11 @@ will actually take the time to prove the intermediate results. \\
 
 One reason to do so for a physicist would be that this is an
 interesting mathematical exercise, but also to useful to sharpen
-one's rigor and reasoning skills.
+one's rigor and reasoning skills. \\
+
+Saying it otherwise, the treatment of this exercise \textbf{goes
+far beyond} what is expected; the goal being to refresh one's maths
+skills.
 \end{remark}
 
 Let's start by recalling that a function $\varphi : E \rightarrow \mathbb{R}$
@@ -275,36 +278,313 @@ As we've already explained in
 \href{https://github.com/mbivert/ttm/blob/master/cm/L02E04.pdf}{L02E04},
 we can recursively split the previous limits, assuming each individual
 limit exists:
-\[
-	\lim_{x \rightarrow a}\left(\varphi(x)+\psi(x)\right) =
+\begin{equation*} \begin{aligned}
+	\lim_{x \rightarrow a}\left(\varphi(x)+\psi(x)\right) &&=\quad&
 		\lim_{x \rightarrow a}\varphi(x)
-		+ \lim_{x \rightarrow a}\psi(x))
-\]
-\[
-	\lim_{x \rightarrow a}\left(\varphi(x)\psi(x)\right) =
+		+ \lim_{x \rightarrow a}\psi(x) \\
+	\lim_{x \rightarrow a}\left(\varphi(x)\psi(x)\right) &&=\quad&
 		\lim_{x \rightarrow a}\varphi(x)
-		\times\lim_{x \rightarrow a}\psi(x))
-\]
+		\times\lim_{x \rightarrow a}\psi(x)
+\end{aligned} \end{equation*}
+
 Again, you may want to refer to \textit{Paul's Online Notes}
 \footnote{\url{https://tutorial.math.lamar.edu/classes/calci/limitproofs.aspx}}
 for a proof. So we need to see if those limits actually exists, and
 because we want to compute $\sin'$ in the end, we also want to know
-their value.
+their value. \\
+
+% TODO: because we'll define limits and prove the squeeze
+% theorem soon, we can pretend to prove those results here; this
+% would make for a very dense analysis refresher
+
+But, to prove those two limits (the proof of one can depend on the
+other), we first need to define what a \textit{circular sector} is,
+and how to express its \textit{area}, from which, you'll see, computing
+the area of a circle is but a special case. We will also need to establish
+the \textit{squeeze theorem}: we shied away from proving results on limits
+so far, but we'll do this one. So we will also need to understand
+\textit{limits} a little deeper. \\
+
+Let's start with circular sector:
+\begin{definition}[circular arc, circular sector]
+A \underline{circular arc} is a  portion of the circle between two points
+of that circle A \underline{circular sector} is a portion of disk enclosed
+between two (usually distinct) radii and a circular arc.
+
+\begin{figure}[H]
+	\centering
+	\begin{tikzpicture}
+		\tikzmath{
+			\xmin = -5;
+			\xmax = 5;
+			\ymin = -5;
+			\ymax = 5;
+			\ra = 4;
+			\rad = 2*\ra; % \r * 2cm, where 2cm is the default x length
+			\ta = 60;
+			\rb = \ra;
+			\rbd = \rad;
+			\tb = 20;
+		}
+		\coordinate (O) at (0, 0);
+		\coordinate (pa) at (\ta:\ra);
+		\coordinate (pb) at (\tb:\rb);
+
+		% https://ctan.crest.fr/tex-archive/graphics/pgf/base/doc/pgfmanual.pdf
+		% §15.9 - Clipping and Fading (Soft Clipping) (p186)
+		\begin{scope}[fill=blue!8]
+			\fill[clip]
+				 (pb) arc[start angle=\tb, end angle=\ta, radius=\ra]
+				 -- (O) -- (pb);
+		\end{scope}
+
+		% https://ctan.crest.fr/tex-archive/graphics/pgf/base/doc/pgfmanual.pdf
+		% §14.7 - The Arch Operation (p159)
+		% arc pa,pb
+		\draw[blue,thick] (pb) arc[start angle=\tb, end angle=\ta, radius=\ra];
+
+		\draw[color=gray!30, dashed] (\xmin,\ymin) grid (\xmax,\ymax);
+		% axes
+		\draw[dashed,gray,->] (\xmin,0) -- (\xmax,0) node (xaxis) [gray,right]{$\vec{x}$};
+		\draw[dashed,gray,->] (0,\ymin) -- (0,\ymax) node (yaxis) [gray,right]{$\vec{y}$};
+
+		% 8cm = \ra * 2cm (which is the default x length)
+		\node[draw,circle, minimum size=\rad cm,inner sep=0,black!30] (c) at (0,0){};
+		\draw[] (O) -- (pa) node (pavec) [midway,yshift=10,xshift=-2]{$r$};
+		\draw[] (O) -- (pb) node (pbvec) [midway,below,xshift=2]{};
+
+		\pic [draw,"$\theta$",angle eccentricity=1.5,gray] {angle = pbvec--O--pavec};
+	\end{tikzpicture}
+\end{figure}
+\end{definition}
+\begin{remark} A circle then, is but a circular sector of angle $2\pi$.
+\end{remark}
+
+Unfortunately, if we want to compute the area of a circular sector, which
+can be obtained from the area of a circle by
+that of a circle, the process being similar), we need some integral
+calculus, which will only be discussed in the book in the next Interlude.
+Nevertheless:
+
+\begin{theorem}[circle area] The total area of a circle of
+radius $r$ is given by:
+\[ \boxed{\pi r^2} \]
+\end{theorem}
+\begin{proof}
+TODO
+\end{proof}
+
+\begin{theorem}[circular sector area] The area of a circular
+sector, of angle $\theta$, in a circle of radius $r$ is given
+by:
+\[ \boxed{\frac12r^2\theta} \]
+\end{theorem}
+\begin{proof} Because the area is evenly distributed on a circle,
+this is a simple cross-multiplication\footnote{
+\url{https://en.wikipedia.org/wiki/Cross-multiplication}} involving
+the area of a circle:
+\begin{equation*} \begin{aligned}
+	2\pi &&\rightarrow\quad& \pi r^2 \\
+	\theta &&\rightarrow\quad& A_\theta= \frac{\theta\pi r^2}{2\pi}
+		= \boxed{\frac12r^2\theta}
+\end{aligned} \end{equation*}
+\end{proof}
+\begin{remark} We could also have proved it directly with an integral,
+as we did for the circle.
+\end{remark}
+
+\begin{definition}[$(\epsilon,\delta)$-definition of a limit]
+Let $\varphi : \mathbb{R} \rightarrow \mathbb{R}$.
+Saying that $\lim_{x\rightarrow e}\varphi(x) = L$ is the same as saying:
+\[
+	(\forall \epsilon > 0),\,(\exists \delta \in \mathbb{R}),\,
+	(\forall x \in \mathbb{R}) \left(|x-e| < \delta\right)
+		\Rightarrow \left(|\varphi(x)-L| < \epsilon\right)
+\]
+The definition is rather clumsy looking, so let's unpack it a little.
+Let's fix an $\epsilon$ to some value close to zero, say $0.1$, or $0.0001$. \\
+
+Now the idea is that, for this $\epsilon$, we will always be able to
+find a distance $\delta$ such that if we pick an $x$ between
+$e-\delta$ and $e+\delta$ (i.e. $|x-e| < \delta$), then $\varphi(x)$
+will be between $L-\epsilon$ and $L+\epsilon$
+(i.e. $|\varphi(x)-L| < \epsilon$). \\
+
+But, this is true for all strictly positive $\epsilon$. So in particular,
+this is true for an ever so smaller $\epsilon$. In other words, regardless
+of how close we want $\varphi(x)$ and $L$ to be, we will always be
+able to achieve it if we bring $x$ and $e$ close enough.
+
+% TODO: add graphic
+\end{definition}
+
+\begin{theorem}[squeeze theorem] Let $\varphi$, $\psi$, $\phi$ be three
+real-valued functions defined on an interval $I\subset\mathbb{R}$, and
+$a$ be a point of $I$. If, $(\forall x \in I/\{a\})$ ($x\in I$ but $x\neq a$),
+we have:
+\[
+	\varphi(x) \le \psi(x) \le \phi(x)
+\]
+With:
+\[
+	\lim_{x\rightarrow a} \varphi(x) = \lambda = \lim_{x\rightarrow a}\phi(x)
+\]
+Then:
+\[
+	\boxed{\lim_{x\rightarrow a}\psi(x) = \lambda}
+\]
+\end{theorem}
+\begin{proof}
+TODO
+\end{proof}
+% https://en.wikipedia.org/wiki/Squeeze_theorem#Proof
+
+\hrr
+
+We now have everything we need to start computing the limits involved
+in the differentiation of sine:
 
 \begin{theorem}
 \[
 	\boxed{\lim_{\epsilon\rightarrow 0} \frac{\sin\epsilon}{\epsilon} = 1}
 \]
 \end{theorem}
-\begin{proof}
-TODO (the usual  the limit requires the squeeze
-theorem\footnote{\url{
-https://en.wikipedia.org/wiki/Squeeze\_theorem}} applied to
-the area of a circular sector
-\footnote{\url{https://en.wikipedia.org/wiki/Circular\_sector}},
-itself demanding to know the area of a circle. Unfortunately,
-I'm not sure we can be simpler, given our definition of sine
-at least).
+\begin{proof} Consider the three following blueish areas:
+\begin{figure}[H]
+	\centering
+	\begin{minipage}{0.31\textwidth}
+		\centering
+		\begin{tikzpicture}[scale=.7]
+			\tikzmath{
+				\xmin = 0;
+				\xmax = 5;
+				\ymin = 0;
+				\ymax = 5;
+				\r = \xmax;
+				\t = 35;
+				\px = \r*cos(\t);
+				\py = \r*sin(\t);
+			}
+			\coordinate (O)  at (0, 0);
+			\coordinate (p)  at (\t:\r);
+			\coordinate (xo) at (\xmax,0);
+
+			\draw[->] (\xmin-0.5, 0) -- (\xmax+0.5, 0) node[below] {$\vec{x}$};
+			\draw[->] (0, \ymin-.5) -- (0, \ymax+.5) node[left] {$\vec{y}$};
+
+			\begin{scope}[fill=blue!8]
+				\fill[clip] (\px,0) -- (p) -- (O);
+			\end{scope}
+			\draw[color=gray!30, dashed]
+				(\xmin-1,\ymin-1) grid (\xmax+1,\ymax+1);
+
+			\draw[black!30] (xo) arc[start angle=0, end angle=90, radius=\r];
+			\draw[] (p) -- (\px,0) node [below]{$r\cos(\theta)$};
+			\draw[] (O) -- (xo);
+			\draw[->] (O) -- (p) node (pvec) [midway,above]{$r$};
+
+			\pic [draw,"$\theta$",angle eccentricity=1.5,gray] {angle = xo--O--p};
+			\draw[dashed] (p) -- (0,\py) node [below right]{$r\sin(\theta)$};
+		\end{tikzpicture}
+	\end{minipage}
+	\begin{minipage}{0.31\textwidth}
+		\centering
+		\begin{tikzpicture}[scale=.7]
+			\tikzmath{
+				\xmin = 0;
+				\xmax = 5;
+				\ymin = 0;
+				\ymax = 5;
+				\r = \xmax;
+				\t = 35;
+				\py = \r*sin(\t);
+			}
+			\coordinate (O)  at (0, 0);
+			\coordinate (p)  at (\t:\r);
+			\coordinate (xo) at (\xmax,0);
+
+			\draw[->] (\xmin-0.5, 0) -- (\xmax+0.5, 0) node[below] {$\vec{x}$};
+			\draw[->] (0, \ymin-.5) -- (0, \ymax+.5) node[left] {$\vec{y}$};
+
+			\begin{scope}[fill=blue!8]
+				\fill[clip]
+					 (xo) arc[start angle=0, end angle=\t, radius=\r]
+					 -- (p) -- (O);
+			\end{scope}
+			\draw[color=gray!30, dashed]
+				(\xmin-1,\ymin-1) grid (\xmax+1,\ymax+1);
+
+			\draw[black!30] (xo) arc[start angle=0, end angle=90, radius=\r];
+			\draw[] (xo) arc[start angle=0, end angle=\t, radius=\r];
+			\draw[] (O) -- (xo);
+			\draw[->] (O) -- (p) node (pvec) [midway,above]{$r$};
+
+			\pic [draw,"$\theta$",angle eccentricity=1.5,gray] {angle = xo--O--p};
+			\draw[dashed] (p) -- (0,\py) node [below right]{$r\sin(\theta)$};
+		\end{tikzpicture}
+	\end{minipage}
+	\begin{minipage}{0.31\textwidth}
+		\centering
+		\begin{tikzpicture}[scale=.7]
+			\tikzmath{
+				\xmin = 0;
+				\xmax = 5;
+				\ymin = 0;
+				\ymax = 5;
+				\r = \xmax;
+				\t = 35;
+				\px = \r*cos(\t);
+				\qy = \r*tan(\t);
+			}
+			\coordinate (O)  at (0, 0);
+			\coordinate (p)  at (\t:\r);
+			\coordinate (xo) at (\xmax,0);
+			\coordinate (q)  at (\r,\qy);
+
+			\draw[->] (\xmin-0.5, 0) -- (\xmax+0.5, 0) node[below] {$\vec{x}$};
+			\draw[->] (0, \ymin-.5) -- (0, \ymax+.5) node[left] {$\vec{y}$};
+
+			\begin{scope}[fill=blue!8]
+				\fill[clip] (q) -- (O) -- (xo);
+			\end{scope}
+			\draw[color=gray!30, dashed]
+				(\xmin-1,\ymin-1) grid (\xmax+1,\ymax+1);
+
+			\draw[black!30] (xo) arc[start angle=0, end angle=90, radius=\r];
+			\draw[] (O) -- (q) node []{};
+			\draw[] (O) -- (xo) -- (q);
+			\draw[->] (O) -- (p) node (pvec) [midway,above]{$r$};
+
+			\draw[dashed] (q) -- (0,\qy) node [below right]{$r\tan(\theta)$};
+
+			\pic [draw,"$\theta$",angle eccentricity=1.5,gray] {angle = xo--O--p};
+		\end{tikzpicture}
+	\end{minipage}
+\end{figure}
+The three areas are definitely ordered from smaller to bigger (left to right),
+and we can also determine them: the middle one is that of a sector, while the
+two side ones are right triangles (so their areas is half of the corresponding
+rectangle). We then have the following inequalities:
+\begin{equation*} \begin{aligned}
+	~ && \frac12r^2\cos\theta\sin\theta &\le& \frac12r^2\theta &\le& \frac12r^2\tan\theta \\
+	\Leftrightarrow && \cos\theta\sin\theta &\le& \theta &\le& \frac{\sin\theta}{\cos\theta} \\
+	\Leftrightarrow && \cos\theta &\le& \frac{\theta}{\sin\theta} &\le& \frac{1}{\cos\theta} \\
+	\Leftrightarrow && \frac1{\cos\theta} &\ge& \frac{\sin\theta}{\theta} &\ge& \cos\theta
+\end{aligned} \end{equation*}
+
+But, as $\theta$ goes to zero, the two extremes of this inequalities become:
+\begin{equation*} \begin{aligned}
+	\lim_{\theta\rightarrow 0}&
+		\frac{1}{\cos\theta} &=\quad& 1;\quad&
+	\lim_{\theta\rightarrow 0}&
+		\cos\theta &=\quad& 1
+\end{aligned} \end{equation*}
+
+Hence by the \textit{squeeze theorem}, it follows that we \textit{must} have:
+\[
+	\boxed{\lim_{\theta\rightarrow 0} \frac{\sin\theta}{\theta} = 1}
+\]
+
 \end{proof}
 
 As for the other limit:
@@ -340,7 +620,7 @@ apply the product rules for limits given the existence of both sublimits.
 	~ &=&& \boxed{0} \\
 \end{aligned} \end{equation*}
 \end{proof}
-
+\hrr
 We now have everything to conclude: let's recapitulate all the
 intermediate steps to compute $\sin'$:
 \begin{theorem}[sine derivative]
