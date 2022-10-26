@@ -1,0 +1,228 @@
+\documentclass[solutions.tex]{subfiles}
+
+\xtitle
+
+\begin{document}
+\maketitle
+\begin{exercise}
+Rework Exercise $2$ for the potential $V=\frac{k}{2(x^2+y^2)}$.
+Are there circular orbits? If so, do they all have the same
+period? Is the total energy conserved?
+\end{exercise}
+
+\hr
+\textbf{Equations of motion}\ \\
+The approach is similar to what has been done for the previous
+exercise: for this system, the potential energy $V$ is:
+
+\begin{equation}
+\label{eqn:L05E03:epot}
+V=\frac{k}{2(x^2+y^2)}
+\end{equation}
+
+By Newton's second law of
+motion\footnote{\url{https://en.wikipedia.org/wiki/Newton\%27s\_laws\_of\_motion\#Second}},
+given $\bm{r}=(x,y)$, we have:
+
+\begin{equation}
+	\bm{F} = m\bm{a} = m\dot{\bm{v}} = m\ddot{\bm{r}}
+\end{equation}
+
+Or,
+
+\begin{equation}
+	\label{eqn:L05E03:n2l}
+	\begin{aligned}
+		F_x &=& m\ddot{x} \\
+		F_y &=& m\ddot{y}
+	\end{aligned}
+\end{equation}
+
+We know by equation $(5)$ of this lecture that to each coordinate
+$x_i$ of the configuration space $\{x\}$, there is a force $F_i$,
+derived from the potential energy $V$:
+
+\begin{equation}
+	F_i(\{x\}) = -\frac{\partial}{\partial x_i}V(\{x\})
+\end{equation}
+
+As for the previous exercise, we make heavy use of the
+chain rule\footnote{\url{https://en.wikipedia.org/wiki/Chain\_rule}}
+for derivation:
+
+\begin{equation}
+	\frac{d}{dx}f(g(x)) = g'(x)f'(g(x))
+\end{equation}
+
+To compute e.g. $F_x(x,y)$, we define $\phi(x)=x^2+y^2$:
+
+\begin{equation}
+	\begin{aligned}
+		F_x(x, y) &= -\frac{\partial}{\partial x}V(x, y) \\
+		~ &= \frac{k}2\frac{d}{dx}\frac1{\phi(x)} \\
+		~ &= \frac{k}2\phi'(x)\frac{-1}{\sqrt{\phi(x)}} \\
+		~ &= \frac{kx}{(x^2+y^2)^2} \\
+	\end{aligned}
+\end{equation}
+
+Thus finally:
+
+\begin{equation}
+	\label{eqn:L05E03:fp}
+	\begin{aligned}
+		F_x(x, y) = \frac{kx}{(x^2+y^2)^2} \\
+		F_y(x, y) = \frac{ky}{(x^2+y^2)^2}
+	\end{aligned}
+\end{equation}
+
+Hence combining \eqref{eqn:L05E03:fp} and \eqref{eqn:L05E03:n2l}:
+
+\begin{equation}
+	\label{eqn:L05E03:fp2}
+	\begin{aligned}
+		F_x(x, y) = \boxed{m\ddot{x}(t) = k\frac{x(t)}{(x(t)^2+y(t)^2)^2}} \\
+		F_y(x, y) = \boxed{m\ddot{y}(t) = k\frac{y(t)}{(x(t)^2+y(t)^2)^2}}
+	\end{aligned}
+\end{equation}
+
+\hr
+\textbf{Circular orbits}\ \\
+
+Let's make a guess, and see what would happen were we to plug the simplest
+circular motion, that we've already studied in the book at the end of
+Chapter $2$ (Motion), given by:
+\[
+	x(t) = R\cos(\omega t);\quad\quad y(t) = R\sin(\omega t)
+\]
+Which is very convenient for us, because if we try this solution in
+\eqref{eqn:L05E03:fp2}, the (common) denominator simplifies:
+\[
+	\left(x(t)^2+y(t)^2\right)^2 = \left((R\cos(\omega t))^2+(R\sin(\omega t))^2\right)^2
+		= R^4\underbrace{(\cos^2(\omega t)+\sin^2(\omega t))^2}_{=1} = R^4
+\]
+Let's now consider the velocities and accelerations we would obtain by
+differentiating our guess for $x(t)$ and $y(t)$:
+\begin{equation*} \begin{aligned}
+	\dot{x}(t) &=& -R\omega\sin(\omega t);&\quad& \dot{y}(t) &=& R\omega\cos(\omega t) \\
+	\ddot{x}(t) &=& -R\omega^2\cos(\omega t);&\quad& \ddot{y}(t) &=& -R\omega^2\sin(\omega t)
+\end{aligned} \end{equation*}
+
+There are two ways for this guess to actually work:
+\begin{enumerate}
+	\item Either we set $\omega^2=-k/mR^4$, which implies either:
+	\begin{itemize}
+		\item \fbox{$k$ to be zero} (trivial solution then);
+		\item or that $mR$ to be close to infinite (unrealistic);
+		\item or \fbox{that $k$ is (strictly) negative;}
+		\item or that either $m$ or $R$ are negative (unrealistic);
+		\item or, mathematically, that $\omega$ is an imaginary
+		(complex) number, which would be difficult to interpret,
+		physically;
+	\end{itemize}
+	\item The other option would be for $R$ to be negative, which again
+	doesn't make a lot of sense, physically-wise.
+\end{enumerate}
+\begin{remark} Note that our guess would have worked for a negated $V$:
+\[
+	V=-\frac{k}{2(x^2+y^2)}
+\]
+\end{remark}
+\begin{remark} What is commonly referred to as "the trivial solution", especially
+in the context of differential equations, is the solution $x(t)=0$, which is
+of little interest, mathematically and physically.
+\end{remark}
+
+We can conclude that, at least physically speaking,
+\fbox{\textbf{there are no circular orbits}, unless $k$ is negative}.
+This is because, if there were circular orbits, then they would be a
+coordinate change away from being in the form of our guess. \\
+
+The only remaining issue is that $k$ hasn't been clearly defined,
+physically speaking, so we can't really know for sure if assuming
+$k$ to be negative (with a reminder that $k=0$ leads to the trivial
+solution).
+
+\begin{remark} Another approach, used for instance in the official
+solutions\footnote{\url{http://www.madscitech.org/tm/slns/l5e3.pdf}},
+relies on the polar coordinate $(r,\theta)$: the existence of a circular
+orbit then translate to $r$ being a constant, or equivalently, $\dot{r}=0$. \\
+
+We'll dive deeper into polar coordinates in a later exercise, alongside
+a bunch of other elements related to circular motion (
+\href{https://github.com/mbivert/ttm/blob/master/cm/L06E05.pdf}{L06E05},
+which involves a pendulum).
+\end{remark}
+
+\hr
+\textbf{Energy conservation}\ \\
+Earlier in the lecture, the kinetic energy has been defined to be
+\textit{the sum of all the kinetic energies for each coordinate}:
+
+\begin{equation}
+	T=\frac12\sum_i m_i \dot{x_i}^2
+\end{equation}
+
+Which gives us for this system, expliciting the time-dependencies:
+
+\begin{equation}
+	T(t)=\frac12 m \dot{x}(t)^2 + \frac12 m \dot{y}(t)^2=\frac12m(\dot{x}(t)^2+\dot{y}(t)^2)
+\end{equation}
+
+From which we can compute the variation of kinetic energy
+over time, again using the chain rule:
+
+\begin{equation}
+	\label{eqn:L05E03:dkint}
+	\begin{aligned}
+		\frac{d}{dt}T(t) &= \frac12m(2\dot{x}(t)\ddot{x}(t)+2\dot{y}(t)\ddot{y}(t)) \\
+		~ &= m(\dot{x}\ddot{x}+\dot{y}\ddot{y})
+	\end{aligned}
+\end{equation}
+
+On the other hand, we can compute the variation of
+potential energy over time from \eqref{eqn:L05E03:epot}.
+We'll use the chain rule again, with $\phi(t)=x(t)^2+y(t)^2$
+and thus:
+
+\begin{equation*} \begin{aligned}
+	\phi'(t) &&=\quad& 2x'(t)x(t)+2y'(t)y(t) \\
+	~ &&=\quad& 2\dot{x}x+2\dot{y}y
+\end{aligned} \end{equation*}
+
+It follows that:
+
+\begin{equation}
+	\label{eqn:L05E03:dpott}
+	\begin{aligned}
+		\frac{d}{dt}V(t) &&=\quad& \frac{d}{dt}\frac{k}{2(x(t)^2+y(t)^2)} \\
+		~ &&=\quad& \frac k2\frac{d}{dt}\phi(t)^{-1}\\
+		~ &&=\quad& -\frac k2\phi'(t)\phi(t)^{-2}\\
+		~ &&=\quad& -\frac k2\frac{2\dot{x}x+2\dot{y}y}{(x(t)^2+y(t)^2} \\
+		~ &&=\quad& -k\frac{\dot{x}x+\dot{y}y}{(x^2+y^2)^2} \\
+		~ &&=\quad& -k\frac{\dot{x}x+\dot{y}y}{\phi(t)^2}
+	\end{aligned}
+\end{equation}
+
+Then, from \eqref{eqn:L05E03:fp2}, we can extract
+
+\begin{equation*} \begin{aligned}
+	x(t) &&=\quad& \frac mk\ddot{x}\phi(t)^2;&\quad
+		y(t) &&=\quad& \frac mk\ddot{y}\phi(t)^2 \\
+\end{aligned} \end{equation*}
+
+Injecting in \eqref{eqn:L05E03:dpott} gives:
+\begin{equation} \begin{aligned}
+	\label{eqn:L05E03:dpott2}
+	\frac{d}{dt}V(t) &&=\quad& -\frac k{\phi(t)^2}
+		\left(\dot{x}\frac mk\ddot{x}\phi(t)^2+\dot{y}\frac mk\ddot{y}\phi(t)^2\right)\\
+	~ &&=\quad& -m(\dot{x}\ddot{x}+\dot{y}\ddot{y})
+\end{aligned} \end{equation}
+
+And so by combining \eqref{eqn:L05E03:dpott2} and \eqref{eqn:L05E03:dkint} we can indeed
+see that the energy is conserved:
+
+\[
+	\frac{d}{dt}E(t) = \frac{d}{dt}T(t) + \frac{d}{dt}V(t) = 0 \qed
+\]
+
+\end{document}

@@ -68,9 +68,11 @@ Combining \eqref{eqn:L05E02:n2l} and \eqref{eqn:L05E02:fp}:
 	\end{aligned}
 \end{equation}
 
-Which are known by \textit{L03E04} to be differential equations
-associated to harmonic motion, and solved by a slightly more general
-solution that the one proposed in
+Which we known from
+\href{https://tales.mbivert.com/on-the-harmonic-oscillator/}{L03E04}:
+to be differential equations associated to harmonic motion, and
+(mathematically) solved by a slightly more general solution that the
+one proposed in
 \href{https://tales.mbivert.com/on-the-harmonic-oscillator/}{L03E04}:
 
 \begin{equation}
@@ -88,8 +90,8 @@ Indeed, considering e.g. $x(t)$, with simplified variable names:
 %	\label{eqn:L05E02:sols-proof}
 	\begin{aligned}
 		v(t) &=& \dot{x}(t) &=& \omega&(-\alpha\sin(\omega t-\theta)+\beta\cos(\omega t-\theta) \\
-		a(t) &=& \ddot{x}(t) &=& -\omega^2&(\alpha\cos(\omega t-\theta)+\beta\sin(\omega t-\theta)) \\
-		~ &~& ~ &=& -\omega^2&x(t)
+		a(t) &=& \ddot{x}(t) &=& -\omega&^2(\alpha\cos(\omega t-\theta)+\beta\sin(\omega t-\theta)) \\
+		~ &~& ~ &=& -\omega&^2x(t)
 	\end{aligned}
 \end{equation}
 
@@ -127,19 +129,25 @@ interesting, but clumsy, from a physicist's point of view.
 Given the question, and given the fact that the simplest circular
 orbit has already been studied at the end of Chapter $2$ (Motion),
 it would have been wiser to start by verifying this motion, rather
-than working from the most general solutions of the differential
-equation. \\
+than working from the most general solution to the involved
+differential equation. \\
 
-In the absolute, the quest for the general solution to the
-differential equation itself should have been polarized by a
-wiser choice of referencial, to reduce the complexity of the
-solution. \\
+The quest for the general solution to the differential equation itself
+could and should, in the context of a physics exercise, have been
+polarized by a wiser choice of referential, to reduce the complexity
+of the solution, as a change of referential won't, fortunately, alter
+the laws of (classical) mechanics. \\
 
 In short, the solution presented here was executed with a
 mathematician/computer scientist mindset (both being professionally
-conditioned to explicitly handle all special cases), while the present
-remark is written with a better understanding of physicists' approach.
+conditioned to systematically handle special cases), while the present
+remark is written with a better understanding of physicists' approach. \\
+
+You may want to refer to the next exercise,
+\href{https://github.com/mbivert/ttm/blob/master/cm/L05E03.pdf}{L05E03}
+for a more orthodox approach.
 \end{remark}
+
 The existence of a (potential) circular orbit
 is determined an additional constraint tying the equation of $x(t)$ and
 $y(t)$. Namely, the equation of motion will describe a circle of radius
@@ -256,7 +264,7 @@ Earlier in the lecture, the kinetic energy has been defined to be
 	T=\frac12\sum_i m_i \dot{x_i}^2
 \end{equation}
 
-Which gives us for this system, expliciting the time-dependancies:
+Which gives us for this system, expliciting the time-dependencies:
 
 \begin{equation}
 	T(t)=\frac12 m \dot{x}(t)^2 + \frac12 m \dot{y}(t)^2=\frac12m(\dot{x}(t)^2+\dot{y}(t)^2)
@@ -310,6 +318,7 @@ Thus from \eqref{eqn:L05E02:dkint} and \eqref{eqn:L05E02:dpott2}:
 	\frac{d}{dt}E(t) = \frac{d}{dt}T(t) + \frac{d}{dt}V(t) = 0 \qed
 \end{equation}
 
-That is, the total energy $E$ doesn't change over time.
+That is, the total energy $E$ doesn't change over time: it is indeed
+\textit{conserved}.
 
 \end{document}
