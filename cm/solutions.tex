@@ -63,6 +63,12 @@
 \newcommand\Omicron{O}
 \newcommand{\uvec}[1]{\bm{\hat{#1}}}
 \newcommand{\norm}[1]{\lVert #1 \rVert}
+\newcommand{\abs}[1]{\lvert #1 \rvert}
+\newcommand{\epsdelta}[6]{%
+	(\forall #1 > 0),\,(\exists #2 \in \mathbb{R}),\,%
+	(\forall #4 \in \mathbb{R}) \left(\abs{#4-#3} < #2\right)%
+		\Rightarrow \left(\abs{#5 - #6} < #1\right)
+}
 
 % \title for subfiles
 \newcommand{\xtitle}{\title{The Theoretical Minimum \\

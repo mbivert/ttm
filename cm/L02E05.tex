@@ -128,6 +128,8 @@ Note that we have:
 to the right triangle formed by $r=1$, $\cos\theta$ and $\sin\theta$.
 \end{proof}
 
+% TODO: add a visual proof of the Pythagorean theorem
+
 In order to establish $\sin'$, we will need a few intermediate
 results that we're going to prove now. First will be to find a formula
 for $\sin(\alpha+\beta)$. Indeed, if you try to apply the definition of the
@@ -277,33 +279,363 @@ that this will give birth to two limits:
 As we've already explained in
 \href{https://github.com/mbivert/ttm/blob/master/cm/L02E04.pdf}{L02E04},
 we can recursively split the previous limits, assuming each individual
-limit exists:
+limit exists. Let's make a small detour to review how proving such things on
+limits actually works, starting with the definition of a limit.
+
+\hrr
+
+\begin{definition}[$(\epsilon,\delta)$-definition of a limit]
+Let $\varphi : \mathbb{R} \rightarrow \mathbb{R}$.
+Saying that $\lim_{x\rightarrow a}\varphi(x) = L$ is the same as saying:
+\[ \epsdelta{\epsilon}{\delta}{a}{x}{\varphi(x)}{L}     \]
+
+The definition is rather clumsy looking, so let's unpack it a little.
+Let's fix an $\epsilon$ to some value close to zero, say $0.1$, or $0.0001$. \\
+
+Now the idea is that, for this $\epsilon$, we will always be able to
+find a distance $\delta$ such that if we pick an $x$ between
+$a-\delta$ and $a+\delta$ (i.e. $\abs{x-a} < \delta$), then $\varphi(x)$
+will be between $L-\epsilon$ and $L+\epsilon$
+(i.e. $\abs{\varphi(x)-L} < \epsilon$). \\
+
+\begin{figure}[H]
+	\centering
+	\begin{tikzpicture}[scale=3.3]
+		\tikzmath{
+			\xmin = 0;
+			\xmax = 2;
+			\ymin = -1;
+			\ymax = 2;
+			\xa   = 1.5;
+			\ya   = 0;
+			\xfa  = 0;
+			\yfa  = sin(\xa r) * sin(\xa r) - cos(\xa r);
+			\e    = 0.25;
+			\xape = \xa + \e;
+			\xame = \xa - \e;
+			\yfape = sin(\xape r) * sin(\xape r) - cos(\xape r);
+			\yfame = sin(\xame r) * sin(\xame r) - cos(\xame r);
+		}
+		\draw[->] (\xmin-.5, 0) -- (\xmax+.5, 0) node[right] {$x$};
+		\draw[->] (0, \ymin-.5) -- (0, \ymax-.5) node[above] {$\varphi(x)=\sin^2x - \cos x$};
+		\draw[color=gray!30, dashed]
+			(\xmin-.5,\ymin-.5) grid (\xmax+.5,\ymax-.5);
+		\draw[scale=1, domain=\xmin:\xmax, smooth, samples=100, variable=\t, blue]
+			plot ({\t}, {sin(\t r)^2 - cos(\t r)});
+
+		\draw[dashed] (\xa, \yfa) -- (\xa, \ya)   node[below] {$a$};
+		\draw[dashed] (\xa, \yfa) -- (\xfa, \yfa) node[left]  {$L=\varphi(a)$};
+
+		\draw[dashed, color=black!60]
+			(\xape, \yfape)  -- (\xape, \ya)    node[below] {$a+\delta$};
+		\draw[dashed, color=black!60]
+			(\xape, \yfape)  -- (\xfa,  \yfape) node[left]  {$\varphi(a+\delta)$};
+
+		\draw[dashed, color=black!60]
+			(\xame, \yfame)  -- (\xame, \ya)    node[below] {$a-\delta$};
+		\draw[dashed, color=black!60]
+			(\xame, \yfame)  -- (\xfa,  \yfame) node[left]  {$\varphi(a-\delta)$};
+	\end{tikzpicture}
+\end{figure}
+
+But, this is true for all strictly positive $\epsilon$. So in particular,
+this is true for an ever so smaller $\epsilon$. In other words, regardless
+of how close we want $\varphi(x)$ and $L$ to be, we will always be
+able to achieve it if we bring $x$ and $a$ close enough.
+
+\end{definition}
+
+Alright, there's just one more thing we need before proving
+the sum rule, and that's the
+\href{https://en.wikipedia.org/wiki/Triangle\_inequality}
+{triangle inequality}. This inequality is rooted in euclidean geometry:
+in such a circumstance, it states that the sum of the length of any two
+sides of a triangle is greater or equal than the length of the remaining
+side.
+
+\begin{theorem}[triangle inequality]
 \begin{equation*} \begin{aligned}
-	\lim_{x \rightarrow a}\left(\varphi(x)+\psi(x)\right) &&=\quad&
+	\boxed{(\forall (x,y)\in\mathbb{R}^2),\quad \abs{x+y}\le \abs{x}+\abs{y}}
+\end{aligned} \end{equation*}
+\end{theorem}
+
+\begin{figure}[H]
+	\centering
+	\begin{tikzpicture}
+		\tikzmath{
+			\ax = 0;
+			\ay = 0;
+			\bx = 3;
+			\by = 2;
+			\cx = -2;
+			\cy = 5;
+		}
+		\draw[] (\ax, \ay) -- (\bx, \by) node[midway,right,xshift=6]
+			{$\abs{x}$};
+		\draw[] (\bx, \by) -- (\cx, \cy) node[midway,above,xshift=9,yshift=9]
+			{$\abs{z} < \abs{x}+\abs{y}$};
+		\draw[] (\cx, \cy) -- (\ax, \ay) node[midway,left]
+			{$\abs{y}$};
+	\end{tikzpicture}
+	\caption{Unless the triangle is degenerate (i.e. all its
+	edges are colinear), the length of the longest side of a triangle is
+	strictly smaller than the length of the two other sides. It's trivially
+	true for the shorter sides. If we allow triangles to be degenerates,
+	then it's true for any sides of any triangle.}
+\end{figure}
+\begin{proof} Let's start by recalling the definition of the absolute
+value:
+\begin{equation*} \begin{aligned}
+	\boxed{x\in\mathbb{R};\quad \abs{x} =
+		\begin{cases}
+			\hfill x & \text{if $x \ge 0$} \\
+			-x & \text{otherwise}
+		\end{cases}}
+\end{aligned} \end{equation*}
+It follows that:
+\begin{equation*} \begin{aligned}
+	\abs{x+y} =
+		\begin{cases}
+			\hfill x+y & \text{if $(x+y) \ge 0$} \\
+			-(x+y)=-x-y & \text{otherwise}
+		\end{cases}
+\end{aligned} \end{equation*}
+And that, for any $(x, y)\in\mathbb{R}^2$
+\begin{equation*} \begin{aligned}
+	x <= \abs{x};\quad -x \leq \abs{x};\quad
+		y <= \abs{y};\quad -y \leq \abs{y};
+\end{aligned} \end{equation*}
+So:
+\begin{equation*} \begin{aligned}
+	\biggl(x+y \le \abs{x}+\abs{y};\quad
+	-(x+y) = -x-y \le \abs{x}+\abs{y}\biggr)
+	\Leftrightarrow\boxed{\abs{x+y}\le\abs{x}+\abs{y}}
+\end{aligned} \end{equation*}
+\end{proof}
+
+Let's jump into the sum rule:
+\begin{theorem}[sum rule for limits] Assuming the two following limits
+exists:
+\begin{equation*} \begin{aligned}
+	\lim_{x \rightarrow a}\varphi(x);\qquad\lim_{x \rightarrow a}\psi(x)
+\end{aligned} \end{equation*}
+Then:
+\begin{equation*} \begin{aligned}
+	\boxed{\lim_{x \rightarrow a}\left(\varphi(x)+\psi(x)\right) =
 		\lim_{x \rightarrow a}\varphi(x)
-		+ \lim_{x \rightarrow a}\psi(x) \\
-	\lim_{x \rightarrow a}\left(\varphi(x)\psi(x)\right) &&=\quad&
-		\lim_{x \rightarrow a}\varphi(x)
-		\times\lim_{x \rightarrow a}\psi(x)
+		+ \lim_{x \rightarrow a}\psi(x)}
+\end{aligned} \end{equation*}
+\end{theorem}
+\begin{proof} Most limits proofs are presented in a "confusing"
+way, starting with unexplained values that ends up doing exactly
+what we want. That happens when mathematicians have thought and
+drafted the proof in reverse order, but presents it in the
+"right" order. We're going to use the "wrong" order here, for
+clarity; it should be immediate to check that there's no logical
+issues anyway. Just bear in mind that "reversed implications" are
+rather unorthodox. \\
+
+Let's start by defining a few things:
+\begin{equation*} \begin{aligned}
+	\lim_{x \rightarrow a}\varphi(x) = L_1;\qquad\lim_{x \rightarrow a}\psi(x) = L_2 \\
+\end{aligned} \end{equation*}
+\[	\lim_{x \rightarrow a}\left(\varphi(x)+\psi(x)\right) = L \]
+
+Let's explicit the two first limits via the $(\epsilon-\delta)$-definition:
+\[ \epsdelta{\epsilon_1}{\delta_1}{a}{x}{\varphi(x)}{L_1}  \]
+\[ \epsdelta{\epsilon_2}{\delta_2}{a}{x}{\psi(x)}{L_2}     \]
+
+Essentially, what we want to prove is then $L = L_1 + L_2$. If this
+is true, this means means that for an $\epsilon\in\mathbb{R}$, we
+should be able to find a $\delta$ such that:
+\begin{equation*} \begin{aligned}
+	~ && \abs{\varphi(x)+\psi(x)-L} &&<& \epsilon \\
+	\Leftrightarrow && \abs{\varphi(x)+\psi(x)-(L_1+L_2)} &&<\,& \epsilon
+		\qquad\qquad\text{(assumption)} \\
+	\Leftrightarrow && \abs{(\varphi(x)-L_1)+(\psi(x)-L_2)} &&<\,& \epsilon \\
+	\Leftarrow && \abs{\varphi(x)-L_1}+\abs{\psi(x)-L_2} &&<\,& \epsilon
+		\qquad\text{(triangular inequality)} \\
+	\Leftrightarrow && \abs{\varphi(x)-L_1}+\abs{\psi(x)-L_2} &&<\,& \epsilon_1+\epsilon_2
+		\qquad(\epsilon = \epsilon_1+\epsilon_2)
+\end{aligned} \end{equation*}
+\[
+	\Leftarrow \begin{cases}
+		\abs{\varphi(x)-L_1} < \epsilon_1 = \epsilon/2 \\
+		\abs{\psi(x)-L_2} < \epsilon_2 = \epsilon/2
+	\end{cases}\qquad\text{(all numbers are positive)}
+\]
+\[
+	\Leftarrow\Bigl(\abs{x-a}<\delta=\min(\delta_1,\delta_2)\Bigr)
+\]
+
+To make things very clear, if we choose such a $\delta$, then:
+\[
+	\abs{x-a}<\delta \Leftrightarrow \begin{cases}
+		\abs{x-a} < \delta_1 \\
+		\abs{x-a} < \delta_2
+	\end{cases}
+\]
+Which means both limits will hold. Furthermore, given any real
+number, say $\epsilon_1$, we can always choose to represent it as
+$\epsilon/2$, for $\epsilon\in\mathbb{R}$ too. \\
+
+% https://en.wikipedia.org/wiki/Archimedean_property ?
+
+And this concludes the proof: if you look at the beginning and end of
+the previous derivation, we have proved:
+
+\[ \epsdelta{\epsilon}{\delta}{a}{x}{\varphi(x)+\psi(x)}{\underbrace{L_1+L_2}_L} \]
+Which is exactly the definition of:
+\[
+	\lim_{x\rightarrow a}\left(\varphi(x)+\psi(x)\right) = L_1+L_2
+\]
+\end{proof}
+
+The following is not necessary here, but it's more involved, so good
+practice:
+\begin{theorem}[product rule for limits] Assuming the two following limits
+exists:
+\begin{equation*} \begin{aligned}
+	\lim_{x \rightarrow a}\varphi(x);\qquad\lim_{x \rightarrow a}\psi(x)
+\end{aligned} \end{equation*}
+Then:
+\begin{equation*} \begin{aligned}
+	\boxed{\lim_{x \rightarrow a}\left(\varphi(x)\psi(x)\right) =
+		\lim_{x \rightarrow a}\varphi(x)\lim_{x \rightarrow a}\psi(x)}
+\end{aligned} \end{equation*}
+\end{theorem}
+\begin{proof} We'll use the same unorthodox presentation; again,
+let's start by defining a few things:
+\begin{equation*} \begin{aligned}
+	\lim_{x \rightarrow a}\varphi(x) = L_1;\qquad\lim_{x \rightarrow a}\psi(x) = L_2 \\
+\end{aligned} \end{equation*}
+\[	\lim_{x \rightarrow a}\left(\varphi(x)\psi(x)\right) = L \]
+
+What we want to prove this time is that $L = L_1L_2$. If this
+is true, this means means that for an $\epsilon\in\mathbb{R}$, we
+should be able to find a $\delta$ such that:
+\begin{equation*} \begin{aligned}
+	~ && \abs{\varphi(x)\psi(x)-L} &&<& \epsilon \\
+	\Leftrightarrow && \abs{\varphi(x)\psi(x)-L_1L_2} &&<\,& \epsilon
 \end{aligned} \end{equation*}
 
-Again, you may want to refer to \textit{Paul's Online Notes}
-\footnote{\url{https://tutorial.math.lamar.edu/classes/calci/limitproofs.aspx}}
-for a proof. So we need to see if those limits actually exists, and
-because we want to compute $\sin'$ in the end, we also want to know
-their value. \\
+Well, this is embarassing: we can't really follow through as we did
+before. Can we find an expression that we could algebraically connect
+to $\varphi(x)\psi(x)-L_1L_2$? \\
 
-% TODO: because we'll define limits and prove the squeeze
-% theorem soon, we can pretend to prove those results here; this
-% would make for a very dense analysis refresher
+Let's make a guess, and try the following product $(\varphi(x)-L_1)(\psi(x)-L_2)$.
+When developped, clearly it contains the previous expression that
+we desperately try to find a path to, plus two other terms:
+\[
+	\varphi(x)\psi(x)-L_1\psi(x)-L_2\varphi(x)+L_1L_2
+\]
 
-But, to prove those two limits (the proof of one can depend on the
-other), we first need to define what a \textit{circular sector} is,
+And we can see that in the context of $x$ being arbitrarily close
+to $a$, we have:
+\begin{equation*} \begin{aligned}
+	L_1\psi(x) \rightarrow L_1L_2;\qquad L_2\varphi(x) \rightarrow L_2L_1
+\end{aligned} \end{equation*}
+
+Which means, when $x\rightarrow a$, this product should be equal to
+$\varphi(x)\psi(x)-L_1L_2$. In summary, if we can prove that
+$(\varphi(x)-L_1)(\psi(x)-L_2)$ can be made as small as we want as
+$x\rightarrow a$, we should have a proof. Let's, then study the
+corresponding limit (that we expect to be zero):
+
+\begin{equation*} \begin{aligned}
+	\lim_{x\rightarrow a}(\varphi(x)-L_1)(\psi(x)-L_2)
+\end{aligned} \end{equation*}
+
+First, note that we have:
+\begin{equation*} \begin{aligned}
+	\lim_{x\rightarrow a}(\varphi(x)-L_1) &&=\quad&
+		(\lim_{x\rightarrow a}\varphi(x))-L_1 &&=\quad& 0 \\
+	\lim_{x\rightarrow a}(\psi(x)-L_2) &&=\quad&
+		(\lim_{x\rightarrow a}\psi(x))-L_2 &&=\quad& 0 \\
+\end{aligned} \end{equation*}
+
+Which means, translated in the $(\epsilon-delta)$ formalism (as
+before, we choose the same $\epsilon$ so as to control both limits
+at once)
+
+\[ \epsdelta{\epsilon}{\delta_1}{a}{x}{\varphi(x)-L_1}{0}  \]
+\[ \epsdelta{\epsilon}{\delta_2}{a}{x}{\psi(x)-L_2}{0}     \]
+
+Let $\epsilon > 0$; let's choose $\delta=\min(\delta_1,\delta_2)$.
+Then
+
+\begin{equation*} \begin{aligned}
+	\abs{x-a}<\delta \Leftrightarrow \begin{cases}
+		\abs{x-a} < \delta_1 \\
+		\abs{x-a} < \delta_2
+	\end{cases}
+\end{aligned} \end{equation*}
+
+Which means we have both:
+
+\begin{equation*} \begin{aligned}
+	\begin{cases}
+		\abs{\varphi(x)-L_1} < \epsilon \\
+		\abs{\psi(x)-L_2} < \epsilon
+	\end{cases}
+\end{aligned} \end{equation*}
+
+All involved numbers are positive, so let's multiply both lines:
+
+\begin{equation*} \begin{aligned}
+	~ & \abs{\varphi(x)-L_1}\times\abs{\psi(x)-L_2} < \epsilon^2 \\
+	\Leftrightarrow & \abs{(\varphi(x)-L_1)(\psi(x)-L_2)} < \epsilon^2
+\end{aligned} \end{equation*}
+
+But if $\epsilon$ can be choosen arbitrarily in $\mathbb{R}^*_+$, then
+so can $\epsilon'=\epsilon^2$. So we've just proved that
+
+\[ \epsdelta{\epsilon'}{\delta}{a}{x}{(\varphi(x)-L_1)(\psi(x)-L_2)}{0}  \]
+
+That is:
+\begin{equation*} \begin{aligned}
+	\lim_{x\rightarrow a}(\varphi(x)-L_1)(\psi(x)-L_2) = 0
+\end{aligned} \end{equation*}
+
+From what we've already said, this concludes the proof, but let's
+make it clear:
+\begin{equation*} \begin{aligned}
+	~ && \varphi(x)\psi(x)-L_1\psi(x)-L_2\varphi(x)+L_1L_2 &&=\quad&
+		(\varphi(x)-L_1)(\psi(x)-L_2) \\
+	\Leftrightarrow &&
+		\lim_{x\rightarrow a}\Bigl(\varphi(x)\psi(x)-L_1\psi(x)-L_2\varphi(x)+L_1L_2\Bigr) &&=\quad&
+		\underbrace{\lim_{x\rightarrow a}(\varphi(x)-L_1)(\psi(x)-L_2)}_0 \\
+	\Leftrightarrow &&
+		\lim_{x\rightarrow a}(\varphi(x)\psi(x))
+		-L_1\underbrace{\lim_{x\rightarrow a}(\psi(x))}_{L_2}
+		-L_2\underbrace{\lim_{x\rightarrow a}(\varphi(x))}_{L_1}
+		+\lim_{x\rightarrow a}(L_1L_2) &&=\quad& 0 \\
+	\Leftrightarrow &&
+		\lim_{x\rightarrow a}(\varphi(x)\psi(x)) &&=\quad& \boxed{L_1L_2}
+\end{aligned} \end{equation*}
+\end{proof}
+\begin{remark} As the proof is rather elementary, we've assumed that for a
+constant $k\in\mathbb{R}$,
+\[
+	\lim_{x\rightarrow a}(k\varphi(x))=k\lim_{x\rightarrow a}(\varphi(x))
+\]
+
+We've also assumed that the product of two absolute values is the
+absolute values of the product. Again, the proof is elementary.
+\end{remark}
+% TODO: add proofs nevertheless, for completeness?
+\hrr
+
+So, what we did was applying the definition of the derivative
+on $x\mapsto\sin x$; this yields the limit of a sum that we know we can
+split in the sum of limits, if the two individual limits exists. So we
+must now try to compute those two limits. \\
+
+First, bear in mind that the proof of one can depend on the others; then,
+we first need to define what a \textit{circular sector} is,
 and how to express its \textit{area}, from which, you'll see, computing
 the area of a circle is but a special case. We will also need to establish
-the \textit{squeeze theorem}: we shied away from proving results on limits
-so far, but we'll do this one. So we will also need to understand
-\textit{limits} a little deeper. \\
+another results on limits, the \textit{squeeze theorem}.
 
 Let's start with circular sector:
 \begin{definition}[circular arc, circular sector]
@@ -393,31 +725,6 @@ the area of a circle:
 as we did for the circle.
 \end{remark}
 
-\begin{definition}[$(\epsilon,\delta)$-definition of a limit]
-Let $\varphi : \mathbb{R} \rightarrow \mathbb{R}$.
-Saying that $\lim_{x\rightarrow e}\varphi(x) = L$ is the same as saying:
-\[
-	(\forall \epsilon > 0),\,(\exists \delta \in \mathbb{R}),\,
-	(\forall x \in \mathbb{R}) \left(|x-e| < \delta\right)
-		\Rightarrow \left(|\varphi(x)-L| < \epsilon\right)
-\]
-The definition is rather clumsy looking, so let's unpack it a little.
-Let's fix an $\epsilon$ to some value close to zero, say $0.1$, or $0.0001$. \\
-
-Now the idea is that, for this $\epsilon$, we will always be able to
-find a distance $\delta$ such that if we pick an $x$ between
-$e-\delta$ and $e+\delta$ (i.e. $|x-e| < \delta$), then $\varphi(x)$
-will be between $L-\epsilon$ and $L+\epsilon$
-(i.e. $|\varphi(x)-L| < \epsilon$). \\
-
-But, this is true for all strictly positive $\epsilon$. So in particular,
-this is true for an ever so smaller $\epsilon$. In other words, regardless
-of how close we want $\varphi(x)$ and $L$ to be, we will always be
-able to achieve it if we bring $x$ and $e$ close enough.
-
-% TODO: add graphic
-\end{definition}
-
 \begin{theorem}[squeeze theorem] Let $\varphi$, $\psi$, $\phi$ be three
 real-valued functions defined on an interval $I\subset\mathbb{R}$, and
 $a$ be a point of $I$. If, $(\forall x \in I/\{a\})$ ($x\in I$ but $x\neq a$),
@@ -435,9 +742,32 @@ Then:
 \]
 \end{theorem}
 \begin{proof}
-TODO
+Let's translate our limits into their $(\epsilon-\delta)$ form,
+considering a single $\epsilon$
+\[ \epsdelta{\epsilon}{\delta_1}{a}{x}{\varphi(x)}{\lambda}  \]
+\[ \epsdelta{\epsilon}{\delta_2}{a}{x}{\phi(x)}{\lambda}     \]
+
+So, let $\epsilon >0$, and let $\delta=\min(\delta_1,\delta_2)$. For
+the same reasons as with previous limits proofs, this $\delta$ implies
+both the inequalities involving $\epsilon$, which can be restated, by
+definition of the absolute value, as:
+\begin{equation*} \begin{aligned}
+	-\epsilon < \varphi(x)-\lambda < \epsilon \\
+	-\epsilon < \phi(x)-\lambda < \epsilon
+\end{aligned} \end{equation*}
+
+But we also have:
+\[ \varphi(x) \le \psi(x) \le \phi(x) \]
+\[ \Leftrightarrow \varphi(x)-\lambda \le \psi(x)-\lambda \le \phi(x)-\lambda \]
+
+So:
+\[ -\epsilon < \varphi(x)-\lambda \le \psi(x)-\lambda \le \phi(x)-\lambda < \epsilon \]
+\[ \Leftrightarrow \abs{\psi(x)-\lambda} < \epsilon \]
+
+Which concludes the proof, as we now have an $(\epsilon-\delta)$ statement
+on $\psi$, equivalent to a limit.
+
 \end{proof}
-% https://en.wikipedia.org/wiki/Squeeze_theorem#Proof
 
 \hrr
 
