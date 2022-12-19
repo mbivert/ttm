@@ -9,8 +9,10 @@
 \renewcommand{\bm}[1]{\pmb{#1}}
 
 % XXX/TODO: similar issue for \qed
+% In case we're using \begin{proof}, \qed will be quietly
+% called, without math mode, but \Box expects it.
 %\renewcommand{\qed}{\,\boxed{\,}}
-\renewcommand{\qed}{\,\Box}
+\renewcommand{\qed}{\,\relax\ifmmode\Box\else$\Box$\fi}
 
 % XXX/TODO: another tweak: redefining alignat* gives an
 % OK pdf, but alignat*'s argument would appear

@@ -2,10 +2,21 @@
 
 \xtitle
 
+% XXX/TODO: \bm doesn't work with bare mathjax, so we
+% tweak things around here. \bm from the bm package seems
+% to be the recommended solution for bold math fonts.
+% (https://tex.stackexchange.com/a/596)
+\renewcommand{\bm}[1]{\pmb{#1}}
+
+% XXX/TODO: similar issue for \qed
+% In case we're using \begin{proof}, \qed will be quietly
+% called, without math mode, but \Box expects it.
+%\renewcommand{\qed}{\,\boxed{\,}}
+\renewcommand{\qed}{\,\relax\ifmmode\Box\else$\Box$\fi}
+
 \begin{document}
 \maketitle
-\begin{remark} This is a WIP; some intermediate results still
-aren't proved.
+\begin{remark} This is a WIP; some intermediate results are missing.
 \end{remark}
 \begin{exercise} Prove each of the formulas in Eq.s $(2)$.
 \textit{Hint}: Look up trigonometric identities and limit
@@ -25,7 +36,7 @@ Interestingly, there are multiple ways of \textit{defining}
 those functions\footnote{For instance, consider this page
 containing $6$ equivalent definitions of the exponentials:
 \url{https://en.wikipedia.org/wiki/Characterizations\_of\_the\_exponential\_function}}.
-As a result, they are different ways to compute the derivatives,
+As a result, there are different ways to compute the derivatives,
 depending on which definitions we choose. \\
 
 As the definitions given in the book for $\sin$, $\cos$ and
@@ -33,17 +44,24 @@ the exponential are rather standard, we'll recall them and use
 those. The natural logarithm hasn't been clearly defined though,
 so we'll have to do it.
 \end{remark}
-\begin{remark} While the book suggest to look up trigonometric
-identities and common properties in some reference material, we
-will actually take the time to prove the intermediate results. \\
 
-One reason to do so for a physicist would be that this is an
-interesting mathematical exercise, but also to useful to sharpen
-one's rigor and reasoning skills. \\
+\begin{remark} The book suggests to look up trigonometric
+identities and common properties in some reference material, but
+we're going to take the time to prove almost all intermediate results
+here. \\
 
-Saying it otherwise, the treatment of this exercise \textbf{goes
-far beyond} what is expected; the goal being to refresh one's maths
-skills.
+As far as I can tell, to compute the derivative of either $\sin$
+or $\cos$, starting from a geometrical (triangle-based) definition,
+while keeping the definition of $\pi$ as a measure of angle in radians,
+one need to start from basic Euclidean geometry, derive
+some specific limits, and lightly touch on elementary integration
+results. This is a good occasion to refresh basic real analysis. \\
+
+To say it otherwise, we will go \textbf{far beyond} what is expected
+for this exercise by the authors. That being said, take what follows with a
+grain of salt: there's a lot of results, which can be subtle, so you may
+want to refer to a more thorough treatment by \textit{real} mathematicians
+in case of doubts.
 \end{remark}
 
 Let's start by recalling that a function $\varphi : E \rightarrow \mathbb{R}$
@@ -54,31 +72,34 @@ is said to be differentiable at a point $e\in E$ if the following limit exists:
 \]
 
 \hr
-$\bm{d\sin t/dt}$\,\\
+$\pmb{d\sin t/dt}$\,\\
 Then, let's remind ourselves of the common definitions of $\cos$ and $\sin$,
 in the context of a right triangle:
 
-\begin{equation*}
-%\begin{figure}[H]
-%	\centering
-\vcenter{\hbox{
+%\begin{equation*}
+\begin{figure}[H]
+	\centering
+%\vcenter{\hbox{
 	\begin{tikzpicture}
 		\coordinate (angleat) at (4, 0);
 		\draw (0, 0) -- (angleat) node (a) [midway,yshift=-10] {$a$};
 		\draw (0, 0) -- (0, 3) node (b) [midway,xshift=-10] {$b$};
 		\draw (0, 3) -- (4, 0) node (c) [midway,xshift=10,yshift=2] {$c$};
+		\node[draw] at (5, 2) {$\cos \theta \triangleq \frac{c}{a}$};
+		\node[draw] at (5, 1) {$\sin \theta \triangleq \frac{b}{c}$};
 		% right angle
 		\draw [gray] (0,.5)-|(.5,0);
 		% \theta angle
 		\pic [draw,"$\theta$",angle eccentricity=1.5,gray] {angle = c--angleat--a};
-	\end{tikzpicture}}}
-%\end{figure}
-\quad\quad
-\begin{aligned}
-	\boxed{\cos \theta \triangleq \frac{c}{a}} \\
-	\boxed{\sin \theta \triangleq \frac{b}{c}}
-\end{aligned}
-\end{equation*}
+	\end{tikzpicture}
+%	}}
+\end{figure}
+%\quad\quad
+%\begin{aligned}
+%	\boxed{\cos \theta \triangleq \frac{c}{a}} \\
+%	\boxed{\sin \theta \triangleq \frac{b}{c}}
+%\end{aligned}
+%\end{equation*}
 
 In particular, we can identify points on the unit-circle
 by the angle between the $x$ axis and the radius connecting
@@ -128,11 +149,34 @@ Note that we have:
 to the right triangle formed by $r=1$, $\cos\theta$ and $\sin\theta$.
 \end{proof}
 
-% TODO: add a visual proof of the Pythagorean theorem
+% TODO: visual proof for the Pythagorean theorem
+
+We'll need this later: this is but a variant of the previous
+result where the circle isn't restricted to being unitary:
+
+\begin{theorem}[equation of a circle]
+The points $(x, y) \in \mathbb{R}^2$ describing a circle
+of radius $r$ centered at the origin $O$ are tied by the
+following equation
+\[
+	\boxed{x^2 + y^2 = r^2 }
+\]
+\end{theorem}
+\begin{proof}
+This follows directly from Pythagorean's theorem
+\end{proof}
+
+\begin{remark}\label{L02E02:rmk:circle-eq}
+In particular, as $r$ is a constant, this mean we can express $y$
+as a function of $x$:
+\[
+	\boxed{y(x) = \sqrt{r^2-x^2}}\,;\,x\in[-r, r]
+\]
+\end{remark}
 
 In order to establish $\sin'$, we will need a few intermediate
 results that we're going to prove now. First will be to find a formula
-for $\sin(\alpha+\beta)$. Indeed, if you try to apply the definition of the
+for $\sin(\alpha+\beta)$. Indeed, if you try to apply the definition of the
 derivative to $\sin$, you should see a $\sin(x+\epsilon)$: we will need
 to have it expressed differently to develop the proof.
 \[
@@ -250,8 +294,8 @@ results for $c$ and $e$:
 \begin{equation*} \begin{aligned}
 	~ && d\sin(\alpha+\beta) &&=\quad& c\sin\alpha+e\cos\alpha \\
 	\Leftrightarrow && ~ &&=\quad& (d\cos\beta)\sin\alpha+(d\sin\beta)\cos\alpha \\
-	\Leftrightarrow && \sin(\alpha+\beta) &&=\quad& \boxed{\cos\beta\sin\alpha+\sin\beta\cos\alpha}
-\end{aligned} \end{equation*}\hfill$\qed$\\
+	\Leftrightarrow && \sin(\alpha+\beta) &&=\quad& \boxed{\cos\beta\sin\alpha+\sin\beta\cos\alpha}\qed
+\end{aligned} \end{equation*}\\
 In the same blue/thick triangle, we can also establish a relation
 for $\cos(\alpha+\beta)$, using the same definition of $c$ and $e$
 as before to conclude:
@@ -263,9 +307,42 @@ as before to conclude:
 
 \end{proof}
 
+Here's an immediate consequence that we'll need in the future.
+\begin{theorem}[trigonometric shifts]
+Let $x\in\mathbb{R}$.
+
+\[
+	\boxed{\sin(x+\frac\pi2) = \cos x\,\qquad;
+	\cos(x+\frac\pi2) = -\sin x}
+	\label{L02E05:thm:trig-shift}
+\]
+
+\end{theorem}
+\begin{proof}
+If we apply our previous formulas \eqref{L02E05:thm:sinsum} and
+\eqref{L02E05:thm:cossum} regarding respectively the sine and
+cosine of a sum of two angles, in the case where one angle is
+$\pi/2$, we have:
+\begin{equation*} \begin{aligned}
+	(\forall x\in\mathbb{R}),\quad \sin(x+\frac{\pi}2) &&=\quad&
+		\sin x\underbrace{\cos\frac{\pi}{2}}_{=0}
+		+\cos x\underbrace{\sin \frac{\pi}{2}}_{=1} \\
+	~ &&=\quad& \boxed{\cos x} \\
+	(\forall x\in\mathbb{R}),\quad \cos(x+\frac{\pi}2) &&=\quad&
+		\cos x\underbrace{\cos\frac{\pi}{2}}_{=0}
+		-\sin x\underbrace{\sin \frac{\pi}{2}}_{=1} \\
+	~ &&=\quad& \boxed{-\sin x}
+\end{aligned} \end{equation*}
+\end{proof}
+\begin{remark} We could derive more similar formulas, but
+those are the only ones we'll need.
+\end{remark}
+
+\hrr
+
 Now if you try to write down $\sin'$ as previously suggested,
-and if you decompose $\cos(x+\epsilon)$ with that formula, you see
-that this will give birth to two limits:
+and if you decompose $\cos(x+\epsilon)$ with the formula
+(\ref{L02E05:thm:sinsum}), you see that yields two limits:
 \begin{equation*} \begin{aligned}
 	\sin'(x) &\triangleq&& \lim_{\epsilon \rightarrow 0}
 		\frac{\sin(x+\epsilon)-\sin x}{\epsilon} \\
@@ -279,8 +356,8 @@ that this will give birth to two limits:
 As we've already explained in
 \href{https://github.com/mbivert/ttm/blob/master/cm/L02E04.pdf}{L02E04},
 we can recursively split the previous limits, assuming each individual
-limit exists. Let's make a small detour to review how proving such things on
-limits actually works, starting with the definition of a limit.
+limit exists. Let's digress and review how to prove such results
+on limits. Starting with the definition of a limit:
 
 \hrr
 
@@ -289,8 +366,8 @@ Let $\varphi : \mathbb{R} \rightarrow \mathbb{R}$.
 Saying that $\lim_{x\rightarrow a}\varphi(x) = L$ is the same as saying:
 \[ \epsdelta{\epsilon}{\delta}{a}{x}{\varphi(x)}{L}     \]
 
-The definition is rather clumsy looking, so let's unpack it a little.
-Let's fix an $\epsilon$ to some value close to zero, say $0.1$, or $0.0001$. \\
+The definition is dense, so let's unpack it. Let's fix $\epsilon$ to
+some value close to zero, say $0.1$, or $0.0001$. \\
 
 Now the idea is that, for this $\epsilon$, we will always be able to
 find a distance $\delta$ such that if we pick an $x$ between
@@ -349,9 +426,8 @@ Alright, there's just one more thing we need before proving
 the sum rule, and that's the
 \href{https://en.wikipedia.org/wiki/Triangle\_inequality}
 {triangle inequality}. This inequality is rooted in euclidean geometry:
-in such a circumstance, it states that the sum of the length of any two
-sides of a triangle is greater or equal than the length of the remaining
-side.
+it states that the sum of the length of any two sides of a triangle is greater
+or equal than the length of the remaining side.
 
 \begin{theorem}[triangle inequality]
 \begin{equation*} \begin{aligned}
@@ -429,7 +505,7 @@ Then:
 \begin{proof} Most limits proofs are presented in a "confusing"
 way, starting with unexplained values that ends up doing exactly
 what we want. That happens when mathematicians have thought and
-drafted the proof in reverse order, but presents it in the
+drafted the proof in reverse order, but present it in the
 "right" order. We're going to use the "wrong" order here, for
 clarity; it should be immediate to check that there's no logical
 issues anyway. Just bear in mind that "reversed implications" are
@@ -482,10 +558,10 @@ $\epsilon/2$, for $\epsilon\in\mathbb{R}$ too. \\
 % https://en.wikipedia.org/wiki/Archimedean_property ?
 
 And this concludes the proof: if you look at the beginning and end of
-the previous derivation, we have proved:
+the previous derivation, we've found:
 
 \[ \epsdelta{\epsilon}{\delta}{a}{x}{\varphi(x)+\psi(x)}{\underbrace{L_1+L_2}_L} \]
-Which is exactly the definition of:
+Which by definition means:
 \[
 	\lim_{x\rightarrow a}\left(\varphi(x)+\psi(x)\right) = L_1+L_2
 \]
@@ -531,7 +607,7 @@ we desperately try to find a path to, plus two other terms:
 \]
 
 And we can see that in the context of $x$ being arbitrarily close
-to $a$, we have:
+to $a$, we have, by the sum rule:
 \begin{equation*} \begin{aligned}
 	L_1\psi(x) \rightarrow L_1L_2;\qquad L_2\varphi(x) \rightarrow L_2L_1
 \end{aligned} \end{equation*}
@@ -554,7 +630,7 @@ First, note that we have:
 		(\lim_{x\rightarrow a}\psi(x))-L_2 &&=\quad& 0 \\
 \end{aligned} \end{equation*}
 
-Which means, translated in the $(\epsilon-delta)$ formalism (as
+Which means, translated in the $(\epsilon-\delta)$ formalism (as
 before, we choose the same $\epsilon$ so as to control both limits
 at once)
 
@@ -627,21 +703,23 @@ absolute values of the product. Again, the proof is elementary.
 \hrr
 
 So, what we did was applying the definition of the derivative
-on $x\mapsto\sin x$; this yields the limit of a sum that we know we can
-split in the sum of limits, if the two individual limits exists. So we
-must now try to compute those two limits. \\
+on $x\mapsto\sin x$; this yields the limit of a sum. We know we can
+split it into sums of limits, provided the two individual limits exist.
+So we must now try to compute those two limits. \\
 
-First, bear in mind that the proof of one can depend on the others; then,
-we first need to define what a \textit{circular sector} is,
+We'll first need to define what a \textit{circular sector} is,
 and how to express its \textit{area}, from which, you'll see, computing
 the area of a circle is but a special case. We will also need to establish
-another results on limits, the \textit{squeeze theorem}.
+another important result on limits: the \textit{squeeze theorem}.
+
+\hrr
 
 Let's start with circular sector:
 \begin{definition}[circular arc, circular sector]
 A \underline{circular arc} is a  portion of the circle between two points
-of that circle A \underline{circular sector} is a portion of disk enclosed
-between two (usually distinct) radii and a circular arc.
+of that circle. A \underline{circular sector} is a portion of disk enclosed
+between two (usually distinct) radii\footnote{"radii" is the plural of "radius"}
+and a circular arc.
 
 \begin{figure}[H]
 	\centering
@@ -692,18 +770,206 @@ between two (usually distinct) radii and a circular arc.
 \begin{remark} A circle then, is but a circular sector of angle $2\pi$.
 \end{remark}
 
-Unfortunately, if we want to compute the area of a circular sector, which
-can be obtained from the area of a circle by
-that of a circle, the process being similar), we need some integral
-calculus, which will only be discussed in the book in the next Interlude.
-Nevertheless:
+Unfortunately, if we want to compute the area of a circular sector,
+we either need some integral calculus to compute it directly, or indirectly,
+via the area of a circle. In addition to the definition of an integral,
+to compute the actual integral representing the area of a circle (or
+that of a sector), we will need the u-substitution rule, which demands
+the fundamental theorem of calculus. \\
 
-\begin{theorem}[circle area] The total area of a circle of
-radius $r$ is given by:
-\[ \boxed{\pi r^2} \]
+A rigorous, extensive treatment of Riemann integration would require
+more work than what we aim to achieve here; you may want to refer to
+a full real analysis course for more.
+
+% https://home.iitk.ac.in/~psraj/mth101/lecture_notes/lecture15-16.pdf
+
+% https://www.nagwa.com/en/explainers/279131484389/
+% https://tutorial.math.lamar.edu/classes/calci/defnofdefiniteintegral.aspx
+% https://www.youtube.com/watch?v=qy9ec8Q1Lss&list=PL22w63XsKjqxqaF-Q7MSyeSG1W1_xaQoS&index=53
+
+\begin{definition}[(Riemann) integral]
+TODO
+\end{definition}
+
+\begin{theorem}[Fundamental theorem of calculus]
+TODO
 \end{theorem}
 \begin{proof}
 TODO
+\end{proof}
+
+% https://en.wikipedia.org/wiki/Fundamental_theorem_of_calculus#Formal_statements
+% https://en.wikipedia.org/wiki/Riemann_integral
+
+% linearity of integration
+% -\int_b^a = \int_a^b
+% \pi as a radian measure equivalent to 180°
+
+\begin{theorem}[u-substitution/reversed chain-rule (single variable)]
+Let $U \subseteq \mathbb{R}$, $(a, b)\in\mathbb{R}^2$. Let
+$\varphi : U \rightarrow \mathbb{R}$ and $\nu : [a, b] \rightarrow U$
+be respectively $C^0$ and $C^1$ functions. Then,
+\[
+	\boxed{\int_a^b\varphi(\nu(x))\nu'(x)\,dx = \int_{\nu(a)}^{\nu(b)}\varphi(u)\,du}
+\]
+\end{theorem}
+\begin{proof}
+Let's assume here that continuous functions are integrable. Then,
+the existence of both integrals is guaranteed by
+the restrictions imposed on $\varphi$ and $\nu$. \\
+
+Then, let us note $\Phi$ the anti-derivative of $\varphi$, i.e.
+$\Phi' = \varphi$, which by the same assumption as before must exists,
+since $\varphi$ is continuous. Let us then apply the chain-rule to
+$\Phi \circ \nu$:
+\[
+	(\Phi \circ \nu)'(x) = \nu'(x)\Phi'(\nu(x)) = \varphi(\nu(x))\nu'(x)
+\]
+Finally, by integrating both sides and repeatedly applying the fundemental
+theorem of calculus twice, we obtain:
+\begin{equation*} \begin{aligned}
+	\int_a^b\varphi(\nu(x))\nu'(x)\,dx =& \int_a^b(\Phi \circ \nu)'(x)dx \\
+	~ =& (\Phi \circ \nu)(b)-(\Phi \circ \nu)(a) \\
+	~ =& \Phi(\nu(b)) - \Phi(\nu(a)) \\
+	~ =& \int_{\nu(a)}^{\nu(b)}\varphi(u)\,du
+\end{aligned} \end{equation*}
+\end{proof}
+
+\begin{theorem}[circle area] The area of a circle of radius $r$ is given by:
+\[ \boxed{\pi r^2} \]
+\end{theorem}
+\begin{proof}
+The problem of the area of a circle can be reduced via
+symmetry to the integration of a positive curve on an interval.
+More precisely, let's consider a circle centered at the origin
+of radius $r$. To compute its area, suffice to compute the area of
+a quadrant of it, say the first quadrant (the blueish one; starting
+from this one, the four quadrant are enumerated following an
+anti-clockwise/trigonometric direction)
+
+\begin{figure}[H]
+	\centering
+	\begin{tikzpicture}
+		\tikzmath{
+			\xmin = -5;
+			\xmax = 5;
+			\ymin = -5;
+			\ymax = 5;
+			\ra = 4;
+			\rad = 2*\ra; % \r * 2cm, where 2cm is the default x length
+			\ta = 90;
+			\rb = \ra;
+			\rbd = \rad;
+			\tb = 0;
+		}
+		\coordinate (O) at (0, 0);
+		\coordinate (pa) at (\ta:\ra);
+		\coordinate (pb) at (\tb:\rb);
+
+		% https://ctan.crest.fr/tex-archive/graphics/pgf/base/doc/pgfmanual.pdf
+		% §15.9 - Clipping and Fading (Soft Clipping) (p186)
+		\begin{scope}[fill=blue!8]
+			\fill[clip]
+				 (pb) arc[start angle=\tb, end angle=\ta, radius=\ra]
+				 -- (O) -- (pb);
+		\end{scope}
+
+		% https://ctan.crest.fr/tex-archive/graphics/pgf/base/doc/pgfmanual.pdf
+		% §14.7 - The Arch Operation (p159)
+		% arc pa,pb
+		\draw[blue,thick] (pb) arc[start angle=\tb, end angle=\ta, radius=\ra];
+
+		\draw[color=gray!30, dashed] (\xmin,\ymin) grid (\xmax,\ymax);
+		% axes
+		\draw[dashed,gray,->] (\xmin,0) -- (\xmax,0) node (xaxis) [gray,right]{$\vec{x}$};
+		\draw[dashed,gray,->] (0,\ymin) -- (0,\ymax) node (yaxis) [gray,right]{$\vec{y}$};
+
+		% 8cm = \ra * 2cm (which is the default x length)
+		\node[draw,circle, minimum size=\rad cm,inner sep=0,black!30] (c) at (0,0){};
+		\draw[] (O) -- (pa) node (pavec) [midway,yshift=10,xshift=-2]{$r$};
+		\draw[] (O) -- (pb) node (pbvec) [midway,below,xshift=2]{};
+	\end{tikzpicture}
+\end{figure}
+
+By symmetry, the area of a circle $A_S$ is four times that of
+any quadrant $A_{Q_i}$. Furthermore, the first quadrant's area $A_{Q_1}$
+is given by the area under the curve describing a circle
+that we saw earlier in \ref{L02E02:rmk:circle-eq}, restricted
+to $[0, r]$. More precisely:
+\[
+	A_S = 4 A_{Q_i} = 4 A_{Q_1} = 4\int_0^r\sqrt{r^2 - x^2}\,dx
+\]
+
+This integral can be considered in the form:
+\[ \int_{\nu(\theta_0)}^{\nu(\theta_1)}\varphi(x)\,dx \]
+
+Let's perform a first change of variable by setting:
+\[ \nu(\theta) = r\sin\theta;\qquad \nu'(\theta) = r\cos\theta \]
+
+It follows that:
+\[
+	\nu(\theta_0) = 0 \Rightarrow \theta_0 = 0;\qquad
+	\nu(\theta_1) = 0 \Rightarrow \theta_1 = \frac\pi2
+\]
+
+The integral can now be rewritten:
+\begin{equation*} \begin{aligned}
+	A_S &\quad=&& 4\int_0^{\pi/2}\phi(\nu(\theta))\nu'(\theta)\,d\theta \\
+	~ &\quad=&& 4\int_0^{\pi/2}\sqrt{r^2-(r\sin\theta)^2}r\cos\theta\,d\theta \\
+	~ &\quad=&& 4r^2\int_0^{\pi/2}\sqrt{1-\sin^2\theta}\cos\theta\,d\theta\qquad (r > 0) \\
+	~ &\quad=&& 4r^2\int_0^{\pi/2}\cos^2\theta\,d\theta\qquad
+		(\cos\theta > 0,\,\text{Pythagorean theorem})
+\end{aligned} \end{equation*}
+
+However, with (\ref{L02E05:thm:trig-shift}) we have:
+\[
+	4r^2\int_0^{\pi/2}\cos^2\theta\,d\theta\qquad=\qquad
+	4r^2\int_0^{\pi/2}(\sin(\theta+\frac\pi2))^2\,d\theta
+\]
+
+We can perform a second change of variable on the rightmost
+integral:
+
+\[ \mu(u) = \frac\pi2-u;\qquad \mu'(u) = -1 \]
+
+Then:
+
+\[
+	\mu(u_0) = 0 \Rightarrow u_0 = \frac\pi2;\qquad
+	\mu(u_1) = \frac\pi2 \Rightarrow u_1 = 0
+\]
+
+The integral becomes:
+\[
+	4r^2\int_0^{\pi/2}(\sin(\theta+\frac\pi2))^2\,d\theta
+	\quad=\quad -4r^2\int_{\pi/2}^0\sin(u)^2\,du
+	\quad=\quad 4r^2\int_0^{\pi/2}\sin^2\theta\,d\theta
+\]
+
+Referring back to our previous integral equality, this means
+we have:
+\[
+	S_A\qquad=\qquad 4r^2\int_0^{\pi/2}\cos^2\theta\,d\theta\qquad=\qquad
+	4r^2\int_0^{\pi/2}\sin^2\theta\,d\theta
+\]
+
+However, by linearity of integration, and by the Pythagorean theorem,
+again, we have
+\[
+	\int_0^{\pi/2}\cos^2\theta\,d\theta
+	+
+	\int_0^{\pi/2}\sin^2\theta\,d\theta
+	=\int_0^{\pi/2}\underbrace{\cos^2\theta+\sin^2\theta}_{=1}\,d\theta
+	=\int_0^{\pi/2}\,d\theta=\frac\pi2
+	=2\int_0^{\pi/2}\cos^2\theta\,d\theta
+\]
+
+Hence,
+\[
+	S_A = 2r^2 \underbrace{2\int_0^{\pi/2}\cos^2\theta\,d\theta)}_{=\pi/2} =
+	\boxed{\pi r^2}
+\]
+
 \end{proof}
 
 \begin{theorem}[circular sector area] The area of a circular
@@ -979,33 +1245,17 @@ intermediate steps to compute $\sin'$:
 \end{proof}
 \hr
 $\bm{d\cos t/dt}$\,\\
-If we apply our previous formulas \eqref{L02E05:thm:sinsum} and
-\eqref{L02E05:thm:cossum} regarding respectively the sine and
-cosine of a sum of two angles, in the case where one angle is
-$\pi/2$, we have:
-If one of those angle is $\pi/2$, we have:
-\begin{equation*} \begin{aligned}
-	(\forall x\in\mathbb{R}),\quad \sin(x+\frac{\pi}2) &&=\quad&
-		\sin x\underbrace{\cos\frac{\pi}{2}}_{=0}
-		+\cos x\underbrace{\sin \frac{\pi}{2}}_{=1} \\
-	~ &&=\quad& \boxed{\cos x} \\
-	(\forall x\in\mathbb{R}),\quad \cos(x+\frac{\pi}2) &&=\quad&
-		\cos x\underbrace{\cos\frac{\pi}{2}}_{=0}
-		-\sin x\underbrace{\sin \frac{\pi}{2}}_{=1} \\
-	~ &&=\quad& \boxed{-\sin x}
-\end{aligned} \end{equation*}
-
-From there:
 \begin{theorem}[cosine derivative]
 \[
 	(\forall x\in\mathbb{R}),\quad \boxed{\cos'(x) = -\sin(x)}
 \]
 \end{theorem}
 \begin{proof}
+The results follow from the shifts formulas \ref{L02E05:thm:ref-shift}
 \begin{equation*} \begin{aligned}
 	(\forall x\in\mathbb{R}),\quad \cos'(x) &&=\quad&
 		\sin'(x+\frac\pi2) \\
-	~ &&=\quad& (\sin\circ(y \rightarrow y+\frac\pi2))'(x) \\
+	~ &&=\quad& (\sin\circ(y \mapsto y+\frac\pi2))'(x) \\
 	~ &&=\quad& \cos(x+\frac\pi2) \\
 	~ &&=\quad& \boxed{-\sin(x)}
 \end{aligned} \end{equation*}
