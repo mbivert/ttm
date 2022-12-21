@@ -120,6 +120,28 @@
 	\addcontentsline{toc}{subsubsection}{#1}
 }
 
+% ~ x/lecture/c/xappendix/, awful but that'll do
+\newcounter{xappendixs}
+\renewcommand{\thexappendixs}{\arabic{xappendixs}}
+\newcommand{\xappendix}[1]{\refstepcounter{xappendixs}
+	\section*{Appendix \thexappendixs: #1}
+	\addcontentsline{toc}{section}{Appendix \thexappendixs: #1}
+}
+
+\newcounter{subxappendixs}
+\renewcommand{\thesubxappendixs}{\arabic{subxappendixs}}
+\newcommand{\subxappendix}[1]{\refstepcounter{subxappendixs}
+	\subsection*{#1}
+	\addcontentsline{toc}{subsection}{#1}
+}
+
+\newcounter{subsubxappendixs}
+\renewcommand{\thesubsubxappendixs}{\arabic{subsubxappendixs}}
+\newcommand{\subsubxappendix}[1]{\refstepcounter{subsubxappendixs}
+	\subsubsection*{#1}
+	\addcontentsline{toc}{subsubsection}{#1}
+}
+
 \begin{document}
 \maketitle
 \begin{abstract}
@@ -296,8 +318,67 @@ in line with the general tone of the series.
 \sublecture{Phase Space and Hamilton's Equations}
 \sublecture{The Harmonic Oscillator Hamiltonian}
 \subsublecture{Exercise 1/2}
-%\subfile{L08E01.tex}
+\subfile{L08E01.tex}
 \subsublecture{Exercise 2/2}
 %\subfile{L08E02.tex}
 \sublecture{Derivation of Hamilton's Equations}
+
+% --------------------------------------------------------
+\lecture{The Phase Space Fluid and the Gibbs-Liouville Theorem}
+\sublecture{The Phase Space Fluid}
+\sublecture{A Quick Reminder}
+\sublecture{Flow and Divergence}
+\sublecture{Liouville's Theorem}
+\sublecture{Poisson Brackets}
+
+% --------------------------------------------------------
+\lecture{Poisson Brackets, Angular Momentum, and Symmetries}
+\sublecture{An Axiomatic Formulation of Mechanics}
+\subsublecture{Exercise 1/3}
+%\subfile{L10E01.tex}
+\subsublecture{Exercise 2/3}
+%\subfile{L10E02.tex}
+\sublecture{Angular Momentum}
+\subsublecture{Exercise 3/3}
+%\subfile{L10E03.tex}
+\sublecture{Mathematical Interlude - The Levi-Civita Symbol}
+\sublecture{Back to Angular Momentum}
+\sublecture{Rotors and Precession}
+\sublecture{Symmetry and Conservation}
+
+% --------------------------------------------------------
+\lecture{Electric and Magnetic Forces}
+\sublecture{Vector Fields}
+\sublecture{Mathematical Interlude: Del}
+\subsublecture{Exercise 1/5}
+%\subfile{L11E01.tex}
+\subsublecture{Exercise 2/5}
+%\subfile{L11E02.tex}
+\sublecture{Magnetic Fields}
+\subsublecture{Exercise 3/5}
+%\subfile{L11E03.tex}
+\sublecture{The Force on a Charged Particle}
+\sublecture{The Lagrangian}
+\sublecture{Equations of Motion}
+\sublecture{The Hamiltonian}
+\subsublecture{Exercise 4/5}
+%\subfile{L11E04.tex}
+\sublecture{Motion in a Uniform Magnetic Field}
+\subsublecture{Exercise 5/5}
+%\subfile{L11E05.tex}
+\sublecture{Gauge Invariance}
+\sublecture{Good Bye for Now}
+
+% --------------------------------------------------------
+\xappendix{Central Forces and Planetary Orbits}
+\subxappendix{The Central Force of Gravity}
+\subxappendix{Gravitational Potential Energy}
+\subxappendix{The Earth Moves in a Plane}
+\subxappendix{Polar Coordinates}
+\subxappendix{Equations of Motion}
+\subxappendix{Effective Potential Energy Diagrams}
+\subxappendix{Kepler's Laws}
+\subsubxappendix{Exercise 1/1}
+%\subfile{A01E01.tex}
+
 \end{document}

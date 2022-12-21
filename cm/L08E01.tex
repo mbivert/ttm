@@ -1,0 +1,60 @@
+\documentclass[solutions.tex]{subfiles}
+
+\xtitle
+
+\begin{document}
+\maketitle
+\begin{exercise}
+Start with the Lagrangian $\dfrac{m\dot{x}^2}{2}-\dfrac{k}{2}x^2$ and
+show that if you make the change in variables $q=(k m )^{1/4}x$, the Lagrangian
+has the form of Eq. $(14)$. What is the connection among $k$, $m$
+and $\omega$ ?
+\end{exercise}
+Let's recall some context. We're in the case of a the
+harmonic oscillator, covered in-depth in
+\href{https://tales.mbivert.com/on-the-harmonic-oscillator/}{L03E04}. \\
+
+More precisely, the authors just shown us how the harmonic
+oscillator can be used as an approximation in the case of
+an equilibrium state that is slightly disturbed. Physically,
+you can for instance consider the case of a pendulum: if the
+oscillations are kept small, then the mass of the pendulum
+will describe something that \textit{locally} looks like
+the bottom of a quadratic polynomial (e.g. $ax^2+bx+c = 0$).
+This is similar to how the derivative is a local linear
+approximation, except things jiggle a little more,
+so to speak. \\
+
+Eq. $(14)$ of the book refers to the following Lagrangian:
+\[
+	L = \frac{1}{2\omega}\dot{q}^2 - \frac{\omega}{2}q^2
+\]
+
+Now let's simply perform the required change of variable.
+Both $m$ and $k$ are constants, so $\dot{q} = (km)^{1/4}\dot{x}$,
+and:
+
+\[
+	L = \frac{1}{2\omega}\sqrt{km}\dot{x}^2 - \frac{\omega}{2}\sqrt{km}x^2
+\]
+
+Finally, if we can try to identify the previous expression with the
+one we're supposed to find, by finding a relation between $\omega$, $k$
+and $m$. We have respectively for each term:
+
+\[ m = \frac{\sqrt{km}}\omega;\qquad k = \omega\sqrt{km} \]
+\[
+	\Leftrightarrow
+	\omega = \frac{\sqrt{k}\sqrt{m}}{\sqrt{m}^2};\qquad
+	\omega = \frac{\sqrt{k}^2}{\sqrt{k}\sqrt{m}}
+\]
+\[
+	\Leftrightarrow
+	\boxed{\omega = \sqrt{\frac{k}m}}
+\]
+
+So we can consistently identify both expression by defining $\omega$
+as previously stated. Such an $\omega$ furthermore matches the usual
+definition we have in a harmonic oscillator setting.
+
+\end{document}
