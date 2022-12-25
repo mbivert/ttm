@@ -1,0 +1,62 @@
+\documentclass[solutions.tex]{subfiles}
+
+\xtitle
+
+\begin{document}
+\maketitle
+\begin{exercise}
+Starting with Eq. $(14)$, calculate the Hamiltonian in terms of $p$
+and $q$.
+\end{exercise}
+
+Again Eq. $(14)$ of the book refers to the following Lagrangian:
+\[
+	L = \frac{1}{2\omega}\dot{q}^2 - \frac{\omega}{2}q^2
+\]
+
+There are two different ways to proceed here, depending on
+what we take as our definition of the Hamiltonian. If we
+consider $H$ to be the energy of the system, i.e. $K+V$,
+the sum of the kinetic and potential energies, then we need
+to identify them in the Lagrangian, typically defined as $K-V$. \\
+
+Now we "know" the kinetic/potential energy formulation for
+a basic harmonic oscillator, and the previous change of variable
+we performed to get the Lagrangian doesn't really affect them,
+fundamentally, so we know that the first term of the Lagrangian
+is the kinetic energy, while the second is the potential energy. \\
+
+So this gives us first:
+\[
+	H = \frac{1}{2\omega}\dot{q}^2 + \frac{\omega}{2}q^2
+\]
+
+Then, we need to recall that $p$ is defined by:
+
+\[
+	p = \frac{\partial L}{\partial\dot{q}} = \frac{1}\omega\dot{q}
+\]
+
+Hence, $\dot{q} = \omega p$, which we can inject in the previous
+version of $H$ to get:
+
+\[
+	H = \frac{1}{2\omega}(\omega p)^2 + \frac{\omega}{2}q^2
+		= \boxed{\frac12\omega(p^2+q^2)}
+\]
+
+As stated earlier, there's another approach, if we were to start
+from the definition of the Hamiltonian given by Eq. $(4)$ of this chapter:
+\[
+	H = \sum_i (p_i \dot{q_i})-L = p\dot{q}-L
+		= p\dot{q}-\frac{1}{2\omega}\dot{q}^2 + \frac{\omega}{2}q^2
+\]
+
+Then we can again inject $\dot{q} = \omega p$ to get:
+\[
+	H = p (p \omega) - \frac{1}{2\omega}(\omega p)^2+\frac\omega2q^2
+		= \omega p^2 - \frac12\omega p^2+\frac\omega2q^2
+		= \frac\omega2 p^2 + \frac\omega2q^2 = \boxed{\frac\omega2(p^2+q^2)}
+\]
+
+\end{document}
