@@ -1,0 +1,136 @@
+\documentclass[solutions.tex]{subfiles}
+
+\xtitle
+
+\begin{document}
+\maketitle
+\begin{exercise}
+Hamilton's equations can be written in the form $\dot{q} = \{q, H\}$
+and $\dot{p} = \{p, H\}$. Assume that the Hamiltonian has the form
+$H = \dfrac1{2m}p^2+V(q)$. Using only the PB axioms, prove Newton's
+equations of motion.
+\end{exercise}
+So, the goal of this exercise is to derive Newton's equations of
+motion, meaning, a "variant" of $F = ma$, \textit{without} referring
+directly to the definition of the Poisson brackets, but rather, using
+its algebraic properties. Let's recall them for clarity. \\
+
+Let $A$, $B$, and $C$ be functions of $q$s and $p$s; $k\in\mathbb{R}$:
+
+\begin{description}
+	\item[Anti-symmetry]: \[ \{A, C\} = -\{C, A \}; \]
+	\item[Linearity]:
+		\[ \{k A, C\} = k \{A, C\}; \]
+		\[ \{A + B, C\} = \{A, C\} + \{B, C\}; \]
+	\item["Product rule"]:
+		\[ \{AB, C\} = A\{B, C\} + B\{A, C\} \]
+\end{description}
+
+We'll also need the following:
+\[
+	\{ q_i, q_j \} = \{ p_i, p_j \} = 0; \qquad \{ q_i, p_j \} = \delta_i^j
+\]
+
+And Eq. $(14)$ and Eq. $(15)$ of the book, which are respectively,
+for $F$ a function of $q$s and $p$s:
+\[
+	\{ F(q, p), p_i \} = \frac{\partial F(q, p)}{\partial q_i}
+\]
+\[
+	\{ F(q, p), q_i \} = -\frac{\partial F(q, p)}{\partial p_i}
+\]
+
+\hr
+
+Alright, let's start by observing that we're in the case were $N=1$:
+we have a single $p$ and a single $q$. Then, let's begin by applying
+the anti-symmetry rule to $\dot{q} = \{q, H\} = - \{H, q\}$. \\
+
+We have two options to go further:
+\begin{enumerate}
+	\item Either we expand the expression of $H$ and keep applying
+	some rules further;
+	\item Or, as $H = H(p,q)$, we can also apply Eq. $(15)$.
+\end{enumerate}
+
+Let's try both, in this order (we should get the same result):
+
+\begin{equation*}\begin{aligned}
+	\dot{q} &&=&& \{q, H\} && ~ \\
+	~ &&=&& -\{H, q\} && \text{(anti-symmetry)} \\
+	~ &&=&& -\{\frac1{2m}p^2+V(q), q\} && \text{(H's definition)} \\
+	~ &&=&& -\frac1{2m}\{p^2, q\} + \{V(q), q\} && \text{(linearity)} \\
+\end{aligned}\end{equation*}
+
+Using the product rule, we can develop
+\[	\{p^2, q\} = \{ p p, q \} = p \{ p, q \} + p \{ p, q \} = 2p\{p, q\} \]
+
+But then, this is just $\{ q_i, p_j \} = \delta_i^j$, modulo some
+anti-symmetry (as we only have one $p$ and one $q$, they always "match"
+as far as the kronecker delta is concerned):
+
+\[ \{p^2, q\} = 2p\{p, q\} = -2p\{q, p\} = -2p \]
+
+What about \{V(q), q\}? We can get there in two ways: either we consider
+that $V(q) = V(q, p)$ with no $p$, and thus by Eq. $(15)$,
+
+\[ \{V(q), q\} = \{V(q, p), q\} = \frac{\partial V(q, p)}{\partial p} = 0 \]
+
+But we could also argue that $V(q)$ can be expressed as a polynomial in $q$;
+then, by linearity of the Poisson brackets on the terms of that polynomial,
+we would be able to apply the $\{ q_i, q_j \} = 0;$ systematically, and
+also get zero. \\
+
+Finally, this leaves us with:
+\[
+	\dot{q} = -\frac1{2m}\underbrace{\{p^2, q\}}_{=-2p} + \underbrace{\{V(q), q\}}_{=0}
+\]
+
+By re-arranging the terms a little, we get the definition of the moment:
+\[
+	\boxed{p = m\dot{q}}
+\]
+
+We'll continue from here in a moment, but first, let's explore the second
+option we mentioned earlier, and use Eq. $(15)$ directly after the application
+of the anti-symmetry on $\dot{q} = \{q, H\}$:
+
+\begin{equation*}\begin{aligned}
+	\dot{q} &&=&& \{q, H\} && ~ \\
+	~ &&=&& -\{H, q\} && \text{(anti-symmetry)} \\
+	~ &&=&& -\{H(p, q), q\} && ~ \\
+	~ &&=&& \frac{\partial H(q, p)}{\partial p} && \text{(Eq. (15))} \\
+	~ &&=&& \frac{\partial}{\partial p}\left(\frac1{2m}p^2+V(q)\right) && \text{(H's definition)} \\
+	~ &&=&& \frac1m p
+\end{aligned}\end{equation*}
+
+Which indeed agrees with our previous result: $p = m\dot{q}$.
+
+\hrr
+
+OK we've found back the definition of the moment, now what? We'd want to
+find a way to use $\dot{p} = \{p, H\}$, but we have no $\dot{p}$, so let's
+make one by deriving the definition of the moment:
+
+\[
+	p = m\dot{q} \Rightarrow \dot{p} = m\ddot{q}
+\]
+
+We'll soon find ourselves in the same situation as before, where we can
+continue the derivation either by applying Eq. $(14)$, or by following
+a more "manual" path; I'll go with the latter as this is a bit more verbose:
+
+\begin{equation*}\begin{aligned}
+	m\ddot{q} &&=&& \dot{p} && ~ \\
+	~ &&=&& \{p, H\} && ~ \\
+	~ &&=&& - \{H, p\} && \text{(anti-symmetry)} \\
+	~ &&=&& - \{\frac1{2m}p^2+V(q), p\} && \text{(H's definition)} \\
+	~ &&=&& - \frac1{2m}\{p p, p\}+ \{V(q), p\} && \text{(linearity)} \\
+	~ &&=&& - \frac1{2m}2p\underbrace{\{p, p\}}_{=0}+ \{V(q), p\} && \text{(product rule)} \\
+	~ &&=&& \{V(q), p\} && (\{ p_i, p_j \} = 0) \\
+	~ &&=&& \frac{\partial}{\partial q} V(q) && \text{(Eq. (14))} \\
+	~ &&=&& \frac{\partial}{\partial q} V(q) && \text{(forces are derived from potential)} \\
+	~ &&=&& F_q && \qed
+\end{aligned}\end{equation*}
+
+\end{document}
