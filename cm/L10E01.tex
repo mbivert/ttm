@@ -1,0 +1,78 @@
+\documentclass[solutions.tex]{subfiles}
+
+\xtitle
+
+\begin{document}
+\maketitle
+\begin{exercise}
+Prove Eq. $(14)$
+\end{exercise}
+
+Eq. $(14)$ of the book refers to:
+\[
+	\{F(q,p),p_i\} = \frac{\partial F(q, p)}{\partial q_i}
+\]
+
+Where the brackets $\{ ., . \}$ are the Poisson Brackets: for
+$A$ and $B$ each two functions of $2N$ variables $\{p_i\}_{1\leq i \leq N}$
+and $\{q_i\}_{1\leq i \leq N}$, ($N\in\mathbb{N}$):
+\[
+	\{A, B\} = \sum_{i=1}^N
+		\frac{\partial A}{\partial q_i}
+			\frac{\partial B}{\partial p_i}
+		-\frac{\partial A}{\partial p_i}
+			\frac{\partial B}{\partial q_i}
+\]
+
+And $F(p, q)$ a function of $q$ and $p$. There's a bit of ambiguity
+regarding what $p$ and $q$ are, which actually doesn't affect the derivation,
+but let's make things clear anyway. In the
+previous example, we proved that $\{q^n, p\}=nq^{n-1}$: in
+this case, $N=1$ and we had a single $q$ and a single $p$. \\
+
+But now we're asked to prove a result involving $F(p, q)$
+partially derived according to $q_i$, which implies, for the result
+not to be trivial, that $F$ is a function of $q_i$, and thus
+that $p$ and $q$ are actually tuples of $N$ $p_i$ and $N$ $q_i$. \\
+
+So, let's expand the Poisson brackets to be evaluated, using the definition
+of the Poisson brackets:
+\[
+	\{F(q,p),p_i\} = \sum_{k=1}^N
+		\frac{\partial}{\partial q_k}F(q_1, \cdots, q_N, p_1, \cdots, p_N)
+		\frac{\partial p_i}{\partial p_k}
+		- \frac{\partial}{\partial p_k}F(q_1, \cdots, q_N, p_1, \cdots, p_N)
+		\frac{\partial p_i}{\partial q_k}
+\]
+
+Now because $p_i$ will never depends on $q_k$, as those are two distinct variables,
+$\dfrac{\partial p_i}{\partial q_k} = 0$, and the previous expression shrinks
+to:
+\[
+	\{F(q,p),p_i\} = \sum_{k=1}^N
+		\frac{\partial}{\partial q_k}F(q_1, \cdots, q_N, p_1, \cdots, p_N)
+		\frac{\partial p_i}{\partial p_k}
+\]
+
+For similar reasons, $\dfrac{\partial p_i}{\partial p_k} = \delta_i^k$,
+and the previous expression shrinks again to:
+\[
+	\{F(q,p),p_i\} =
+		\frac{\partial}{\partial q_i}F(q_1, \cdots, q_N, p_1, \cdots, p_N)
+			= \boxed{\frac{\partial F(p, q)}{\partial q_i}}
+\]
+
+\begin{remark} Eq. $(15)$ of the book is to be proven as we did
+for Eq. $(14)$.
+\end{remark}
+
+\begin{remark} Earlier in this section, the authors informally invited
+us to verify the properties of the Poisson brackets (anti-symmetry, linearity,
+product rule). I won't be doing it, because I think at this stage of the
+book, this should be elementary: you just have to replace the brackets
+by their definition, and re-arrange the terms, often using linearity of the
+differentiation/partial differentiation, and then switch back to expressions
+involving (the expected) Poisson brackets again. \\
+\end{remark}
+
+\end{document}
