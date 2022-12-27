@@ -1,0 +1,98 @@
+\documentclass[solutions.tex]{subfiles}
+
+\xtitle
+
+\begin{document}
+\maketitle
+\begin{exercise}
+Show that the vector potentials in Equations $(8)$ and
+Equations $(9)$ both give the same uniform magnetic field. This
+means that the two differ by a gradient. Find the scalar whose
+gradient, when added to Equations $(8)$, gives Equations $(9)$.
+\end{exercise}
+
+We're in the context of exploring how a magnetic field $\bm{B}$
+\textit{must} "derive" from vector potential $\bm{A}$:
+\[
+	\bm{B} = \bm\nabla\times\bm{A}
+\]
+
+That is:
+\[
+	\bm{B} = \bm\nabla\times \bm{A} = \begin{pmatrix}
+		\dfrac{\partial A_z}{\partial y} - \dfrac{\partial A_y}{\partial z} \\[1em]
+		\dfrac{\partial A_x}{\partial z} - \dfrac{\partial A_z}{\partial x} \\[1em]
+		\dfrac{\partial A_y}{\partial x} - \dfrac{\partial A_x}{\partial y}
+	\end{pmatrix}
+\]
+
+Now the authors gave us two vector potential $\bm{A}$, $\bm{A}'$ in the
+referenced Equations $(8)$ and $(9)$:
+\[
+	\bm{A} = \begin{pmatrix}
+		0 \\
+		b x \\
+		0
+	\end{pmatrix};\qquad \bm{A}' = \begin{pmatrix}
+		-b y \\
+		0 \\
+		0
+	\end{pmatrix}
+\]
+
+And we must prove that they correspond to an uniform magnetic field
+pointing in the $z$ axis with intensity $b$ (i.e $\bm{B} = (0, 0, b)$)
+
+We just have to compute the curl of $\bm{A}$ and $\bm{A}'$:
+\[
+	\bm\nabla\times \bm{A} = \begin{pmatrix}
+		\dfrac{\partial A_z}{\partial y} - \dfrac{\partial A_y}{\partial z} \\[1em]
+		\dfrac{\partial A_x}{\partial z} - \dfrac{\partial A_z}{\partial x} \\[1em]
+		\dfrac{\partial A_y}{\partial x} - \dfrac{\partial A_x}{\partial y}
+	\end{pmatrix} = \begin{pmatrix}
+		0 - 0 \\
+		0 - 0 \\
+		b - 0
+	\end{pmatrix} = \bm{B}\qed
+\]
+\[
+	\bm\nabla\times \bm{A}' = \begin{pmatrix}
+		\dfrac{\partial A'_z}{\partial y} - \dfrac{\partial A'_y}{\partial z} \\[1em]
+		\dfrac{\partial A'_x}{\partial z} - \dfrac{\partial A'_z}{\partial x} \\[1em]
+		\dfrac{\partial A'_y}{\partial x} - \dfrac{\partial A'_x}{\partial y}
+	\end{pmatrix} = \begin{pmatrix}
+		0 - 0 \\
+		0 - 0 \\
+		0 - (-b)
+	\end{pmatrix} = \bm{B}\qed
+\]
+
+Now the two vector fields must differ by gradient field generate from some scalar
+field $s(x, y, z)$:
+\[
+	\bm{A}' = \bm{A} + \bm\nabla s
+\]
+Which means
+\[
+	\bm\nabla s = \bm{A}'-\bm{A} = \begin{pmatrix}
+		-by \\
+		-bx \\
+		0
+	\end{pmatrix} = -b \begin{pmatrix}
+		y \\
+		x \\
+		0
+	\end{pmatrix} = \begin{pmatrix}
+		\dfrac{\partial s}{\partial x} \\[1em]
+		\dfrac{\partial s}{\partial y} \\[1em]
+		\dfrac{\partial s}{\partial z}
+	\end{pmatrix}
+\]
+
+We can "see" that $s(x, y, z) = -b xy$ fits:
+\[
+	\dfrac{\partial s}{\partial x} = -by;\qquad
+	\dfrac{\partial s}{\partial y} = -bx
+\]
+
+\end{document}
