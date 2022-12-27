@@ -1,0 +1,63 @@
+\documentclass[solutions.tex]{subfiles}
+
+\xtitle
+
+\begin{document}
+\maketitle
+\begin{exercise}
+Prove Eq. $(4)$.
+\end{exercise}
+Where Eq. $(4)$ is the following, for $V$ a scalar field:
+\[
+	\vec{\nabla}\times\Bigl(\vec\nabla V(x)\Bigr) = 0
+\]
+
+If think we can agree that $V(x)$ is actually a $V(x, y, z)$. \\
+
+And $\vec\nabla$ is the differentiation vector operator:
+\[
+	\vec\nabla = \begin{pmatrix}
+		\dfrac{\partial}{\partial x} \\[1em]
+		\dfrac{\partial}{\partial y} \\[1em]
+		\dfrac{\partial}{\partial z}
+	\end{pmatrix}
+\]
+
+By this definition,
+\[
+	\vec\nabla V(x, y, z) = \begin{pmatrix}
+		\dfrac{\partial V}{\partial x} \\[1em]
+		\dfrac{\partial V}{\partial y} \\[1em]
+		\dfrac{\partial V}{\partial z}
+	\end{pmatrix}
+\]
+
+We also have previously established that for a field
+$F = (F_x, F_y, F_z)$:
+\[
+	\vec\nabla\times F = \begin{pmatrix}
+		\dfrac{\partial F_z}{\partial y} - \dfrac{\partial F_y}{\partial z} \\[1em]
+		\dfrac{\partial F_x}{\partial z} - \dfrac{\partial F_z}{\partial x} \\[1em]
+		\dfrac{\partial F_y}{\partial x} - \dfrac{\partial F_x}{\partial y}
+	\end{pmatrix}
+\]
+
+And so,
+\[
+	\vec\nabla\times (\vec\nabla V(x, y, z)) = \begin{pmatrix}
+		\dfrac{\partial }{\partial y}\dfrac{\partial V}{\partial z}
+			- \dfrac{\partial}{\partial z}\dfrac{\partial V}{\partial y} \\[1em]
+		\dfrac{\partial}{\partial z}\dfrac{\partial V}{\partial x}
+			- \dfrac{\partial}{\partial x}\dfrac{\partial V}{\partial z} \\[1em]
+		\dfrac{\partial}{\partial x}\dfrac{\partial V}{\partial y}
+			- \dfrac{\partial}{\partial y}\dfrac{\partial V}{\partial x}
+	\end{pmatrix} = \vec{0}
+\]
+
+Where we can conclude because of Schwarz/Clairaut's theorem
+\footnote{\url{https://en.wikipedia.org/wiki/Symmetry\_of\_second\_derivatives}}.
+This means we consider $V$ to have continuous second partial derivatives on
+its domain (or, at least in a neighborhood of a point $x$ of its domain), which
+is often a reasonable assumption in Physics.
+
+\end{document}
