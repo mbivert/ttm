@@ -1,0 +1,81 @@
+\documentclass[solutions.tex]{subfiles}
+
+\xtitle
+
+\begin{document}
+\maketitle
+\begin{exercise}
+Using the definition of PB's and the axioms, work out the PB's
+in Equations $(19)$. \textit{Hint: In each expression, look for things
+in the parentheses that have non-zero Poisson Brackets with the coordinate
+$x$, $y$ or $z$. For example, in the first PB, $x$ has a nonzero PB with $p_x$.}
+\end{exercise}
+
+Let's start by recalling Equations $(19)$:
+
+\begin{equation*}\begin{aligned}
+	\{ x, L_z \} &&=&& \{ x, (xp_y - yp_x) \} \\
+	\{ y, L_z \} &&=&& \{ y, (xp_y - yp_x) \} \\
+	\{ z, L_z \} &&=&& \{ z, (xp_y - yp_x) \} \\
+\end{aligned}\end{equation*}
+
+Then, let's make things a little clearer/regular by renaming our
+coordinate variables:
+
+\[ x = q_x;\qquad y = q_y;\qquad z = q_z \]
+
+So, for $k\in\{x, y, z\}$ (that's the set containing $x$, $y$ and $z$,
+not a weird Poisson bracket), then all the Poisson brackets to compute are
+of the form:
+
+\[ \{ q_k, L_z \} = \{ q_k, (q_xp_y - q_yp_x) \} \]
+
+Let's reduce it from the axioms:
+
+\begin{equation*}\begin{aligned}
+	\{ q_k, L_z \} &&=&& \{ q_k, (q_xp_y - q_yp_x) \} && ~ \\
+	~ &&=&& - \{ (q_xp_y - q_yp_x), q_k \} && \text{(anti-symmetry)} \\
+	~ &&=&& - \left(\{q_xp_y, q_k \} - \{ q_yp_x, q_k \}\right) && \text{(linearity)} \\
+	~ &&=&& \{ q_yp_x, q_k \}-\{q_xp_y, q_k \} && ~ \\
+	~ &&=&& \Bigl(q_y\{ p_x, q_k \} + p_x \underbrace{\{ q_y, q_k \}}_{=0}\Bigr)
+		- \Bigl( q_x\{ p_y, q_k \} + p_y \underbrace{\{ q_x, q_k \}}_{=0}\Bigr)
+		&& \text{(product rule)} \\
+	~ &&=&& q_y\{ p_x, q_k \} - q_x\{ p_y, q_k \} && \{ q_i, q_j \} = 0
+\end{aligned}\end{equation*}
+
+Now suffice for us to evaluate that last expression with each value of $k$,
+and simplify the result with $\{ q_i, p_j \} = \delta_i^j$:
+
+\begin{equation*}\begin{aligned}
+	k = x &&:&& \{ q_x, L_z \} = q_y\{ p_x, q_x \} - q_x\{ p_y, q_x \} = q_y \\
+	k = y &&:&& \{ q_x, L_z \} = q_y\{ p_x, q_y \} - q_x\{ p_y, q_y \} = -q_x \\
+	k = z &&:&& \{ q_x, L_z \} = q_y\{ p_x, q_z \} - q_x\{ p_y, q_z \} = 0
+\end{aligned}\end{equation*}
+
+Or, with the original notations:
+
+\fbox{\parbox{\textwidth}{
+\begin{equation*}\begin{aligned}
+	\{ x, L_z \} &&=&& y \\
+	\{ y, L_z \} &&=&& -x \\
+	\{ z, L_z \} &&=&& 0 \\
+\end{aligned}\end{equation*}
+}}
+
+\begin{remark} Our solution slightly differs from the one in the book,
+as the latter contains a small sign error: the infinitesimal
+rotation is said to be:
+\begin{equation*}\begin{aligned}
+	\delta_x &&=&& -\epsilon y \\
+	\delta_y &&=&& \epsilon x
+\end{aligned}\end{equation*}
+
+But earlier in the 7th lecture (p135), it was defined to be,
+small renaming aside:
+\begin{equation*}\begin{aligned}
+	\delta_x &&=&& \epsilon y \\
+	\delta_y &&=&& -\epsilon x
+\end{aligned}\end{equation*}
+\end{remark}
+
+\end{document}
