@@ -1,0 +1,135 @@
+\documentclass[solutions.tex]{subfiles}
+
+\xtitle
+
+\begin{document}
+\maketitle
+\begin{exercise}
+Confirm Eq. $(3)$. Also prove that
+\[
+	V_iA_j - V_jA_i = \sum_k \epsilon_{ijk}\Bigl(\vec{V} \times \vec{A}\Bigr)_i
+\]
+\end{exercise}
+
+Let's recall that the Levi-Civita symbol is defined by:
+\[
+	\epsilon_{ijk} = \begin{cases}
+		+1 & \text{if } (i,j,k) \text{ is } (1,2,3), (2,3,1), \text{ or } (3,1,2), \\
+		-1 & \text{if } (i,j,k) \text{ is } (3,2,1), (1,3,2), \text{ or } (2,1,3), \\
+		 0 & \text{if } i = j, \text{ or } j = k, \text{ or } k = i
+\end{cases}
+\]
+
+Eq. $(3)$ refers to:
+\[
+	\Bigl(\vec{V} \times \vec{A}\Bigr)_i = \sum_j\sum_k\epsilon_{ijk}V_jA_k
+\]
+
+So the idea is to express the components of the cross-product of
+two $3$D vectors with the Levi-Civita symbol. Let's have a look at
+the components of the cross-product of two vectors:
+
+\begin{equation*}\begin{aligned}
+	\Bigl(\vec{V}\times\vec{A}\Bigr)_x &&=&& V_yA_z - V_zA_y \\
+	\Bigl(\vec{V}\times\vec{A}\Bigr)_y &&=&& V_zA_x - V_xA_z \\
+	\Bigl(\vec{V}\times\vec{A}\Bigr)_z &&=&& V_xA_y - V_yA_x \\
+\end{aligned}\end{equation*}
+
+\begin{remark} There's a typo in the book the last term should
+contain an $A_x$, but the book says its an $A_z$. There's another
+typo in the exercise actually; we'll get to it in a moment.
+\end{remark}
+
+Observe that somehow, all those components are "equivalent", or
+"symmetric": for instance, we can get the second line from the
+first, by renaming in the first $x$ by $y$, $y$ by $z$ and $z$ by
+$x$. \\
+
+This implies that to verify Eq. $(3)$, we can satisfy ourselves with
+doing it only for one component, as the procedure would be exactly
+similar for the two others. So, let's get going, for instance by
+trying to prove the first line:
+
+\begin{equation*}\begin{aligned}
+	\Bigl(\vec{V} \times \vec{A}\Bigr)_x &&=&& \sum_j\sum_k\epsilon_{xjk}V_jA_k \\
+	~ &&=&& \sum_k\underbrace{\epsilon_{xxk}}_{=0}V_xA_k
+		+\sum_k\epsilon_{xyk}V_yA_k
+		+\sum_k\epsilon_{xzk}V_zA_k \\
+	~ &&=&& \sum_k\Bigl(\epsilon_{xyk}V_yA_k+\epsilon_{xzk}V_zA_k\Bigr) \\
+	~ &&=&& \underbrace{\epsilon_{xyx}}_{=0}V_yA_x
+			+\underbrace{\epsilon_{xzx}}_{=0}V_zA_x
+		+ \underbrace{\epsilon_{xyy}}_{=0}V_yA_y+\epsilon_{xzy}V_zA_y
+		+ \epsilon_{xyz}V_yA_z+\underbrace{\epsilon_{xzz}}_{=0}V_zA_z \\
+	~ &&=&& \underbrace{\epsilon_{xzy}}_{=-1}V_zA_y +
+		\underbrace{\epsilon_{xyz}}_{=1}V_yA_z \\
+	~ &&=&& V_yA_z - V_zA_y \qed
+\end{aligned}\end{equation*}
+
+For similar reasons (symmetry), we only have to consider the case e.g.
+$i=x$ of the remaining equation to be done with it, as the two others
+would be derived identically, but for some systematic renaming. \\
+
+We then have three sub-cases, depending on the value of $j$.
+If $j=i (=x)$, then one one side:
+
+\[	V_iA_j - V_jA_i = V_iA_i - V_iA_i = 0 \]
+
+And on the other:
+\[ \sum_k \underbrace{\epsilon_{iik}}_{=0}\Bigl(\vec{V} \times \vec{A}\Bigr)_i=0 \]
+
+And so the equation holds. Now let's consider the case where $j=y$.
+One one side we have:
+
+\[	V_iA_j - V_jA_i = V_xA_y - V_yA_x \]
+
+And on the other:
+
+\begin{equation*}\begin{aligned}
+	\sum_k \epsilon_{xjk}\Bigl(\vec{V} \times \vec{A}\Bigr)_x &&=&&
+		\sum_k \epsilon_{xjk}\Bigl(V_yA_z - V_zA_y\Bigr) \\
+	~ &&=&& \sum_k \epsilon_{xyk}\Bigl(V_yA_z - V_zA_y\Bigr) \\
+	~ &&=&& \Bigl(V_yA_z - V_zA_y\Bigr)
+		(\underbrace{\epsilon_{xyx}}_{=0} + \underbrace{\epsilon_{xyy}}_{=0}
+			+ \underbrace{\epsilon_{xyz}}_{=1}) \\
+	~ &&=&& V_yA_z - V_zA_y
+\end{aligned}\end{equation*}
+
+Well, the computations are right, but obviously the result isn't! There's
+a typo in the book: we're expected to prove:
+\[
+	V_iA_j - V_jA_i = \sum_k \epsilon_{ijk}\Bigl(\vec{V} \times \vec{A}\Bigr)_k
+\]
+
+So, let's start again the development of the right hand side:
+
+\begin{equation*}\begin{aligned}
+	\sum_k \epsilon_{xjk}\Bigl(\vec{V} \times \vec{A}\Bigr)_k &&=&&
+		\sum_k \epsilon_{xyk}\Bigl(\vec{V} \times \vec{A}\Bigr) \\
+	~ &&=&&
+		\underbrace{\epsilon_{xyx}}_{=0}\Bigl(\vec{V} \times \vec{A}\Bigr)_x
+		+\underbrace{\epsilon_{xyy}}_{=0}\Bigl(\vec{V} \times \vec{A}\Bigr)_y
+		+\underbrace{\epsilon_{xyz}}_{=1}\Bigl(\vec{V} \times \vec{A}\Bigr)_z \\
+	~ &&=&& \Bigl(\vec{V} \times \vec{A}\Bigr)_z\\
+	~ &&=&& V_xA_y - V_yA_x \qed
+\end{aligned}\end{equation*}
+
+Which corresponds to the left-hand side. Let's do it once more with $j=z$.
+On one side:
+
+\[	V_iA_j - V_jA_i = V_xA_z - V_zA_x \]
+
+On the other:
+
+\begin{equation*}\begin{aligned}
+	\sum_k \epsilon_{xjk}\Bigl(\vec{V} \times \vec{A}\Bigr)_k &&=&&
+		\sum_k \epsilon_{xzk}\Bigl(\vec{V} \times \vec{A}\Bigr) \\
+	~ &&=&&
+		\underbrace{\epsilon_{xzx}}_{=0}\Bigl(\vec{V} \times \vec{A}\Bigr)_x
+		+\underbrace{\epsilon_{xzy}}_{=-1}\Bigl(\vec{V} \times \vec{A}\Bigr)_y
+		+\underbrace{\epsilon_{xzz}}_{=0}\Bigl(\vec{V} \times \vec{A}\Bigr)_z \\
+	~ &&=&& -\Bigl(\vec{V} \times \vec{A}\Bigr)_y\\
+	~ &&=&& -(V_zA_x - V_xA_z) \\
+	~ &&=&& V_xA_z - V_zA_x  \qed
+\end{aligned}\end{equation*}
+
+\end{document}
