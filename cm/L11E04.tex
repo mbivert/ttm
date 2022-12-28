@@ -1,0 +1,112 @@
+\documentclass[solutions.tex]{subfiles}
+
+\xtitle
+
+\begin{document}
+\maketitle
+\begin{exercise}
+Using the Hamiltonian, Eq. $(24)$, work out Hamilton's equations of motion
+and show that you just get back to the Newton-Lorentz equation of motion.
+\end{exercise}
+
+The Hamiltonian is:
+\[
+	H = \frac{1}{2m}\sum_i\Bigl(p_i - \frac{e}cA_i(\bm{q})\Bigr)^2
+\]
+
+Hamilton's equation of motion are given by the pair:
+\[
+	\dot{q_j} = \frac{\partial H}{\partial p_j};\qquad
+	\dot{p_j} = -\frac{\partial H}{\partial q_j}
+\]
+
+Let's get started with the first one:
+\begin{equation*}\begin{aligned}
+	\dot{q_j} &&=&& \frac{\partial H}{\partial p_j} \\
+	~ &&=&& \frac{1}{2m}\frac{\partial}{\partial p_j}
+		\sum_i\Bigl(p_i - \frac{e}cA_i(\bm{q})\Bigr)^2 \\
+	~ &&=&& \frac{1}{2m}\frac{\partial}{\partial p_j}
+		\sum_i\Bigl(p_i^2 - 2\frac{e}cp_iA_i(\bm{q}) + (\frac{e}c)^2A_i(\bm{q})^2\Bigr) \\
+	~ &&=&&\frac{1}{2m} \sum_i\Bigl(
+		\frac{\partial p_i^2}{\partial p_j}
+		-2\frac{e}c\bigl(
+			\frac{\partial p_i}{\partial p_j}A_i(\bm{q})
+			+p_i\underbrace{\frac{\partial A_i(\bm{q})}{\partial p_j}}_{=0}
+		\bigr)
+		+(\frac{e}c)^2\underbrace{\frac{\partial A_i(\bm{q})^2}{\partial p_j}}_{=0}
+	\Bigr) \\
+	~ &&=&&\frac{1}{2m} \sum_i\Bigl(
+		\frac{\partial p_i^2}{\partial p_j}
+		-2\frac{e}c\frac{\partial p_i}{\partial p_j}A_i(\bm{q})
+		\Bigr) \\
+	~ &&=&&\frac{1}{2m} \Bigl(
+		2p_j -2\frac{e}cA_j(\bm{q})
+		\Bigr) \\
+	~ &&=&& \boxed{\frac1m(p_j - \frac{e}cA_j(\bm{q}))}
+\end{aligned}\end{equation*}
+
+We've found back the expression of the moment, tweaked a little.
+Let's now take the time derivative of the previous equation to get:
+\[
+	\ddot{q_j} = \frac1m\Bigl(\dot{p_j} -\frac{e}c\dot{A_j}(\bm{q})\Bigr)
+\]
+\[
+	\Leftrightarrow\quad m\ddot{q_j} = \dot{p_j} -\frac{e}c\dot{A_j}(\bm{q})
+\]
+
+Which starts to look like an equation of motion. We'll develop
+$\dot{A_j}(\bm{q})$ using the chain rule later. For now, let's
+compute $\dot{p_j}$, but this time, let's make our life a bit
+simpler by using the chain rule:
+
+\begin{equation*}\begin{aligned}
+	\dot{p_j} &&=&& -\frac{\partial H}{\partial q_j} \\
+	~ &&=&& -\frac{1}{2m}\frac{\partial }{\partial q_j}
+		\sum_i\Bigl(\underbrace{p_i - \frac{e}cA_i(\bm{q})}_{=\phi}\Bigr)^2 \\
+	~ &&=&& -\frac{1}{2m}\sum_i 2\phi\frac{\partial \phi}{\partial q_j} \\
+	~ &&=&& \sum_i \underbrace{\frac1m\Bigl(p_i - \frac{e}cA_i(\bm{q})\Bigl)}_{=\dot{q_i}}
+		\frac{e}c\frac{\partial A_i(\bm{q})}{\partial q_i} \\
+	~ &&=&& \boxed{\frac{e}c\sum_i\dot{q_i}\frac{\partial A_i(\bm{q})}{\partial q_i}}
+\end{aligned}\end{equation*}
+
+Now let's use the multi-dimensional chain rule to develop $\dot{A_j}(\bm{q})$:
+
+\[
+	\dot{A_j}(\bm{q}) = \dot{A_j}(q_x(t), q_y(t), q_z(t))
+		= \sum_i\frac{\partial A_j(\bm{q})}{\partial q_i}\dot{q_i}
+\]
+
+Finally, let's use this and the expression of $\dot{p_j}$ to rewrite our
+embryo of motion equation:
+
+\begin{equation*}\begin{aligned}
+	m\ddot{q_j} &&=&& \dot{p_j} -\frac{e}c\dot{A_j}(\bm{q}) \\
+	~ &&=&& \sum_i\dot{q_i}
+		\frac{e}c\frac{\partial A_i(\bm{q})}{\partial q_i}
+		-\frac{e}c\sum_i\frac{\partial A_j(\bm{q})}{\partial q_i}\dot{q_i} \\
+	~ &&=&& \frac{e}c\sum_i\dot{q_i}\Bigl(
+		\frac{\partial A_i(\bm{q})}{\partial q_i}
+		-\frac{\partial A_j(\bm{q})}{\partial q_i}\Bigr) \\
+	~ &&=&& \frac{e}c\Bigl(\dot{q_j}\bigl(\underbrace{
+		\frac{\partial A_j(\bm{q})}{\partial q_j}
+		-\frac{\partial A_j(\bm{q})}{\partial q_j}
+	}_{=0}\bigr)
+		+\dot{q_k}\bigl(\underbrace{
+		\frac{\partial A_k(\bm{q})}{\partial q_k}
+		-\frac{\partial A_j(\bm{q})}{\partial q_k}
+	}_{=B_l}\bigr)
+		+\dot{q_l}\bigl(\underbrace{
+		\frac{\partial A_l(\bm{q})}{\partial q_l}
+		-\frac{\partial A_j(\bm{q})}{\partial q_l}
+	}_{=-B_k}\bigr)
+	\Bigr) \\
+	~ &&=&& \frac{e}c\Bigl(B_l\dot{q_k}-B_k\dot{q_l}\Bigr)
+\end{aligned}\end{equation*}
+
+And so for $j, k, l$ three distinct elements of $\{x, y, z\}$, we
+indeed have found our equations of Newton-Lorentz:
+\[
+	\boxed{m\ddot{q_j} = \frac{e}c\Bigl(B_l\dot{q_k}-B_k\dot{q_l}\Bigr)}
+\]
+
+\end{document}
