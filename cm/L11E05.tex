@@ -1,0 +1,105 @@
+\documentclass[solutions.tex]{subfiles}
+
+\xtitle
+
+\begin{document}
+\maketitle
+\begin{exercise}
+Show that in the $x, y$ plane, the solution to Eq. $(25)$
+and the solution to Eq. $(26)$ are a circular orbit with the
+center of the orbit being anywhere on the plane. Find the radius
+of the orbit in terms of the velocity.
+\end{exercise}
+
+Let's recall Eq. $(25)$ and Eq. $(26)$:
+\[
+	a_y = -\frac{eb}{mc}v_x;\qquad
+	a_x = \frac{eb}{mc}v_y
+\]
+
+Let's rewrite them with dots instead:
+
+\[
+	\ddot{y} = -\frac{eb}{mc}\dot{x};\qquad
+	\ddot{x} = \frac{eb}{mc}\dot{y}
+\]
+
+First, note that each equation was obtained from a different gauge.
+But, as the Hamiltonian is gauge-invariant, the equation of motions
+aren't affected by a gauge shift. So they do both describe the
+motion we're interested in and can be "combined". \\
+
+Then, we've been using similar-looking differential equations (for
+instance when considering the harmonic oscillator), and we know they
+were solved by a sine/cosine-like function. So we're going to make
+some guess and calibrate a sine to have it work. We'll then have
+an expression for both $x(t)$ and $y(t)$, and if we can find a $r$
+such as:
+
+\[
+	(x(t)-a)^2 + (y(t)-b)^2 = r^2
+\]
+
+We'll know that our coordinate function can draw a circle of radius $r$,
+centered at $(a, b)$. \\
+
+Alright so let's say $\dot{x}$ is a $\sin$ function; then
+
+\begin{itemize}
+	\item $x$ would be a $-\sin$;
+	\item $\ddot{x}$ would be a $\sin$;
+	\item $\ddot{y}$ would also be a $\cos$;
+	\item $\dot{y}$ would be a $-\sin$;
+	\item and $y$ would be a $-\cos$.
+\end{itemize}
+
+Looks promising, as $x^2+y^2$ would involve a $\cos^2+\sin^2=1^2$.
+Now we'd just have to "caliber" the $\sin$ properly. Say, if it's
+a $\sin(\omega t)$, then by repeated differentiation, the $\omega$
+would become a multiplicative factor, outside of the $\sin$. So,
+the following feels reasonable:
+\[
+	\omega = \frac{eb}{mc}
+\]
+
+Let's see what would happen to the first equation, if we start
+with a $\dot{x}=\sin(\omega t)$:
+
+\[ \ddot{y} = -\frac{eb}{mc}\dot{x} = -\omega\sin(\omega t) \]
+
+From which we can derive both:
+\[
+	\dot{y} = \cos(\omega t);\qquad
+	\ddot{x} = \omega\cos(\omega t)
+\]
+
+And those two do validate the second equation:
+\[
+	\ddot{x} = \frac{eb}{mc}\dot{y}
+\]
+
+So we've found a solution; note that we can shift both
+component by arbitrary constants $a$ and $b$ without
+affecting their correctness:
+\[
+	\boxed{
+		y(t) = \frac1\omega\sin(\omega t) + a;\qquad
+		x(t) = -\frac1\omega\cos(\omega t) + b
+	}
+\]
+
+And $\omega$ was well-named, as it correspond to the
+angular velocity. Does it describe an orbit around a point $(a, b)$?
+Let's find out:
+\[
+	(x(t)-a)^2 + (y(t)-b)^2 =
+	\frac1{\omega^2}\Bigl(\sin^2(\omega t)+\cos^2(\omega t)\Bigr)
+	= \Bigl(\frac1\omega\Bigr)^2
+\]
+
+So they do draw a circle of radius:
+\[
+	\boxed{r = \frac1\omega = \frac{mc}{eb}}
+\]
+
+\end{document}
