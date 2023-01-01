@@ -1,12 +1,13 @@
 \documentclass[solutions.tex]{subfiles}
-\title{TTM - QM - L02E03}
+
+\xtitle
 
 \begin{document}
 \maketitle
-\begin{exercise}\ \\
+\begin{exercise}
 For the moment, forget that Eqs. $2.10$ give us working
 definitions for $\ket{i}$ and $\ket{o}$ in terms of $\ket{u}$
-and $\ket{d}$, and assume that the compoments $\alpha, \beta, \gamma$
+and $\ket{d}$, and assume that the components $\alpha, \beta, \gamma$
 and $\delta$ are unknown:
 
 \begin{align*}
@@ -31,4 +32,290 @@ real. The same reasoning applies to $\gamma^*\delta$.
 
 \end{exercise}
 \hrr
+
+Let's start by recalling Eqs. $2.8$, $2.9$ and $2.10$, which are
+respectively:
+
+\begin{equation}\begin{aligned}
+\braket{o}{u}\braket{u}{o} &= \frac1{2} &&&
+\braket{o}{d}\braket{d}{o} &= \frac1{2} \\
+\braket{i}{u}\braket{u}{i} &= \frac1{2} &&&
+\braket{i}{d}\braket{d}{i} &= \frac1{2} \label{L02E03:eqn:2.8}
+\end{aligned}\end{equation}
+\begin{equation}\begin{aligned}
+\braket{o}{r}\braket{r}{o} &= \frac1{2} &&&
+\braket{o}{l}\braket{l}{o} &= \frac1{2} \\
+\braket{i}{r}\braket{r}{i} &= \frac1{2} &&&
+\braket{i}{l}\braket{l}{i} &= \frac1{2} \label{L02E03:eqn:2.9}
+\end{aligned}\end{equation}
+\begin{equation}\begin{aligned}
+\ket{i} &= \frac1{\sqrt2}\ket{u} + \frac{i}{\sqrt2}\ket{d} &&&
+\ket{o} &= \frac1{\sqrt2}\ket{u} - \frac{i}{\sqrt2}\ket{d} \label{L02E03:eqn:2.10}
+\end{aligned}\end{equation}
+
+\hrr
+
+a) Let's start by recalling that the inner-product in a Hilbert
+space is defined between a bra and a ket, and that it should satisfy
+the following two axioms:
+\[
+	\bra{C}\{\ket{A}+\ket{B}\} = \braket{C}{A} + \braket{C}{B}
+	(\text{linearity})
+\]
+\[
+	\braket{B}{A} = \braket{A}{B}^* (\text{complex conjugation})
+\]
+
+Furthermore, the scalar-multiplication of a ket is linear:
+\[
+	z\in\mathbb{C},\qquad \ket{zA} = z\ket{A}
+\]
+
+Then we can multiply $\ket{o} = \alpha\ket{u} + \beta\ket{d}$ to
+the left by $\bra{u}$ to compute $\braket{u}{o}$, using the linearity
+of the inner-product/scalar multiplication, and the fact that $\ket{u}$
+and $\ket{d}$ are, by definition, orthogonal vectors (meaning,
+$\braket{u}{d} = 0$ and $\braket{u}{u}=\braket{d}{d} = 1$)
+
+\begin{equation*}\begin{aligned}
+	\braket{u}{o} = \alpha\braket{u}{u} +\beta\braket{u}{d} = \alpha
+\end{aligned}\end{equation*}
+
+Because of the complex conjugation rule, we have
+\[
+	\braket{o}{u} = \braket{u}{o}^* = \alpha^*
+\]
+
+And so by Eqs. $2.8$ and the previous computation we have
+\[
+	\frac12 = \underbrace{\braket{o}{u}}_\alpha
+		\underbrace{\braket{u}{o}}_{\alpha^*} = \alpha\alpha^* \qed
+\]
+
+The process is very similar to prove $\beta^*\beta = \gamma^*\gamma
+= \delta^*\delta = \frac12$:
+
+\begin{equation*}\begin{aligned}
+	\frac12 &&=&& \braket{o}{d}\braket{d}{o} \\
+	~ &&=&& (\braket{d}{o})^*\braket{d}{o} \\
+	~ &&=&& \Bigl(\bra{d}\{\alpha\ket{u} + \beta\ket{d}\}\Bigr)^*
+		\Bigl(\bra{d}\{\alpha\ket{u} + \beta\ket{d}\}\Bigr) \\
+	~ &&=&& \Bigl(\alpha\underbrace{\braket{d}{u}}_{=0} +
+			\beta\underbrace{\braket{d}{d}}_{=1}\Bigr)^*
+		\Bigl(\alpha\underbrace{\braket{d}{u}}_{=0} +
+			\beta\underbrace{\braket{d}{d}}_{=1}\Bigr) \\
+	~ &&=&& \beta^*\beta\qed
+\end{aligned}\end{equation*}
+
+\begin{equation*}\begin{aligned}
+	\frac12 &&=&& \braket{i}{u}\braket{u}{i} \\
+	~ &&=&& (\braket{u}{i})^*\braket{u}{i} \\
+	~ &&=&& \Bigl(\bra{u}\{\gamma\ket{u} + \delta\ket{d}\}\Bigr)^*
+		\Bigl(\bra{u}\{\gamma\ket{u} + \delta\ket{d}\}\Bigr) \\
+	~ &&=&& \Bigl(\gamma\underbrace{\braket{u}{u}}_{=1} +
+			\delta\underbrace{\braket{u}{d}}_{=0}\Bigr)^*
+		\Bigl(\gamma\underbrace{\braket{u}{u}}_{=1} +
+			\delta\underbrace{\braket{u}{d}}_{=0}\Bigr) \\
+	~ &&=&& \gamma^*\gamma\qed
+\end{aligned}\end{equation*}
+
+\begin{equation*}\begin{aligned}
+	\frac12 &&=&& \braket{i}{d}\braket{d}{i} \\
+	~ &&=&& (\braket{d}{i})^*\braket{d}{i} \\
+	~ &&=&& \Bigl(\bra{d}\{\gamma\ket{u} + \delta\ket{d}\}\Bigr)^*
+		\Bigl(\bra{d}\{\gamma\ket{u} + \delta\ket{d}\}\Bigr) \\
+	~ &&=&& \Bigl(\gamma\underbrace{\braket{d}{u}}_{=0} +
+			\delta\underbrace{\braket{d}{d}}_{=1}\Bigr)^*
+		\Bigl(\gamma\underbrace{\braket{d}{u}}_{=0} +
+			\delta\underbrace{\braket{d}{d}}_{=1}\Bigr) \\
+	~ &&=&& \delta^*\delta\qed
+\end{aligned}\end{equation*}
+
+\hrr
+
+b) I don't think we can conclude here without recalling the
+definition of $\ket{r}$:
+\[
+	\ket{r} = \frac1{\sqrt2}\ket{u} + \frac1{\sqrt2}\ket{d}
+\]
+
+Let's start with a piece from Eqs. $2.9$, arbitrarily (we could
+use $\braket{i}{l}\braket{l}{i} = \frac1{2}$, but I think we'd
+still need the previous definition of $\ket{r}$):
+
+\begin{equation*}\begin{aligned}
+\braket{i}{r}\braket{r}{i} = \frac1{2}
+\end{aligned}\end{equation*}
+
+But:
+\[
+	\braket{r}{i} = \bra{r}\{\alpha + \ket{u}+\beta\ket{d}\}
+		= \alpha\braket{r}{u} + \beta\braket{r}{d}
+\]
+
+And:
+\[
+	\braket{i}{r} = (\braket{r}{i})^* =
+		(\alpha\braket{r}{u} + \beta\braket{r}{d})^*
+		= \alpha^*\braket{u}{r} + \beta^*\braket{d}{r}
+\]
+
+So
+\[ \braket{i}{r}\braket{r}{i} = \frac1{2} \]
+\[
+	\Leftrightarrow
+		\Bigl(\alpha^*\braket{u}{r} + \beta^*\braket{d}{r}\Bigr)
+		\Bigl(\alpha\braket{r}{u} + \beta\braket{r}{d}\Bigr) = \frac12
+\]
+\[
+	\Leftrightarrow
+	\underbrace{\alpha^*\alpha}_{=1/2}\braket{u}{r}\braket{r}{u}
+	+\alpha^*\beta\braket{u}{r}\braket{r}{d}
+	+\beta^*\alpha\braket{d}{r}\braket{r}{u}
+	+\underbrace{\beta^*\beta}_{=1/2}\braket{d}{r}\braket{r}{d} = \frac12
+\]
+\[
+	\Leftrightarrow
+	\frac12\Bigl(
+		\braket{u}{r}\braket{r}{u}
+		+\braket{d}{r}\braket{r}{d}
+	\Bigr)+\alpha^*\beta\braket{u}{r}\braket{r}{d}
+	+\beta^*\alpha\braket{d}{r}\braket{r}{u} = \frac12
+\]
+
+Now if $\ket{r} = \rho_u\ket{u} + \rho_d\ket{d}$, then
+\[
+	\braket{u}{r}\braket{r}{u}+\braket{d}{r}\braket{r}{d}
+	= \rho_u\rho_u^* + \rho_d\rho_d^* = 1
+\]
+
+As $\rho_u\rho_u^*$ would be the probability of $\ket{r}$ to
+be up, and $\rho_d\rho_d^*$ would the probability of $\ket{r}$ to
+be down, which are two orthogonal states in a two-states setting,
+and so the sum of their probability must be $1$. \\
+
+Hence the previous expression becomes:
+\[
+	\alpha^*\beta\braket{u}{r}\braket{r}{d}
+	+\beta^*\alpha\braket{d}{r}\braket{r}{u} = 0
+\]
+
+Note that so far, we haven't needed the expression of $\ket{r}$, but
+I think we don't have a choice but to use it to conclude:
+\[
+	\ket{r} = \frac1{\sqrt2}\ket{u} + \frac1{\sqrt2}\ket{d}
+\]
+
+So, as the coefficient are real numbers:
+\[
+	\braket{u}{r} = \frac1{\sqrt2} = \braket{r}{u};\qquad
+	\braket{d}{r} = \frac1{\sqrt2} = \braket{r}{d}
+\]
+
+Replacing in the previous expression we have:
+\[
+	\alpha^*\beta\underbrace{\braket{u}{r}}_{=1/\sqrt2}
+	\underbrace{\braket{r}{d}}_{=1/\sqrt2}
+	+\beta^*\alpha\underbrace{\braket{d}{r}}_{=1/\sqrt2}
+	\underbrace{\braket{r}{u}}_{=1/\sqrt2} = 0
+\]
+\[
+	\Leftrightarrow
+	\frac12\alpha^*\beta + \frac12\beta^*\alpha = 0
+\]
+\[
+	\Leftrightarrow
+	\boxed{\alpha^*\beta + \beta^*\alpha = 0}\qed
+\]
+
+The process is very similar to prove $\gamma^*\delta + \gamma\delta^* = 0$;
+one has to start again from a Eqs. $2.9$, but this time, from another piece
+involving $o$, arbitrarily:
+\[
+	\braket{o}{r}\braket{r}{o} = \frac1{2}
+\]
+\[
+	\Leftrightarrow
+	\Bigl(\braket{r}{o}\Bigr)^*\braket{r}{o} = \frac12
+\]
+\[
+	\Leftrightarrow
+	\Bigl(\bra{r}\{\gamma\ket{u}+\delta\ket{d}\}\Bigr)^*
+	\Bigl(\bra{r}\{\gamma\ket{u}+\delta\ket{d}\}\Bigr) = \frac12
+\]
+\[
+	\Leftrightarrow
+	\Bigl(\gamma^*\braket{u}{r}+\delta^*\braket{d}{r}\Bigr)
+	\Bigl(\gamma\braket{r}{u}+\delta\braket{r}{d}\Bigr) = \frac12
+\]
+\[
+	\Leftrightarrow
+	\underbrace{\gamma^*\gamma}_{=1/2}\braket{u}{r}\braket{r}{u}+
+	\gamma^*\delta\braket{u}{r}\braket{r}{d}+
+	\delta^*\gamma\braket{d}{r}\braket{r}{u}+
+	\underbrace{\delta^*\delta}_{=1/2}\braket{d}{r}\braket{r}{d} = \frac12
+\]
+\[
+	\Leftrightarrow
+	\frac12\Bigl(\underbrace{
+		\braket{u}{r}\braket{r}{u}
+		+\braket{d}{r}\braket{r}{d}
+	}_{=1}\Bigr)+
+	\gamma^*\delta\braket{u}{r}\braket{r}{d}+
+	\delta^*\gamma\braket{d}{r}\braket{r}{u} = \frac12
+\]
+\[
+	\Leftrightarrow
+	\gamma^*\delta\underbrace{\braket{u}{r}\braket{r}{d}}_{=1/2}+
+	\delta^*\gamma\underbrace{\braket{d}{r}\braket{r}{u}}_{=1/2} = 0
+\]
+\[
+	\Leftrightarrow
+	\boxed{\gamma^*\delta+\delta^*\gamma = 0}\qed
+\]
+\hrr
+c) Let's consider $\alpha\beta^*$ is \textit{not} to be a complex number;
+hence we can write it as:
+\[
+	\alpha\beta^* = a + ib\qquad, (a, b) \in\mathbb{R}^2
+\]
+But then:
+\[
+	\Bigl(\alpha\beta^*\Bigr)^* = a - ib = \alpha^*\beta
+\]
+That's because, for two complex numbers $z=a + ib$ and $w = x + iy$, we have:
+\[
+	\Bigl(zw\Bigr)^* =z^*w^*
+\]
+Indeed:
+\[
+	zw = (a + ib)(x + iy) = (ax - by) + i(bx + ya)
+\]
+Hence:
+\[
+	\Bigl(zw\Bigr)^* =  (ax - by) - i(bx + ya)
+\]
+But:
+\[
+	z^*w^* = (a - ib)(x - iy) = (ax - by) - i(bx + ya)
+\]
+Hence the result. Back to our $\alpha$ and $\beta$, we established
+in b) that:
+\[
+	\alpha^*\beta + \alpha\beta^* = 0
+\]
+Which is equivalent from previous little proof to saying
+that
+\[
+	\alpha^*\beta + \Bigl(\alpha^*\beta\Bigr)^* = 0
+\]
+\[
+	\Leftrightarrow
+	(a+ib) + (a-ib) = 0 \Leftrightarrow 2a = 0
+	\Leftrightarrow \boxed{a = 0}
+\]
+Which is the same as saying that the real part of $\alpha^*\beta$ is zero,
+or that it's a pure imaginary number. The exact same argument applies
+for $\gamma^*\delta$.
+
 \end{document}
