@@ -1,0 +1,65 @@
+\documentclass[solutions.tex]{subfiles}
+
+\xtitle
+
+\begin{document}
+\maketitle
+\begin{exercise}
+Prove that Eq. $3.16$ is the unique solution to Eqs. $3.14$ and $3.15$.
+\end{exercise}
+Let's recall all the equations, $3.14$, $3.15$ and $3.16$
+\begin{equation}
+	\begin{pmatrix}
+		(\sigma_z)_{11} &  (\sigma_z)_{12} \\
+		(\sigma_z)_{21} &  (\sigma_z)_{22} \\
+	\end{pmatrix}\begin{pmatrix}
+		1 \\
+		0 \\
+	\end{pmatrix} = \begin{pmatrix}
+		1 \\
+		0 \\
+	\end{pmatrix}
+\end{equation}
+\begin{equation}
+	\begin{pmatrix}
+		(\sigma_z)_{11} &  (\sigma_z)_{12} \\
+		(\sigma_z)_{21} &  (\sigma_z)_{22} \\
+	\end{pmatrix}\begin{pmatrix}
+		0 \\
+		1 \\
+	\end{pmatrix} = -\begin{pmatrix}
+		0 \\
+		1 \\
+	\end{pmatrix}
+\end{equation}
+\begin{equation}
+	\begin{pmatrix}
+		(\sigma_z)_{11} &  (\sigma_z)_{12} \\
+		(\sigma_z)_{21} &  (\sigma_z)_{22} \\
+	\end{pmatrix} = \begin{pmatrix}
+		1 & 0 \\
+		0 & -1 \\
+	\end{pmatrix}
+\end{equation}
+By developing the matrix product and identifying the vectors
+components, the first two equations make a system of four equations
+involving four unknowns $(\sigma_z)_{11}$, $(\sigma_z)_{12}$,
+$(\sigma_z)_{21}$ and $(\sigma_z)_{22}$:
+\begin{equation}
+\begin{cases}
+	1(\sigma_z)_{11} + 0(\sigma_z)_{12} &= 1 \\
+	1(\sigma_z)_{21} + 0(\sigma_z)_{22} &= 0 \\
+	0(\sigma_z)_{11} + 1(\sigma_z)_{12} &= 0 \\
+	0(\sigma_z)_{21} + 1(\sigma_z)_{22} &= -1 \\
+\end{cases} \Leftrightarrow
+\begin{cases}
+	(\sigma_z)_{11} &= 1 \\
+	(\sigma_z)_{21} &= 0 \\
+	(\sigma_z)_{12} &= 0 \\
+	(\sigma_z)_{22} &= -1 \\
+\end{cases} \Leftrightarrow \boxed{\sigma_z = \begin{pmatrix}
+	1 & 0 \\
+	0 & -1 \\
+\end{pmatrix}}\qed
+\end{equation}
+\end{document}

@@ -15,15 +15,23 @@
 
 \usepackage{mathtools}
 \usepackage{amsmath}
-\usepackage{amsthm}   % \qed
-\usepackage{amsfonts} % \mathbb
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{bm}
+\usepackage{amssymb}
 
-\newtheorem{exercise}{Exercise}
-\newtheorem{axiom}{Axiom}
-\newtheorem{remark}{Remark}
+\usepackage{stmaryrd}
+
 
 \newcommand{\hr}{\noindent\rule{\textwidth}{0.4pt} \\}
 \newcommand{\hrr}{\begin{center}\noindent\rule{0.5\textwidth}{0.4pt} \\\end{center}}
+
+\newtheorem{axiom}{Axiom}
+\newtheorem{definition}{Definition}
+\newtheorem{remark}{Remark}
+\newtheorem{theorem}{Theorem}
+\newtheorem{exercise}{Exercise}
+\newtheorem{example}{Example}
 
 \newcommand{\bra}[1]{\langle #1|}
 \newcommand{\ket}[1]{|#1\rangle}
@@ -33,6 +41,8 @@
 \newcommand{\uvec}[1]{\bm{\hat{#1}}}
 \newcommand{\norm}[1]{\lVert #1 \rVert}
 \newcommand{\abs}[1]{\lvert #1 \rvert}
+\newcommand{\harpoon}{\overset{\rightharpoonup}}
+\newcommand{\intint}[1]{\llbracket #1 \rrbracket}
 
 % \title for subfiles
 \newcommand{\xtitle}{\title{The Theoretical Minimum \\
@@ -67,4 +77,9 @@ in line with the general tone of the serie.
 \subsection{Mathematical Interlude: Linear Operators}
 \subsubsection{Hermitian Operators and Orthonormal Bases}
 %\subfile{L03E01.tex}
+\subsubsection{The Gram-Schmidt Procedure}
+\subsection{The Principles}
+\subsection{An Example: Spin Operators}
+\subsection{Constructing Spin Operators}
+\subfile{L03E02.tex}
 \end{document}
