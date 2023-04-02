@@ -74,8 +74,9 @@ Furthermore, the scalar-multiplication of a ket is linear:
 Then we can multiply $\ket{o} = \alpha\ket{u} + \beta\ket{d}$ to
 the left by $\bra{u}$ to compute $\braket{u}{o}$, using the linearity
 of the inner-product/scalar multiplication, and the fact that $\ket{u}$
-and $\ket{d}$ are, by definition, orthogonal vectors (meaning,
-$\braket{u}{d} = 0$ and $\braket{u}{u}=\braket{d}{d} = 1$)
+and $\ket{d}$ are, by definition, unitary orthogonal vectors
+(meaning, $\braket{u}{d} = 0$ and
+$\braket{u}{u}=\braket{d}{d} = 1$)
 
 \begin{equation*}\begin{aligned}
 	\braket{u}{o} = \alpha\braket{u}{u} +\beta\braket{u}{d} = \alpha
@@ -274,10 +275,9 @@ involving $o$, arbitrarily:
 	\boxed{\gamma^*\delta+\delta^*\gamma = 0}\qed
 \]
 \hrr
-c) Let's consider $\alpha\beta^*$ is \textit{not} to be a complex number;
-hence we can write it as:
+c) Let's assume $\alpha\beta^*$ is a complex number of the form:
 \[
-	\alpha\beta^* = a + ib\qquad, (a, b) \in\mathbb{R}^2
+	\alpha\beta^* = a + ib,\qquad (a, b) \in\mathbb{R}^2
 \]
 But then:
 \[
@@ -304,8 +304,7 @@ in b) that:
 \[
 	\alpha^*\beta + \alpha\beta^* = 0
 \]
-Which is equivalent from previous little proof to saying
-that
+Which is equivalent from our previous little proof to:
 \[
 	\alpha^*\beta + \Bigl(\alpha^*\beta\Bigr)^* = 0
 \]
