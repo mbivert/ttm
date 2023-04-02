@@ -51,8 +51,8 @@ in a $(\ket{i})_{i\in F}$ \textit{orthonormal} basis we have:
 
 And to make better sense of those equations, let us recall
 that $\alpha_u^*\alpha_u = \braket{A}{u}\braket{u}{A}$ is the
-probability of a state vector $\ket{A}$ to be measured in the
-$\ket{u}$ state.
+probability of a state vector $\ket{A} = \alpha_u\ket{u}+
+\alpha_d\ket{d}$ to be measured in the state $\ket{u}$.
 
 For Eq. $2.7$, we have
 
@@ -70,7 +70,7 @@ For Eq. $2.7$, we have
  = \frac1{2}-\frac{1}{2} = 0 \qed \\
 \end{align*}
 
-For Eqs. $2.8$, we can rely on the projection on orthonormal vector:
+For Eqs. $2.8$, we can rely on the projection on an orthonormal vector:
 
 \begin{align*}
 \braket{o}{u}\braket{u}{o} &= \frac1{\sqrt2}\frac1{\sqrt2}
@@ -168,5 +168,60 @@ For Eqs. $2.9$, we need to rely on the column form of the inner-product:
 ~ &= \frac1{4}(1+i+i+1) = \frac1{2}\qed
 & ~ &= \frac1{4}(1+i-i+1) = \frac1{2}\qed \\
 \end{align*}
+
+\hrr
+
+Regarding the unicity of $\ket{i}, \ket{o}$, as for $\ket{r}, \ket{l}$,
+there definitely is a phase ambiguity, meaning, we can multiply either
+$\ket{i}$ or $\ket{o}$ by a \textit{phase factor}, say $e^{i\theta}$,
+without disturbing any of the constraints: orthogonality, probabilities,
+and the resulting vectors are still unitary. \\
+
+But as stated by the authors for $\ket{r}, \ket{l}$, measurable
+quantities are independant of any phase factors. So up to it, they
+seem to be unique so far. \\
+
+However, let's try to change the $i$'s place for instance in $\ket{i}$:
+\[
+	\ket{i} = \frac{i}{\sqrt2}\ket{u} + \frac{1}{\sqrt2}\ket{d}
+\]
+The vector is still unitary, we still have orthogonality with
+$\ket{o}$, and if you try to compute $\braket{i}{u}\braket{u}{i}$,
+$\braket{i}{d}\braket{d}{i}$, $\braket{i}{r}\braket{r}{i}$ or
+$\braket{i}{l}\braket{l}{i}$, you'll still have the same
+probablities.
+
+Now the question is, is this "swapping" of the $i$ a phase
+factor? Meaning, can encode this transformation as a multiplication
+by some $e^{i\theta}$, for some $\theta\in\mathbb{R}$? \\
+
+Well, the first term of $\ket{i}$ is multiplied by $i$; recall the
+definition of the complex exponential:
+\[
+	e^{i\theta} = \cos\theta + i\sin\theta
+\]
+So this means the first term is multiplied by
+\[
+	\exp(i\frac\pi2) = 0 + i
+\]
+The second term though, is multiplied by $-i$, this means, multiplied
+by:
+\[
+	\exp(-i\frac\pi2) = 0 + i\times(-1)
+\]
+
+So we've found a variant of $\ket{i}$, that cannot be obtained
+by multiplying $\ket{i}$ by a phase factor, and hence:\\
+
+\noindent\fbox{\parbox{\textwidth}{
+	\centering{The proposed solution is \textit{not} unique [up to a phase
+	factor].}
+}}
+
+\begin{remark} It may be interesting/possible to \textit{classify} all such
+variants, meaning, see how much variety there is / how much structure
+they share and so forth.
+% TODO?
+\end{remark}
 
 \end{document}
