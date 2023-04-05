@@ -22,6 +22,11 @@
 
 \usepackage{stmaryrd}
 
+\usepackage{float} % \begin{figure}[H]
+
+\usepackage{tikz}
+\usetikzlibrary{snakes,calc,patterns,angles,quotes,decorations.pathmorphing,math,decorations.pathreplacing,automata,arrows.meta,positioning,external}
+\tikzexternalize[prefix=tikz/]
 
 \newcommand{\hr}{\noindent\rule{\textwidth}{0.4pt} \\}
 \newcommand{\hrr}{\begin{center}\noindent\rule{0.5\textwidth}{0.4pt} \\\end{center}}
@@ -30,12 +35,14 @@
 \newtheorem{definition}{Definition}
 \newtheorem{remark}{Remark}
 \newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
 \newtheorem{exercise}{Exercise}
 \newtheorem{example}{Example}
 
 \newcommand{\bra}[1]{\langle #1|}
 \newcommand{\ket}[1]{|#1\rangle}
 \newcommand{\braket}[2]{\left\langle #1 \middle| #2 \right\rangle}
+\newcommand{\innerprod}[2]{\left\langle #1 , #2 \right\rangle}
 \newcommand\omicron{o}
 \newcommand\Omicron{O}
 \newcommand{\uvec}[1]{\bm{\hat{#1}}}
@@ -76,7 +83,7 @@ in line with the general tone of the serie.
 \section{Principles of Quantum Mechanics}
 \subsection{Mathematical Interlude: Linear Operators}
 \subsubsection{Hermitian Operators and Orthonormal Bases}
-%\subfile{L03E01.tex}
+\subfile{L03E01.tex}
 \subsubsection{The Gram-Schmidt Procedure}
 \subsection{The Principles}
 \subsection{An Example: Spin Operators}

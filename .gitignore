@@ -1,4 +1,5 @@
 cm/tikz/*
+qm/tikz/*
 *.auxlock
 *.log
 *.aux
