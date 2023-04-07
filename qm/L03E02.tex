@@ -62,4 +62,118 @@ $(\sigma_z)_{21}$ and $(\sigma_z)_{22}$:
 	0 & -1 \\
 \end{pmatrix}}\qed
 \end{equation}
+
+\begin{remark} Observe that we are (were) trying to build
+a Hermitian operator with eigenvalues $+1$ and $-1$. The fundamental
+theorem / real spectral theorem, assures us that Hermitian operators
+are diagonalizable, hence there exists a basis in which the operator
+can be represented by a $2\times 2$ matrix containing the eigenvalues
+on its diagonal:
+\[
+	\begin{pmatrix}
+		1 & 0 \\
+		0 & -1 \\
+	\end{pmatrix}
+\]
+Which is exactly the matrix we've found. \\
+
+But now of course, you'd be wondering: wait a minute, right after
+this exercise, we're trying to build $\sigma_x$, which also has
+those same eigenvalues $+1$ and $-1$, what's the catch? \\
+
+Well, remember the diagonalization process: $M$ diagonalizable
+means that there's a basis where it's diagonal. That is, there's
+a change of basis, which is an invertible linear function, which
+has a matrix representation $P$, such that the linear operation
+represented by $M$ in a starting basis is now represented by a
+diagonal matrix $D$:
+\[
+	M = PDP^{-1}
+\]
+Furthermore:
+\begin{itemize}
+	\item The elements on the diagonal of $D$ are the eigenvalues;
+	\item The columns of $P$ are the corresponding eigenvectors
+\end{itemize}
+So regarding $\sigma_x$, we still have a
+\[
+	D = \begin{pmatrix}
+		1 & 0 \\
+		0 & -1 \\
+	\end{pmatrix}
+\]
+But the catch is that before for $\sigma_z$, $P$ was the identity
+matrix $I_2$ (because of our choice for $\ket{u}$ and $\ket{d}$). But now,
+given our values for $\ket{r}$ and $\ket{l}$, we have:
+\[
+	\ket{r} = \begin{pmatrix}
+		\dfrac1{\sqrt2} \\
+		\dfrac1{\sqrt2} \\
+	\end{pmatrix}\quad\text{ and }\quad
+	\ket{l} = \begin{pmatrix}
+		\dfrac1{\sqrt2} \\
+		-\dfrac1{\sqrt2} \\
+	\end{pmatrix}\quad\Rightarrow\quad
+	P = \frac1{\sqrt2} \begin{pmatrix}
+		1 & 1 \\
+		1 & -1 \\
+	\end{pmatrix}
+\]
+Note that the column order matters: the first column of $P$ must
+be $\ket{r}$, and the first column of $D$ must contain the eigenvalue
+associated to $\ket{r}$. But:
+\[
+	\sigma_x = PDP^{-1} \Leftrightarrow
+	\sigma_x P = PD(\underbrace{P^{-1}P}_{:=I_2}) = PD =
+	\frac1{\sqrt2} \begin{pmatrix}
+		1 & 1 \\
+		1 & -1 \\
+	\end{pmatrix}\begin{pmatrix}
+		1 & 0 \\
+		0 & -1 \\
+	\end{pmatrix} = \frac1{\sqrt2}\begin{pmatrix}
+		1 & -1 \\
+		1 & 1 \\
+	\end{pmatrix}
+\]
+Hence,
+\[
+	\sigma_x P = \begin{pmatrix}
+		1 & -1 \\
+		1 & 1 \\
+	\end{pmatrix} \Leftrightarrow
+	\frac1{\sqrt2}\begin{pmatrix}
+		(\sigma_x)_{11} & (\sigma_x)_{12} \\
+		(\sigma_x)_{21} & (\sigma_x)_{22} \\
+	\end{pmatrix}\begin{pmatrix}
+		1 & 1 \\
+		1 & -1 \\
+	\end{pmatrix} = \frac1{\sqrt2}\begin{pmatrix}
+		1 & -1 \\
+		1 & 1 \\
+	\end{pmatrix}
+\]
+Solving for the components of $\sigma_x$:
+\[
+	\Leftrightarrow \begin{cases}
+		(\sigma_x)_{11}+(\sigma_x)_{12} = 1 \\
+		(\sigma_x)_{11}-(\sigma_x)_{12} = -1 \\
+		(\sigma_x)_{21}+(\sigma_x)_{22} = 1 \\
+		(\sigma_x)_{21}-(\sigma_x)_{22} = 1 \\
+	\end{cases}
+\]
+Which indeed yields the expected Pauli matrix, as
+described in the book, and computed by the authors
+using a different approach:
+\[
+	\boxed{\sigma_x = \begin{pmatrix}
+		0 & 1 \\
+		1 & 0 \\
+	\end{pmatrix}}
+\]
+
+And obviously, the same can be done for $\sigma_y$ : that's
+to say that, reassuringly, we reach the same results using
+pure linear algebra.
+\end{remark}
 \end{document}
