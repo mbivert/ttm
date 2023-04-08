@@ -1,0 +1,456 @@
+\documentclass[solutions.tex]{subfiles}
+
+\xtitle
+
+\begin{document}
+\maketitle
+\begin{exercise}
+Calculate the eigenvectors and eigenvalues of $\sigma_n$. \textit{Hint:}
+Assume the eigenvector $\lambda_1$ has the form:
+\[
+	\begin{pmatrix}
+		\cos\alpha \\
+		\sin\alpha \\
+	\end{pmatrix},
+\]
+where $\alpha$ is an unknown parameter. Plug this vector into the eigenvalue
+equation and solve for $\alpha$ in terms of $\theta$. Why did we use a single
+parameter $\alpha$? Notice that our suggested column vector must have unit
+length.
+\end{exercise}
+Let's recall the context: we're trying to build an operator that allows
+us to measure the spin of a particle. We've started by building the
+components of such an operator, each representing our ability to measure
+the spin along any of the $3D$ axsis: $\sigma_x$, $\sigma_y$ and $\sigma_z$.
+Each of them was built from the behavior of the spin we "measured": we
+extracted from the observed behavior a set of constraints, which allowed
+us to determine the components of the spin operator: \\
+
+\[
+	\sigma_x = \begin{pmatrix}
+		0 & 1 \\
+		1 & 0 \\
+	\end{pmatrix};\qquad \sigma_y = \begin{pmatrix}
+		0 & -i \\
+		i & 0 \\
+	\end{pmatrix};\qquad \sigma_z = \begin{pmatrix}
+		1 & 0 \\
+		0 & -1 \\
+	\end{pmatrix}
+\]
+
+Those are individually fine to measure the spin components
+along the $3$ main axis, but we'd like to measure spin components
+along an arbitrary axis $\hat{n}$. Such a measure can be performed
+by an operator constructed as a linear combination of the previous
+three matrices:
+\[
+	\sigma_n = \bm{\sigma} \cdot \hat{n} = \begin{pmatrix}
+		\sigma_x \\
+		\sigma_y \\
+		\sigma_z \\
+	\end{pmatrix} \cdot \begin{pmatrix}
+		n_x \\
+		n_y \\
+		n_z \\
+	\end{pmatrix}
+	= n_x\sigma_x + n_y\sigma_y + n_z\sigma_z
+\]
+
+\begin{remark} Remember from your linear algebra courses that
+matrices can be added and scaled: they form a vector space.
+\end{remark}
+
+The present exercise involves an arbitrary spin vector, that is, a
+linear combination of $\sigma_x$, $\sigma_y$ and $\sigma_z$ that is of the form:
+\begin{equation*}\begin{aligned}
+	\sigma_n &&=&&& \sin\theta\sigma_x + \cos\theta\sigma_z \\
+	~        &&=&&& \sin\theta\begin{pmatrix}
+		0 & 1 \\
+		1 & 0 \\
+	\end{pmatrix} + \cos\theta\begin{pmatrix}
+		1 & 0 \\
+		0 & -1 \\
+	\end{pmatrix} \\
+	~        &&=&&& \begin{pmatrix}
+		\cos\theta & \sin\theta \\
+		\sin\theta & -\cos\theta \\
+	\end{pmatrix}
+\end{aligned}\end{equation*}
+
+We're then asked to look for the eigenvalues/eigenvectors of that matrix,
+that is, we want to understand what kind of spin (states) can be encoded
+by such a matrix, and which values they can take.
+
+\hrr
+
+Let's recall that to find the eigenvalues/eigenvectors,
+we need to diagonalize the matrix: assuming it can be diagonalized, it
+means that there's a basis where it can be expressed as a diagonal matrix;
+the change of basis is encoded by a linear map, thus a matrix, and so
+we must be able to find an invertible matrix $P$ and a diagonal matrix
+$D$ such that:\footnote{This is "basic" linear algebra; the authors assume
+that you're already familiar with it to some degree (e.g. matrix product);
+don't hesitate to refer to a more thorough course on the subject for more.
+I'll quickly review here how diagonalization works}
+\[
+	\sigma_n = P D P^{-1}
+	\quad\Leftrightarrow\quad
+	\sigma_n P = PD
+\]
+\[
+	\Leftrightarrow
+	\begin{pmatrix}
+		\cos\theta & \sin\theta \\
+		\sin\theta & -\cos\theta \\
+	\end{pmatrix}
+	\begin{pmatrix}
+		a & b \\
+		c & d \\
+	\end{pmatrix} =
+	\begin{pmatrix}
+		a & b \\
+		c & d \\
+	\end{pmatrix}
+	\begin{pmatrix}
+		\lambda_1 & 0         \\
+		0         & \lambda_2 \\
+	\end{pmatrix} = 	\begin{pmatrix}
+		\lambda_1 a & \lambda_2 b \\
+		\lambda_1 c & \lambda_2 d \\
+	\end{pmatrix}
+\]
+
+Where $\lambda_1$ and $\lambda_2$ would be the eigenvalues, associated
+to the two eigenvectors:
+\[
+	\ket{\lambda_1} = \begin{pmatrix}
+		a \\
+		c \\
+	\end{pmatrix};\qquad
+	\ket{\lambda_2} = \begin{pmatrix}
+		b \\
+		d \\
+	\end{pmatrix}
+\]
+
+Note that the previous equation implies that we must have:
+\[
+	(\forall i \in \{1,2\}),\ \sigma_n\ket{\lambda_i} = \lambda_i\ket{\lambda_i}
+\]
+Which is equivalent to saying, where $0_2$ is the zero $2\times 2$ matrix,
+and $I_2$ the $2\times2$ identity matrix:
+\[
+	 \sigma_n\ket{\lambda_i} - \lambda_i\ket{\lambda_i} = 0_2
+	 \quad\Leftrightarrow\quad
+	 	(\sigma_n - I_2\lambda_i)\ket{\lambda_i} = 0_2
+\]
+If we want a non-trivial solution (i.e. $\ket{\lambda_i} \neq \bm{0}$), then
+it follows that we must have:
+\[
+	\sigma_n - I_2\lambda_i = 0_2
+\]
+This means that the matrix $\sigma_n - I_2\lambda_i$ cannot be invertible
+(for otherwise multiplying it by its inverse would yield, by the rule
+of invertibility $I_2$, but  on the other side, from the matrix's definition,
+it would yield $0_2$, hence a contradiction, hence it's not invertible). \\
+
+Non-invertibility of a matrix translates to their determinant being zero,
+which means the $\lambda_i$ solves the following equation for $\lambda$:
+\begin{equation*}\begin{aligned}
+	\det(\sigma_n - I_2\lambda) = 0
+	&&\Leftrightarrow&&&
+	\begin{vmatrix}
+		\cos\theta-\lambda & \sin\theta \\
+		\sin\theta & -\cos\theta-\lambda \\
+	\end{vmatrix} = 0 \\
+	&&\Leftrightarrow&&&
+		-(\cos\theta-\lambda)(\cos\theta+\lambda) - \sin^2\theta = 0 \\
+	&&\Leftrightarrow&&&
+		-(\cos^2\theta-\lambda^2) - \sin^2\theta = 0 \\
+	&&\Leftrightarrow&&&
+		\lambda^2 - \underbrace{(\sin^2\theta+\cos^2\theta)}_{=1} = 0 \\
+	&&\Leftrightarrow&&&
+		\lambda^2 = 1 \\
+	&&\Leftrightarrow&&&
+		\lambda = \begin{cases}
+		1  &=\lambda_1 \\
+		-1 &=\lambda_2 \\
+	\end{cases}
+\end{aligned}\end{equation*}
+Now that we have our eigenvalues, we can use them to determine the
+associated eigenvectors, as, remember, they are linked by:
+\[
+	(\forall i \in \{1,2\}),\ \sigma_n\ket{\lambda_i} = \lambda_i\ket{\lambda_i}
+\]
+And so:
+\begin{equation*}\begin{aligned}
+	\sigma_n\ket{\lambda_1} = \lambda_1\ket{\lambda_1}
+	&&\Leftrightarrow&&&
+	\begin{pmatrix}
+		\cos\theta & \sin\theta \\
+		\sin\theta & -\cos\theta \\
+	\end{pmatrix}\begin{pmatrix}
+		a \\
+		c \\
+	\end{pmatrix} = \begin{pmatrix}
+		a \\
+		c \\
+	\end{pmatrix} \\
+	&&\Leftrightarrow&&&
+	\begin{cases}
+		a\cos\theta + c\sin\theta & = a \\
+		a\sin\theta - c\cos\theta & = c \\
+	\end{cases} \\
+	&&\Leftrightarrow&&&
+	\begin{cases}
+		a(\cos\theta - 1) + c\sin\theta & = 0 \\
+		a\sin\theta + c(-\cos\theta-1) & = 0 \\
+	\end{cases}
+\end{aligned}\end{equation*}
+
+Consider the first equation of this system: we're left
+with two main choices, depending on whether
+$\cos\theta = 1$ or not. If it is, let's take $\theta=0$
+for instance, but this would true modulo $\pi$, then
+we must have $\sin\theta=0$, and the first equations gives
+us nothing of value. The second then simplifies to $c=0$, thus $a=0$. \\
+
+Let's now consider the case where $\cos\theta \neq 1$.
+The system can be rewritten as:
+\begin{equation*}\begin{aligned}
+	\begin{cases}
+		a &= \dfrac{-c\sin\theta}{\cos\theta - 1}\\
+		a\sin\theta + c(-\cos\theta-1) & = 0 \\
+	\end{cases} \\
+\end{aligned}\end{equation*}
+
+We can inject the first equation in the second to yield:
+
+\begin{equation*}\begin{aligned}
+	\frac{-c\sin\theta}{\cos\theta - 1}\sin\theta + c(-\cos\theta-1) = 0
+	&&\Leftrightarrow&&&
+	\frac{-c\sin\theta}{\cos\theta - 1}\sin\theta + \frac{\cos\theta-1}{\cos\theta-1}c(-\cos\theta-1) = 0 \\
+	&&\Leftrightarrow&&&
+	\frac{c\bigl(-\sin^2\theta - (\cos\theta-1)(\cos\theta+1)\bigr)}{\cos\theta-1} = 0 \\
+	&&\Rightarrow&&&
+		c(-\sin^2\theta - (\cos^2\theta-1)) = 0 \\
+	&&\Rightarrow&&&
+		c(-\underbrace{(\sin^2\theta+\cos^2\theta)}_{=1}-1) = 0 \\
+	&&\Rightarrow&&&
+		c = 0 \Rightarrow a = 0
+\end{aligned}\end{equation*}
+
+That's a struggle; we don't seem to be able to extract anything
+but the trivial solution; maybe there's some trigonometric trick to
+find the general
+solution\footnote{There definitely is one, see for instance \url{https://www.wolframalpha.com/input?i=diagonalize+\%7B\%7Bcos+x\%2C+sin+x\%7D\%2C\%7Bsin+x\%2C-cos+x\%7D\%7D}}). \\
+
+\hrr
+
+Instead, let's try to use and understand the authors' hint,
+which is to look for eigenvectors of the form:
+\[
+	\begin{pmatrix}
+		\cos\alpha \\
+		\sin\alpha \\
+	\end{pmatrix}
+\]
+
+\textit{Why} is this a reasonable choice? Let's start by answering
+why we need a single parameter $\alpha$: it corresponds to the single
+degree of freedom we have in this case. Let's recall the two equivalent
+ways of counting the number of degree of freedom that were given
+in subsection $2.5$:
+
+\begin{enumerate}
+	\item First, point the apparatus in any direction in the $xz$-plane
+	(remember for comparison that in subsection $2.5$, we were allowed
+	to take a direction in the $xyz$-space). A single angle is sufficient
+	to encode this single direction ($2$ were needed in the $xyz$ space).
+	Furthermore, note that this angle would have has its coordinate in
+	the $xz$-plane $\cos\alpha$ and $\sin\alpha$, respectively in the
+	$x$ and $z$ directions. \\
+
+	Note that we're really capturing \textit{directions}: a point
+	in $\mathbb{R}^2$ contains too much information, as we want
+	to identify all the points which share the same direction;
+	\item The second approach was to say that the general form of the
+	spin state in $xyz$-space was given by a (complex) linear combination
+	$\alpha_u\ket{u}+\alpha_d\ket{d}$. But, recall the definition
+	of $\ket{l}$ and $\ket{r}$, the vectors associated with the $x$-direction:
+	\[
+		\ket{r} = \frac1{\sqrt2}\ket{u} + \frac1{\sqrt2}\ket{d};\qquad
+		\ket{l} = \frac1{\sqrt2}\ket{u} - \frac1{\sqrt2}\ket{d}
+	\]
+	They didn't involved complex numbers. We started to need, and have
+	proven in exercise
+	\href{https://github.com/mbivert/ttm/blob/master/qm/L02E03.pdf}{L02E03}
+	that this was mandatory once we had
+	enough constraints to cover the three spatial directions (i.e.,
+	when dealing with $\ket{i}$ and $\ket{o}$, after having already
+	established the two other pairs of orthogonal vectors). \\
+
+	That's to say, we don't need complex numbers when we only have
+	two directions, so actually, the general form of a spin
+	in a plane is a \textit{real} linear combination, which cuts
+	down the number of degrees of freedom to $2$. \\
+
+	Normalization adds yet another constraint, which cuts us down
+	to a single degree of freedom. But, shouldn't the phase
+	ambiguity brings us to $\ldots$ \textit{zero} degree of freedom?
+	What are we missing? \\
+
+	Well, the idea of phase ambiguity was that we could multiply
+	the vectors by a $\exp(i\theta) = cos\theta+i\sin\theta$, for
+	$\theta\in\mathbb{R}$. But we saw that we actually don't need
+	complex numbers when we're in a $2D$-plane, which means
+	$\sin\theta = 0$, and thus forces $\cos\theta = 1$, so the
+	phase ambiguity doesn't impact the number of degrees
+	of freedom.\footnote{This feels still a bit hand-wavy
+	as a justification; maybe there's a neater way to express
+	it, either a pure mathematical characterization, or a physical
+	one.} % TODO
+\end{enumerate}
+
+Note that the form of this vector is naturally normalized ($\cos^2\alpha
++\sin^2\alpha = 1$). Recall that it \textit{must} be normalized because
+this column vector actually corresponds to:
+\[
+	\begin{pmatrix}
+		\cos\alpha \\
+		\sin\alpha \\
+	\end{pmatrix} = \cos\alpha\begin{pmatrix}
+		1 \\
+		0 \\
+	\end{pmatrix} + \sin\alpha\begin{pmatrix}
+		0 \\
+		1 \\
+	\end{pmatrix} = \cos\alpha\ket{u} + \sin\alpha\ket{d}
+\]
+And the square of the magnitude of $\cos\alpha$ encodes the
+probability for the measured value to correspond to $\ket{u}$
+while the square of the magnitude of $\sin\alpha$ encodes the
+probability of the system to be measured in state $\ket{d}$,
+and both states are orthogonal: the total probability must be $1$. \\
+
+Alright, let's get to actually finding the eigenvectors
+associated to our eigenvalues. We can use the same trick as
+in the previous exercise
+\href{https://github.com/mbivert/ttm/blob/master/qm/L03E02.pdf}{L03E02.pdf}:
+because of the diagonalization process, we have the following relation:
+\[
+	\sigma_n = PDP^{-1} \Leftrightarrow \sigma_n P
+		= PD(\underbrace{PP^{-1}}_{:=I_2}) = PD = P\begin{pmatrix}
+		1 & 0 \\
+		0 & -1 \\
+	\end{pmatrix}
+\]
+\[
+	\Leftrightarrow \underbrace{\begin{pmatrix}
+		\cos\theta & \sin\theta \\
+		\sin\theta & -\cos\theta \\
+	\end{pmatrix}}_{=\sigma_n}\underbrace{\begin{pmatrix}
+		\cos\alpha & \cos\beta \\
+		\sin\alpha & \sin\beta \\
+	\end{pmatrix}}_{=P} =\begin{pmatrix}
+		\cos\alpha & \cos\beta \\
+		\sin\alpha & \sin\beta \\
+	\end{pmatrix}\begin{pmatrix}
+		1 & 0 \\
+		0 & -1 \\
+	\end{pmatrix} = \begin{pmatrix}
+		\cos\alpha & -\cos\beta \\
+		\cos\alpha & -\sin\beta \\
+	\end{pmatrix}
+\]
+
+Where the columns of $P$ are the eigenvectors associated
+to the eigenvalues $1$ and $-1$. Both have the same "form", as
+previously explained. We could have used the same approach as in
+the book (see the previous exercise), but you'll get with the
+same (kind?) of system in the end. Let's perform the
+matrix multiplication on the left and extract two equations from the
+four we can get by identifying the matrix components:
+\[
+	\begin{pmatrix}
+		\cos\theta\cos\alpha + \sin\theta\sin\alpha &
+			\cos\theta\cos\beta + \sin\theta\sin\beta \\
+		\sin\theta\cos\alpha - \cos\theta\sin\alpha &
+			\sin\theta\cos\beta - \cos\theta\sin\beta \\
+	\end{pmatrix} = \begin{pmatrix}
+		\cos\alpha & -\cos\beta \\
+		\cos\alpha & -\sin\beta \\
+	\end{pmatrix}
+\]
+\[
+	\Leftrightarrow\begin{cases}
+		\cos\theta\cos\alpha + \sin\theta\sin\alpha = \cos\alpha \\
+		\cos\theta\cos\beta  + \sin\theta\sin\beta  = -\cos\beta \\
+	\end{cases}
+\]
+
+The following trigonometric identities\footnote{Look around
+for the proofs if needed; formulas can be found on
+\href{https://en.wikipedia.org/wiki/List\_of\_trigonometric\_identities\#Angle\_sum\_and\_difference\_identities}{Wikipedia}}:
+\[
+	\cos\theta\cos\alpha = \frac12(\cos(\theta-\alpha) + \cos(\theta+\alpha));\qquad
+	\sin\theta\sin\alpha = \frac12(\cos(\theta-\alpha) - \cos(\theta+\alpha))
+\]
+\[
+	\cos(\alpha-\pi) = -\cos\alpha
+\]
+Allows us to rewrite the previous system as
+\[
+	\Leftrightarrow\begin{cases}
+		\frac12\Bigl(
+			\bigl(\cos(\theta-\alpha)+\cos(\theta+\alpha)\bigr) +
+			\bigl(\cos(\theta-\alpha)-\cos(\theta+\alpha)\bigr)
+		\Bigr) = \cos\alpha \\
+				\frac12\Bigl(
+			\bigl(\cos(\theta-\beta)+\cos(\theta+\beta)\bigr) +
+			\bigl(\cos(\theta-\beta)-\cos(\theta+\beta)\bigr)
+		\Bigr) = \cos(\beta-\pi) \\
+	\end{cases}
+\]
+\[
+	\Leftrightarrow\begin{cases}
+		\cos(\theta-\alpha) = \cos\alpha \\
+		\cos(\theta-\beta)  = \cos(\beta-\pi) \\
+	\end{cases}
+\]
+And with the following identities:
+\[
+	\cos(\alpha+\frac\pi2) = -\sin\alpha;\qquad
+	\sin(\alpha+\frac\pi2) = \cos\alpha
+\]
+We reach:
+\[
+	\Rightarrow\begin{cases}
+		\theta-\alpha = \alpha \\
+		\theta-\beta = \beta-\pi \\
+	\end{cases}\Rightarrow\begin{cases}
+		\alpha = \frac\theta2 \\
+		\beta  = \frac12(\theta+\pi) \\
+	\end{cases}\Rightarrow\boxed{\begin{cases}
+		\ket{+1} = \begin{pmatrix}
+			\cos\alpha \\
+			\sin\alpha \\
+		\end{pmatrix} = \begin{pmatrix}
+			\cos(\theta/2) \\
+			\sin(\theta/2) \\
+		\end{pmatrix} \\
+		\ket{-1} = \begin{pmatrix}
+			\cos\beta \\
+			\sin\beta \\
+		\end{pmatrix} = \begin{pmatrix}
+			\cos(\theta/2 + \pi/2) \\
+			\sin(\theta/2 + \pi/2) \\
+		\end{pmatrix} = \begin{pmatrix}
+			-\sin(\theta/2) \\
+			\cos(\theta/2) \\
+		\end{pmatrix}\\
+	\end{cases}}
+\]
+
+\end{document}
