@@ -1,0 +1,298 @@
+\documentclass[solutions.tex]{subfiles}
+
+\xtitle
+
+\begin{document}
+\maketitle
+\begin{exercise}
+Let $n_z = \cos\theta$, $n_x = \sin\theta\cos\phi$ and
+$n_y = \sin\theta\sin\phi$. Angles $\theta$ and $\phi$ are defined
+according to the usual conventions for spherical coordinates (Fig. $3.2$).
+Compute the eigenvalues and eigenvectors for the matrix of Eq. $3.23$.
+\end{exercise}
+Let's recall Eq. $3.23$, which is general form of the spin $3$-vector operator:
+\[
+	\sigma_n = \begin{pmatrix}
+		n_z          & (n_x - in_y) \\
+		(n_x + in_y) & -n_z         \\
+	\end{pmatrix} = \begin{pmatrix}
+		\cos\theta & (\sin\theta\cos\phi - i(\sin\theta\sin\phi))  \\
+		(\sin\theta\cos\phi + i(\sin\theta\sin\phi)) & -\cos\theta \\
+	\end{pmatrix}
+\]
+
+Observe (e.g. from the trigonometric circle) that:
+\[
+	\cos\theta = \cos(-\theta);\qquad
+	\sin\theta = -\sin(-\theta)
+\]
+Hence:
+\[
+	\exp(-i\theta) := \cos(-\theta) + i\sin(-\theta)
+		= \cos\theta - i\sin\theta
+\]
+And we can simplify our previous expression of $\sigma_n$ to:
+\[
+	\sigma_n = \begin{pmatrix}
+		\cos\theta & \exp(-i\phi)\sin\theta \\
+		\exp(i\phi)\sin\theta & -\cos\theta \\
+	\end{pmatrix}
+\]
+
+Note that as we're now in the general case, we indeed have two
+degrees of freedom, encoded by the two angles $\theta$ and $\phi$;
+the \textit{why} has been explicited in subsection $2.5$. \\
+
+We're still confronted to a spin operator: we expect the eigenvalues
+to be $+1$ and $-1$\footnote{Remember from the real spectral theorem,
+or as the authors call it, the \textit{fundamental theorem}, that because
+we have a Hermitian matrix, we know it's diagonalizable, that its eigenvalues
+are real, and that the corresponding eigenvectors form a orthogonal
+basis}. But let's check this first: an eigenvector $\ket{\lambda}$ associated to an eigenvalue $\lambda$
+must obey:
+\[
+	\sigma_n\ket{\lambda} = \lambda\ket{\lambda}
+\]
+\[
+	\Leftrightarrow \sigma_n\ket{\lambda} - \lambda\ket{\lambda} = 0
+	\Leftrightarrow (\sigma_n - I_2\lambda)\ket{\lambda} = 0
+\]
+
+But eigenvectors are non-zero, hence, again with $0_2$ being the $2\times2$
+zero matrix:
+\[
+	\Leftrightarrow \sigma_n - I_2\lambda = 0_2
+\]
+
+And so this matrix $\sigma_n - I_2\lambda$ cannot be invertible\footnote{
+Again for otherwise, as recalled in
+\href{https://github.com/mbivert/ttm/blob/master/qm/L03E03.pdf}{L03E03},
+multiply both sides of the equation by its inverse, get an identity on
+the left-hand-side and still the zero matrix on the right-hand-side}. This
+translates to a condition on the determinant:
+\begin{equation*}\begin{aligned}
+	\det(\sigma_n - I_2\lambda) = 0
+	&&\Leftrightarrow&&&
+	\begin{vmatrix}
+		\cos\theta-\lambda & \exp(-i\phi)\sin\theta \\
+		\exp(i\phi)\sin\theta & -\cos\theta-\lambda \\
+	\end{vmatrix} = 0 \\
+	~ &&\Leftrightarrow&&&
+		-(\cos\theta-\lambda)(\cos\theta+\lambda)
+			-\underbrace{\exp(i\phi)\exp(-i\phi)}_{=1}\sin^2\theta = 0 \\
+	~ &&\Leftrightarrow&&&
+		-(\cos^2\theta-\lambda^2)-\sin^2\theta = 0 \\
+	~ &&\Leftrightarrow&&&
+		\lambda^2-(\underbrace{\sin^2\theta+\cos^2\theta}_{=1}) = 0\\
+	~ &&\Leftrightarrow&&&
+		\lambda^2 = 1 \\
+	~ &&\Leftrightarrow&&&
+		\boxed{\lambda = \begin{cases}
+			+1 \\
+			-1 \\
+		\end{cases}} \\
+\end{aligned}\end{equation*}
+
+The remaining difficulty is then in finding the eigenvectors. We can
+use the following argument\footnote{\url{https://physics.stackexchange.com/a/720025}}. \\
+
+Consider as a first guess an eigenvector of the form:
+\[
+	\begin{pmatrix}
+		z_1 \\
+		z_2 \\
+	\end{pmatrix};\qquad (z_1, z_2)\in\mathbb{C}^2
+\]
+We can put both complex numbers in exponential form:
+\[
+	\begin{pmatrix}
+		r_1\exp(i\phi_1) \\
+		r_2\exp(i\phi_2 \\
+	\end{pmatrix} = \exp(i\phi_1)\begin{pmatrix}
+		r_1 \\
+		r_2\exp(i(\phi_2-\phi_1)) \\
+	\end{pmatrix};\qquad (r_1, r_2, \phi_1, \phi_2)\in\mathbb{R}^4
+\]
+We can then ignore the general phase factor $\exp(i\phi_1)$, e.g.
+set $\phi_1$ = 0. Furthermore, we want the vector to be normalized
+(this is an eigenvector associated to the eigenvalue of a Hermitian
+operator: it must be normalized per the real spectral theorem), i.e.
+\[
+	|r_1|^2 + |r_2\exp(i\phi_2)|^2 = 1
+	\Leftrightarrow |r_1|^2 + |r_2|^2 = 1
+\]
+
+But we're then losing a degree of freedom, meaning, $r_1$ and $r_2$
+are not independent from each other: we can express them both in term of
+a single parameter, as long as the previous equation is satisfied.
+We can choose, as it'll make computation easier,
+$r_1 = \cos\alpha$, $r_2=\sin\alpha$, with $\alpha\in\mathbb{R}$.
+Finally, let's rename $\phi_2=\phi_\alpha$\footnote{Note that I'm not
+yet identifying $\phi_\alpha$ with $\phi$; this will come naturally
+later on}, which brings us to consider eigenvectors of the form:
+\[
+	\begin{pmatrix}
+		\cos\alpha \\
+		\exp(i\phi_\alpha)\sin\alpha \\
+	\end{pmatrix}
+\]
+
+As for the previous exercise, we can use two different parameter
+$\alpha$ and $\beta$ for each eigenvector. Again, because of the
+diagonalization process, we have the following relation
+\[
+	\sigma_n = PDP^{-1} \Leftrightarrow \sigma_n P
+		= PD(\underbrace{PP^{-1}}_{:=I_2}) = PD = P\begin{pmatrix}
+		1 & 0 \\
+		0 & -1 \\
+	\end{pmatrix}
+\]
+But the columns of $P$ must contain our eigenvectors, so this
+is equivalent to:
+\[
+	\underbrace{\begin{pmatrix}
+		\cos\theta & \exp(-i\phi)\sin\theta \\
+		\exp(i\phi)\sin\theta & -\cos\theta \\
+	\end{pmatrix}}_{=\sigma_n}\underbrace{\begin{pmatrix}
+		\cos\alpha & \cos\beta \\
+		\exp(i\phi_\alpha)\sin\alpha & \exp(i\phi_\beta)\sin\beta \\
+	\end{pmatrix}}_{=P} =\begin{pmatrix}
+		\cos\alpha & \cos\beta \\
+		\exp(i\phi_\alpha)\sin\alpha & \exp(i\phi_\beta)\sin\beta \\
+	\end{pmatrix}\begin{pmatrix}
+		1 & 0 \\
+		0 & -1 \\
+	\end{pmatrix}
+\]
+\[
+	= \begin{pmatrix}
+		\cos\alpha & -\cos\beta \\
+		\exp(i\phi_\alpha)\cos\alpha & -\exp(i\phi_\beta)\sin\beta \\
+	\end{pmatrix}
+\]
+Let's perform the
+matrix multiplication on the left:
+\[
+	\begin{pmatrix}
+		\cos\theta\cos\alpha + \exp(i(\phi_\alpha-\phi))\sin\theta\sin\alpha &
+			\cos\theta\cos\beta + \exp(i(\phi_\beta-\phi))\sin\theta\sin\beta \\
+		\exp(i\phi)\sin\theta\cos\alpha - \exp(i\phi_\alpha)\cos\theta\sin\alpha &
+			\exp(i\phi)\sin\theta\cos\beta - \exp(i\phi_\beta)\cos\theta\sin\beta \\
+	\end{pmatrix}
+\]
+\[ = \begin{pmatrix}
+		\cos\alpha & -\cos\beta \\
+		\exp(i\phi_\alpha)\cos\alpha & -\exp(i\phi_\beta)\sin\beta \\
+	\end{pmatrix}
+\]
+
+From which we can extract the following system of equations:
+\[
+	\begin{cases}
+		\cos\theta\cos\alpha + \exp(i(\phi_\alpha-\phi))\sin\theta\sin\alpha
+			&= \cos\alpha \\
+		\cos\theta\cos\beta + \exp(i(\phi_\beta-\phi))\sin\theta\sin\beta
+			&= -\cos\beta  \\
+	\end{cases}
+\]
+
+\begin{remark} As for the previous exercise, I leave it to you to check
+that the solution we'll find for this system also solve the two other
+omitted equations.
+\end{remark}
+
+It's tempting to set $\phi=\phi_\alpha=\phi_\beta$, but can we do so?
+Well, we know the two eigenvectors will have to be orthogonal: this
+adds an additional constraint, which decrease our degrees of freedom by
+one, meaning there's one superfluous variable in $\{\alpha, \beta, \phi_\alpha,
+\phi_\beta\}$. We can \textit{choose} to implement this constraint
+by setting $\phi_\alpha = \phi_\beta$. \\
+
+From there, we can indeed set $\phi_\alpha = \phi_\beta = \phi$, as this
+allows us to solve the equation for $\alpha$ and $\beta$ more easily:
+\[
+	\Leftrightarrow\begin{cases}
+		\cos\theta\cos\alpha + \sin\theta\sin\alpha &= \cos\alpha \\
+		\sin\theta\cos\beta - \cos\theta\sin\beta
+			&= -\cos\beta  \\
+	\end{cases}
+\]
+
+Which is exactly the same system we had for the previous exercise,
+which was solved by:
+\[
+	\begin{cases}
+		\alpha &= \theta/2 \\
+		\beta &= \frac12(\theta+\pi) \\
+	\end{cases}
+\]
+With the same trigonometric identities as for the previous exercise:
+\[
+	\cos(\alpha+\frac\pi2) = -\sin\alpha;\qquad
+	\sin(\alpha+\frac\pi2) = \cos\alpha
+\]
+We reach the following eigenvectors
+\[
+	\boxed{\begin{cases}
+		\ket{+1} &= \begin{pmatrix}
+				\cos\alpha \\
+				\exp(i\phi)\sin\alpha \\
+			\end{pmatrix} = \begin{pmatrix}
+				\cos(\theta/2) \\
+				\exp(i\phi)\sin(\theta/2) \\
+			\end{pmatrix} \\
+		\ket{-1} &= \begin{pmatrix}
+				\cos\beta \\
+				\exp(i\phi)\sin\beta \\
+			\end{pmatrix} = \begin{pmatrix}
+				-\sin(\theta/2) \\
+				\exp(i\phi)\cos(\theta/2) \\
+			\end{pmatrix}
+	\end{cases}}
+\]
+
+\hrr
+
+Alright, let's make the same verifications the authors did in the
+book after the previous exercise. First, we get the expected eigenvalues
+$+1$, $-1$, which are the only two eigenvalues we have for a spin
+operator. \\
+
+Then the two eigenvectors must be orthogonal, indeed (I only do it
+one way; the other is trivially similar):
+\[
+	\braket{+1}{-1} = \begin{pmatrix}
+		\cos(\theta/2) & \exp(-i\phi)\sin(\theta/2) \\
+	\end{pmatrix}\begin{pmatrix}
+		-\sin(\theta/2) \\
+		\exp(i\phi)\cos(\theta/2) \\
+	\end{pmatrix}
+\]
+\[
+	= -\cos(\theta/2)\sin(\theta/2) +
+		\exp(-i\phi+i\phi)\cos(\theta/2)\sin(\theta/2) = 0
+\]
+
+Finally, if we prepare a spin along the $z$-axis in the up
+state $\ket{u}$, then rotate our apparatus to lie along the $\hat{n}$
+axis, which \textit{is not} restricted to the $xz$-plane anymore,
+we have according to the fourth principle\footnote{Don't hesitate
+to get back to the definition of $\ket{u}$ and that of the inner-product
+if this isn't clear enough.}:
+\[
+	P(+1) = |\braket{u}{+1}|^2 = \cos^2(\theta/2)
+\]
+\[
+	P(-1) = |\braket{u}{-1}|^2 = \sin^2(\theta/2)
+\]
+
+Which then lead to the exact same computation regarding
+the expected value for the measurement:
+\[
+	\left<\sigma_n\right> = \sum_i\lambda_iP(\lambda_i) =
+		(+1)\cos^2(\theta/2) + (-1)\sin^2(\theta/2) = \boxed{\cos\theta}
+\]
+
+Note also that $P(+1)+P(-1) = 1$.
+
+\end{document}
