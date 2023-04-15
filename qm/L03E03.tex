@@ -21,7 +21,7 @@ length.
 Let's recall the context: we're trying to build an operator that allows
 us to measure the spin of a particle. We've started by building the
 components of such an operator, each representing our ability to measure
-the spin along any of the $3D$ axsis: $\sigma_x$, $\sigma_y$ and $\sigma_z$.
+the spin along any of the $3D$ axes: $\sigma_x$, $\sigma_y$ and $\sigma_z$.
 Each of them was built from the behavior of the spin we "measured": we
 extracted from the observed behavior a set of constraints, which allowed
 us to determine the components of the spin operator: \\
@@ -307,10 +307,53 @@ in subsection $2.5$:
 	complex numbers when we're in a $2D$-plane, which means
 	$\sin\theta = 0$, and thus forces $\cos\theta = 1$, so the
 	phase ambiguity doesn't impact the number of degrees
-	of freedom.\footnote{This feels still a bit hand-wavy
-	as a justification; maybe there's a neater way to express
-	it, either a pure mathematical characterization, or a physical
-	one.} % TODO
+	of freedom;
+
+	\item Here's a third argument that we'll re-use in the next
+	exercise\footnote{Source: \url{https://physics.stackexchange.com/a/720025}}.
+	Consider as a first guess an eigenvector of the form
+	\[
+		\begin{pmatrix}
+			z_1 \\
+			z_2 \\
+		\end{pmatrix};\qquad (z_1, z_2)\in\mathbb{C}^2
+	\]
+	We can put both complex numbers in exponential form:
+	\[
+		\begin{pmatrix}
+			r_1\exp(i\phi_1) \\
+			r_2\exp(i\phi_2 \\
+		\end{pmatrix} = \exp(i\phi_1)\begin{pmatrix}
+			r_1 \\
+			r_2\exp(i(\phi_2-\phi_1)) \\
+		\end{pmatrix};\qquad (r_1, r_2, \phi_1, \phi_2)\in\mathbb{R}^4
+	\]
+	We can then ignore the general phase factor $\exp(i\phi_1)$, e.g.
+	choose $\phi_1$ = 0. Furthermore, we'll want the (eigen)vector to be
+	normalized (remember, the eigenvector associated to the eigenvalues
+	of of a Hermitian operator make an orthonormal basis), i.e.:
+	\[
+		|r_1|^2 + |r_2\exp(i\phi_2)|^2 = 1
+		\Leftrightarrow |r_1|^2 + |r_2|^2 = 1
+	\]
+	But we're then losing a degree of freedom, meaning, $r_1$ and $r_2$
+	are not independent from each other: we can express them both in term of
+	a single parameter, as long as the previous equation is satisfied.
+	We can choose, as it'll make computation easier,
+	$r_1 = \cos\alpha$, $r_2=\sin\alpha$, with $\alpha\in\mathbb{R}$.
+	Which brings us to:
+	\[
+		\begin{pmatrix}
+			\cos\alpha \\
+			\exp(i\phi_2)\sin\alpha \\
+		\end{pmatrix}
+	\]
+	If $\phi_2$ varies, then our eigenvector isn't restricted to
+	a plane. But, because our eigenvector will be a eigenvector
+	of a Hermitian matrix, we know by the real spectral theorem\footnote{
+	\href{https://github.com/mbivert/ttm/blob/master/qm/L03E01.pdf}{L03E01.pdf}}
+	that it must be a (an orthonormal basis) vector of the $xz$-plane.
+	So we can choose $\phi_2 = 0$ to restrict it to a plane.
 \end{enumerate}
 
 Note that the form of this vector is naturally normalized ($\cos^2\alpha
@@ -389,6 +432,13 @@ four we can get by identifying the matrix components:
 		\cos\theta\cos\beta  + \sin\theta\sin\beta  = -\cos\beta \\
 	\end{cases}
 \]
+
+\begin{remark} Strictly speaking, we don't really know if this is
+equivalent so far, as we're just extracting two equations from
+potentially four distinct equations. For correctness' sake, we could
+(I won't out of laziness) verify that the solution we find for
+those two equations also solve the two other remaining equations.
+\end{remark}
 
 The following trigonometric identities\footnote{Look around
 for the proofs if needed; formulas can be found on
