@@ -1,0 +1,89 @@
+\documentclass[solutions.tex]{subfiles}
+
+\xtitle
+
+\begin{document}
+\maketitle
+\begin{exercise} Suppose that a spin is prepared so that
+$\sigma_m = +1$. The apparatus is then rotated to the $\hat{n}$
+direction and $\sigma_n$ is measured. What is the probability
+that the result is $+1$? Note that $\sigma_m = \sigma\cdot\hat{m}$,
+using the same convention we used for $\sigma_n$.
+\end{exercise}
+
+There are essentially two ways of solving the issue. \\
+
+The first one, and the simplest, is to observe that if we consider
+$\hat{n}$ in a frame of reference where $\hat{m}$ acts as our $z-axis$,
+then we're essentially in the case of our previous exercise: we've
+prepared a spin in the "up" state (now corresponding to a state where
+$\sigma_m = +1$), we've moved our apparatus away from $\hat{m}$ by
+a a certain angle $\theta$\footnote{$\theta$ really is the angle
+between $\hat{m}$ and $\hat{n}$, not some angle between $\hat{n}$ and
+the "real" $z$-axis}, and we know from the previous exercise
+that the probability of measuring a $+1$ after aligning our apparatus
+with the $\hat{n}$ axis is now
+\[
+	\boxed{P(+1) = \cos^2\frac\theta2}
+\]
+
+Which is exactly what we wanted to show (the answer is given in the book
+by the authors, after the exercise). \\
+
+\hrr
+
+I'll only draft the second approach, as I expect it to be more time
+consuming\footnote{And hopefully, valid$\ldots$}. The idea is not
+to rely on the previous observation, and to consider that we've
+prepared to spin so that $\sigma_m = +1$, which means the state
+of the system is the eigenvector corresponding to this eigenvalue,
+which we know from the
+\href{https://github.com/mbivert/ttm/blob/master/qm/L03E04.pdf}{previous exercise},
+with $\theta_m$ the angle between the $z$-axis and $\hat{m}$, and $\phi_m$ the
+angle between the $x$-axis and the projection of $\hat{m}$ on the $xy$-plane:
+\[
+	\ket{+1_m} = \begin{pmatrix}
+		\cos(\theta_m/2) \\
+		\exp(i\phi_m)\sin(\theta_m/2) \\
+	\end{pmatrix} \\
+\]
+
+If we then align the apparatus in the $\hat{n}$ direction, with corresponding
+$\theta_n$ / $\phi_n$ angles, \textit{which are relative to the $z$-axis, not
+$\hat{m}$} , we now, by the same result, that the eigenvector corresponding
+to the probability of measuring a $+1$ in the $\hat{n}$ direction is:
+\[
+	\ket{+1_n} = \begin{pmatrix}
+		\cos(\theta_n/2) \\
+		\exp(i\phi_n)\sin(\theta_n/2) \\
+	\end{pmatrix} \\
+\]
+
+Then, the probability to measure a $+1$ is given, again by using the
+fourth principle:
+\[
+	P(+1) = |\braket{+1_m}{+1_n}|^2
+\]
+
+We would then need to develop the inner-product between the two state
+vectors, and find a way to identify it with the half-angle between
+$\hat{n}$ and $\hat{m}$. \\
+
+All the difficulty is then in expressing this half-angle in terms of
+our four angles ($\theta_m$, $\phi_m$, $\theta_n$, $\phi_n$). I
+\textit{suppose} we get some insightful elements by cleverly:
+
+\begin{itemize}
+	\item Expressing $\hat{m}$ and $\hat{n}$ both in rectangular
+	coordinates;
+	\item Observing that by the regular $3$-vector dot product,
+	$\hat{n}\cdot\hat{m} = \norm{\hat{n}}\norm{\hat{m}}\cos\theta_{mn} =
+	\cos\theta_{mn}$
+	(where $\theta_{mn}$ is the angle between $\hat{m}$ and $\hat{n}$
+	\item Observing that $\cos\frac{\theta_{mn}}{2} = \frac1{\sqrt2}\hat{n}\cdot(\hat{n}+\hat{m})$
+	(again from the regular $3$-vector dot product, as $\hat{n}+\hat{m}$ will
+	be a (non-unitary) vector bisecting $\theta_{mn}$\footnote{
+	\url{https://math.stackexchange.com/a/2285989}: the parallelogram involved
+	in the sum of two vectors in a rhombus.})
+\end{itemize}
+\end{document}
