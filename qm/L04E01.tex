@@ -1,0 +1,33 @@
+\documentclass[solutions.tex]{subfiles}
+
+\xtitle
+
+\begin{document}
+\maketitle
+\begin{exercise} Prove that if $U$ is unitary, and if $\ket{A}$
+and $\ket{B}$ are any two state-vectors, then the inner product
+of $U\ket{A}$ and $U\ket{B}$ is the same as the inner product of
+$\ket{A}$ and $\ket{B}$. One could call this the \textit{conservation
+of overlaps}. It expresses the fact that the logical relation between
+states is preserved with time.
+\end{exercise}
+The inner-product has been defined as the product of a bra and a ket.
+So the inner-product of $U\ket{A}$ and $U\ket{B}$ is the product of e.g.
+the bra associated to $U\ket{A}$ and $U\ket{B}$. But in section $3.1.5$
+of the book, we've established that:
+\[
+	\ket{C} = M\ket{D} \Leftrightarrow \bra{C} = \bra{D}M^\dagger
+\]
+
+Hence the inner-product we're looking for is:
+\[
+	\bra{A}\underbrace{U^\dagger U}_{I}\ket{B} = \braket{A}{B} \qed
+\]
+
+\begin{remark} The terminology is a bit confusing: we're talking
+about the inner-product of two kets, while we've \textit{defined}
+the inner-product to be an operation between a bra and a ket. Overall,
+the bra-ket notation makes things a little more complicated than just
+having to deal with an inner-product space.
+\end{remark}
+\end{document}
