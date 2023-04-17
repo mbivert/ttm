@@ -1,0 +1,25 @@
+\documentclass[solutions.tex]{subfiles}
+
+\xtitle
+
+\begin{document}
+\maketitle
+\begin{exercise} Prove that if $M$ and $L$ are both
+Hermitian, $i[M,L]$ is also Hermitian. Note that the $i$
+is important. The commutator is, by itself, not Hermitian.
+\end{exercise}
+\begin{align*}
+	(i[M, L])^\dagger &= \left(i(ML - LM\right))^\dagger && ~\\
+	~ &= (iML-iLM)^\dagger && ~\\
+	~ &= \left((iML-iLM)^T\right)^* && \text{($\dagger$'s definition)}\\
+	~ &= \left((iML)^T-(iLM)^T\right)^* && \left((A+B)^T = A^T + B^T\right)\\
+	~ &= \left(iL^TM^T-iM^TL^T\right)^* && \left((AB)^T = B^TA^T\right)\\
+	~ &= \left(-i(L^TM^T)^*+i(M^TL^T)^*\right) &&
+		\left((zt)^* = z^*t^*; (z+t)* = z^*+t^*)\right)\\
+	~ &= i\left(M^\dagger L^\dagger-L^\dagger M^\dagger\right) &&
+		\text{($\dagger$'s definition)}\\
+	~ &= i\left(ML-LM\right) &&
+		\left(L=L^\dagger; M=M^\dagger\right) \\
+	~ &= i[M, L] && \qed \\
+\end{align*}
+\end{document}
