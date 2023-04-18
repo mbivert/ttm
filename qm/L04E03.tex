@@ -1,0 +1,101 @@
+\documentclass[solutions.tex]{subfiles}
+
+\xtitle
+
+\begin{document}
+\maketitle
+\begin{exercise} Go back to the definition of Poisson brackets
+in \textit{Volume I} and check that the identification in Eq. $4.21$
+is dimensionally consistent. Show that without the factor $\hbar$, it
+would not be.
+\end{exercise}
+Let's recall first Eq. $4.21$, where $[.,.]$ is the commutator
+and $\{.,.\}$ the Poisson brackets:
+\[
+	[F, G] \Longleftrightarrow i\hbar\{F,G\}
+\]
+The Poisson brackets are defined in \textit{Volume I},
+Eq. $(9)$ at the end of Lecture $9$ (The Phase Space
+Fluid and the Gibbs-Liouville Theorem), as:
+\[
+	\{F,G\} := \sum_i\left(
+		\frac{\partial F}{\partial q_i}
+		\frac{\partial G}{\partial p_i}
+		-
+		\frac{\partial F}{\partial p_i}
+		\frac{\partial G}{\partial q_i}
+	\right)
+\]
+Where the $p_i$ are the generalized momentum, and $q_i$ are
+the generalized coordinates. Recall that a momentum is typically
+defined as a mass in motion, while the coordinates are simply distances
+to an origin:
+\[
+	[p_i] = \text{kg}.\text{m}.\text{s}^{-1};\qquad
+	[q_i] = \text{m}
+\]
+For clarity, let's rewrite one of those partial derivative
+in terms of a limit:
+\[
+	\frac{\partial F}{\partial q_i} = \lim_{\epsilon\rightarrow 0}
+	\frac{F(q_i+\epsilon)-F(q_i)}{\epsilon}
+\]
+
+First $\epsilon$ must be of the same dimension than $q_i$ is this
+case, for otherwise $q_i+\epsilon$ is ill-defined; more generally
+it'll have the same dimension that the dimension of the differentiation
+variable. \\
+
+Second, observe that, again because otherwise we'd be adding
+carrots and potatoes:
+\[
+	\left[
+		\sum_i\left(
+				\frac{\partial F}{\partial q_i}
+				\frac{\partial G}{\partial p_i}
+				-
+				\frac{\partial F}{\partial p_i}
+				\frac{\partial G}{\partial q_i}
+			\right)
+	\right] = \left[
+		\frac{\partial F}{\partial q_i}
+		\frac{\partial G}{\partial p_i}
+			-
+		\frac{\partial F}{\partial p_i}
+		\frac{\partial G}{\partial q_i}
+	\right],\quad\text{for any arbitrary $i$ that is}
+\]
+But then,
+\[
+	[i\hbar\{F,G\}] = \left[\hbar\left(
+		\frac{\partial F}{\partial q_i}
+		\frac{\partial G}{\partial p_i}
+			-
+		\frac{\partial F}{\partial p_i}
+		\frac{\partial G}{\partial q_i}
+	\right)\right] = [\hbar]\left[
+		\frac{\partial F}{\partial q_i}
+		\frac{\partial G}{\partial p_i}
+	\right] - [\hbar]\left[
+		\frac{\partial F}{\partial p_i}
+		\frac{\partial G}{\partial q_i}
+	\right]
+\]
+We know $[\hbar] = \text{kg}.\text{m}^2.\text{s}^{-1} = [q_i p_i]$,
+and if we make the limits explicit as we did before, it remains
+from the previous expression:
+\[
+	[i\hbar\{F,G\}] = [FG]
+\]
+
+On the other side:
+\[
+	[[F, G]] = [FG - GF]
+\]
+For $FG-GF$ to be well defined, it must be that $[FG] = [GF]$. And
+so we're done:
+\[
+	\boxed{[[F, G]] = [FG] = [i\hbar\{F,G\}]} \qed
+\]
+
+\end{document}
