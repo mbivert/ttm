@@ -16,6 +16,8 @@ Other sources of solutions, for comparison:
     - [Michel Rennes'][ttm-cm-jimdo], in French;
   - Quantum Mechanics:
     - [Filip Van Lijsebetten's][ttm-qm-lijsebetten];
+    - [Gary S. Shea's][ttm-qm-shea];
+    - [Bud Simrin (matrixbud)][ttm-qm-mbud];
     - [Michel Rennes'][ttm-qm-jimdo], in French.
 
 I've collected a bit more auxiliary material [here][tales-ttm] in
@@ -33,3 +35,5 @@ case you're interested in deepening your physics knowledge.
 [jupyter]:               https://jupyter.org/
 [julia]:                 https://julialang.org/
 [tales-ttm]:             https://tales.mbivert.com/on-the-theoretical-minimum-solutions/
+[ttm-qm-shea]: https://www.scribd.com/document/389409032/Susskind-Quantum-Mechanics-Notes
+[ttm-qm-mbud]: https://github.com/matrixbud
