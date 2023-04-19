@@ -1,0 +1,116 @@
+\documentclass[solutions.tex]{subfiles}
+
+\xtitle
+
+\begin{document}
+\maketitle
+\begin{exercise} Verify the commutation relations of Eqs. $4.26$.
+\end{exercise}
+Let's first recall this set of equations:
+\[ [\sigma_x, \sigma_y] = 2i\sigma_z; \]
+\[ [\sigma_y, \sigma_z] = 2i\sigma_x; \]
+\[ [\sigma_z, \sigma_x] = 2i\sigma_y; \]
+For clarity, let's recall the commutator's definition, for two
+observable $F$ and $G$:
+\[
+	[F, G] = FG - GF
+\]
+And finally, let's recall the Pauli matrices $\sigma_x$, $\sigma_y$
+and $\sigma_z$ (from Eqs. $3.20$, at the end of section $3.4$)
+\[
+	\sigma_z = \begin{pmatrix}
+		1 & 0 \\
+		0 & -1 \\
+	\end{pmatrix};\quad
+	\sigma_x = \begin{pmatrix}
+		0 & 1 \\
+		1 & 0 \\
+	\end{pmatrix};\quad
+	\sigma_y = \begin{pmatrix}
+		0 & -i \\
+		i & 0 \\
+	\end{pmatrix}
+\]
+Then this is just elementary matrix multiplication.
+\[
+	[\sigma_x, \sigma_y] = \begin{pmatrix}
+		0 & 1 \\
+		1 & 0 \\
+	\end{pmatrix}\begin{pmatrix}
+		0 & -i \\
+		i & 0 \\
+	\end{pmatrix} - \begin{pmatrix}
+		0 & -i \\
+		i & 0 \\
+	\end{pmatrix}\begin{pmatrix}
+		0 & 1 \\
+		1 & 0 \\
+	\end{pmatrix} = \begin{pmatrix}
+		i & 0 \\
+		0 & -i \\
+	\end{pmatrix} - \begin{pmatrix}
+		-i & 0 \\
+		0 & i \\
+	\end{pmatrix} = \begin{pmatrix}
+		2i & 0 \\
+		0 & -2i \\
+	\end{pmatrix} = 2i\underbrace{\begin{pmatrix}
+		1 & 0 \\
+		0 & -1 \\
+	\end{pmatrix}}_{\sigma_z} \qed
+\]
+\[
+	[\sigma_y, \sigma_z] = \begin{pmatrix}
+		0 & -i \\
+		i & 0 \\
+	\end{pmatrix}\begin{pmatrix}
+		1 & 0 \\
+		0 & -1 \\
+	\end{pmatrix} - \begin{pmatrix}
+		1 & 0 \\
+		0 & -1 \\
+	\end{pmatrix}\begin{pmatrix}
+		0 & -i \\
+		i & 0 \\
+	\end{pmatrix} = \begin{pmatrix}
+		0 & i \\
+		i & 0 \\
+	\end{pmatrix} - \begin{pmatrix}
+		0 & -i \\
+		-i & 0 \\
+	\end{pmatrix} = \begin{pmatrix}
+		0 & 2i \\
+		2i & 0 \\
+	\end{pmatrix} = 2i\underbrace{\begin{pmatrix}
+		0 & 1 \\
+		1 & 0 \\
+	\end{pmatrix}}_{\sigma_x} \qed
+\]
+\[
+	[\sigma_z, \sigma_x] = \begin{pmatrix}
+		1 & 0 \\
+		0 & -1 \\
+	\end{pmatrix}\begin{pmatrix}
+		0 & 1 \\
+		1 & 0 \\
+	\end{pmatrix} - \begin{pmatrix}
+		0 & 1 \\
+		1 & 0 \\
+	\end{pmatrix}\begin{pmatrix}
+		1 & 0 \\
+		0 & -1 \\
+	\end{pmatrix} = \begin{pmatrix}
+		0 & 1 \\
+		-1 & 0 \\
+	\end{pmatrix} - \begin{pmatrix}
+		0 & -1 \\
+		1 & 0 \\
+	\end{pmatrix} = \begin{pmatrix}
+		0 & 2 \\
+		-2 & 0 \\
+	\end{pmatrix} = 2i\underbrace{\begin{pmatrix}
+		0 & -i \\
+		i & 0 \\
+	\end{pmatrix}}_{\sigma_y} \qed
+\]
+\end{document}
