@@ -1,0 +1,81 @@
+\documentclass[solutions.tex]{subfiles}
+
+\xtitle
+
+\begin{document}
+\maketitle
+\begin{exercise} Take any unit $3$-vector $\bm{n}$ and form
+the operator
+\[
+	H = \frac{\hbar\omega}2\sigma\cdot\bm{n}
+\]
+Find the energy eigenvalues and eigenvectors by solving the
+time-independent Schr\"odinger equation. Recall that Eq. $3.23$
+gives $\sigma\cdot\bm{n}$ in component form.
+\end{exercise}
+Let's recall Eq. $3.23$, which is general form of the spin $3$-vector operator:
+\[
+	\sigma_n = \sigma\cdot\bm{n} = \begin{pmatrix}
+		n_z          & (n_x - in_y) \\
+		(n_x + in_y) & -n_z         \\
+	\end{pmatrix}
+\]
+And the \textit{time-independent Schr\"odinger equation}\footnote{That's
+quite a fancy name for describing the eigenvectors of an
+operator, by comparison with the "iconic" Schr\"odinger equation$\ldots$}:
+\[
+	H\ket{E_j} = E_j\ket{E_j}
+\]
+In an \href{https://github.com/mbivert/ttm/blob/master/qm/L03E04.pdf}{earlier
+exercise (L03E04)}, we actually diagonalized $\sigma_n$: this gave us two
+eigenvalues $+1$ and $-1$, and two eigenvectors:
+\[
+	\ket{+1} = \begin{pmatrix}
+		\cos(\theta/2) \\
+		\exp(i\phi)\sin(\theta/2) \\
+	\end{pmatrix};\qquad
+	\ket{-1} = \begin{pmatrix}
+		-\sin(\theta/2) \\
+		\exp(i\phi)\cos(\theta/2) \\
+	\end{pmatrix}
+\]
+Where $\bm{n}$ was a regular unitary $3$-vector expressed in spherical
+coordinates:
+\[
+	\bm{n} = \begin{pmatrix}
+		\sin\theta\cos\phi \\
+		\sin\theta\sin\phi \\
+		\cos\theta
+	\end{pmatrix}
+\]
+Let's see how we can leverage this previous work to our advantage:
+such an $\bm{n}$ vector still fit our purpose here. Furthermore,
+we know that the eigenvalues of $\sigma_n$ are the only solutions to:
+
+\[ \sigma_n\ket{F_j} = F_j\ket{F_j} \]
+
+But if we multiply both sides of this equation by $\dfrac{\hbar\omega}2$,
+we get exactly the equation we want to solve:
+\[
+	\underbrace{\frac{\hbar\omega}2\sigma_n}_{H}\ket{F_j} =
+		\left(\frac{\hbar\omega}2F_j\right)\ket{F_j}
+\]
+
+Multiplying the equation by a constant doesn't change the eigenvectors:
+they still are the only solutions, but the associated eigenvalues are
+now different:
+\[
+	\boxed{\lambda_1 = \frac{\hbar\omega}2;\qquad
+		\ket{\lambda_1} = \begin{pmatrix}
+		\cos(\theta/2) \\
+		\exp(i\phi)\sin(\theta/2) \\
+	\end{pmatrix}}
+\]\[
+	\boxed{\lambda_2 = -\frac{\hbar\omega}2;\qquad
+		\ket{\lambda_2} = \begin{pmatrix}
+		-\sin(\theta/2) \\
+		\exp(i\phi)\cos(\theta/2) \\
+	\end{pmatrix}}
+\]
+
+\end{document}
