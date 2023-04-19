@@ -1,0 +1,222 @@
+\documentclass[solutions.tex]{subfiles}
+
+\xtitle
+
+\begin{document}
+\maketitle
+\begin{exercise} Carry out the Schr\"odinger Ket recipe for
+a single spin. The Hamiltonian is $H = \dfrac{\omega\hbar}2\sigma_z$
+and the final observable is $\sigma_x$. The initial state is given
+as $\ket{u}$ (the state in which $\sigma_z = +1$). \\
+
+After time $t$, an experiment is done to measure $\sigma_y$. What
+are the possible outcomes and what are the probabilities for those
+outcomes? \\
+
+Congratulations! You have now solved a real quantum mechanics problem
+for an experiment that can actually be carried out in the laboratory.
+Feel free to pat yourself on the back.
+\end{exercise}
+\begin{remark} There's a typo in the statement of this exercise: the
+final observable is said first to be $\sigma_x$ and then $\sigma_y$.
+The French version of the book uses $\sigma_y$ for both, so that's what
+I'll do here.
+\end{remark}
+\begin{enumerate}
+	\item \textit{Derive, look up, guess, borrow, or steal the Hamiltonian
+	operator H}; \\
+	Well, let's take it from the authors:
+	\[
+		H = \frac{\omega\hbar}2\sigma_z = \frac{\omega\hbar}2\begin{pmatrix}
+			1 &  0 \\
+			0 & -1 \\
+		\end{pmatrix}
+	\]
+	\item \textit{Prepare an initial state $\ket{\psi(0)}$}; \\
+	Again, from the exercise statement, let's prepare an up state:
+	\[
+		\ket{\psi(0)} = \ket{u} = \begin{pmatrix} 1 \\ 0 \\ \end{pmatrix}
+	\]
+	\item \textit{Find the eigenvalues and eigenvectors of $H$ by solving
+	the time-independent Schr\"odinger equation,
+	\[
+		H\ket{E_j} = E_j\ket{E_j}
+	\]}
+	I don't recall us already diagonalizing $\sigma_z$ before, so
+	let's do it, but I'll be shorter than usual. The eigenvalues
+	are given by the non-invertibility condition of $H-I\lambda$,
+	as the solutions of
+	\[
+		\det(H-I\lambda) =
+			(\frac{\omega\hbar}2-\lambda)(\lambda-\frac{\omega\hbar}2) = 0
+	\]
+	Hence the two eigenvalues:
+	\[
+		E_1 = \frac{\omega\hbar}2;\qquad E_2 = -\frac{\omega\hbar}2
+	\]
+	From which we can derive the two eigenvectors:
+	\[
+		\underbrace{\frac{\omega\hbar}2\begin{pmatrix}
+			1 & 0  \\
+			0 & -1 \\
+		\end{pmatrix}}_{H}\ket{E_1} = \frac{\omega\hbar}2\ket{E_1}
+	\]
+	Assuming an eigenvector of a general form $(a\ b)^T$ yields
+	the following system:
+	\[
+		\Leftrightarrow \begin{cases}
+			a = a \\
+			-b = b \\
+		\end{cases}
+	\]
+	So $b = 0$; furthermore, as $\ket{E_1}$ must be unitary
+	(from the fundamental theorem/real spectral theorem, we know
+	the eigenvectors of a Hermitian operator, which $H$ most definitely
+	is, are unitary, because the eigenvectors make an orthonormal basis),
+	we must have $a = \pm 1$; let's chose more or
+	less arbitrarily $a = 1$. Hence:
+	\[
+		\boxed{\ket{E_1} = \begin{pmatrix} 1 \\ 0 \\ \end{pmatrix}}
+	\]
+	Similarly for $\ket{E_2}$, assume a general form of $(c\ d)^T$,
+	this yields the following system:
+	\[
+		\Leftrightarrow \begin{cases}
+			c = -c \\
+			-d = -d \\
+		\end{cases}
+	\]
+	By a similar argument, as before we find:
+	\[
+		\boxed{\ket{E_2} = \begin{pmatrix} 0 \\ 1 \\ \end{pmatrix}}
+	\]
+	\begin{remark} I'm not sure why we have an extra degree
+	of freedom via the signs on the non-zero component
+	of the eigenvectors; I can't think of an extra constraint.
+	\end{remark}
+	\item \textit{Use the initial state-vector $\ket{\psi(0)}$, along with
+	the eigenvectors $\ket{E_j}$ from step 3, to calculate the initial
+	coefficients $\alpha_j(0)$:
+	\[
+		\alpha_j(0) = \braket{E_j}{\psi(0)}
+	\]}
+	That's an elementary computation:
+	\[
+		\alpha_1(0) = 1;\qquad \alpha_2(0) = 0
+	\]
+	\item \textit{Rewrite $\ket{\psi(0)}$ in terms of the eigenvectors
+	$\ket{E_j}$ and the initial coefficients $\alpha_j(0)$:
+	\[
+		\ket{\psi(0)} = \sum_j\alpha_j(0)\ket{E_j}
+	\]}
+	Again, quite elementary given the quantities involved:
+	\[
+		\ket{\psi(0)} = 1\ket{E_1} = \ket{u}
+			= \begin{pmatrix} 1 \\ 0 \\ \end{pmatrix}
+	\]
+	\item \textit{In the above equation, replace each $\alpha_j(0)$ with
+	$\alpha_j(t)$ to capture its time-dependence. As a result, $\ket{\psi(0)}$
+	becomes $\ket{\psi(t)}$:
+	\[
+		\ket{\psi(t)} = \sum_j\alpha_j(t)\ket{E_j}
+	\]}
+	Naturally:
+	\[
+		\ket{\psi(t)} = \alpha_1(t)\ket{E_1}+\alpha_2(t)\ket{E_2}
+	\]
+	\item \textit{Using Eq. $4.30$\footnote{This equation corresponds
+	exactly to what this step describes}, replace each $\alpha_j(t)$ with
+	$\alpha_j(0)\exp(-\frac{i}\hbar E_jt)$:
+	\[
+		\ket{\psi(t)} = \sum_j\alpha_j(0)\exp(-\frac{i}\hbar E_jt)\ket{E_j}
+	\]}
+	Because $\alpha_2(0) = 0$, it only remains:
+	\[
+		\boxed{\ket{\psi(t)} = \exp(-\frac{i}\hbar t)\ket{u}}
+	\]
+\end{enumerate}
+OK, then the idea is that if we have an observable $L$, the probability
+to measure $\lambda$ (where $\lambda$ is then an eigenvalue of $L$) is
+given by:
+\[
+	P_\lambda(t) = |\braket{\lambda}{\psi(t)}|^2
+\]
+The authors are asking us to consider as an observable $L=\sigma_y$. Recall:
+\[
+	\sigma_y = \begin{pmatrix}
+		0 & -i \\
+		i & 0  \\
+	\end{pmatrix}
+\]
+This is a matrix corresponding to the spin observable following the $y$-axis:
+we \textit{must} expect its eigenvalues to be $\pm 1$ and its eigenvectors
+to be $\ket{i}$ and $\ket{o}$, but let's compute them all anyway for practice:
+\[
+	\det(\sigma_y-I\lambda) = \lambda^2+i^2 = 0
+	\Leftrightarrow \lambda = \pm 1
+\]
+For the eigenvectors, again we can assume a general form and solve
+the corresponding system of equations:
+\[
+	\underbrace{\begin{pmatrix}
+		0 & -i \\
+		i &  0 \\
+	\end{pmatrix}}_{\sigma_y} \begin{pmatrix} a \\ b \\ \end{pmatrix}
+		= (+1)\begin{pmatrix} a \\ b \\ \end{pmatrix}
+	\Leftrightarrow \begin{cases}
+		-ib = a \\
+		ia = b \\
+	\end{cases}
+\]
+Both equations are actually equivalent (multiply the first one by $i$
+to get the second). We furthermore have an additional constraint as
+the eigenvectors are supposed to be unitary, which yields:
+\[
+	\ket{E_1} = \begin{pmatrix}
+		a \\
+		ia \\
+	\end{pmatrix} \text{ and } a^2+(ia)(-ia) = 1
+	\Leftrightarrow
+	\ket{E_1} = \begin{pmatrix}
+		1/\sqrt2 \\
+		i/\sqrt2 \\
+	\end{pmatrix} = \ket{i}
+\]
+Similarly:
+\[
+	\underbrace{\begin{pmatrix}
+		0 & -i \\
+		i &  0 \\
+	\end{pmatrix}}_{\sigma_y} \begin{pmatrix} c \\ d \\ \end{pmatrix}
+		= (-1)\begin{pmatrix} c \\ d \\ \end{pmatrix}
+	\Leftrightarrow \begin{cases}
+		-id = -c \\
+		ic = -d \\
+	\end{cases}
+\]
+Again, the two equations are equivalent (multiply the first by $-i$ to
+get the second one), but we have an additional constraint, as the
+vector must be unitary. In the end, this yields:
+\[
+	\ket{E_2} = \begin{pmatrix}
+		c \\
+		-ic \\
+	\end{pmatrix} \text{ and } c^2+(ic)(-ic) = 1
+	\Leftrightarrow
+	\ket{E_1} = \begin{pmatrix}
+		1/\sqrt2 \\
+		-i/\sqrt2 \\
+	\end{pmatrix} = \ket{o}
+\]
+We may now apply our previous probability formula (Principle $4$):
+\[
+	P_{+1}(t) = |\braket{i}{\psi(t)}|^2 =
+		|\frac1{\sqrt2}\exp(-\frac{it}\hbar)|^2 = \boxed{\frac12}
+\]
+And either because the sum of probabilities must be $1$, or by
+explicit computation:
+\[
+	P_{-1}(t) = |\braket{o}{\psi(t)}|^2 =
+		|\frac1{\sqrt2}\exp(-\frac{it}\hbar)|^2 = \boxed{\frac12}
+\]
+\end{document}
