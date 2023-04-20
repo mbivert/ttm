@@ -32,10 +32,10 @@ I'll do here.
 			0 & -1 \\
 		\end{pmatrix}
 	\]
-	\item \textit{Prepare an initial state $\ket{\psi(0)}$}; \\
+	\item \textit{Prepare an initial state $\ket{\Psi(0)}$}; \\
 	Again, from the exercise statement, let's prepare an up state:
 	\[
-		\ket{\psi(0)} = \ket{u} = \begin{pmatrix} 1 \\ 0 \\ \end{pmatrix}
+		\ket{\Psi(0)} = \ket{u} = \begin{pmatrix} 1 \\ 0 \\ \end{pmatrix}
 	\]
 	\item \textit{Find the eigenvalues and eigenvectors of $H$ by solving
 	the time-independent Schr\"odinger equation,
@@ -94,52 +94,52 @@ I'll do here.
 	of freedom via the signs on the non-zero component
 	of the eigenvectors; I can't think of an extra constraint.
 	\end{remark}
-	\item \textit{Use the initial state-vector $\ket{\psi(0)}$, along with
+	\item \textit{Use the initial state-vector $\ket{\Psi(0)}$, along with
 	the eigenvectors $\ket{E_j}$ from step 3, to calculate the initial
 	coefficients $\alpha_j(0)$:
 	\[
-		\alpha_j(0) = \braket{E_j}{\psi(0)}
+		\alpha_j(0) = \braket{E_j}{\Psi(0)}
 	\]}
 	That's an elementary computation:
 	\[
 		\alpha_1(0) = 1;\qquad \alpha_2(0) = 0
 	\]
-	\item \textit{Rewrite $\ket{\psi(0)}$ in terms of the eigenvectors
+	\item \textit{Rewrite $\ket{\Psi(0)}$ in terms of the eigenvectors
 	$\ket{E_j}$ and the initial coefficients $\alpha_j(0)$:
 	\[
-		\ket{\psi(0)} = \sum_j\alpha_j(0)\ket{E_j}
+		\ket{\Psi(0)} = \sum_j\alpha_j(0)\ket{E_j}
 	\]}
 	Again, quite elementary given the quantities involved:
 	\[
-		\ket{\psi(0)} = 1\ket{E_1} = \ket{u}
+		\ket{\Psi(0)} = 1\ket{E_1} = \ket{u}
 			= \begin{pmatrix} 1 \\ 0 \\ \end{pmatrix}
 	\]
 	\item \textit{In the above equation, replace each $\alpha_j(0)$ with
-	$\alpha_j(t)$ to capture its time-dependence. As a result, $\ket{\psi(0)}$
-	becomes $\ket{\psi(t)}$:
+	$\alpha_j(t)$ to capture its time-dependence. As a result, $\ket{\Psi(0)}$
+	becomes $\ket{\Psi(t)}$:
 	\[
-		\ket{\psi(t)} = \sum_j\alpha_j(t)\ket{E_j}
+		\ket{\Psi(t)} = \sum_j\alpha_j(t)\ket{E_j}
 	\]}
 	Naturally:
 	\[
-		\ket{\psi(t)} = \alpha_1(t)\ket{E_1}+\alpha_2(t)\ket{E_2}
+		\ket{\Psi(t)} = \alpha_1(t)\ket{E_1}+\alpha_2(t)\ket{E_2}
 	\]
 	\item \textit{Using Eq. $4.30$\footnote{This equation corresponds
 	exactly to what this step describes}, replace each $\alpha_j(t)$ with
 	$\alpha_j(0)\exp(-\frac{i}\hbar E_jt)$:
 	\[
-		\ket{\psi(t)} = \sum_j\alpha_j(0)\exp(-\frac{i}\hbar E_jt)\ket{E_j}
+		\ket{\Psi(t)} = \sum_j\alpha_j(0)\exp(-\frac{i}\hbar E_jt)\ket{E_j}
 	\]}
 	Because $\alpha_2(0) = 0$, it only remains:
 	\[
-		\boxed{\ket{\psi(t)} = \exp(-\frac{i}\hbar t)\ket{u}}
+		\boxed{\ket{\Psi(t)} = \exp(-\frac{i}\hbar t)\ket{u}}
 	\]
 \end{enumerate}
 OK, then the idea is that if we have an observable $L$, the probability
 to measure $\lambda$ (where $\lambda$ is then an eigenvalue of $L$) is
 given by:
 \[
-	P_\lambda(t) = |\braket{\lambda}{\psi(t)}|^2
+	P_\lambda(t) = |\braket{\lambda}{\Psi(t)}|^2
 \]
 The authors are asking us to consider as an observable $L=\sigma_y$. Recall:
 \[
@@ -210,13 +210,13 @@ vector must be unitary. In the end, this yields:
 \]
 We may now apply our previous probability formula (Principle $4$):
 \[
-	P_{+1}(t) = |\braket{i}{\psi(t)}|^2 =
+	P_{+1}(t) = |\braket{i}{\Psi(t)}|^2 =
 		|\frac1{\sqrt2}\exp(-\frac{it}\hbar)|^2 = \boxed{\frac12}
 \]
 And either because the sum of probabilities must be $1$, or by
 explicit computation:
 \[
-	P_{-1}(t) = |\braket{o}{\psi(t)}|^2 =
+	P_{-1}(t) = |\braket{o}{\Psi(t)}|^2 =
 		|\frac1{\sqrt2}\exp(-\frac{it}\hbar)|^2 = \boxed{\frac12}
 \]
 \end{document}
