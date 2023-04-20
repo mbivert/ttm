@@ -1,0 +1,85 @@
+\documentclass[solutions.tex]{subfiles}
+
+\xtitle
+
+\begin{document}
+\maketitle
+\begin{exercise} Verify this claim.
+\end{exercise}
+The claim being that any $2\times2$ Hermitian matrix
+can be represented as a linear combination of:
+\[
+	I = \begin{pmatrix}
+		1 & 0 \\
+		0 & 1 \\
+	\end{pmatrix};\quad
+	\sigma_x = \begin{pmatrix}
+		0 & 1 \\
+		1 & 0 \\
+	\end{pmatrix};\quad
+	\sigma_y = \begin{pmatrix}
+		0 & -i \\
+		i & 0  \\
+	\end{pmatrix};\quad
+	\sigma_z = \begin{pmatrix}
+		1 & 0 \\
+		0 & -1 \\
+	\end{pmatrix}
+\]
+
+The general form of a $2\times2$ Hermitian matrix is:
+\[
+	(\forall (r, r', w)\in\mathbb{R}^2\times\mathbb{C}),\quad
+	\begin{pmatrix}
+		r & w \\
+		w^* & r' \\
+	\end{pmatrix}
+\]
+Recall indeed that because for a Hermitian matrix $L$ we have
+$L = L^\dagger := (L^*)^T$, hence the diagonal elements must be real. \\
+
+Compare then with the general form for a linear combination of the four
+matrices above:
+\[
+	(\forall (a, b, c, d)\in\mathbb{R}^4),\quad
+	a\sigma_x + b\sigma_y + c\sigma_z + dI = \begin{pmatrix}
+		c+d  & a-ib \\
+		a+ib & c-d  \\
+	\end{pmatrix}
+\]
+
+Clearly we can identify $w\in\mathbb{C}$ with $a-ib$: this is a general
+form for a complex number, and this naturally identifies $w^*$ with
+$a+ib$, as expected. \\
+
+Regarding the remaining parameters, we have on one side two
+real parameters, and on the other side, two non-equivalent equations
+involving two parameters, meaning, two degrees of freedom on both sides.
+So there's room to identify $r$ with $c+d$ and $r'$ with $c-d$. More
+precisely, given two arbitrary $(r, r')\in\mathbb{R}^2$, we can always
+find $(c, d)\in\mathbb{R}^2$ such that $r = c+d$ and $r' = c-d$:
+\[
+	\begin{cases}
+		r = c+d \\
+		r' = c-d \\
+	\end{cases}\Leftrightarrow
+	\begin{cases}
+		c = r-d \\
+		d = c-r' \\
+	\end{cases}\Leftrightarrow
+	\begin{cases}
+		c = r-(c-r') \\
+		d = (r-d)-r' \\
+	\end{cases}\Leftrightarrow
+	\begin{cases}
+		c = \frac{r+r'}2 \\
+		d = \frac{r-r'}2 \\
+	\end{cases}
+\]
+
+\begin{remark} Note that (real) linear combinations of those 4 matrices
+are isomorphic to  $\mathbb{Q}$\footnote{
+\url{https://en.wikipedia.org/wiki/Quaternion}}.
+\end{remark}
+
+\end{document}
