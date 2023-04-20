@@ -1,0 +1,154 @@
+\documentclass[solutions.tex]{subfiles}
+
+\xtitle
+
+\begin{document}
+\maketitle
+\begin{exercise} 1) Show that
+$\Delta A^2 = \avg{\bar{A}^2}$ and
+$\Delta B^2 = \avg{\bar{B}^2}$ \\
+
+2) Show that $[\bar{A}, \bar{B}] = [A, B]$ \\
+
+3) Using these relations, show that
+\[
+	\Delta A\ \Delta B \geq \frac12\bra{\Psi}[A, B]\ket{\Psi}
+\]
+\end{exercise}
+OK, let's as usual recall the context: $A$ and $B$ are
+two observables. We defined the expectation value of an observable
+$C$ with eigenvalues labelled as $c$ to be:
+\[
+	\avg{C} := \bra{\Psi}C\ket{\Psi} = \sum_c cP(c)
+\]
+We construct from $C$ a new observable $\bar{C}$:
+\[
+	\bar{C} := C-\avg{C}I
+\]
+Where the identity $I$ is sometimes implicit. The eigenvalues
+of $\bar{C}$ are denoted $\bar{c}$ and can be expressed in terms
+of $C$'s eigenvalues, denoted $c$:
+\[
+	\bar{c} = c-\avg{C}
+\]
+
+From there, we defined the \textit{standard deviation}, or the
+square of the uncertainty of $C$, assuming a "well-behaved" probability
+distribution $P$, by:
+\[
+	(\Delta C)^2 := \sum_c \bar{c}^2P(c)
+\]
+
+\hrr
+
+Let's first quickly prove that $\bar{c} = c-\left<C\right>$ are
+indeed the eigenvalues of $\bar{C} = C-\left<C\right>I$.  Consider
+an eigenvalue $c$ of $C$, with associated eigenvector $\ket{c}$.
+It follows that:
+
+\begin{equation*}\begin{aligned}
+	~ && C\ket{c} &=&& c\ket{c} \\
+	\Leftrightarrow &&
+	C\ket{c} - \avg{C}\ket{c} &=&& c\ket{c} - \avg{C}\ket{c} \\
+	\Leftrightarrow &&
+	(C -\avg{C}I)\ket{c} &=&& (c - \avg{C})\ket{c} \\
+	\Leftrightarrow &&
+	\bar{C}\ket{c} &=&& (c - \avg{C})\ket{c} \\
+\end{aligned}\end{equation*}
+
+Meaning, $\ket{c}$ is still an eigenvector of $\bar{C}$, but
+now associated to the eigenvalue $c-\avg{C}$. The $\ket{c}$
+still make an orthonormal basis of the state space, so there
+are no other eigenvectors (there can't be more eigenvectors
+than the dimension of the surrounding state-space). $\qed$
+
+\hrr
+
+Similarly, we can prove that $c^2$ are the eigenvalues associated
+to $C^2$, for an observable $C$: again start from an eigenvalue
+$c$ of $C$, associated to an eigenvector $\ket{C}$:
+\[
+	C\ket{c} = c\ket{c}
+	\Leftrightarrow C(C\ket{c}) = C(c\ket{c})
+	\Leftrightarrow C^2\ket{c} = c(\underbrace{C\ket{c}}_{c\ket{c}})
+	\Leftrightarrow C^2\ket{c} = c^2\ket{c}) \qed
+\]
+
+\hrr
+
+1) We'll prove the fact for an arbitrary observable $C$: it'll
+naturally hold for both $A$ and $B$.
+\begin{equation*}\begin{aligned}
+	(\Delta C)^2 &:=&& \sum_c \bar{c}^2P(c) && ~ \\
+	~ &=&& \sum_c (c-\left<c\right>)^2P(c) && \text{(definition of $\bar{c}$)} \\
+	~ &=&& \bra{\Psi}\bar{C}^2\ket{\Psi} =: \avg{\bar{C}^2} && \text{(two previous properties) \qed} \\
+\end{aligned}\end{equation*}
+
+\hrr
+
+2) This is an elementary calculation:
+\begin{equation*}\begin{aligned}
+	[\bar{A}, \bar{B}] &:=&& \bar{A}\bar{B} - \bar{B}\bar{A}
+		&& \text{(commutator's definition)} \\
+	~ &=&& (A-\avg{A}I)(B-\avg{B}I) - (B-\avg{B}I)(A-\avg{A}I)
+		&& \text{(definition of $\bar{C}$)} \\
+	~ &=&& \Big(AB - \avg{A}B -\avg{B}A + \avg{A}\avg{B}I\Big)
+		- \Big(BA -\avg{B}A - \avg{A}B + \avg{B}\avg{A}I\Big) && ~ \\
+	~ &=&& AB - BA && ~ \\
+	~ &=:&& [A, B] && \text{(commutator's definition)} \qed \\
+\end{aligned}\end{equation*}
+Remember, $\avg{A}$ and $\avg{B}$ are real numbers (their multiplication
+is then commutative).
+
+\hrr
+
+3) This is now just about following the reasoning preceding
+the exercise in the book, as suggested by the authors, by
+replacing $A$ and $B$ with $\bar{A}$ and $\bar{B}$. \\
+
+So let:
+\[
+	\ket{X} = \bar{A}\ket{\Psi} = (A-\avg{A}I)\ket{\Psi};\qquad
+	\ket{Y} = i\bar{B}\ket{\Psi}= i(B-\avg{B}I)\ket{\Psi}
+\]
+
+Recall the general form of Cauchy-Schwarz for a complex vector
+space\footnote{I'm sticking to the authors' terminology and notations.}:
+\[
+	2|X||Y| \geq |\braket{X}{Y} + \braket{Y}{X}|
+\]
+Where the norm is defined from the inner-product:
+\[
+	|X| = \sqrt{\braket{X}{X}}
+\]
+
+Injecting our two vectors in such a Cauchy-Schwarz equation yields:
+\begin{equation*}\begin{aligned}
+	2\sqrt{\avg{\bar{A}^2}\avg{\bar{B}^2}} &\geq&&
+		|i(\bra{\Psi}\bar{A}\bar{B}\ket{\Psi}-\bra{\Psi}\bar{B}\bar{A}\ket{\Psi})|
+			& ~ \\
+	~ &\geq&&
+		|\bra{\Psi}[\bar{A},\bar{B}]\ket{\Psi}|
+			& \text{(commutator definition)} \\
+	~ &\geq&&
+		|\bra{\Psi}[A,B]\ket{\Psi}| &
+			(\text{from 2), }[\bar{A},\bar{B}] = [A, B]) \\
+\end{aligned}\end{equation*}
+
+But from 1), we know that
+\[
+	2\sqrt{\avg{\bar{A}^2}\avg{\bar{B}^2}} = 2\sqrt{(\Delta A)^2(\Delta B)^2}
+		=  2\Delta A\Delta B
+\]
+Note that the $\sqrt{.}$ can be removed "safely" as the $\Delta C^2$ are
+defined as a sum of positive terms (no absolute values necessary). \\
+
+Putting the two together yields the expected, \textit{general uncertainty principle}:
+\[
+	\boxed{
+		\Delta A\Delta B \geq |\bra{\Psi}[A,B]\ket{\Psi}|
+	} \qed
+\]
+
+
+\end{document}
