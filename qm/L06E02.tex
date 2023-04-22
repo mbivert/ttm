@@ -1,0 +1,109 @@
+\documentclass[solutions.tex]{subfiles}
+
+\xtitle
+
+\begin{document}
+\maketitle
+\begin{exercise} Show that if the two normalization conditions
+of Eqs. $6.4$ are satisfied, then the state-vector of Eq. $6.5$
+is automatically normalized as well. In other words, show that
+for this product state, normalizing the overall state-vector does
+not put any additional constraints on the $\alpha$'s and the $\beta$'s.
+\end{exercise}
+Recall that we're in the context of two distinct state-spaces, each
+of them referring to a full-blown spin. Spin states for the first space
+(Alice's) are denoted:
+\[
+	\alpha_u\keit{u} + \alpha_d\keit{d},\quad (\alpha_u, \alpha_d)\in\mathbb{C}^2
+\]
+While spin states for the second space (Bob's) are denoted:
+\[
+	\beta_u\ket{u} + \beta_d\ket{d},\quad (\beta_u, \beta_d)\in\mathbb{C}^2
+\]
+Such states are, as usual, normalized: this is the condition referred
+to by Eqs. $6.4$:
+\[
+	\alpha_u^*\alpha_u + \alpha_d^*\alpha_d = 1;\quad
+	\beta_u^*\beta_u + \beta_d^*\beta_d = 1
+\]
+The two underlying state spaces (complex space, but really, Hilbert
+spaces) are glued by a tensor product: this allows the creation of
+new state space, called the \textit{product state space}, which
+states can refer to both Alice's and Bob's state in a single expression.
+
+\begin{remark} I encourage you to have a look at how Mathematicians
+formalize the notion of a tensor product of vector spaces: there is
+for instance a great introductory YouTube
+video\footnote{\url{https://www.youtube.com/watch?v=K7f2pCQ3p3U}}
+by Michael Penn on the topic. \\
+
+The core idea is to start with what is called a \textit{formal product
+of vector spaces}, which is a new space built from the span of purely
+"syntactical" combinations of elements of two (or more) vector spaces.
+Equivalence classes are then used to constrain this span to be a vector
+space. \\
+
+For instance, the three following elements would be distinct elements in
+the formal product of $\mathbb{R}^2$ and $\mathbb{R}^3$:
+\[
+	2\begin{pmatrix} 1 \\ 2 \\ \end{pmatrix}*
+		\begin{pmatrix} 3 \\ 4 \\ 5\\ \end{pmatrix};\qquad
+	\begin{pmatrix} 2 \\ 4 \\ \end{pmatrix}*
+		\begin{pmatrix} 3 \\ 4 \\ 5\\ \end{pmatrix};\qquad
+	\begin{pmatrix} 1 \\ 2 \\ \end{pmatrix}*
+		\begin{pmatrix} 6 \\ 8 \\ 10\\ \end{pmatrix}
+\]
+But they would be identified by equivalence classes so as to
+be the same element in the tensor product of $\mathbb{R}^2$ and
+$\mathbb{R}^3$. We can keep identifying elements likewise until
+the operations (sum, scalar product) on the formal product space
+respect the properties the corresponding operations in a vector space.
+\end{remark}
+
+Here's Eq. $6.5$, the general form for such a product state, living
+in the tensor product space created from Alice's and Bob's state spaces
+(I've just named it $\Psi$ so as to refer to it later on):
+\[
+	|\Psi> = \alpha_u\beta_u\ket{uu} + \alpha_u\beta_d\ket{ud}
+		+ \alpha_d\beta_u\ket{du} + \alpha_d\beta_d\ket{dd}
+\]
+
+The claim we have to prove is that this vector is naturally normalized,
+from the normalization constraints imposed on the individual state spaces.
+
+Let's start by computing the norm of product state (assuming
+an ordered basis $\{\ket{uu}, \ket{ud}, \ket{du}, \ket{dd}\}$:
+\[
+	|\Psi|^2 = \braket{\Psi}{\Psi} =
+	\begin{pmatrix}
+		(\alpha_u\beta_u)^* & (\alpha_u\beta_d)^* &
+		(\alpha_d\beta_u)^* & (\alpha_d\beta_d)^* \\
+	\end{pmatrix}\begin{pmatrix}
+		\alpha_u\beta_u \\
+		\alpha_u\beta_d \\
+		\alpha_d\beta_u \\
+		\alpha_d\beta_d \\
+	\end{pmatrix}
+\]
+
+We can develop it further, using the fact that for
+$(a, b)\in\mathbb{C}$, $(ab)^* = a^*b^*$:
+\begin{equation*}\begin{aligned}
+	|\Psi|^2 &=&& \alpha_u^*\beta_u^*\alpha_u\beta_u
+		+ \alpha_u^*\beta_d^*\alpha_u\beta_d
+		+ \alpha_d^*\beta_u^*\alpha_d\beta_u
+		+ \alpha_d^*\beta_d^*\alpha_d\beta_d \\
+	~ &=&& \alpha_u^*\alpha_u(\underbrace{\beta_u^*\beta_u + \beta_d^*\beta_d}_{=1})
+		+ \alpha_d^*\alpha_d(\underbrace{\beta_u^*\beta_u + \beta_d^*\beta_d}_{=1}) \\
+	~ &=&& \underbrace{\alpha_u^*\alpha_u + \alpha_d^*\alpha_d}_{=1} \\
+	~ &=&& 1 \\
+\end{aligned}\end{equation*}
+
+But the norm is axiomatically positively defined (i.e.
+$(\forall\Psi\in\mathcal{H}),\,|\Psi| \geq 0$ with equality
+iff $\Psi=0_{\mathcal{H}}$) so:
+\[
+	\boxed{|\Psi| = 1}\qed
+\]
+
+\end{document}
