@@ -1,0 +1,60 @@
+\documentclass[solutions.tex]{subfiles}
+
+\xtitle
+
+\begin{document}
+\maketitle
+\begin{exercise} Prove that if $P(a, b)$ factorizes, then
+the correlation between $a$ and $b$ is zero.
+\end{exercise}
+Let's assume that $P(a, b)$ factorizes, meaning, let's assume
+than there are two functions $P_A$ and $P_B$ such that:
+\[
+	P(a, b) = P_A(a)P_B(b)
+\]
+Recall that the authors have defined the (statistical) correlation
+the quantity\footnote{Precise mathematical formulations are
+more involved, see for instance
+\url{https://en.wikipedia.org/wiki/Correlation}}:
+\[
+	\avg{\sigma_A\sigma_B}-\avg{\sigma_A}\avg{\sigma_B}
+\]
+Where $\avg{\sigma_C}$ is the average value of $C$'s observations,
+also known as the expected
+value\footnote{\url{https://en.wikipedia.org/wiki/Expected\_value}},
+and was defined earlier as:
+\[
+	\avg{\sigma_C} = \sum_c cP(c)
+\]
+How should we understand $\avg{\sigma_A\sigma_B}$? We're trying to find
+a way to express it as we just did for $\avg{\sigma_C}$. It's defined
+as the average of the product of $\sigma_A$ and $\sigma_B$, meaning,
+the sum of all possible products of $a$ and $b$, weighted by some probability
+distribution, but which one? Well, we don't really know its form specifically,
+but if for $\avg{\sigma_C}$ it was a function of $c$, then we can guess it
+must now be a function of $a$ and $b$: this is the $P(a, b)$ from the exercise
+statement:
+\[
+	\avg{\sigma_A\sigma_B} = \sum_a\left(\sum_b ab P(a, b)\right)
+\]
+
+From there, it's just a matter of developing the computation,
+using our assumption that $P(a, b)$ factorizes:
+\begin{equation*}\begin{aligned}
+	\avg{\sigma_A\sigma_B} &=&& \sum_a\left(\sum_b ab P(a, b)\right) \\
+	~ &=&& \sum_a\sum_b \left(ab P_A(a)P_B(b)\right) \\
+	~ &=&& \sum_a\sum_b \left((a P_A(a))(bP_B(b))\right) \\
+	~ &=&& \left(\sum_a aP_A(a)\right)\left(\sum_bbP_B(b)\right) \\
+	~ &=&& \avg{\sigma_A}\avg{\sigma_B}
+\end{aligned}\end{equation*}
+\[
+	\Leftrightarrow
+		\boxed{\avg{\sigma_A\sigma_B} - \avg{\sigma_A}\avg{\sigma_B} = 0}\qed
+\]
+
+\begin{remark} If you're uncertain about the $\sum$ manipulations, you
+may want to rewrite them as explicit sum over a small number of terms
+to convince you of their correctness.
+\end{remark}
+
+\end{document}
