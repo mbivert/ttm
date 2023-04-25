@@ -1,0 +1,78 @@
+\documentclass[solutions.tex]{subfiles}
+
+\xtitle
+
+\begin{document}
+\maketitle
+\begin{exercise} Use the matrix forms of $\sigma_z$, $\sigma_x$,
+and $\sigma_y$ and the column vectors for $\keit{u}$ and $\keit{d}$
+to verify Eqs. $6.6$. Then, use Eqs. $6.6$ and $6.7$ to write the
+equations that were left out of Eqs. $6.8$. Use the appendix to
+check your answers.
+\end{exercise}
+As usual, let's recall our Pauli matrices:
+
+\[
+	\sigma_x = \begin{pmatrix}
+		0 & 1 \\
+		1 & 0 \\
+	\end{pmatrix};\qquad \sigma_y = \begin{pmatrix}
+		0 & -i \\
+		i & 0 \\
+	\end{pmatrix};\qquad \sigma_z = \begin{pmatrix}
+		1 & 0 \\
+		0 & -1 \\
+	\end{pmatrix}
+\]
+The base vectors $\keit{u}$ and $\keit{d}$ are the canonical
+basis vectors for $\mathbb{C}^2$:
+\[
+	\keit{u} = \begin{pmatrix} 1 \\ 0 \\ \end{pmatrix};\qquad
+	\keit{d} = \begin{pmatrix} 0 \\ 1 \\ \end{pmatrix}
+\]
+We're trying to understand how for instance an operator $\sigma_x$
+define on Alice's state spaces can be extended to work on a state
+vector, taken from a combined state space involving Alice's. \\
+
+The core idea is that the operator will only act on the "component"
+of the vector that is related to Alice's state space, while leaving
+the components involving other state spaces untouched. \\
+
+Eqs. $6.6$ (first column below) simply encode how the spin operators
+act on the basis vectors, in Alice's state space; Eqs. $6.7$
+(second column below) are identical, but for Bob's state space:
+\begin{equation*}\begin{aligned}
+	\sigma_z\keit{u} &=&\keit{u}; &&& \tau_z\ket{u} &=&& \ket{u} \\
+	\sigma_z\keit{d} &=&-\keit{d}; &&& \tau_z\ket{d} &=&& -\ket{d} \\
+	\sigma_x\keit{u} &=&\keit{d}; &&& \tau_x\ket{u} &=&& \ket{d} \\
+	\sigma_x\keit{d} &=&\keit{u}; &&& \tau_x\ket{d} &=&& \ket{u} \\
+	\sigma_y\keit{u} &=&i\keit{d}; &&& \tau_y\ket{u} &=&& i\ket{d} \\
+	\sigma_y\keit{d} &=&-i\keit{u}; &&& \tau_y\ket{d} &=&& -i\ket{u} \\
+\end{aligned}\end{equation*}
+
+Now verifying that the matrix products indeed evaluates as such is
+child's play (matrix $\times$ vector products), there's no use
+of being more explicit here. \\
+
+For similar reasons, I'll just write a completed $6.8$ here, but won't
+develop the computations: one just have to follow the aforementioned
+rule: act with the operator on the correct component, extract the eventual
+scalar factor, and generally update the corresponding vector component.
+This yields, in agreement with the appendix:
+\begin{equation*}\begin{aligned}
+	\sigma_z\keit{uu} &=&\keit{uu};  &&& \tau_z\ket{uu} &=&& \ket{uu} \\
+	\sigma_z\keit{ud} &=&\keit{ud};  &&& \tau_z\ket{ud} &=&& -\ket{ud} \\
+	\sigma_z\keit{du} &=&-\keit{du}; &&& \tau_z\ket{du} &=&& \ket{du} \\
+	\sigma_z\keit{dd} &=&-\keit{dd}; &&& \tau_z\ket{dd} &=&& -\ket{dd} \\
+	 \cline{3-6}
+	\sigma_x\keit{uu} &=&\keit{du}; &&& \tau_x\ket{uu} &=&& \ket{ud} \\
+	\sigma_x\keit{ud} &=&\keit{dd}; &&& \tau_x\ket{ud} &=&& \ket{uu} \\
+	\sigma_x\keit{du} &=&\keit{uu}; &&& \tau_x\ket{du} &=&& \ket{dd} \\
+	\sigma_x\keit{dd} &=&\keit{ud}; &&& \tau_x\ket{dd} &=&& \ket{du} \\
+	 \cline{3-6}
+	\sigma_y\keit{uu} &=&i\keit{du};  &&& \tau_y\ket{uu} &=&& i\ket{ud} \\
+	\sigma_y\keit{ud} &=&i\keit{dd};  &&& \tau_y\ket{ud} &=&& -i\ket{uu} \\
+	\sigma_y\keit{du} &=&-i\keit{uu}; &&& \tau_y\ket{du} &=&& i\ket{dd} \\
+	\sigma_y\keit{dd} &=&-i\keit{ud}; &&& \tau_y\ket{dd} &=&& -i\ket{du} \\
+\end{aligned}\end{equation*}
+\end{document}
