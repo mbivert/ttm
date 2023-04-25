@@ -1,0 +1,71 @@
+\documentclass[solutions.tex]{subfiles}
+
+\xtitle
+
+\begin{document}
+\maketitle
+\begin{exercise} Prove that the state $\ket{\text{sing}}$ cannot
+be written as a product state.
+\end{exercise}
+Let's recall the definition of the so-called \textit{singlet} state
+$\ket{\text{sing}}$:
+\[
+	\ket{\text{sing}} = \frac1{\sqrt2}\left(\ket{ud}-\ket{du}\right)
+\]
+As for the previous exercise, we're still in the context of combining
+two state spaces: Alice's and Bob's, each representing the states of a
+spin, where the general form of Alice's state vectors is:
+\[
+	\alpha_u\keit{u} + \alpha_d\keit{d},\quad (\alpha_u, \alpha_d)\in\mathbb{C}^2
+\]
+While spin states for the second space (Bob's) are denoted:
+\[
+	\beta_u\ket{u} + \beta_d\ket{d},\quad (\beta_u, \beta_d)\in\mathbb{C}^2
+\]
+In this context, let's clarify the difference between a product state and a
+general composite state, with potential entanglement:
+\begin{description}
+	\item[Product state] obtained by developing a product between
+	two states from Alice and Bob's state spaces, which yield something
+	along the form:
+	\[
+		\alpha_u\beta_u\ket{uu}+\alpha_u\beta_d\ket{ud}
+			+\alpha_d\beta_u\ket{du}+\alpha_d\beta_d\ket{dd}
+	\]
+	Remember from the previous exercise that such a state vector
+	is naturally normalized, as a consequence of the normalization
+	of the underlying vectors from Alice and Bob's space states;
+	\item[General state for a $2$-spins system] obtained by linear
+	combination of the vectors from the ordered basis
+	$\{\ket{uu}, \ket{ud}, \ket{du}, \ket{dd}\}$:
+	\[
+		\Psi = \psi_{uu}\ket{uu} + \psi_{ud}\ket{ud}
+			+ \psi_{du}\ket{du} + \psi_{dd}\ket{dd}
+	\]
+	And impose a normalization condition on the scalar factors:
+	\[
+		|\Psi| = 1 \Leftrightarrow \psi_{uu}^*\psi_{uu}
+			+ \psi_{ud}^*\psi_{ud} + \psi_{du}^*\psi_{du}
+			+ \psi_{dd}^*\psi_{dd} = 1
+	\]
+\end{description}
+Clearly, $\ket{\text{sing}}$ is normalized: it's at least a
+general state for a 2-spins system. Assume it is a product state.
+Then there exists $(\alpha_u, \alpha_d, \beta_u, \beta_d)\in\mathbb{C}^4$
+such that:
+\[
+	\begin{cases}
+		\alpha_u\beta_d =& \dfrac1{\sqrt2} \\
+		\alpha_d\beta_u =& \dfrac1{\sqrt2} \\
+		\alpha_u\beta_u =& 0 \\
+		\alpha_d\beta_d =& 0 \\
+	\end{cases}
+\]
+But now, if $\alpha_u\beta_u = 0$, then at least either $\alpha_u = 0$ or
+$\beta_u$ = 0. Assume $\alpha_u = 0$. But then, we can't have $\alpha_u\beta_d = 1/\sqrt2$.
+Assume then $\beta_u = 0$. Yet in this case, we can't have $\alpha_d\beta_u = 1/\sqrt2$. \\
+
+So the system isn't solvable and our previous assumption can't hold. Hence,
+there's no such $(\alpha_u, \alpha_d, \beta_u, \beta_d)\in\mathbb{C}^4$, and
+$\ket{\text{sing}}$ is not a product state. $\qed$
+\end{document}
