@@ -1,0 +1,450 @@
+\documentclass[solutions.tex]{subfiles}
+
+\xtitle
+
+\begin{document}
+\maketitle
+\begin{exercise} Prove the following theorem: \\
+
+When any of Alice's or Bob's spin operators acts on a
+product state, the result is still a product state. \\
+
+Show that in a product state, the expectation value of
+any component of $\bm{\sigma}$ or $\bm{\tau}$ is exactly
+the same as it would be in the individual single-spin states.
+\end{exercise}
+\begin{remark} This is a bit long, but fairly straightforward.
+\end{remark}
+
+As usual, let's recall the context. We have two state spaces,
+one for Alice, and one for Bob, each sufficient to describe
+a spin. \\
+
+Spin states for Alice's and Bob's spaces are respectively
+denoted:
+\[
+	\alpha_u\keit{u} + \alpha_d\keit{d},\quad (\alpha_u, \alpha_d)\in\mathbb{C}^2;
+	\qquad
+	\beta_u\ket{u} + \beta_d\ket{d},\quad (\beta_u, \beta_d)\in\mathbb{C}^2
+\]
+Such states are normalized:
+\[
+	\alpha_u^*\alpha_u + \alpha_d^*\alpha_d = 1;\quad
+	\beta_u^*\beta_u + \beta_d^*\beta_d = 1
+\]
+
+We use a tensor product to join the two spaces. Among all
+the possible linear combination from the resulting product
+space, which is a vector space, product states are those of the
+form (where the $\alpha$s and $\beta$s are constrained by the previous
+normalization conditions):
+\[
+	|\Psi> = \alpha_u\beta_u\ket{uu} + \alpha_u\beta_d\ket{ud}
+		+ \alpha_d\beta_u\ket{du} + \alpha_d\beta_d\ket{dd}
+\]
+
+Now, we want to act on such a product state with an operator
+from either Alice's state space ($\bm{\sigma}$) or Bob's ($\bm{\tau}$),
+which, as we've saw earlier, can naturally be extended from the
+individual spaces to the product spaces. Recall that the operators's
+definition in their own respective state spaces are identical
+\[
+	\tau_x = \sigma_x = \begin{pmatrix}
+		0 & 1 \\
+		1 & 0 \\
+	\end{pmatrix};\qquad \tau_y = \sigma_y = \begin{pmatrix}
+		0 & -i \\
+		i & 0 \\
+	\end{pmatrix};\qquad \tau_z = \sigma_z = \begin{pmatrix}
+		1 & 0 \\
+		0 & -1 \\
+	\end{pmatrix}
+\]
+
+However, when acting on a product state (and more generally, on
+a vector from the product space), each will respectively only
+act on the corresponding part of the tensor product gluing
+basis vectors, for instance:
+\[
+	\sigma_x(\gamma\ket{ab})
+		= \gamma\sigma_x(\keit{a}\otimes\ket{b})
+		= \gamma\ket{(\sigma_x(a))b}
+\]
+\[
+	\tau_x(\gamma\ket{ab})
+		= \gamma\tau_x(\keit{a}\otimes\ket{b})
+		= \gamma\ket{a(\tau_x(b))}
+\]
+
+Because the computation will be exactly symmetric, we're only going to
+do the work for Alice's operators.
+\begin{remark} It would be interesting to see under which circumstances
+the result generalizes to arbitrary observables (Hermitian operators). It
+seems we would need for such an operator $\sigma$ to transform the basis
+vectors $\ket{u}$ and $\ket{d}$ in such a way that the induced
+rotation and scaling to reach $\sigma\ket{u}$ and $\sigma\ket{d}$,
+would somehow balance, so as to preserve the product state constraint.
+In particular, $\sigma\ket{u}$ and $\sigma\ket{d}$ should be orthogonal. \\
+
+This is exactly what happens below, for the spin operators.
+\end{remark}
+
+\hrr
+
+Note that:
+\[
+	\sigma_x\keit{u} = \begin{pmatrix}
+		0 & 1 \\
+		1 & 0 \\
+	\end{pmatrix}\begin{pmatrix} 1 \\ 0 \\ \end{pmatrix} = \begin{pmatrix}
+		0 \\ 1 \\
+	\end{pmatrix} = \keit{d};\qquad\sigma_x\keit{d} = \begin{pmatrix}
+		0 & 1 \\
+		1 & 0 \\
+	\end{pmatrix}\begin{pmatrix} 0 \\ 1 \\ \end{pmatrix} = \begin{pmatrix}
+		1 \\ 0 \\
+	\end{pmatrix} = \keit{u}
+\]
+
+Then:
+
+\begin{equation*}\begin{aligned}
+	\sigma_x\ket{\Psi} &=&&
+		  \alpha_u\beta_u\Bigl(\underbrace{(\sigma_x\keit{u})}_{\keit{d}}\otimes\ket{u}\Bigr)
+		+ \alpha_u\beta_d\Bigl(\underbrace{(\sigma_x\keit{u})}_{\keit{d}}\otimes\ket{d}\Bigr)
+		+ \alpha_d\beta_u\Bigl(\underbrace{(\sigma_x\keit{d})}_{\keit{u}}\otimes\ket{u}\Bigr)
+		+ \alpha_d\beta_d\Bigl(\underbrace{(\sigma_x\keit{d})}_{\keit{u}}\otimes\ket{d}\Bigr) \\
+	&=&& \alpha_u\beta_u\ket{du}+ \alpha_u\beta_d\ket{dd}
+		+ \alpha_d\beta_u\ket{uu} + \alpha_d\beta_d\ket{ud} \\
+	&=&& \alpha_d\beta_u\ket{uu} + \alpha_d\beta_d\ket{ud}
+		+\alpha_u\beta_u\ket{du}+ \alpha_u\beta_d\ket{dd} \\
+	&=&& \gamma_u\delta_u\ket{uu} + \gamma_u\delta_d\ket{ud}
+		+\gamma_d\delta_u\ket{du}+ \gamma_d\delta_d\ket{dd} \\
+\end{aligned}\end{equation*}
+
+Where, for the last step, we've just introduced some renaming (it'll
+be made explicit in a moment). Such
+a state will be a product state if the following hold:
+\[
+	\gamma_u^*\gamma_u + \gamma_d^*\gamma_d = 1;\quad
+	\delta_u^*\delta_u + \delta_d^*\delta_d = 1
+\]
+Let's transcribe this in terms of $\alpha$s and $\beta$s:
+\[
+	\alpha_d^*\alpha_d + \alpha_u^*\alpha_u = 1;\quad
+	\beta_u^*\beta_u + \beta_d^*\beta_d = 1
+\]
+Which are but the normalization conditions underlying $\ket{\Psi}$:
+\[
+	\alpha_u^*\alpha_u + \alpha_d^*\alpha_d = 1;\quad
+	\beta_u^*\beta_u + \beta_d^*\beta_d = 1
+\]
+Hence, $\sigma_x\ket{\Psi}$ is a state product. $\qed$
+
+\hrr
+
+We'll now do similar computations, but for $\sigma_y$ and $\sigma_z$. Starting
+with $\sigma_y$, note that:
+
+\[
+	\sigma_y\keit{u} = \begin{pmatrix}
+		0 & -i \\
+		i & 0 \\
+	\end{pmatrix}\begin{pmatrix} 1 \\ 0 \\ \end{pmatrix} = \begin{pmatrix}
+		0 \\ i \\
+	\end{pmatrix} = i\keit{d};\qquad\sigma_y\keit{d} = \begin{pmatrix}
+		0 & -i \\
+		i & 0 \\
+	\end{pmatrix}\begin{pmatrix} 0 \\ 1 \\ \end{pmatrix} = \begin{pmatrix}
+		-i \\ 0 \\
+	\end{pmatrix} = -i\keit{u}
+\]
+
+Then:
+
+\begin{equation*}\begin{aligned}
+	\sigma_y\ket{\Psi} &=&&
+		  \alpha_u\beta_u\Bigl(\underbrace{(\sigma_y\keit{u})}_{i\keit{d}}\otimes\ket{u}\Bigr)
+		+ \alpha_u\beta_d\Bigl(\underbrace{(\sigma_y\keit{u})}_{i\keit{d}}\otimes\ket{d}\Bigr)
+		+ \alpha_d\beta_u\Bigl(\underbrace{(\sigma_y\keit{d})}_{-i\keit{u}}\otimes\ket{u}\Bigr)
+		+ \alpha_d\beta_d\Bigl(\underbrace{(\sigma_y\keit{d})}_{-i\keit{u}}\otimes\ket{d}\Bigr) \\
+	~ &=&& i\alpha_u\beta_u\ket{du}+ i\alpha_u\beta_d\ket{dd}
+		-i\alpha_d\beta_u\ket{uu} -i\alpha_d\beta_d\ket{ud} \\
+	~ &=&& -i\alpha_d\beta_u\ket{uu} -i\alpha_d\beta_d\ket{ud}
+		+ i\alpha_u\beta_u\ket{du}+ i\alpha_u\beta_d\ket{dd} \\
+	&=&& \gamma_u\delta_u\ket{uu} + \gamma_u\delta_d\ket{ud}
+		+\gamma_d\delta_u\ket{du}+ \gamma_d\delta_d\ket{dd} \\
+\end{aligned}\end{equation*}
+
+Where again, for the last step, we've performed some renaming (again, made
+explicit in a few lines). For this
+to be a product state, the following must hold:
+\[
+	\gamma_u^*\gamma_u + \gamma_d^*\gamma_d = 1;\quad
+	\delta_u^*\delta_u + \delta_d^*\delta_d = 1
+\]
+
+Again, transcribed in terms of $\alpha$s and $\beta$s this yields:
+\[
+	(-i\alpha_d)^*(-i\alpha_d) + (i\alpha_u)^*(i\alpha_u) = 1; \quad
+	\beta_u^*\beta_u + \beta_d^*\beta_d = 1
+\]
+\[
+	\Leftrightarrow\left(
+		(i\alpha_d^*)(-i\alpha_d) + (-i\alpha_u^*)(i\alpha_u) = 1; \quad
+		\beta_u^*\beta_u + \beta_d^*\beta_d = 1
+	\right)
+\]
+\[
+	\Leftrightarrow\left(
+		\alpha_d^*\alpha_d + \alpha_u^*\alpha_u = 1; \quad
+		\beta_u^*\beta_u + \beta_d^*\beta_d = 1
+	\right)
+\]
+
+Which again, is the normalization conditions for $\ket{\Psi}$. Hence,
+$\sigma_y\ket{\Psi}$ is a product state. $\qed$
+
+\hrr
+
+One last time for $\sigma_z$, start by observing:
+
+\[
+	\sigma_y\keit{u} = \begin{pmatrix}
+		1 & 0 \\
+		0 & -1 \\
+	\end{pmatrix}\begin{pmatrix} 1 \\ 0 \\ \end{pmatrix} = \begin{pmatrix}
+		1 \\ 0 \\
+	\end{pmatrix} = \keit{u};\qquad\sigma_y\keit{d} = \begin{pmatrix}
+		1 & 0 \\
+		0 & -1 \\
+	\end{pmatrix}\begin{pmatrix} 0 \\ 1 \\ \end{pmatrix} = \begin{pmatrix}
+		0 \\ -1 \\
+	\end{pmatrix} = -\keit{d}
+\]
+
+Then:
+
+\begin{equation*}\begin{aligned}
+	\sigma_z\ket{\Psi} &=&&
+		  \alpha_u\beta_u\Bigl(\underbrace{(\sigma_z\keit{u})}_{\keit{u}}\otimes\ket{u}\Bigr)
+		+ \alpha_u\beta_d\Bigl(\underbrace{(\sigma_z\keit{u})}_{\keit{u}}\otimes\ket{d}\Bigr)
+		+ \alpha_d\beta_u\Bigl(\underbrace{(\sigma_z\keit{d})}_{-\keit{d}}\otimes\ket{u}\Bigr)
+		+ \alpha_d\beta_d\Bigl(\underbrace{(\sigma_z\keit{d})}_{-\keit{d}}\otimes\ket{d}\Bigr) \\
+	~ &=&& \alpha_u\beta_u\ket{uu} + \alpha_u\beta_d\ket{ud}
+		- \alpha_d\beta_u\ket{du} -\alpha_d\beta_d\ket{dd} \\
+	&=&& \gamma_u\delta_u\ket{uu} + \gamma_u\delta_d\ket{ud}
+		+\gamma_d\delta_u\ket{du}+ \gamma_d\delta_d\ket{dd} \\
+\end{aligned}\end{equation*}
+
+The renaming is much simpler this time. Let's recall one last time
+the product state condition:
+\[
+	\gamma_u^*\gamma_u + \gamma_d^*\gamma_d = 1;\quad
+	\delta_u^*\delta_u + \delta_d^*\delta_d = 1
+\]
+Or, transcribed in terms of $\alpha$s and $\beta$s:
+\[
+	\alpha_u^*\alpha_u + (-\alpha_d)^*(-\alpha_d) = 1; \quad
+	\beta_u^*\beta_u + \beta_d^*\beta_d = 1
+\]
+\[
+	\Leftrightarrow\left(
+		\alpha_u^*\alpha_u + \alpha_d^*\alpha_d = 1; \quad
+		\beta_u^*\beta_u + \beta_d^*\beta_d = 1
+	\right)
+\]
+Which again, is but the condition for $\ket{\Psi}$ to be a state
+product. Hence, $\sigma_z\ket{\Psi}$ is a state product. $\qed$
+
+\hr
+
+It remains to establish the last part of the exercise, namely, that the
+expectation is unchanged. Recall that for an observable $A$, given a
+state $\ket{\Psi}$, the expected value is defined as:
+\[
+	\avg{A} := \bra{\Psi}A\ket{\Psi}
+\]
+
+Now, we've been computing $A\ket{\Psi}$ in the previous section
+for all "component" of Alice's spin; so we just have to take
+a product with $\bra{\Psi}$ to get the expected value. \\
+
+Now remember, we consider an ordered basis $\{\ket{uu}, \ket{ud},
+\ket{du}, \ket{dd}\}$ to create column/row vectors, for instance:
+\[
+	|\Psi> = \alpha_u\beta_u\ket{uu} + \alpha_u\beta_d\ket{ud}
+		+ \alpha_d\beta_u\ket{du} + \alpha_d\beta_d\ket{dd} =
+	\begin{pmatrix}
+		\alpha_u\beta_u \\
+		\alpha_u\beta_d \\
+		\alpha_d\beta_u \\
+		\alpha_d\beta_d \\
+	\end{pmatrix}
+\]
+
+We previously established that:
+\[
+	\sigma_x\ket{\Psi} = \alpha_d\beta_u\ket{uu} + \alpha_d\beta_d\ket{ud}
+		+\alpha_u\beta_u\ket{du}+ \alpha_u\beta_d\ket{dd}
+\]
+Hence:
+\begin{equation*}\begin{aligned}
+	\avg{\sigma_x} &=&& \bra{\Psi}(\sigma_x\ket{\Psi}) \\
+	~ &=&& \begin{pmatrix}
+		\alpha_u^*\beta_u^* & \alpha_u^*\beta_d^* &
+		\alpha_d^*\beta_u^* & \alpha_d^*\beta_d^* \\
+	\end{pmatrix}\begin{pmatrix}
+		\alpha_d\beta_u \\
+		\alpha_d\beta_d \\
+		\alpha_u\beta_u \\
+		\alpha_u\beta_d \\
+	\end{pmatrix} \\
+	~ &=&& 	\alpha_u^*\beta_u^*\alpha_d\beta_u
+		+ \alpha_u^*\beta_d^*\alpha_d\beta_d
+		+ \alpha_d^*\beta_u^*\alpha_u\beta_u
+		+ \alpha_d^*\beta_d^*\alpha_u\beta_d \\
+	~ &=&&\beta_d^*\beta_d(\alpha_u^*\alpha_d+\alpha_d^*\alpha_u)
+		+ \beta_u^*\beta_u(\alpha_u^*\alpha_d+\alpha_d^*\alpha_u) \\
+	~ &=&&\underbrace{(\beta_d^*\beta_d+\beta_u^*\beta_u)}_{=1}
+		(\alpha_u^*\alpha_d+\alpha_d^*\alpha_u) \\
+	~ &=&& \alpha_u^*\alpha_d+\alpha_d^*\alpha_u \\
+\end{aligned}\end{equation*}
+I don't think we've already computed $\bra{\Psi}\sigma_x\ket{\Psi}$
+in terms of $\alpha$s and $\beta$s before (we did earlier
+in \href{https://github.com/mbivert/ttm/blob/master/qm/L03E04.pdf}{L03E04}
+computed it in terms of $\theta$, an angle between two states), so
+let's do it (I'll use $\sigma_x^A$ to indicate that we're using
+$\sigma_x$ restricted to Alice's space; for clarity, I'll be
+using the \textit{ordered} basis $\{\keit{u}, \keit{d}\}$):
+\begin{equation*}\begin{aligned}
+	\avg{\sigma_x^A} &=&& \brah{\Psi}\sigma_x^A\keit{\Psi} \\
+	~ &=&& \begin{pmatrix} \alpha_u^* & \alpha_d^* \\ \end{pmatrix}
+		\begin{pmatrix}
+			0 & 1 \\
+			1 & 0 \\
+		\end{pmatrix}\begin{pmatrix}
+			\alpha_u \\
+			\alpha_d \\
+		\end{pmatrix} \\
+	~ &=&& \begin{pmatrix} \alpha_u^* & \alpha_d^* \\ \end{pmatrix}
+		\begin{pmatrix}
+			\alpha_d \\
+			\alpha_u \\
+		\end{pmatrix} \\
+	~ &=&& \alpha_u^*\alpha_d + \alpha_d^*\alpha_u \\
+	~ &=&& \avg{\sigma_x} \qed
+\end{aligned}\end{equation*}
+
+\hrr
+
+Let's do the same thing for $\avg{\sigma_y}$; recall that
+we've computed earlier.
+\[
+	\sigma_y\ket{\Psi} = -i\alpha_d\beta_u\ket{uu} -i\alpha_d\beta_d\ket{ud}
+		+ i\alpha_u\beta_u\ket{du}+ i\alpha_u\beta_d\ket{dd}
+\]
+
+Hence,
+\begin{equation*}\begin{aligned}
+	\avg{\sigma_y} &=&& \bra{\Psi}(\sigma_y\ket{\Psi}) \\
+	~ &=&& \begin{pmatrix}
+		\alpha_u^*\beta_u^* & \alpha_u^*\beta_d^* &
+		\alpha_d^*\beta_u^* & \alpha_d^*\beta_d^* \\
+	\end{pmatrix}\begin{pmatrix}
+		-i\alpha_d\beta_u \\
+		-i\alpha_d\beta_d \\
+		i\alpha_u\beta_u\\
+		i\alpha_u\beta_d \\
+	\end{pmatrix} \\
+	~ &=&& i(-\alpha_u^*\beta_u^*\alpha_d\beta_u -
+		\alpha_u^*\beta_d^*\alpha_d\beta_d +
+		\alpha_d^*\beta_u^*\alpha_u\beta_u +
+		\alpha_d^*\beta_d^*\alpha_u\beta_d) \\
+	~ &=&& i\Bigl(\beta_u^*\beta_u(
+		\alpha_d^*\alpha_u - \alpha_u^*\alpha_d
+	)+\beta_d^*\beta_d(
+		\alpha_d^*\alpha_u - \alpha_u^*\alpha_d
+	)\Bigr) \\
+	~ &=&& i
+	\underbrace{(\beta_u^*\beta_u + \beta_d^*\beta_d)}_{=1}
+	(\alpha_d^*\alpha_u - \alpha_u^*\alpha_d) \\
+	~ &=&& i(\alpha_d^*\alpha_u - \alpha_u^*\alpha_d) \\
+\end{aligned}\end{equation*}
+
+On the other hand:
+
+\begin{equation*}\begin{aligned}
+	\avg{\sigma_y^A} &=&& \brah{\Psi}\sigma_y^A\keit{\Psi} \\
+	~ &=&& \begin{pmatrix} \alpha_u^* & \alpha_d^* \\ \end{pmatrix}
+		\begin{pmatrix}
+			0 & -i \\
+			i & 0 \\
+		\end{pmatrix}\begin{pmatrix}
+			\alpha_u \\
+			\alpha_d \\
+		\end{pmatrix} \\
+	~ &=&& \begin{pmatrix} \alpha_u^* & \alpha_d^* \\ \end{pmatrix}
+		\begin{pmatrix}
+			-i\alpha_d \\
+			i\alpha_u \\
+		\end{pmatrix} \\
+	~ &=&& i(\alpha_d^*\alpha_u - \alpha_u^*\alpha_d) \\
+	~ &=&& \avg{\sigma_y} \qed
+\end{aligned}\end{equation*}
+
+\hrr
+Finally for $\avg{\sigma_z}$, recall:
+\[
+	\sigma_z\ket{\Psi} = \alpha_u\beta_u\ket{uu} + \alpha_u\beta_d\ket{ud}
+		- \alpha_d\beta_u\ket{du} -\alpha_d\beta_d\ket{dd} \\
+\]
+
+Hence,
+\begin{equation*}\begin{aligned}
+	\avg{\sigma_z} &=&& \bra{\Psi}(\sigma_z\ket{\Psi}) \\
+	~ &=&& \begin{pmatrix}
+		\alpha_u^*\beta_u^* & \alpha_u^*\beta_d^* &
+		\alpha_d^*\beta_u^* & \alpha_d^*\beta_d^* \\
+	\end{pmatrix}\begin{pmatrix}
+		\alpha_u\beta_u \\
+		\alpha_u\beta_d \\
+		-\alpha_d\beta_u\\
+		-\alpha_d\beta_d \\
+	\end{pmatrix} \\
+	~ &=&& \alpha_u^*\beta_u^*\alpha_u\beta_u +
+		\alpha_u^*\beta_d^*\alpha_u\beta_d -
+		\alpha_d^*\beta_u^*\alpha_d\beta_u -
+		\alpha_d^*\beta_d^*\alpha_d\beta_d \\
+	~ &=&& \beta_u^*\beta_u(
+		\alpha_u^*\alpha_u - \alpha_d^*\alpha_d
+	)+\beta_d^*\beta_d(
+		\alpha_u^*\alpha_u - \alpha_d^*\alpha_d
+	)\\
+	~ &=&&
+	\underbrace{(\beta_u^*\beta_u + \beta_d^*\beta_d)}_{=1}
+	(\alpha_u^*\alpha_u - \alpha_d^*\alpha_d) \\
+	~ &=&& \alpha_u^*\alpha_u - \alpha_d^*\alpha_d \\
+\end{aligned}\end{equation*}
+
+And on the other hand:
+
+\begin{equation*}\begin{aligned}
+	\avg{\sigma_z^A} &=&& \brah{\Psi}\sigma_z^A\keit{\Psi} \\
+	~ &=&& \begin{pmatrix} \alpha_u^* & \alpha_d^* \\ \end{pmatrix}
+		\begin{pmatrix}
+			1 & 0 \\
+			0 & -1 \\
+		\end{pmatrix}\begin{pmatrix}
+			\alpha_u \\
+			\alpha_d \\
+		\end{pmatrix} \\
+	~ &=&& \begin{pmatrix} \alpha_u^* & \alpha_d^* \\ \end{pmatrix}
+		\begin{pmatrix}
+			\alpha_u \\
+			-\alpha_d \\
+		\end{pmatrix} \\
+	~ &=&& \alpha_u^*\alpha_u - \alpha_d^*\alpha_d \\
+	~ &=&& \avg{\sigma_y} \qed
+\end{aligned}\end{equation*}
+\end{document}
