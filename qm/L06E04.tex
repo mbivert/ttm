@@ -25,7 +25,7 @@ As usual, let's recall our Pauli matrices:
 	\end{pmatrix}
 \]
 The base vectors $\keit{u}$ and $\keit{d}$ are the canonical
-basis vectors for $\mathbb{C}^2$:
+basis vectors for $\mathbb{R}^2$:
 \[
 	\keit{u} = \begin{pmatrix} 1 \\ 0 \\ \end{pmatrix};\qquad
 	\keit{d} = \begin{pmatrix} 0 \\ 1 \\ \end{pmatrix}
@@ -60,19 +60,19 @@ rule: act with the operator on the correct component, extract the eventual
 scalar factor, and generally update the corresponding vector component.
 This yields, in agreement with the appendix:
 \begin{equation*}\begin{aligned}
-	\sigma_z\keit{uu} &=&\keit{uu};  &&& \tau_z\ket{uu} &=&& \ket{uu} \\
-	\sigma_z\keit{ud} &=&\keit{ud};  &&& \tau_z\ket{ud} &=&& -\ket{ud} \\
-	\sigma_z\keit{du} &=&-\keit{du}; &&& \tau_z\ket{du} &=&& \ket{du} \\
-	\sigma_z\keit{dd} &=&-\keit{dd}; &&& \tau_z\ket{dd} &=&& -\ket{dd} \\
+	\sigma_z\ket{uu} &=&\ket{uu};  &&& \tau_z\ket{uu} &=&& \ket{uu} \\
+	\sigma_z\ket{ud} &=&\ket{ud};  &&& \tau_z\ket{ud} &=&& -\ket{ud} \\
+	\sigma_z\ket{du} &=&-\ket{du}; &&& \tau_z\ket{du} &=&& \ket{du} \\
+	\sigma_z\ket{dd} &=&-\ket{dd}; &&& \tau_z\ket{dd} &=&& -\ket{dd} \\
 	 \cline{3-6}
-	\sigma_x\keit{uu} &=&\keit{du}; &&& \tau_x\ket{uu} &=&& \ket{ud} \\
-	\sigma_x\keit{ud} &=&\keit{dd}; &&& \tau_x\ket{ud} &=&& \ket{uu} \\
-	\sigma_x\keit{du} &=&\keit{uu}; &&& \tau_x\ket{du} &=&& \ket{dd} \\
-	\sigma_x\keit{dd} &=&\keit{ud}; &&& \tau_x\ket{dd} &=&& \ket{du} \\
+	\sigma_x\ket{uu} &=&\ket{du}; &&& \tau_x\ket{uu} &=&& \ket{ud} \\
+	\sigma_x\ket{ud} &=&\ket{dd}; &&& \tau_x\ket{ud} &=&& \ket{uu} \\
+	\sigma_x\ket{du} &=&\ket{uu}; &&& \tau_x\ket{du} &=&& \ket{dd} \\
+	\sigma_x\ket{dd} &=&\ket{ud}; &&& \tau_x\ket{dd} &=&& \ket{du} \\
 	 \cline{3-6}
-	\sigma_y\keit{uu} &=&i\keit{du};  &&& \tau_y\ket{uu} &=&& i\ket{ud} \\
-	\sigma_y\keit{ud} &=&i\keit{dd};  &&& \tau_y\ket{ud} &=&& -i\ket{uu} \\
-	\sigma_y\keit{du} &=&-i\keit{uu}; &&& \tau_y\ket{du} &=&& i\ket{dd} \\
-	\sigma_y\keit{dd} &=&-i\keit{ud}; &&& \tau_y\ket{dd} &=&& -i\ket{du} \\
+	\sigma_y\ket{uu} &=&i\ket{du};  &&& \tau_y\ket{uu} &=&& i\ket{ud} \\
+	\sigma_y\ket{ud} &=&i\ket{dd};  &&& \tau_y\ket{ud} &=&& -i\ket{uu} \\
+	\sigma_y\ket{du} &=&-i\ket{uu}; &&& \tau_y\ket{du} &=&& i\ket{dd} \\
+	\sigma_y\ket{dd} &=&-i\ket{ud}; &&& \tau_y\ket{dd} &=&& -i\ket{du} \\
 \end{aligned}\end{equation*}
 \end{document}
