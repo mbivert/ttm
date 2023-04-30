@@ -1,0 +1,110 @@
+\documentclass[solutions.tex]{subfiles}
+
+\xtitle
+
+\begin{document}
+\maketitle
+\begin{exercise} Next, Charlie prepares the spins in a different
+state, called $\ket{T_1}$, where
+\[
+	\ket{T_1} = \frac1{\sqrt2}\left(\ket{ud}+\ket{du}\right)
+\]
+In these examples, $T$ stands for $\textit{triplet}$. These triplet
+states are completely different from the states in the coin and die
+examples. What are the expectation values of the operators $\sigma_z\tau_z$,
+$\sigma_x\tau_x$, and $\sigma_y\tau_y$? \\
+
+What a difference a sign can make!
+\end{exercise}
+This is the same kind of computations there were done in the
+\href{https://github.com/mbivert/ttm/blob/master/qm/L06E06.pdf}{previous exercise},
+and earlier in the book. As usual, recall the Pauli matrices:
+\[
+	\tau_x = \sigma_x = \begin{pmatrix}
+		0 & 1 \\
+		1 & 0 \\
+	\end{pmatrix};\qquad \tau_y = \sigma_y = \begin{pmatrix}
+		0 & -i \\
+		i & 0 \\
+	\end{pmatrix};\qquad \tau_z = \sigma_z = \begin{pmatrix}
+		1 & 0 \\
+		0 & -1 \\
+	\end{pmatrix}
+\]
+Also recall, from
+\href{https://github.com/mbivert/ttm/blob/master/qm/L06E04.pdf}{L06E04},
+the rules for acting on composite state vectors\footnote{You have the same
+in the book's appendix}:
+\begin{equation*}\begin{aligned}
+	\sigma_z\ket{uu} &=&\ket{uu};  &&& \tau_z\ket{uu} &=&& \ket{uu} \\
+	\sigma_z\ket{ud} &=&\ket{ud};  &&& \tau_z\ket{ud} &=&& -\ket{ud} \\
+	\sigma_z\ket{du} &=&-\ket{du}; &&& \tau_z\ket{du} &=&& \ket{du} \\
+	\sigma_z\ket{dd} &=&-\ket{dd}; &&& \tau_z\ket{dd} &=&& -\ket{dd} \\
+	 \cline{3-6}
+	\sigma_x\ket{uu} &=&\ket{du}; &&& \tau_x\ket{uu} &=&& \ket{ud} \\
+	\sigma_x\ket{ud} &=&\ket{dd}; &&& \tau_x\ket{ud} &=&& \ket{uu} \\
+	\sigma_x\ket{du} &=&\ket{uu}; &&& \tau_x\ket{du} &=&& \ket{dd} \\
+	\sigma_x\ket{dd} &=&\ket{ud}; &&& \tau_x\ket{dd} &=&& \ket{du} \\
+	 \cline{3-6}
+	\sigma_y\ket{uu} &=&i\ket{du};  &&& \tau_y\ket{uu} &=&& i\ket{ud} \\
+	\sigma_y\ket{ud} &=&i\ket{dd};  &&& \tau_y\ket{ud} &=&& -i\ket{uu} \\
+	\sigma_y\ket{du} &=&-i\ket{uu}; &&& \tau_y\ket{du} &=&& i\ket{dd} \\
+	\sigma_y\ket{dd} &=&-i\ket{ud}; &&& \tau_y\ket{dd} &=&& -i\ket{du} \\
+\end{aligned}\end{equation*}
+
+We now have everything we need to compute the expectation values.
+
+\hrr
+\begin{equation*}\begin{aligned}
+	\avg{\sigma_z\tau_z} &:=&& \bra{T_1}\sigma_z\tau_z\ket{T_1} \\
+	~ &=&& \frac1{\sqrt2}\bra{T_1}\sigma_z\tau_z\left(\ket{ud}+\ket{du}\right) \\
+	~ &=&& \frac1{\sqrt2}\bra{T_1}\sigma_z\left(-\ket{ud}+\ket{du}\right) \\
+	~ &=&& -\frac1{\sqrt2}\bra{T_1}\left(\ket{ud}+\ket{du}\right) \\
+	~ &=&& -\frac12(\bra{ud}+\bra{du})(\ket{ud}+\ket{du}) \\
+	~ &=&& -\frac12\left(
+		\underbrace{\braket{ud}{ud}}_{1}
+		+\underbrace{\braket{ud}{du}}_{0}
+		+\underbrace{\braket{du}{ud}}_{0}
+		+\underbrace{\braket{du}{du}}_{1}
+	\right) \\
+	~ &=&&\boxed{-1}
+\end{aligned}\end{equation*}
+
+For the last step, remember, as for the previous exercise, that $\ket{du}$
+and $\ket{ud}$ are orthonormal basis vectors.
+
+\hrr
+
+\begin{equation*}\begin{aligned}
+	\avg{\sigma_x\tau_x} &:=&& \bra{T_1}\sigma_x\tau_x\ket{T_1} \\
+	~ &=&& \frac1{\sqrt2}\bra{T_1}\sigma_x\tau_x\left(\ket{ud}+\ket{du}\right) \\
+	~ &=&& \frac1{\sqrt2}\bra{T_1}\sigma_x\left(\ket{uu}+\ket{dd}\right) \\
+	~ &=&& \frac1{\sqrt2}\bra{T_1}\left(\ket{du}+\ket{ud}\right) \\
+	~ &=&& \frac12(\bra{ud}+\bra{du})(\ket{du}+\ket{ud}) \\
+	~ &=&& -\frac12\left(
+		\underbrace{\braket{ud}{du}}_{0}
+		+\underbrace{\braket{ud}{ud}}_{1}
+		+\underbrace{\braket{du}{du}}_{1}
+		+\underbrace{\braket{du}{ud}}_{0}
+	\right) \\
+	~ &=&&\boxed{+1}
+\end{aligned}\end{equation*}
+
+\hrr
+
+\begin{equation*}\begin{aligned}
+	\avg{\sigma_y\tau_y} &:=&& \bra{T_1}\sigma_y\tau_y\ket{T_1} \\
+	~ &=&& \frac1{\sqrt2}\bra{T_1}\sigma_y\tau_y\left(\ket{ud}+\ket{du}\right) \\
+	~ &=&& \frac1{\sqrt2}\bra{T_1}\sigma_y\left(-i\ket{uu}+i\ket{dd}\right) \\
+	~ &=&& \frac{i}{\sqrt2}\bra{T_1}\left(-i\ket{du}-i\ket{ud}\right) \\
+	~ &=&& \frac12(\bra{ud}+\bra{du})(\ket{du}+\ket{ud}) \\
+	~ &=&& -\frac12\left(
+		\underbrace{\braket{ud}{du}}_{0}
+		+\underbrace{\braket{ud}{ud}}_{1}
+		+\underbrace{\braket{du}{du}}_{1}
+		+\underbrace{\braket{du}{ud}}_{0}
+	\right) \\
+	~ &=&&\boxed{+1}
+\end{aligned}\end{equation*}
+
+\end{document}
