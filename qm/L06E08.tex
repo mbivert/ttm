@@ -1,0 +1,212 @@
+\documentclass[solutions.tex]{subfiles}
+
+\xtitle
+
+\begin{document}
+\maketitle
+\begin{exercise} Do the same for the other two entangled triplet
+states,
+\[
+	\ket{T_2} = \frac1{\sqrt2}\left(\ket{uu}+\ket{dd}\right)
+\]
+\[
+	\ket{T_3} = \frac1{\sqrt2}\left(\ket{uu}-\ket{dd}\right)
+\]
+\end{exercise}
+As for
+\href{https://github.com/mbivert/ttm/blob/master/qm/L06E07.pdf}{previous exercise},
+this is just about crunching numbers. We won't be using the Pauli matrices
+explicitly here; instead, we'll use the multiplication table from
+\href{https://github.com/mbivert/ttm/blob/master/qm/L06E04.pdf}{L06E04}
+
+\begin{equation*}\begin{aligned}
+	\sigma_z\ket{uu} &=&\ket{uu};  &&& \tau_z\ket{uu} &=&& \ket{uu} \\
+	\sigma_z\ket{ud} &=&\ket{ud};  &&& \tau_z\ket{ud} &=&& -\ket{ud} \\
+	\sigma_z\ket{du} &=&-\ket{du}; &&& \tau_z\ket{du} &=&& \ket{du} \\
+	\sigma_z\ket{dd} &=&-\ket{dd}; &&& \tau_z\ket{dd} &=&& -\ket{dd} \\
+	 \cline{3-6}
+	\sigma_x\ket{uu} &=&\ket{du}; &&& \tau_x\ket{uu} &=&& \ket{ud} \\
+	\sigma_x\ket{ud} &=&\ket{dd}; &&& \tau_x\ket{ud} &=&& \ket{uu} \\
+	\sigma_x\ket{du} &=&\ket{uu}; &&& \tau_x\ket{du} &=&& \ket{dd} \\
+	\sigma_x\ket{dd} &=&\ket{ud}; &&& \tau_x\ket{dd} &=&& \ket{du} \\
+	 \cline{3-6}
+	\sigma_y\ket{uu} &=&i\ket{du};  &&& \tau_y\ket{uu} &=&& i\ket{ud} \\
+	\sigma_y\ket{ud} &=&i\ket{dd};  &&& \tau_y\ket{ud} &=&& -i\ket{uu} \\
+	\sigma_y\ket{du} &=&-i\ket{uu}; &&& \tau_y\ket{du} &=&& i\ket{dd} \\
+	\sigma_y\ket{dd} &=&-i\ket{ud}; &&& \tau_y\ket{dd} &=&& -i\ket{du} \\
+\end{aligned}\end{equation*}
+
+\hr
+
+As the computations are fairly similar, and to save space, I'll be computing
+the expectation values for $T_2$ and $T_3$ in parallel, distinguishing them by
+a subscript number. \\
+
+Let's start with $\avg{\sigma_z\tau_z}$:
+\begin{equation*}\begin{aligned}
+	\avg{\sigma_z\tau_z}_2 &:=&& \bra{T_2}\sigma_z\tau_z\ket{T_2}
+	& \avg{\sigma_z\tau_z}_3 &:=&& \bra{T_3}\sigma_z\tau_z\ket{T_3} \\
+	%
+	~ &=&& \frac1{\sqrt2}\bra{T_2}\sigma_z\tau_z\left(\ket{uu}+\ket{dd}\right)
+	& ~ &=&& \frac1{\sqrt2}\bra{T_3}\sigma_z\tau_z\left(\ket{uu}-\ket{dd}\right) \\
+	%
+	~ &=&& \frac1{\sqrt2}\bra{T_2}\sigma_z\left(\ket{uu}-\ket{dd}\right)
+	& ~ &=&& \frac1{\sqrt2}\bra{T_3}\sigma_z\left(\ket{uu}+\ket{dd}\right) \\
+	%
+	~ &=&& \frac1{\sqrt2}\bra{T_2}\left(\ket{uu}+\ket{dd}\right)
+	& ~ &=&& \frac1{\sqrt2}\bra{T_3}\left(\ket{uu}-\ket{dd}\right) \\
+	%
+	~ &=&& \frac12(\bra{uu}+\bra{dd})(\ket{uu}+\ket{dd})
+	& ~ &=&& \frac12(\bra{uu}-\bra{dd})(\ket{uu}-\ket{dd}) \\
+	%
+	~ &=&& \frac12\left(
+		\underbrace{\braket{uu}{uu}}_{1}
+		+\underbrace{\braket{uu}{dd}}_{0}
+		+\underbrace{\braket{dd}{uu}}_{0}
+		+\underbrace{\braket{dd}{dd}}_{1}
+	\right)
+	& ~ &=&& \frac12\left(
+		\underbrace{\braket{uu}{uu}}_{1}
+		-\underbrace{\braket{uu}{dd}}_{0}
+		-\underbrace{\braket{dd}{uu}}_{0}
+		+\underbrace{\braket{dd}{dd}}_{1}
+	\right) \\
+	%
+	~ &=&& \boxed{+1}
+	& ~ &=&& \boxed{+1}
+\end{aligned}\end{equation*}
+
+Moving on to $\avg{\sigma_x\tau_x}$:
+\begin{equation*}\begin{aligned}
+	\avg{\sigma_x\tau_x}_2 &:=&& \bra{T_2}\sigma_x\tau_x\ket{T_2}
+	& \avg{\sigma_x\tau_x}_3 &:=&& \bra{T_3}\sigma_x\tau_x\ket{T_3} \\
+	%
+	~ &=&& \frac1{\sqrt2}\bra{T_2}\sigma_x\tau_x\left(\ket{uu}+\ket{dd}\right)
+	& ~ &=&& \frac1{\sqrt2}\bra{T_3}\sigma_x\tau_x\left(\ket{uu}-\ket{dd}\right) \\
+	%
+	~ &=&& \frac1{\sqrt2}\bra{T_2}\sigma_x\left(\ket{ud}+\ket{du}\right)
+	& ~ &=&& \frac1{\sqrt2}\bra{T_3}\sigma_x\left(\ket{ud}-\ket{du}\right) \\
+	%
+	~ &=&& \frac1{\sqrt2}\bra{T_2}\left(\ket{dd}+\ket{uu}\right)
+	& ~ &=&& \frac1{\sqrt2}\bra{T_3}\left(\ket{dd}-\ket{uu}\right) \\
+	%
+	~ &=&& \frac12(\bra{uu}+\bra{dd})(\ket{dd}+\ket{uu})
+	& ~ &=&& \frac12(\bra{uu}-\bra{dd})(\ket{dd}-\ket{uu}) \\
+	%
+	~ &=&& \frac12\left(
+		\underbrace{\braket{uu}{dd}}_{0}
+		+\underbrace{\braket{uu}{uu}}_{1}
+		+\underbrace{\braket{dd}{dd}}_{1}
+		+\underbrace{\braket{dd}{uu}}_{0}
+	\right)
+	& ~ &=&& \frac12\left(
+		\underbrace{\braket{uu}{dd}}_{0}
+		-\underbrace{\braket{uu}{uu}}_{1}
+		-\underbrace{\braket{dd}{dd}}_{1}
+		+\underbrace{\braket{dd}{uu}}_{0}
+	\right) \\
+	%
+	~ &=&& \boxed{+1}
+	& ~ &=&& \boxed{-1}
+\end{aligned}\end{equation*}
+
+Finally for $\avg{\sigma_y\tau_y}$:
+\begin{equation*}\begin{aligned}
+	\avg{\sigma_y\tau_y}_2 &:=&& \bra{T_2}\sigma_y\tau_y\ket{T_2}
+	& \avg{\sigma_y\tau_y}_3 &:=&& \bra{T_3}\sigma_y\tau_y\ket{T_3} \\
+	%
+	~ &=&& \frac1{\sqrt2}\bra{T_2}\sigma_y\tau_y\left(\ket{uu}+\ket{dd}\right)
+	& ~ &=&& \frac1{\sqrt2}\bra{T_3}\sigma_y\tau_y\left(\ket{uu}-\ket{dd}\right) \\
+	%
+	~ &=&& \frac1{\sqrt2}\bra{T_2}\sigma_y\left(i\ket{ud}-i\ket{du}\right)
+	& ~ &=&& \frac1{\sqrt2}\bra{T_3}\sigma_y\left(i\ket{ud}+i\ket{du}\right) \\
+	%
+	~ &=&& \frac{i}{\sqrt2}\bra{T_2}\left(i\ket{dd}+i\ket{uu}\right)
+	& ~ &=&& \frac{i}{\sqrt2}\bra{T_3}\left(i\ket{dd}-i\ket{uu}\right) \\
+	%
+	~ &=&& -\frac12(\bra{uu}+\bra{dd})(\ket{dd}+\ket{uu})
+	& ~ &=&& -\frac12(\bra{uu}-\bra{dd})(\ket{dd}-\ket{uu}) \\
+	%
+	~ &=&& \frac{-1}2\left(
+		\underbrace{\braket{uu}{dd}}_{0}
+		+\underbrace{\braket{uu}{uu}}_{1}
+		+\underbrace{\braket{dd}{dd}}_{1}
+		+\underbrace{\braket{dd}{uu}}_{0}
+	\right)
+	& ~ &=&& \frac{-1}2\left(
+		\underbrace{\braket{uu}{dd}}_{0}
+		-\underbrace{\braket{uu}{uu}}_{1}
+		-\underbrace{\braket{dd}{dd}}_{1}
+		+\underbrace{\braket{dd}{uu}}_{0}
+	\right) \\
+	%
+	~ &=&& \boxed{-1}
+	& ~ &=&& \boxed{+1}
+\end{aligned}\end{equation*}
+
+We can conclude, from those expectation values alone, that whenever:
+\begin{itemize}
+	\item The expectation value is $-1$, Bob and Alice measure
+	a spin pointing in different directions;
+	\item The expectation value is $+1$, Bob and Alice measure
+	a spin pointing in the same direction.
+\end{itemize}
+
+I just want to spend a few more lines to make something clear. Recall
+the definition of $\ket{\text{sing}}$:
+\[
+	\ket{\text{sing}} = \frac1{\sqrt2}(\ket{ud}-\ket{du})
+\]
+The argument of the authors was that, the reason for $\avg{\tau_z\sigma_z}$
+to be $-1$ was that $\ket{\text{sing}}$ is built from two spins,
+one of which is always up while the other is down, and we're measuring
+both spin alongside the axis on which they are either up or down. \\
+
+However, in the case of e.g. $\avg{\tau_x\sigma_x}$, the answer was
+not as obviously, because we're in this case measuring the spins alongside
+the $x$-axis, and it's not immediate from the expression of
+$\ket{\text{sing}}$ what kind of balance we have alongside the $x$-axis. \\
+
+Let's do a little experiment. Recall the definition of the "basis
+vectors" for the $x$-axis, left and right:
+\[
+	\ket{r} = \frac1{\sqrt2}(\ket{u}+\ket{d});\qquad
+	\ket{l} = \frac1{\sqrt2}(\ket{u}-\ket{d})
+\]
+We want to express, say, $T_3$ in terms of $\ket{l}$ and $\ket{r}$,
+to see if indeed, when expressed as such, $T_3$ is created from
+two spins such that when one is left, the other is right, which
+would be concordant with the idea that $\avg{\sigma_x\tau_x}_3 = -1$.
+Let's start by rewriting $\ket{u}$ and $\ket{d}$ in terms of $\ket{r}$
+and $\ket{l}$:
+\[
+	\begin{cases}
+		\ket{r} = \frac1{\sqrt2}(\ket{u}+\ket{d}) \\
+		\ket{l} = \frac1{\sqrt2}(\ket{u}-\ket{d})
+	\end{cases}\Leftrightarrow\begin{cases}
+		\ket{u} = \sqrt2\ket{r}-\ket{d} \\
+		\ket{d} = -\sqrt2\ket{l}+\ket{u} \\
+	\end{cases}\Leftrightarrow\begin{cases}
+		\ket{u} = \frac{\sqrt2}2(\ket{r}+\ket{l}) \\
+		\ket{d} = \frac{\sqrt2}2(\ket{r}-\ket{l}) \\
+	\end{cases}
+\]
+
+Let's now rewrite $T_3$ in the $\ket{r}$, $\ket{l}$ basis:
+\begin{equation*}\begin{aligned}
+	\ket{T_3} &=&& \frac1{\sqrt2}\left(\ket{uu}-\ket{dd}\right) \\
+	~ &=&& \frac1{\sqrt2}\left( \keit{u}\otimes\ket{u}-\keit{d}\otimes\ket{d}\right) \\
+	~ &=&& \frac1{\sqrt2}\left(
+		\frac24(\keit{r}+\keit{l})(\ket{r}+\ket{l})
+		-\frac24(\keit{r}-\keit{l})(\ket{r}-\ket{l})
+	\right) \\
+	~ &=&& \frac1{2\sqrt2}\left(
+		\ket{rr}+\ket{rl}+\ket{lr}+\ket{ll}
+		-(\ket{rr}-\ket{rl}-\ket{lr}+\ket{ll})
+	\right) \\
+	~ &=&&\frac1{\sqrt2}(\ket{rl}+\ket{lr})
+\end{aligned}\end{equation*}
+
+And indeed, as expected, $T_3$ is built from two spins such that when
+one is left, the other is right.
+\end{document}
