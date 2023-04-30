@@ -1,0 +1,94 @@
+\documentclass[solutions.tex]{subfiles}
+
+\xtitle
+
+\begin{document}
+\maketitle
+\begin{exercise} Assume Charlie has prepared  the two spins in the
+singlet state. This time, Bob measures $\tau_y$ and Alice measure
+$\sigma_x$. What is the expectation value of $\sigma_x\tau_y$? \\
+
+What does this say about the correlation between the two measurements?
+\end{exercise}
+Let's recall the Pauli matrices involved:
+\[
+	\sigma_x = \begin{pmatrix}
+		0 & 1 \\
+		1 & 0 \\
+	\end{pmatrix};\qquad \tau_y = \begin{pmatrix}
+		0 & -i \\
+		i & 0 \\
+	\end{pmatrix}
+\]
+
+And the singlet state:
+\[
+	\ket{\text{sing}} = \frac{1}{\sqrt2}\left(\ket{ud}-\ket{du}\right)
+\]
+
+Recall:
+\[
+	\sigma_x\keit{u} = \begin{pmatrix}
+		0 & 1 \\
+		1 & 0 \\
+	\end{pmatrix}\begin{pmatrix} 1 \\ 0 \\ \end{pmatrix} =
+	\begin{pmatrix} 0 \\ 1 \\ \end{pmatrix} =: \keit{d};\qquad
+	\sigma_x\keit{d} = \begin{pmatrix}
+		0 & 1 \\
+		1 & 0 \\
+	\end{pmatrix}\begin{pmatrix} 0 \\ 1 \\ \end{pmatrix} =
+	\begin{pmatrix} 1 \\ 0 \\ \end{pmatrix} =: \keit{u}
+\]
+\[
+	\tau_y\ket{u} = \begin{pmatrix}
+		0 & -i \\
+		i & 0 \\
+	\end{pmatrix}\begin{pmatrix} 1 \\ 0 \\ \end{pmatrix} =
+	\begin{pmatrix} 0 \\ i \\ \end{pmatrix} =: i\ket{d};\qquad
+	\tau_y\ket{d} = \begin{pmatrix}
+		0 & -i \\
+		i & 0 \\
+	\end{pmatrix}\begin{pmatrix} 0 \\ 1 \\ \end{pmatrix} =
+	\begin{pmatrix} -i \\ 0 \\ \end{pmatrix} =: -i\ket{u}
+\]
+
+The expectation value of $\sigma_x\tau_y$ is then:
+\begin{equation*}\begin{aligned}
+	\avg{\sigma_x\tau_y} &:=&& \bra{\text{sing}}\sigma_x\tau_y\ket{\text{sing}} \\
+	~ &=&& \bra{\text{sing}}\sigma_x\tau_y\frac{1}{\sqrt2}\left(\ket{ud}-\ket{du}\right) \\
+	~ &=&& \frac1{\sqrt2}\bra{\text{sing}}\left(
+		(\underbrace{\sigma_x\keit{u}}_{\keit{d}})\otimes(\underbrace{\tau_y\ket{d}}_{
+			-i\ket{u}})
+		- (\underbrace{\sigma_x\keit{d}}_{\keit{u}})\otimes(\underbrace{\tau_y\ket{u}}_{
+			i\ket{d}
+		})
+	\right) \\
+	~ &=&& \frac{-i}{\sqrt2}\bra{\text{sing}}\left(\ket{du}+\ket{ud}\right) \\
+	~ &=&& \frac{-i}2(\bra{ud}-\bra{du})(\ket{du}+\ket{ud}) \\
+	~ &=&& \frac{-i}2\left(\underbrace{\braket{ud}{du}}_{0}
+		+\underbrace{\braket{ud}{ud}}_{1}
+		-\underbrace{\braket{du}{du}}_{1}
+		-\underbrace{\braket{du}{ud}}_{0}\right) \\
+	~ &=&& \boxed{0} \\
+\end{aligned}\end{equation*}
+
+Remember for the last step that $\ket{du}$ and $\ket{ud}$ are orthonormal
+basis vectors. \\
+
+On to the correlation between the two measurements: recall from section $6.2$
+that the statistical correlation between an observable $\sigma_A$ in Alice's
+space and an observable $\sigma_B$ in Bob's space was defined as the quantity:
+\[
+	\avg{\sigma_A\sigma_B} -\avg{\sigma_A}\avg{\sigma_B}
+\]
+
+Hence in our case, the correlation between the two measurements is (the
+authors previously computed $\avg{\sigma_x} = 0$ and $\avg{\sigma_y} = 0$: the
+computation of $\avg{\tau_y}$ would be identical as for the latter)
+\[
+	\avg{\sigma_x\tau_y} -\avg{\sigma_x}\avg{\tau_y} = 0
+\]
+
+Hence, we can conclude that the two measurements aren't correlated at all.
+
+\end{document}
