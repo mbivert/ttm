@@ -208,5 +208,20 @@ Let's now rewrite $T_3$ in the $\ket{r}$, $\ket{l}$ basis:
 \end{aligned}\end{equation*}
 
 And indeed, as expected, $T_3$ is built from two spins such that when
-one is left, the other is right.
+one is left, the other is right. Let's do another one to be sure: consider
+$T_2$ on the $x$-axis: this gives us a $+1$, so we expect a normalized
+linear combination of $\ket{rr}$ and $\ket{ll}$.
+\begin{equation*}\begin{aligned}
+	\ket{T_2} &=&& \frac1{\sqrt2}\left(\ket{uu}+\ket{dd}\right) \\
+	~ &=&& \frac1{\sqrt2}\left( \keit{u}\otimes\ket{u}+\keit{d}\otimes\ket{d}\right) \\
+	~ &=&& \frac1{\sqrt2}\left(
+		\frac24(\keit{r}+\keit{l})(\ket{r}+\ket{l})
+		+\frac24(\keit{r}-\keit{l})(\ket{r}-\ket{l})
+	\right) \\
+	~ &=&& \frac1{2\sqrt2}\left(
+		\ket{rr}+\ket{rl}+\ket{lr}+\ket{ll}
+		+(\ket{rr}-\ket{rl}-\ket{lr}+\ket{ll})
+	\right) \\
+	~ &=&&\frac1{\sqrt2}(\ket{rr}+\ket{ll})
+\end{aligned}\end{equation*}
 \end{document}
