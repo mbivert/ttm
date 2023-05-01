@@ -1,0 +1,313 @@
+\documentclass[solutions.tex]{subfiles}
+
+\xtitle
+
+\begin{document}
+\maketitle
+\begin{exercise} A system of two spins has the Hamiltonian
+\[
+	\bm{H} = \frac\omega2\bm{\sigma}\cdot\bm{\tau}
+\]
+What are the possible energies of the system, and what are the
+eigenvectors of the Hamiltonian? \\
+
+Suppose the system starts in the state $\ket{uu}$. What is the
+state at any later time? Answer the same question for initial
+states $\ket{ud}$, $\ket{du}$, and $\ket{dd}$.
+\end{exercise}
+
+The first part of the question essentially is about diagonalizing
+the Hamiltonian: the eigenvalues correspond to the measurable values
+for the energy. More generally, the exercise is about repeating what
+we've done earlier in chapter $4$, in particular in exercise
+\href{https://github.com/mbivert/ttm/blob/master/qm/L04E06.pdf}{L04E06},
+meaning, applying what the authors call the \textit{recipe for a Schr\"odinger
+Ket (section $4.13$)}:
+\begin{enumerate}
+	\item Derive, look up, guess, borrow, or steal the Hamiltonian
+	operator H;
+	\item Prepare an initial state $\ket{\Psi(0)}$;
+	\item Find the eigenvalues and eigenvectors of $H$ by solving
+	the time-independent Schr\"odinger equation,
+	\[
+		H\ket{E_j} = E_j\ket{E_j}
+	\]
+	\item Use the initial state-vector $\ket{\Psi(0)}$, along with
+	the eigenvectors $\ket{E_j}$ from step 3, to calculate the initial
+	coefficients $\alpha_j(0)$:
+	\[
+		\alpha_j(0) = \braket{E_j}{\Psi(0)}
+	\]
+	\item Rewrite $\ket{\Psi(0)}$ in terms of the eigenvectors
+	$\ket{E_j}$ and the initial coefficients $\alpha_j(0)$:
+	\[
+		\ket{\Psi(0)} = \sum_j\alpha_j(0)\ket{E_j}
+	\]
+	\item In the above equation, replace each $\alpha_j(0)$ with
+	$\alpha_j(t)$ to capture its time-dependence. As a result, $\ket{\Psi(0)}$
+	becomes $\ket{\Psi(t)}$:
+	\[
+		\ket{\Psi(t)} = \sum_j\alpha_j(t)\ket{E_j}
+	\]
+	\item Using Eq. $4.30$\footnote{This equation corresponds
+	exactly to what this step describes}, replace each $\alpha_j(t)$ with
+	$\alpha_j(0)\exp(-\frac{i}\hbar E_jt)$:
+	\[
+		\ket{\Psi(t)} = \sum_j\alpha_j(0)\exp(-\frac{i}\hbar E_jt)\ket{E_j}
+	\]
+\end{enumerate}
+
+\hr
+
+We'll start by diagonalizing $\bm{H}$, and then, by loosely applying the rest
+of the procedure with the various proposed initial states. Recall from the
+\href{https://github.com/mbivert/ttm/blob/master/qm/L06E09.pdf}{previous exercise}
+that we've found $4$ eigenvectors for $\bm{\sigma}\cdot\bm{\tau}$:
+\begin{equation*}\begin{aligned}
+	(\bm{\sigma}\cdot\bm{\tau})\ket{\text{sing}} &=&& -3\ket{\text{sing}} \\
+	(\bm{\sigma}\cdot\bm{\tau})\ket{T_1} &=&& +1\ket{T_1} \\
+	(\bm{\sigma}\cdot\bm{\tau})\ket{T_2} &=&& +1\ket{T_2} \\
+	(\bm{\sigma}\cdot\bm{\tau})\ket{T_3} &=&& +1\ket{T_3} \\
+\end{aligned}\end{equation*}
+
+Let's recall the expression of those 4 vectors in the up/down basis:
+\begin{equation*}\begin{aligned}
+	\ket{\text{sing}} &=&& \frac1{\sqrt2}\left(\ket{ud}-\ket{du}\right); &&&
+	\ket{T_1} &=&& \frac1{\sqrt2}\left(\ket{ud}+\ket{du}\right) \\
+	\ket{T_2} &=&& \frac1{\sqrt2}\left(\ket{uu}+\ket{dd}\right); &&&
+	\ket{T_3} &=&& \frac1{\sqrt2}\left(\ket{uu}-\ket{dd}\right)
+\end{aligned}\end{equation*}
+
+It is immediate to check that those eigenvectors all have norm $1$, and that
+they are orthogonal pairwise\footnote{If unsure, compute respectively the
+norm, which is derived from the inner-product:
+$|\ket{\Psi}| := \sqrt{\braket{\Psi}{\Psi}}$, and that the same inner-product
+between two vectors is zero iff said vectors are orthogonal}. \\
+
+Furthermore, we know that $\bm{\sigma}\cdot\bm{\tau}$ is an operator in
+a $4$ dimensional vector space $A\otimes B$\footnote{If this is unclear, you
+can refer to the beginning on this Chapter ($6$), where we explore how
+the combine vector space was built}. And we know from the spectral theorem
+(aka, the fundamental theorem, proved in
+\href{https://github.com/mbivert/ttm/blob/master/qm/L03E01.pdf}{L03E01})
+that the eigenvectors of a Hermitian operator (i.e. an observable) make
+an orthonormal basis for the surrounding vector space. \\
+
+Hence we can conclude that our $4$ eigenvectors $\ket{\text{sing}}$,
+$\ket{T_1}$, $\ket{T_2}$, and $\ket{T_3}$ are \textit{the} eigenvectors
+of $\bm{\sigma}\cdot\bm{\tau}$: there are no others, for we've reached
+the dimension of our vector space $A\otimes B$. By scaling our operator
+by $\omega/2$, we find back our Hamiltonian $\bm{H}$, for which we then have the
+same eigenvectors, only the eigenvalues now need to be shifted likewise:
+\begin{equation*}\begin{aligned}
+	\bm{H}\ket{\text{sing}} &=&& \frac{-3\omega}2\ket{\text{sing}}; &&&
+	\bm{H}\ket{T_1} &=&& \frac{+\omega}2\ket{T_1} \\
+	\bm{H}\ket{T_2} &=&& \frac{+\omega}2\ket{T_2}; &&&
+	\bm{H}\ket{T_3} &=&& \frac{+\omega}2\ket{T_3} \\
+\end{aligned}\end{equation*}
+
+Hence, we can only measure two values for the energy:
+\[
+	\boxed{E_{\text{sing}} = \frac{-3\omega}2;\qquad
+		E_{T_1} = E_{T_2} = E_{T_3} = \frac{+\omega}2
+	}
+\]
+And our eigenvectors are:
+\[
+	\boxed{
+		\ket{\text{sing}},\quad \ket{T_1},\quad
+		\ket{T_2},\quad \ket{T_3}
+	}
+\]
+
+\hr
+
+At this point, we've reached the end of step $3.$ of the
+\textit{recipe for a Schr\"odinger cat} recalled earlier. We're
+now ready to follow through the other steps, by varying the
+initial state. Let's start as suggested with $\ket{\Psi_{uu}(0)} = \ket{uu}$:
+we're trying to rewrite this initial vector state in the basis
+corresponding to the eigenvectors of our observable (our Hamiltonian). \\
+
+To this effect, we start by computing the coefficient $\alpha_j(0)$:
+\begin{equation*}\begin{aligned}
+	\alpha_{\text{sing}}(0) &:=&& \braket{\text{sing}}{\Psi_{uu}(0)} &&&
+	\alpha_{T_1}(0) &:=&& \braket{T_1}{\Psi_{uu}(0)} \\
+	%
+	~ &=&& \braket{\text{sing}}{uu} &&&
+	~ &=&& \braket{T_1}{uu} \\
+	%
+	~ &=&& \frac1{\sqrt2}(\bra{ud}-\bra{du})\ket{uu} &&&
+	~ &=&& \frac1{\sqrt2}(\bra{ud}+\bra{du})\ket{uu} \\
+	%
+	~ &=&& \boxed{0} &&&
+	~ &=&& \boxed{0} \\
+\end{aligned}\end{equation*}
+\begin{equation*}\begin{aligned}
+	\alpha_{T_2}(0) &:=&& \braket{T_2}{\Psi_{uu}(0)} &&&
+	\alpha_{T_3}(0) &:=&& \braket{T_3}{\Psi_{uu}(0)} \\
+	%
+	~ &=&& \braket{T_2}{uu} &&&
+	~ &=&& \braket{T_3}{uu} \\
+	%
+	~ &=&& \frac1{\sqrt2}(\bra{uu}+\bra{dd})\ket{uu} &&&
+	~ &=&& \frac1{\sqrt2}(\bra{uu}-\bra{dd})\ket{uu} \\
+	%
+	~ &=&& \boxed{\frac1{\sqrt2}} &&&
+	~ &=&& \boxed{\frac1{\sqrt2}} \\
+\end{aligned}\end{equation*}
+
+Hence we can rewrite (step 5.) $\ket{\Psi_{uu}(0)}=\ket{uu}$ in the eigenbase:
+\[
+	\ket{\Psi_{uu}(0)} = \ket{uu} = \sum_j\alpha_j(0)\ket{E_j}
+		= \frac1{\sqrt2}(\ket{T_2}+\ket{T_3})
+\]
+
+And from a previous equation ($4.30$) we can find the evolution over
+time of our state:
+\[
+	\ket{\Psi_{uu}(t)} = \sum_j\alpha_j(0)\exp(-\frac{i}\hbar E_jt)\ket{E_j}
+\]
+That is:
+\[
+	\boxed{
+		\ket{\Psi_{uu}(t)} = \frac1{\sqrt2}\exp(-\frac{\omega i}{2\hbar} t)(\ket{T_2}+\ket{T_3})
+	}
+\]
+
+\hr
+
+Let's repeat the exact same process, but this time with an initial
+state $\ket{\Psi_{ud}(0)} = \ket{ud}$. I'll just perform the computation,
+you can refer to the previous steps if need be.
+
+\begin{equation*}\begin{aligned}
+	\alpha_{\text{sing}}(0) &:=&& \braket{\text{sing}}{\Psi_{ud}(0)} &&&
+	\alpha_{T_1}(0) &:=&& \braket{T_1}{\Psi_{ud}(0)} \\
+	%
+	~ &=&& \braket{\text{sing}}{ud} &&&
+	~ &=&& \braket{T_1}{ud} \\
+	%
+	~ &=&& \frac1{\sqrt2}(\bra{ud}-\bra{du})\ket{ud} &&&
+	~ &=&& \frac1{\sqrt2}(\bra{ud}+\bra{du})\ket{ud} \\
+	%
+	~ &=&& \boxed{\frac1{\sqrt2}} &&&
+	~ &=&& \boxed{\frac1{\sqrt2}} \\
+\end{aligned}\end{equation*}
+\begin{equation*}\begin{aligned}
+	\alpha_{T_2}(0) &:=&& \braket{T_2}{\Psi_{ud}(0)} &&&
+	\alpha_{T_3}(0) &:=&& \braket{T_3}{\Psi_{ud}(0)} \\
+	%
+	~ &=&& \braket{T_2}{ud} &&&
+	~ &=&& \braket{T_3}{ud} \\
+	%
+	~ &=&& \frac1{\sqrt2}(\bra{uu}+\bra{dd})\ket{ud} &&&
+	~ &=&& \frac1{\sqrt2}(\bra{uu}-\bra{dd})\ket{ud} \\
+	%
+	~ &=&& \boxed{0} &&&
+	~ &=&& \boxed{0} \\
+\end{aligned}\end{equation*}
+
+But:
+\[
+	\ket{\Psi_{ud}(t)} = \sum_j\alpha_j(0)\exp(-\frac{i}\hbar E_jt)\ket{E_j}
+\]
+So:
+\[
+	\boxed{
+		\ket{\Psi_{ud}(t)} = \frac1{\sqrt2}\left(
+			\exp(\frac{3\omega i}{2\hbar} t)\ket{\text{sing}}
+			+\exp(-\frac{\omega i}{2\hbar} t)\ket{T_1}
+		\right)
+	}
+\]
+
+\hr
+
+Let's do it more time, with an initial state of $\ket{\Psi_{du}(0)} = \ket{du}$.
+
+\begin{equation*}\begin{aligned}
+	\alpha_{\text{sing}}(0) &:=&& \braket{\text{sing}}{\Psi_{du}(0)} &&&
+	\alpha_{T_1}(0) &:=&& \braket{T_1}{\Psi_{du}(0)} \\
+	%
+	~ &=&& \braket{\text{sing}}{du} &&&
+	~ &=&& \braket{T_1}{du} \\
+	%
+	~ &=&& \frac1{\sqrt2}(\bra{ud}-\bra{du})\ket{du} &&&
+	~ &=&& \frac1{\sqrt2}(\bra{ud}+\bra{du})\ket{du} \\
+	%
+	~ &=&& \boxed{-\frac1{\sqrt2}} &&&
+	~ &=&& \boxed{\frac1{\sqrt2}} \\
+\end{aligned}\end{equation*}
+\begin{equation*}\begin{aligned}
+	\alpha_{T_2}(0) &:=&& \braket{T_2}{\Psi_{du}(0)} &&&
+	\alpha_{T_3}(0) &:=&& \braket{T_3}{\Psi_{du}(0)} \\
+	%
+	~ &=&& \braket{T_2}{du} &&&
+	~ &=&& \braket{T_3}{du} \\
+	%
+	~ &=&& \frac1{\sqrt2}(\bra{uu}+\bra{dd})\ket{du} &&&
+	~ &=&& \frac1{\sqrt2}(\bra{uu}-\bra{dd})\ket{du} \\
+	%
+	~ &=&& \boxed{0} &&&
+	~ &=&& \boxed{0} \\
+\end{aligned}\end{equation*}
+
+But:
+\[
+	\ket{\Psi_{du}(t)} = \sum_j\alpha_j(0)\exp(-\frac{i}\hbar E_jt)\ket{E_j}
+\]
+So:
+\[
+	\boxed{
+		\ket{\Psi_{du}(t)} = \frac1{\sqrt2}\left(
+			\exp(-\frac{\omega i}{2\hbar} t)\ket{T_1}
+			-\exp(\frac{3\omega i}{2\hbar} t)\ket{\text{sing}}
+		\right)
+	}
+\]
+
+\hr
+
+One last time, starting from $\ket{\Psi_{dd}(0)} = \ket{dd}$.
+
+\begin{equation*}\begin{aligned}
+	\alpha_{\text{sing}}(0) &:=&& \braket{\text{sing}}{\Psi_{dd}(0)} &&&
+	\alpha_{T_1}(0) &:=&& \braket{T_1}{\Psi_{dd}(0)} \\
+	%
+	~ &=&& \braket{\text{sing}}{dd} &&&
+	~ &=&& \braket{T_1}{dd} \\
+	%
+	~ &=&& \frac1{\sqrt2}(\bra{ud}-\bra{du})\ket{dd} &&&
+	~ &=&& \frac1{\sqrt2}(\bra{ud}+\bra{du})\ket{dd} \\
+	%
+	~ &=&& \boxed{0} &&&
+	~ &=&& \boxed{0} \\
+\end{aligned}\end{equation*}
+\begin{equation*}\begin{aligned}
+	\alpha_{T_2}(0) &:=&& \braket{T_2}{\Psi_{dd}(0)} &&&
+	\alpha_{T_3}(0) &:=&& \braket{T_3}{\Psi_{dd}(0)} \\
+	%
+	~ &=&& \braket{T_2}{dd} &&&
+	~ &=&& \braket{T_3}{dd} \\
+	%
+	~ &=&& \frac1{\sqrt2}(\bra{uu}+\bra{dd})\ket{dd} &&&
+	~ &=&& \frac1{\sqrt2}(\bra{uu}-\bra{dd})\ket{dd} \\
+	%
+	~ &=&& \boxed{\frac1{\sqrt2}} &&&
+	~ &=&& \boxed{-\frac1{\sqrt2}} \\
+\end{aligned}\end{equation*}
+
+But:
+\[
+	\ket{\Psi_{dd}(t)} = \sum_j\alpha_j(0)\exp(-\frac{i}\hbar E_jt)\ket{E_j}
+\]
+So:
+\[
+	\boxed{
+		\ket{\Psi_{dd}(t)} = \frac1{\sqrt2}\exp(-\frac{\omega i}\hbar t)
+			\left(\ket{T_2}-\ket{T_3}\right)
+	}
+\]
+
+\end{document}
