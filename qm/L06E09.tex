@@ -1,0 +1,93 @@
+\documentclass[solutions.tex]{subfiles}
+
+\xtitle
+
+\begin{document}
+\maketitle
+\begin{exercise} Prove that the four vectors $\ket{\text{sing}}$,
+$\ket{T_1}$, $\ket{T_2}$, and $\ket{T_3}$ are eigenvectors of
+$\bm{\sigma}\cdot\bm{\tau}$. What are their eigenvalues?
+\end{exercise}
+Recall the definition of those four vectors:
+\begin{equation*}\begin{aligned}
+	\ket{\text{sing}} &=&& \frac1{\sqrt2}\left(\ket{ud}-\ket{du}\right); &&&
+	\ket{T_1} &=&& \frac1{\sqrt2}\left(\ket{ud}+\ket{du}\right) \\
+	\ket{T_2} &=&& \frac1{\sqrt2}\left(\ket{uu}+\ket{dd}\right); &&&
+	\ket{T_3} &=&& \frac1{\sqrt2}\left(\ket{uu}-\ket{dd}\right)
+\end{aligned}\end{equation*}
+
+And the definition of $\bm{\sigma}\cdot\bm{\tau}$:
+\[
+	\bm{\sigma}\cdot\bm{\tau} = \sigma_x\tau_x + \sigma_y\tau_y + \sigma_z\tau_z
+\]
+Again for this exercise, we won't need to explicitly use the
+Pauli matrices $\sigma_i / \tau_j $. But actually, we won't even need
+the multiplication table either, as we've already done most of the work
+in earlier exercises. Indeed, if we want to prove that $\ket{\Psi}$ is
+an eigenvector for $\bm{\sigma}\cdot\bm{\tau}$, we expect to be able to
+carry some computation following this pattern:
+\begin{equation*}\begin{aligned}
+	(\bm{\sigma}\cdot\bm{\tau})\ket{\Psi} &=&&
+		(\sigma_x\tau_x + \sigma_y\tau_y + \sigma_z\tau_z)\ket{\Psi} \\
+	~ &=&& (\sigma_x\tau_x)\ket{\Psi} + (\sigma_y\tau_y)\ket{\Psi} +
+		(\sigma_z\tau_z)\ket{\Psi} \\
+	~ &=&& \ldots \\
+	~ &=&& \lambda_\Psi\ket{\Psi} \\
+\end{aligned}\end{equation*}
+
+But we know from the book that:
+\[
+	\sigma_x\tau_x\ket{\text{sing}} =
+	\sigma_y\tau_y\ket{\text{sing}} =
+	\sigma_z\tau_z\ket{\text{sing}} = -\ket{\text{sing}}
+\]
+
+From
+\href{https://github.com/mbivert/ttm/blob/master/qm/L06E07.pdf}{L06E07} that
+\begin{equation*}\begin{aligned}
+	\sigma_x\tau_x\ket{T_1} &=&& \frac1{\sqrt2}(\ket{du}+\ket{ud}) &=:&& T_1;\\
+	\sigma_y\tau_y\ket{T_1} &=&& \frac1{\sqrt2}(\ket{du}+\ket{ud}) &=:&& T_1;\\
+	\sigma_z\tau_z\ket{T_1} &=&& -\frac1{\sqrt2}(\ket{du}+\ket{ud}) &=:&& -T_1;\\
+\end{aligned}\end{equation*}
+
+And from
+\href{https://github.com/mbivert/ttm/blob/master/qm/L06E08.pdf}{L06E08} that:
+\begin{equation*}\begin{aligned}
+	\sigma_x\tau_x\ket{T_2} &=&& \frac1{\sqrt2}(\ket{uu}+\ket{dd}) &=:&& T_2; &&&
+	\sigma_x\tau_x\ket{T_3} &=&& \frac1{\sqrt2}(\ket{dd}-\ket{uu}) &=:&& -T_3; \\
+	%
+	\sigma_y\tau_y\ket{T_2} &=&& -\frac1{\sqrt2}(\ket{uu}+\ket{dd}) &=:&& -T_2; &&&
+	\sigma_y\tau_y\ket{T_3} &=&& \frac1{\sqrt2}(\ket{uu}-\ket{dd}) &=:&& T_3; \\
+	%
+	\sigma_z\tau_z\ket{T_2} &=&& \frac1{\sqrt2}(\ket{uu}+\ket{dd}) &=:&& T_2; &&&
+	\sigma_z\tau_z\ket{T_3} &=&& \frac1{\sqrt2}(\ket{uu}-\ket{dd}) &=:&& T_3. \\
+\end{aligned}\end{equation*}
+
+It follows that:
+\begin{equation*}\begin{aligned}
+	(\bm{\sigma}\cdot\bm{\tau})\ket{\text{sing}} &=&&
+		\sigma_x\tau_x)\ket{\text{sing}}
+		+ (\sigma_y\tau_y)\ket{\text{sing}}
+		+ (\sigma_z\tau_z)\ket{\text{sing}} &=&& \boxed{-3}\ket{\text{sing}} \\
+	%
+	(\bm{\sigma}\cdot\bm{\tau})\ket{T_1} &=&&
+		\sigma_x\tau_x)\ket{T_1}
+		+ (\sigma_y\tau_y)\ket{T_1}
+		+ (\sigma_z\tau_z)\ket{T_1} &=&& \boxed{+1}\ket{T_1} \\
+	%
+	(\bm{\sigma}\cdot\bm{\tau})\ket{T_2} &=&&
+		\sigma_x\tau_x)\ket{T_2}
+		+ (\sigma_y\tau_y)\ket{T_2}
+		+ (\sigma_z\tau_z)\ket{T_2} &=&& \boxed{+1}\ket{T_2} \\
+	%
+	(\bm{\sigma}\cdot\bm{\tau})\ket{T_3} &=&&
+		\sigma_x\tau_x)\ket{T_3}
+		+ (\sigma_y\tau_y)\ket{T_3}
+		+ (\sigma_z\tau_z)\ket{T_3} &=&& \boxed{+1}\ket{T_3}
+\end{aligned}\end{equation*}
+Hence, as foretold by the authors after this exercise, the triplets
+share a degenerate eigenvalue ($+1$), while the singlet is associated to
+a unique eigenvalue ($-3$), which justifies \textit{a posteriori} their
+names.
+\end{document}
+
