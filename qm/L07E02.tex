@@ -1,0 +1,125 @@
+\documentclass[solutions.tex]{subfiles}
+
+\xtitle
+
+\begin{document}
+\maketitle
+\begin{exercise} Calculate the matrix elements of $\sigma_z\otimes\tau_x$
+by forming inner products as we did in Eq. $7.2$.
+\end{exercise}
+This is essentially the same exercise as the
+\href{https://github.com/mbivert/ttm/blob/master/qm/L07E01.pdf}{previous one},
+but with a different composite operator. To check for errors, I'll still
+do the computation using the two approaches. \\
+
+We'll start with the approach suggested in the exercise's statement: let's
+first start by recalling the portion of interest from the multiplication table
+computed in
+\href{https://github.com/mbivert/ttm/blob/master/qm/L06E04.pdf}{L06E04}:
+\begin{equation*}\begin{aligned}
+	\sigma_z\ket{uu} &=&\ket{uu};  &&& \tau_x\ket{uu} &=&& \ket{ud} \\
+	\sigma_z\ket{ud} &=&\ket{ud};  &&& \tau_x\ket{ud} &=&& \ket{uu} \\
+	\sigma_z\ket{du} &=&-\ket{du}; &&& \tau_x\ket{du} &=&& \ket{dd} \\
+	\sigma_z\ket{dd} &=&-\ket{dd}; &&& \tau_x\ket{dd} &=&& \ket{du} \\
+\end{aligned}\end{equation*}
+
+Then, Eq. $7.2$ applied to $\sigma_z\otimes\tau_x$ will give:
+\begin{equation*}\begin{aligned}
+	\sigma_z\otimes\tau_x &"="&& \begin{pmatrix}
+		\bra{uu}(\sigma_z\otimes\tau_x)\ket{uu}
+			& \bra{uu}(\sigma_z\otimes\tau_x)\ket{ud}
+			& \bra{uu}(\sigma_z\otimes\tau_x)\ket{du}
+			& \bra{uu}(\sigma_z\otimes\tau_x)\ket{dd} \\
+		\bra{ud}(\sigma_z\otimes\tau_x)\ket{uu}
+			& \bra{ud}(\sigma_z\otimes\tau_x)\ket{ud}
+			& \bra{ud}(\sigma_z\otimes\tau_x)\ket{du}
+			& \bra{ud}(\sigma_z\otimes\tau_x)\ket{dd} \\
+		\bra{du}(\sigma_z\otimes\tau_x)\ket{uu}
+			& \bra{du}(\sigma_z\otimes\tau_x)\ket{ud}
+			& \bra{du}(\sigma_z\otimes\tau_x)\ket{du}
+			& \bra{du}(\sigma_z\otimes\tau_x)\ket{dd} \\
+		\bra{dd}(I\otimes\tau_x)\ket{uu}
+			& \bra{dd}(\sigma_z\otimes\tau_x)\ket{ud}
+			& \bra{dd}(\sigma_z\otimes\tau_x)\ket{du}
+			& \bra{dd}(\sigma_z\otimes\tau_x)\ket{dd} \\
+	\end{pmatrix} \\
+	~ &"="&& \begin{pmatrix}
+		\bra{uu}\sigma_z\ket{ud} & \bra{uu}\sigma_z\ket{uu}
+			& \bra{uu}\sigma_z\ket{dd} & \bra{uu}\sigma_z\ket{du} \\
+		\bra{ud}\sigma_z\ket{ud} & \bra{ud}\sigma_z\ket{uu}
+			& \bra{ud}\sigma_z\ket{dd} & \bra{ud}\sigma_z\ket{du} \\
+		\bra{du}\sigma_z\ket{ud} & \bra{du}\sigma_z\ket{uu}
+			& \bra{du}\sigma_z\ket{dd} & \bra{du}\sigma_z\ket{du} \\
+		\bra{dd}\sigma_z\ket{ud} & \bra{dd}\sigma_z\ket{uu}
+			& \bra{dd}\sigma_z\ket{dd} & \bra{dd}\sigma_z\ket{du} \\
+	\end{pmatrix} \\
+	~ &"="&& \begin{pmatrix}
+		\braket{uu}{ud} & \braket{uu}{uu} & -\braket{uu}{dd} & -\braket{uu}{du} \\
+		\braket{ud}{ud} & \braket{ud}{uu} & -\braket{ud}{dd} & -\braket{ud}{du} \\
+		\braket{du}{ud} & \braket{du}{uu} & -\braket{du}{dd} & -\braket{du}{du} \\
+		\braket{dd}{ud} & \braket{dd}{uu} & -\braket{dd}{dd} & -\braket{dd}{du} \\
+	\end{pmatrix} \\
+	~ &"="&& \boxed{\begin{pmatrix}
+		0 & 1 & 0 & 0 \\
+		1 & 0 & 0 & 0 \\
+		0 & 0 & 0 & -1 \\
+		0 & 0 & -1 & 0 \\
+	\end{pmatrix}} \\
+\end{aligned}\end{equation*}
+
+\hrr
+
+Let's verify our computation using the second approach, relying
+on Eq. $7.6$ of the book:
+\[
+	A\otimes B = \begin{pmatrix}
+		A_{11}B & A_{12}B \\
+		A_{21}B & A_{22}B \\
+	\end{pmatrix}
+\]
+
+Recall the Pauli matrices:
+\[
+	\sigma_z = \begin{pmatrix}
+		1 & 0 \\
+		0 & -1 \\
+	\end{pmatrix};\qquad
+	\tau_x = \begin{pmatrix}
+		0 & 1 \\
+		1 & 0 \\
+	\end{pmatrix}
+\]
+
+Which then yields:
+\begin{equation*}\begin{aligned}
+	\sigma_z\otimes\tau_x &"="&& \begin{pmatrix}
+		1\times\tau_x & 0\times\tau_x \\
+		0\times\tau_x & -1\times\tau_x \\
+	\end{pmatrix} \\
+	~ &"="&& \begin{pmatrix}
+		\begin{pmatrix}
+			0 & 1 \\
+			1 & 0 \\
+		\end{pmatrix} & \begin{pmatrix}
+			0 & 0 \\
+			0 & 0 \\
+		\end{pmatrix} \\
+		\begin{pmatrix}
+			0 & 0 \\
+			0 & 0 \\
+		\end{pmatrix} & \begin{pmatrix}
+			0 & -1 \\
+			-1 & 0 \\
+		\end{pmatrix} \\
+	\end{pmatrix} \\
+	~ &"="&& \boxed{\begin{pmatrix}
+		0 & 1 & 0 & 0 \\
+		1 & 0 & 0 & 0 \\
+		0 & 0 & 0 & -1 \\
+		0 & 0 & -1 & 0 \\
+	\end{pmatrix}} \\
+\end{aligned}\end{equation*}
+
+Which agrees with our previous result.
+
+\end{document}
