@@ -1,0 +1,195 @@
+\documentclass[solutions.tex]{subfiles}
+
+\xtitle
+
+\begin{document}
+\maketitle
+\begin{exercise} Write the tensor product $I\otimes\tau_x$ as
+a matrix, and apply that matrix to each of the $\ket{uu}$, $\ket{ud}$,
+$\ket{du}$, and $\ket{dd}$ column vectors. Show that Alice's half
+of the state-vector is unchanged in each case. Recall that $I$ is the
+$2\times2$ unit matrix.
+\end{exercise}
+Recall that $\tau_x$ is a Pauli matrix, while $I$ really is the
+identity matrix:
+\[
+	\tau_x = \begin{pmatrix}
+		0 & 1 \\
+		1 & 0 \\
+	\end{pmatrix};\qquad I=\begin{pmatrix}
+		1 & 0 \\
+		0 & 1 \\
+	\end{pmatrix}
+\]
+
+We saw two different ways of building $I\otimes\tau_x$. Let's
+start with the first one: consider the usual ordered basis of the
+underlying composite space: $\{ \ket{uu}, \ket{ud}, \ket{du}, \ket{dd} \}$.
+Then, the elements of the matrix representation of $I\otimes\tau_x$
+in this basis are given by:
+\[
+	(I\otimes\tau_x)_{ab,cd} = \bra{ab}(I\otimes\tau_x)\ket{cd}
+\]
+
+We can then use the multiplication table from either the appendix or from
+\href{https://github.com/mbivert/ttm/blob/master/qm/L06E04.pdf}{L06E04},
+where, remember, $\tau_x$ in this multiplication table was a shortcut
+notation for $I\otimes\tau_x$.
+\begin{equation*}\begin{aligned}
+	\tau_x\ket{uu} &=&& \ket{ud}; &&&
+	\tau_x\ket{ud} &=&& \ket{uu} \\
+	\tau_x\ket{du} &=&& \ket{dd}; &&&
+	\tau_x\ket{dd} &=&& \ket{du} \\
+\end{aligned}\end{equation*}
+
+And we're now ready to evaluate the operator's matrix form:
+\begin{equation*}\begin{aligned}
+	I\otimes\tau_x &"="&& \begin{pmatrix}
+		\bra{uu}(I\otimes\tau_x)\ket{uu} & \bra{uu}(I\otimes\tau_x)\ket{ud} &
+			\bra{uu}(I\otimes\tau_x)\ket{du} & \bra{uu}(I\otimes\tau_x)\ket{dd} \\
+		\bra{ud}(I\otimes\tau_x)\ket{uu} & \bra{ud}(I\otimes\tau_x)\ket{ud} &
+			\bra{ud}(I\otimes\tau_x)\ket{du} & \bra{ud}(I\otimes\tau_x)\ket{dd} \\
+		\bra{du}(I\otimes\tau_x)\ket{uu} & \bra{du}(I\otimes\tau_x)\ket{ud} &
+			\bra{du}(I\otimes\tau_x)\ket{du} & \bra{du}(I\otimes\tau_x)\ket{dd} \\
+		\bra{dd}(I\otimes\tau_x)\ket{uu} & \bra{dd}(I\otimes\tau_x)\ket{ud} &
+			\bra{dd}(I\otimes\tau_x)\ket{du} & \bra{dd}(I\otimes\tau_x)\ket{dd} \\
+	\end{pmatrix} \\
+	~ &"="&& \begin{pmatrix}
+		\braket{uu}{ud} & \braket{uu}{uu} & \braket{uu}{dd} & \braket{uu}{du} \\
+		\braket{ud}{ud} & \braket{ud}{uu} & \braket{ud}{dd} & \braket{ud}{du} \\
+		\braket{du}{ud} & \braket{du}{uu} & \braket{du}{dd} & \braket{du}{du} \\
+		\braket{dd}{ud} & \braket{dd}{uu} & \braket{dd}{dd} & \braket{dd}{du} \\
+	\end{pmatrix} \\
+	~ &"="&& \boxed{\begin{pmatrix}
+		0 & 1 & 0 & 0 \\
+		1 & 0 & 0 & 0 \\
+		0 & 0 & 0 & 1 \\
+		0 & 0 & 1 & 0 \\
+	\end{pmatrix}} \\
+\end{aligned}\end{equation*}
+
+\hrr
+
+Let's move on to the second way, which consists in using Eq. $7.6$ of the book:
+\[
+	A\otimes B = \begin{pmatrix}
+		A_{11}B & A_{12}B \\
+		A_{21}B & A_{22}B \\
+	\end{pmatrix}
+\]
+
+Which then yields:
+\begin{equation*}\begin{aligned}
+	I\otimes\tau_x &"="&& \begin{pmatrix}
+		1\times\tau_x & 0\times\tau_x \\
+		0\times\tau_x & 1\times\tau_x \\
+	\end{pmatrix} \\
+	~ &"="&& \begin{pmatrix}
+		\begin{pmatrix}
+			0 & 1 \\
+			1 & 0 \\
+		\end{pmatrix} & \begin{pmatrix}
+			0 & 0 \\
+			0 & 0 \\
+		\end{pmatrix} \\
+		\begin{pmatrix}
+			0 & 0 \\
+			0 & 0 \\
+		\end{pmatrix} & \begin{pmatrix}
+			0 & 1 \\
+			1 & 0 \\
+		\end{pmatrix} \\
+	\end{pmatrix} \\
+	~ &"="&& \boxed{\begin{pmatrix}
+		0 & 1 & 0 & 0 \\
+		1 & 0 & 0 & 0 \\
+		0 & 0 & 0 & 1 \\
+		0 & 0 & 1 & 0 \\
+	\end{pmatrix}} \\
+\end{aligned}\end{equation*}
+
+Which is exactly what we've found earlier, albeit less tediously.
+
+\hrr
+
+In our usual ordered basis $\{ \ket{uu}, \ket{ud}, \ket{du}, \ket{dd} \}$,
+the column representations of the basis vectors are as follow:
+\[
+	\ket{uu} = \begin{pmatrix}
+		1 \\
+		0 \\
+		0 \\
+		0 \\
+	\end{pmatrix};\quad
+	\ket{ud} = \begin{pmatrix}
+		0 \\
+		1 \\
+		0 \\
+		0 \\
+	\end{pmatrix};\quad
+	\ket{du} = \begin{pmatrix}
+		0 \\
+		0 \\
+		1 \\
+		0 \\
+	\end{pmatrix};\quad
+	\ket{dd} = \begin{pmatrix}
+		0 \\
+		0 \\
+		0 \\
+		1 \\
+	\end{pmatrix}
+\]
+\begin{remark} Remember than the column notation is merely a syntactical
+shortcut over linear combinations of the basis vectors:
+\[
+	\begin{pmatrix}
+		a \\
+		b \\
+		c \\
+		d \\
+	\end{pmatrix} := a\ket{uu} + b\ket{ud} + c\ket{du} + d\ket{dd}
+\]
+\end{remark}
+\begin{remark} Note that we could also have used, as the authors did
+in the book, Eq. $7.6$ to derive them.
+\end{remark}
+
+Then it's just a matter of computing some elementary matrix$\times$vector
+products. As a shortcut, one can also recall from one's linear algebra class
+than such products, when they involve basis vectors, are simply a matter
+of extracting the columns of the matrix (which is fairly trivial to see):
+\[
+	(I\otimes\tau_x)\ket{uu} = \begin{pmatrix}
+		0 \\
+		1 \\
+		0 \\
+		0 \\
+	\end{pmatrix} = \ket{ud};\quad
+	(I\otimes\tau_x)\ket{ud} = \begin{pmatrix}
+		1 \\
+		0 \\
+		0 \\
+		0 \\
+	\end{pmatrix} = \ket{uu};
+\]
+\[
+	(I\otimes\tau_x)\ket{du} = \begin{pmatrix}
+		0 \\
+		0 \\
+		0 \\
+		1 \\
+	\end{pmatrix} = \ket{dd};\quad
+	(I\otimes\tau_x)\ket{dd} = \begin{pmatrix}
+		0 \\
+		0 \\
+		1 \\
+		0 \\
+	\end{pmatrix} = \ket{du}
+\]
+\begin{remark} Naturally, this is consistent with the multiplication
+table we've recalled earlier; and Alice's part of the state is indeed
+kept unchanged, as expected.
+\end{remark}
+
+\end{document}
