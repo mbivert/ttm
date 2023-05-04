@@ -1,0 +1,227 @@
+\documentclass[solutions.tex]{subfiles}
+
+\xtitle
+
+\begin{document}
+\maketitle
+\begin{exercise} a) Rewrite Eq. $7.10$ in component form,
+replacing the symbols $A$, $B$, $a$, and $b$ with the matrices
+and column vectors from Eqs. $7.7$ and $7.8$. \\
+
+b) Perform the matrix multiplications $Aa$ and $Bb$ on the
+right-hand side. Verify that each result is a $4\times1$ matrix. \\
+
+c) Expand all three Kronecker products. \\
+
+d) Verify the row and column sizes of each Kronecker product:
+\begin{itemize}
+	\item $A\otimes B$ : $4\times4$
+	\item $a\otimes b$ : $4\times1$
+	\item $Aa\otimes Bb$ : $4\times 1$
+\end{itemize}
+
+e) Perform the matrix multiplication on the left-hand side,
+resulting in a $4\times1$ column vector. Each row should be the
+sum of four separate terms. \\
+
+f) Finally, verify that the resulting column vectors on the left
+and right sides are identical.
+\end{exercise}
+Recall Eq. $7.10$
+\[
+	(A\otimes B)(a\otimes b) = (Aa\otimes Bb)
+\]
+And Eq. $7.7$ and $7.8$:
+\[
+	A\otimes B = \begin{pmatrix}
+		A_{11}B_{11} & A_{11}B_{12} & A_{12}B_{11} & A_{12}B_{12} \\
+		A_{11}B_{21} & A_{11}B_{22} & A_{12}B_{21} & A_{12}B_{22} \\
+		A_{21}B_{11} & A_{21}B_{12} & A_{22}B_{11} & A_{22}B_{12} \\
+		A_{21}B_{21} & A_{21}B_{22} & A_{22}B_{21} & A_{22}B_{22} \\
+	\end{pmatrix};\qquad
+	\begin{pmatrix}
+		a_{11} \\
+		a_{21} \\
+	\end{pmatrix}\otimes\begin{pmatrix}
+		b_{11} \\
+		b_{21} \\
+	\end{pmatrix} = \begin{pmatrix}
+		a_{11}b_{11} \\
+		a_{11}b_{21} \\
+		a_{21}b_{11} \\
+		a_{21}b_{21} \\
+	\end{pmatrix}
+\]
+
+Our goal is to prove Eq. $7.10$ by following all the recommended steps. It's
+a bit tedious, but otherwise presents no major difficulties. \\
+
+\hrr
+
+a) Let's rewrite the equation (that's still to be proved)
+in component form:
+\[
+	(A\otimes B)(a\otimes b) = (Aa\otimes Bb)
+\]
+\[
+	\Leftrightarrow
+	\left(\begin{pmatrix}
+		A_{11} & A_{12} \\
+		A_{21} & A_{22} \\
+	\end{pmatrix}\otimes\begin{pmatrix}
+		B_{11} & B_{12} \\
+		B_{21} & B_{22} \\
+	\end{pmatrix}\right)\left(
+	\begin{pmatrix}
+		a_{11} \\
+		a_{21} \\
+	\end{pmatrix}\otimes\begin{pmatrix}
+		b_{11} \\
+		b_{21} \\
+	\end{pmatrix}\right) = \left(
+		\left(\begin{pmatrix}
+			A_{11} & A_{12} \\
+			A_{21} & A_{22} \\
+		\end{pmatrix}\begin{pmatrix}
+			a_{11} \\
+			a_{21} \\
+		\end{pmatrix}\right)
+		\otimes
+		\left(\begin{pmatrix}
+			B_{11} & B_{12} \\
+			B_{21} & B_{22} \\
+		\end{pmatrix}\begin{pmatrix}
+			b_{11} \\
+			b_{21} \\
+		\end{pmatrix}\right)
+	\right)
+\]
+
+\hrr
+
+b) Let's expand $Aa$ and $Bb$:
+\[
+	Aa = \begin{pmatrix}
+		A_{11} & A_{12} \\
+		A_{21} & A_{22} \\
+	\end{pmatrix}\begin{pmatrix}
+		a_{11} \\
+		a_{21} \\
+	\end{pmatrix} = \begin{pmatrix}
+		A_{11}a_{11}+A_{12}a_{21} \\
+		A_{21}a_{11}+A_{22}a_{21} \\
+	\end{pmatrix};\quad
+	Bb = \begin{pmatrix}
+		B_{11} & B_{12} \\
+		B_{21} & B_{22} \\
+	\end{pmatrix}\begin{pmatrix}
+		b_{11} \\
+		b_{21} \\
+	\end{pmatrix} = \begin{pmatrix}
+		B_{11}b_{11}+B_{12}b_{21} \\
+		B_{21}b_{11}+B_{22}b_{21} \\
+	\end{pmatrix};
+\]
+From Eqs. $7.7$ and $7.8$, we can see that all Kronecker
+products indeed expand to $4\times1$ matrices.
+
+Equation $7.10$ is then equivalent to:
+\[
+	\left(\begin{pmatrix}
+		A_{11} & A_{12} \\
+		A_{21} & A_{22} \\
+	\end{pmatrix}\otimes\begin{pmatrix}
+		B_{11} & B_{12} \\
+		B_{21} & B_{22} \\
+	\end{pmatrix}\right)\left(
+	\begin{pmatrix}
+		a_{11} \\
+		a_{21} \\
+	\end{pmatrix}\otimes\begin{pmatrix}
+		b_{11} \\
+		b_{21} \\
+	\end{pmatrix}\right) = \left(
+		\begin{pmatrix}
+			A_{11}a_{11}+A_{12}a_{21} \\
+			A_{21}a_{11}+A_{22}a_{21} \\
+		\end{pmatrix}\otimes\begin{pmatrix}
+			B_{11}b_{11}+B_{12}b_{21} \\
+			B_{21}b_{11}+B_{22}b_{21} \\
+		\end{pmatrix}
+	\right)
+\]
+
+\hrr
+
+c), d), e), f) I'll be mixing all those steps together, because
+this is fairly trivial. First, $A\otimes B$ and $a\otimes b$ are
+respectively Eqs. $7.7$ and $7.8$. This gives us already:
+\[
+	\begin{pmatrix}
+		A_{11}B_{11} & A_{11}B_{12} & A_{12}B_{11} & A_{12}B_{12} \\
+		A_{11}B_{21} & A_{11}B_{22} & A_{12}B_{21} & A_{12}B_{22} \\
+		A_{21}B_{11} & A_{21}B_{12} & A_{22}B_{11} & A_{22}B_{12} \\
+		A_{21}B_{21} & A_{21}B_{22} & A_{22}B_{21} & A_{22}B_{22} \\
+	\end{pmatrix}\begin{pmatrix}
+		a_{11}b_{11} \\
+		a_{11}b_{21} \\
+		a_{21}b_{11} \\
+		a_{21}b_{21} \\
+	\end{pmatrix} = \left(
+		\begin{pmatrix}
+			A_{11}a_{11}+A_{12}a_{21} \\
+			A_{21}a_{11}+A_{22}a_{21} \\
+		\end{pmatrix}\otimes\begin{pmatrix}
+			B_{11}b_{11}+B_{12}b_{21} \\
+			B_{21}b_{11}+B_{22}b_{21} \\
+		\end{pmatrix}
+	\right)
+\]
+
+It remains to expand the last Kronecker product, for which we
+can use $7.8$:
+\[
+	\begin{pmatrix}
+		A_{11}B_{11} & A_{11}B_{12} & A_{12}B_{11} & A_{12}B_{12} \\
+		A_{11}B_{21} & A_{11}B_{22} & A_{12}B_{21} & A_{12}B_{22} \\
+		A_{21}B_{11} & A_{21}B_{12} & A_{22}B_{11} & A_{22}B_{12} \\
+		A_{21}B_{21} & A_{21}B_{22} & A_{22}B_{21} & A_{22}B_{22} \\
+	\end{pmatrix}\begin{pmatrix}
+		a_{11}b_{11} \\
+		a_{11}b_{21} \\
+		a_{21}b_{11} \\
+		a_{21}b_{21} \\
+	\end{pmatrix} = \begin{pmatrix}
+		(A_{11}a_{11}+A_{12}a_{21})(B_{11}b_{11}+B_{12}b_{21}) \\
+		(A_{11}a_{11}+A_{12}a_{21})(B_{21}b_{11}+B_{22}b_{21}) \\
+		(A_{21}a_{11}+A_{22}a_{21})(B_{11}b_{11}+B_{12}b_{21}) \\
+		(A_{21}a_{11}+A_{22}a_{21})(B_{21}b_{11}+B_{22}b_{21}) \\
+	\end{pmatrix} \\
+\]
+\[
+	= \begin{pmatrix}
+		A_{11}B_{11}a_{11}b_{11}
+		+ A_{11}B_{12}a_{11}b_{21}
+		+ A_{12}B_{11}a_{21}b_{11}
+		+ A_{12}B_{12}a_{21}b_{21} \\
+		%
+		A_{11}B_{21}a_{11}b_{11}
+		+A_{11}B_{22}a_{11}b_{21}
+		+A_{12}B_{21}a_{21}b_{11}
+		+A_{12}B_{22}a_{21}b_{21} \\
+		%
+		A_{21}B_{11}a_{11}b_{11}
+		+A_{21}B_{12}a_{11}b_{21}
+		+A_{22}B_{11}a_{21}b_{11}
+		+A_{22}B_{12}a_{21}b_{21} \\
+		%
+		A_{21}B_{21}a_{11}b_{11}
+		+A_{21}B_{22}a_{11}b_{21}
+		+A_{22}B_{21}a_{21}b_{11}
+		+A_{22}B_{22}a_{21}b_{21} \\
+	\end{pmatrix}
+\]
+
+And it's now trivial to verify that this holds, as expected. $\qed$
+
+\end{document}
