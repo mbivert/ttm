@@ -1,0 +1,196 @@
+\documentclass[solutions.tex]{subfiles}
+
+\xtitle
+
+\begin{document}
+\maketitle
+\begin{exercise} Calculate the density matrix for:
+\[
+	\ket{\Psi} = \alpha\ket{u} + \beta\ket{d}
+\]
+Answer:
+\begin{equation*}\begin{aligned}
+	\psi(u) &=&& \alpha;&&& \psi^*(u) &=&& \alpha^* \\
+	\psi(d) &=&& \beta;&&&  \psi^*(d) &=&& \beta^* \\
+\end{aligned}\end{equation*}
+\[
+	\rho_{a'a} = \begin{pmatrix}
+		\alpha^*\alpha & \alpha^*\beta \\
+		\beta^*\alpha  & \beta^*\beta  \\
+	\end{pmatrix}
+\]
+Now try plugging in some numbers for $\alpha$ and $\beta$. Make
+sure they are normalized to $1$. For example, $\alpha=\dfrac1{\sqrt2}$,
+$\beta=\dfrac1{\sqrt2}$.
+\end{exercise}
+Start by recalling the definition of the density matrix for a single spin
+in a known state:
+\[
+	\rho_{aa'} = \psi^*(a')\psi(a)
+\]
+Now we have no wave function $\psi$ in the exercise statement (the answer
+set aside), but we can find it by identification with general form of
+$\ket{\Psi}$:
+\[
+	\ket{\Psi} = \sum_{a,b,c,\ldots}\psi(a,b,c,\ldots)\ket{a,b,c,\ldots}
+\]
+Hence, $\psi(u)$ is the component of $\ket{\Psi}$ following the $\ket{u}$
+axis, and $\psi(d)$ the one on the $\ket{d}$ axis:
+\[
+	\psi(u) = \braket{u}{\Psi} = \alpha;\qquad
+	\psi(d) = \braket{d}{\Psi} = \beta;
+\]
+Immediately:
+\[
+	\psi^*(u) = \alpha^*;\qquad \psi^*(d) = \beta^*;
+\]
+
+Then it's just about packaging all the $\rho_{aa'}$ in a matrix: the
+basis is ordered ($\{\ket{u}, \ket{d}\}$) hence:
+\[
+	\rho = \begin{pmatrix}
+		\rho_{uu} & \rho_{ud} \\
+		\rho_{du} & \rho_{dd} \\
+	\end{pmatrix} = \begin{pmatrix}
+		\psi^*(u)\psi(u) & \psi^*(d)\psi(u) \\
+		\psi^*(u)\psi(d) & \psi^*(d)\psi(d) \\
+	\end{pmatrix} = \boxed{\begin{pmatrix}
+		\alpha^*\alpha & \beta^*\alpha \\
+		\alpha^*\beta  & \beta^*\beta  \\
+	\end{pmatrix}}
+\]
+
+\begin{remark} We could also use the fact that the density operator is
+defined as a linear combination of of projectors corresponding to the
+potential states of the system, each scaled by a probability, and so that
+the sum of those probabilities is $1$, e.g.:
+\[
+	\rho = \sum_iP_i\ket{\psi_i}\bra{\psi_i};\qquad\text{where: }
+	\sum_iP_i = 1
+\]
+As we're in the case of a single spin in a known state $\ket{\Psi}$, this
+reduces to
+\[
+	\rho = 1\ket{\Psi}\bra{\Psi} = \ket{\Psi}\bra{\Psi}
+\]
+Assuming again the ordered basis $\{\ket{u}, \ket{d}\}$, we can
+write $\bra{\Psi}$ and $\ket{\Psi}$ in column form, and perform
+the outer-product:
+\[
+	\rho = \begin{pmatrix}
+		\alpha \\
+		\beta \\
+	\end{pmatrix}\begin{pmatrix} \alpha^* & \beta^* \\ \end{pmatrix}
+	= \begin{pmatrix}
+		\alpha\alpha^* & \alpha\beta^* \\
+		\beta\alpha^* & \beta\beta^* \\
+	\end{pmatrix}
+\]
+\end{remark}
+
+This allows us to double-check our previous result: it seems there's a typo
+in the exercise statement.
+
+\hrr
+
+Let's compute a few density matrices for well-known states:
+\[
+	\ket{u} = 1\ket{u} + 0\ket{d}\quad\Rightarrow\quad
+		\rho_{\ket{u}} = \begin{pmatrix}
+			1 & 0 \\
+			0 & 0 \\
+		\end{pmatrix}
+\]
+\[
+	\ket{d} = 0\ket{u} + 1\ket{d}\quad\Rightarrow\quad
+		\rho_{\ket{d}} = \begin{pmatrix}
+			0 & 0 \\
+			0 & 1 \\
+		\end{pmatrix}
+\]
+\[
+	\ket{r} = \frac1{\sqrt2}\ket{u} + \frac1{\sqrt2}\ket{d}\quad\Rightarrow\quad
+		\rho_{\ket{r}} = \begin{pmatrix}
+			1/2 & 1/2 \\
+			1/2 & 1/2 \\
+		\end{pmatrix}
+\]
+\[
+	\ket{l} = \frac1{\sqrt2}\ket{u} - \frac1{\sqrt2}\ket{d}\quad\Rightarrow\quad
+		\rho_{\ket{l}} = \begin{pmatrix}
+			1/2 & -1/2 \\
+			-1/2 & 1/2 \\
+		\end{pmatrix}
+\]
+\[
+	\ket{i} = \frac1{\sqrt2}\ket{u} + \frac{i}{\sqrt2}\ket{d}\quad\Rightarrow\quad
+		\rho_{\ket{i}} = \begin{pmatrix}
+			1/2 & -i/2 \\
+			i/2 & 1/2 \\
+		\end{pmatrix}
+\]
+\[
+	\ket{o} = \frac1{\sqrt2}\ket{u} - \frac{i}{\sqrt2}\ket{d}\quad\Rightarrow\quad
+		\rho_{\ket{o}} = \begin{pmatrix}
+			1/2 & i/2 \\
+			-i/2 & 1/2 \\
+		\end{pmatrix}
+\]
+
+\hrr
+
+The French version of this exercise\footnote{See
+\url{https://leminimumtheorique.jimdofree.com/le\%C3\%A7on-7/exercice-7-4/} for
+a relevant excerpt, which by the way seems to confirm the typo hypothesis.}
+is a bit more interesting, there are a few additional questions.
+We can for instance check that $\rho$ is Hermitian:
+\[
+	\rho^\dagger = (\rho^*)^T = \begin{pmatrix}
+		(\alpha^*\alpha)^* & (\beta^*\alpha)^* \\
+		(\alpha^*\beta)^*  & (\beta^*\beta)^* \\
+	\end{pmatrix}^T = \begin{pmatrix}
+		\alpha\alpha^* & \beta\alpha^* \\
+		\alpha\beta^*  & \beta\beta^* \\
+	\end{pmatrix}^T = \begin{pmatrix}
+		\alpha^*\alpha & \beta^*\alpha \\
+		\alpha^*\beta  & \beta^*\beta \\
+	\end{pmatrix} =: \rho \qed
+\]
+
+Or that its trace is $1$, because of the normalization condition
+on $\ket{\Psi}$:
+\[
+	\Tr(\rho) = \alpha^*\alpha + \beta^*\beta = 1 \qed
+\]
+
+Finally, we can check that $\rho$ projects to $\ket{\Psi}$. Consider
+a vector which has a component perpendicular to $\ket{\Psi}$, that is,
+in the direction of $\ket{\Psi^\perp}$, and a component
+in the direction of $\ket{\Psi}$
+\[
+	\ket{\Phi} = \gamma\ket{\Psi^\perp} + \delta\ket{\Psi}
+\]
+
+By linearity:
+\[
+	\rho\ket{\Phi} = \gamma\rho\ket{\Psi^\perp} + \delta\rho\ket{\Psi}
+\]
+Using the fact that $\rho = \ket{\Psi}\bra{\Psi}$, we see, by associativity
+on the products, and by the orthogonality condition between $\ket{\Psi}$
+and $\ket{\Psi^\perp}$:
+\[
+	\rho\ket{\Psi^\perp} = (\ket{\Psi}\bra{\Psi})\ket{\Psi^\perp}
+		= \ket{\Psi}(\underbrace{\braket{\Psi}{\Psi^\perp}}_{=0}) = 0
+\]
+On the other hand, by the normalization condition on $\ket{\Psi}$:
+\[
+	\rho\ket{\Psi} = (\ket{\Psi}\bra{\Psi})\ket{\Psi^}
+		= \ket{\Psi}(\underbrace{\braket{\Psi}{\Psi}}_{=1}) = \ket{\Psi}
+\]
+By injecting the two previous results in the one before, it follows that
+indeed that $\rho$ projects a vector on the $\ket{\Psi}$ direction:
+\[
+	\rho\ket{\Phi} = \delta\ket{\Psi}
+\]
+
+\end{document}
