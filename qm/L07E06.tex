@@ -1,0 +1,34 @@
+\documentclass[solutions.tex]{subfiles}
+
+\xtitle
+
+\begin{document}
+\maketitle
+\begin{exercise} Use Eq. $7.22$ to show that if $\rho$ is a density
+matrix, then
+\[
+	\Tr(\rho) = 1.
+\]
+\end{exercise}
+Eq. $7.22$ is the following:
+\[
+	P(a) = \rho_{aa}
+\]
+Where $P(a)$ is the probability for an observable $L$ tied to
+Alice's state space, extended to act on a composite state-space
+made from Alice's and Bob's, to be measured with the eigenvalue $a$.
+On the other hand, $\rho_{aa}$ corresponds to the diagonal elements
+of Alice's density matrix, expressed in Alice state space. \\
+
+Well, there will be one $P(a)$ for each eigenvalue, and thus by
+Eq. $7.22$, there is a systematic correspondence with the diagonal
+elements of the density matrix. But the trace of an operator is
+defined as the sum of the diagonal elements of a matrix representation
+of this operator, and it so happens that this value is unique up
+to a change of basis (meaning, the trace of an operator is the same
+for all matrix representation of this operator). \\
+
+Hence because the eigenvalues $a$ represent all the potential measurement
+values, we know that $\sum_aP(a) = 1$, which by our previous reasoning
+implies indeed that $\boxed{\Tr(\rho) := \sum_a\rho_{aa}= \sum_aP(a) = 1} \qed$
+\end{document}
