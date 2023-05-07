@@ -1,0 +1,87 @@
+\documentclass[solutions.tex]{subfiles}
+
+\xtitle
+
+\begin{document}
+\maketitle
+\begin{exercise} a) Show that
+\[
+	\begin{pmatrix}
+		a & 0 \\
+		0 & b \\
+	\end{pmatrix}^2 = \begin{pmatrix}
+		a^2 & 0 \\
+		0 & b^2 \\
+	\end{pmatrix}
+\]
+b) Now, suppose
+\[
+	\rho = \begin{pmatrix}
+		1/3 & 0        \\
+		0        & 2/3 \\
+	\end{pmatrix}
+\]
+Calculate
+\[ \rho^2 \]
+\[ \Tr(\rho) \]
+\[ \Tr(\rho^2) \]
+c) If $\rho$ is a density matrix, does it represent a pure state or
+a mixed state?
+\end{exercise}
+The exercise is fairly trivial. \\
+
+a) \[
+	\begin{pmatrix}
+		a & 0 \\
+		0 & b \\
+	\end{pmatrix}^2 =
+	\begin{pmatrix}
+		a & 0 \\
+		0 & b \\
+	\end{pmatrix}
+	\begin{pmatrix}
+		a & 0 \\
+		0 & b \\
+	\end{pmatrix} = \boxed{\begin{pmatrix}
+		a^2 & 0 \\
+		0 & b^2 \\
+	\end{pmatrix}} \qed
+\]
+
+b) By application of the previous result,
+\[
+	\rho^2 = \begin{pmatrix}
+		1/3 & 0        \\
+		0        & 2/3 \\
+	\end{pmatrix}^2 = \begin{pmatrix}
+		(1/3)^2 & 0 \\
+		0 & (2/3)^2 \\
+	\end{pmatrix}= \boxed{\begin{pmatrix}
+		1/9 & 0 \\
+		0 & 4/9 \\
+	\end{pmatrix}}
+\]
+
+Recall that there's a result alluded to by the authors in a footnote
+page $195$ (section $7.2$) that the trace of an operator is the sum of
+the diagonal elements of any matrix representation of this operator.
+Hence:
+\[
+	\Tr(\rho) = \frac13 + \frac23 = \boxed{1};\qquad
+	\Tr(\rho^2) = \frac19 + \frac49 = \boxed{\frac59}
+\]
+
+c) We just saw in the book some properties of density matrices.
+In particular, for a pure state, and a density matrix $\rho$, we
+\textit{must} have:
+\[
+	\rho^2 = \rho \text{ and } \Tr(\rho)^2 = 1
+\]
+While for a mixed state, we \textit{must} have:
+\[
+	\rho^2 \neq \rho \text{ and } \Tr(\rho)^2 < 1
+\]
+
+Clearly, in our case, $\boxed{\rho\text{ represents a mixed state.}}$.
+
+\end{document}
