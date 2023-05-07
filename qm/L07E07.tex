@@ -1,0 +1,41 @@
+\documentclass[solutions.tex]{subfiles}
+
+\xtitle
+
+\begin{document}
+\maketitle
+\begin{exercise} Use Eq. $7.24$ to calculate $\rho^2$. How does this
+result confirm that $\rho$ represents an entangled state? We'll soon discover
+that there are other ways to check for entanglement.
+\end{exercise}
+Here's Eq. $7.24$:
+\[
+	\rho = \begin{pmatrix}
+		1/2 & 0   \\
+		0   & 1/2 \\
+	\end{pmatrix}
+\]
+From there it's trivial to see that:
+\[
+	\rho^2 = \begin{pmatrix}
+		1/2 & 0   \\
+		0   & 1/2 \\
+	\end{pmatrix}^2 = \begin{pmatrix}
+		1/4 & 0   \\
+		0   & 1/4 \\
+	\end{pmatrix}
+\]
+The authors demonstrated earlier a criteria to determine whether a density
+matrix corresponds to an entangled state or not, at the end of section
+$7.5$: for a pure state, and a density matrix $\rho$, we \textit{must} have:
+\[
+	\rho^2 = \rho \text{ and } \Tr(\rho)^2 = 1
+\]
+While for a mixed or entangled state, we \textit{must} have:
+\[
+	\rho^2 \neq \rho \text{ and } \Tr(\rho)^2 < 1
+\]
+
+Hence, $\boxed{\text{$\rho$ represents an entangled state}}$.
+
+\end{document}
