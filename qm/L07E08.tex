@@ -1,0 +1,262 @@
+\documentclass[solutions.tex]{subfiles}
+
+\xtitle
+
+\begin{document}
+\maketitle
+\begin{exercise} Consider the following states
+\begin{equation*}\begin{aligned}
+	\ket{\psi_1} &=&& \frac12\left(\ket{uu}+\ket{ud}+\ket{du}+\ket{dd}\right) \\
+	\ket{\psi_2} &=&& \frac1{\sqrt2}\left(\ket{uu}+\ket{dd}\right) \\
+	\ket{\psi_3} &=&& \frac15\left(3\ket{uu}+4\ket{ud}\right) \\
+\end{aligned}\end{equation*}
+For each one, calculate Alice's density matrix, and Bob's density matrix.
+Check their properties.
+\end{exercise}
+Let's recall first the definition of the matrix elements for Alice's density
+matrix, and second, by symmetry, Bob's:
+\[
+	\rho_{a'a} = \sum_b\psi^*(a,b)\psi(a',b);\qquad
+	\rho_{b'b} = \sum_a\psi^*(a,b)\psi(a,b')
+\]
+\hr
+Let's start with $\ket{\psi_1}$. We know Alice's matrix must be of the form:
+\[
+	\rho_A = \begin{pmatrix}
+		\rho_{uu} & \rho_{ud} \\
+		\rho_{du} & \rho_{dd} \\
+	\end{pmatrix}
+\]
+And so must be Bob's actually. Filling in with our previous formulas, we
+obtain:
+\begin{equation*}\begin{aligned}
+	\rho_{1A} &=&& \begin{pmatrix}
+		\psi_1^*(u,u)\psi_1(u,u) + \psi_1^*(u,d)\psi_1(u,d) &
+			\psi_1^*(d,u)\psi_1(u,u) + \psi_1^*(d,d)\psi_1(u,d) \\
+		\psi_1^*(u,u)\psi_1(d,u) + \psi_1^*(u,d)\psi_1(d,d)&
+			\psi_1^*(d,u)\psi_1(d,u) + \psi_1^*(d,d)\psi_1(d,d) \\
+	\end{pmatrix} \\
+	~ &=&& \begin{pmatrix}
+		(1/2)(1/2) + (1/2)(1/2) & (1/2)(1/2) + (1/2)(1/2) \\
+		(1/2)(1/2) + (1/2)(1/2) & (1/2)(1/2) + (1/2)(1/2) \\
+	\end{pmatrix} \\
+	~ &=&& \boxed{\begin{pmatrix}
+		1/2 & 1/2 \\
+		1/2 & 1/2 \\
+	\end{pmatrix}}
+\end{aligned}\end{equation*}
+Where, remember, the wave function's values correspond to the basis
+vector coefficients, which are all $1/2$ here. By symmetry, we would
+obtain exactly the same matrix for Bob:
+\[
+	\rho_{1B} = \boxed{\begin{pmatrix}
+		1/2 & 1/2 \\
+		1/2 & 1/2 \\
+	\end{pmatrix}}
+\]
+Let's check the density matrices properties:
+\begin{itemize}
+	\item Clearly, $\rho_{1A}=\rho_{1B}$ is Hermitian;
+	\item Its trace is $1/2+1/2=1$, as expected;
+	\item Let's compute its square:
+	\[
+		\rho_{1A}^2=\rho_{1B}^2 = \begin{pmatrix}
+			1/2 & 1/2 \\
+			1/2 & 1/2 \\
+		\end{pmatrix}\begin{pmatrix}
+			1/2 & 1/2 \\
+			1/2 & 1/2 \\
+		\end{pmatrix} = \begin{pmatrix}
+			1/2 & 1/2 \\
+			1/2 & 1/2 \\
+		\end{pmatrix} = \rho_{1A}=\rho_{1B}
+	\]
+	And $\Tr(\rho_{1A}^2) = \Tr(\rho_{1B}^2) = 1$, from which we
+	can conclude that $\boxed{\text{ $\psi_1$ is a pure state.}}$
+	\item Without having to compute them explicitly, this implies that its eigenvalues must be $0$ and $1$.
+\end{itemize}
+Let's compute the eigenvalues by partially diagonalizing the matrix
+anyway for practice: an eigenvector $\ket{\lambda}$ is tied to an
+eigenvalue $\lambda$ by:
+\[
+	\rho_{1A}\ket{\lambda} = \lambda\ket{\lambda}
+	\Leftrightarrow \rho_{1A}\ket{\lambda} - \lambda\ket{\lambda} = 0
+	\Leftrightarrow (\rho_{1A}-\lambda I)\ket{\lambda} = 0
+\]
+Because an eigenvector is by definition non-zero, this implies that
+$\rho_{1A}-\lambda I$ must be non-invertible\footnote{For otherwise,
+multiply both sides of the equation by its inverse: LHS is equal to
+$\ket{\lambda}$ while the RHS is still equal to 0}. This implies
+that:
+\[
+	\det(\rho_{1A}-\lambda I) = 0
+	\Leftrightarrow 0 = \begin{vmatrix}
+		1/2-\lambda & 1/2 \\
+		1/2 & 1/2-\lambda \\
+	\end{vmatrix} = \left(\frac12-\lambda)^2-\frac12^2\right)
+	= (\frac12-\lambda-\frac12)(\frac12-\lambda+\frac12)
+	= \lambda(\lambda-1)
+\]
+\[
+	\Leftrightarrow \boxed{\begin{cases}
+		\lambda = 0 \\
+		\lambda = 1 \\
+	\end{cases}}
+\]
+As expected.
+
+\hr
+Let's move on to $\psi_2$: by a similar reasoning as before we have:
+\begin{equation*}\begin{aligned}
+	\rho_{2A} &=&& \begin{pmatrix}
+		\psi_2^*(u,u)\psi_2(u,u) + \psi_2^*(u,d)\psi_2(u,d) &
+			\psi_2^*(d,u)\psi_2(u,u) + \psi_2^*(d,d)\psi_2(u,d) \\
+		\psi_2^*(u,u)\psi_2(d,u) + \psi_2^*(u,d)\psi_2(d,d)&
+			\psi_2^*(d,u)\psi_2(d,u) + \psi_2^*(d,d)\psi_2(d,d) \\
+	\end{pmatrix} \\
+	~ &=&& \begin{pmatrix}
+		(1/\sqrt2)(1/\sqrt2) + (0)(0) & (0)(1/\sqrt2) + (1/\sqrt2)(0) \\
+		(1/\sqrt2)(0) + (0)(1/\sqrt2) & (0)(0) + (1/\sqrt2)(1/\sqrt2) \\
+	\end{pmatrix} \\
+	~ &=&& \boxed{\begin{pmatrix}
+		1/2 & 0 \\
+		0 & 1/2 \\
+	\end{pmatrix}}
+\end{aligned}\end{equation*}
+Again, by a symmetry argument, we can already conclude that
+$\rho_{2B} = \rho_{2A}$ (the idea is that you can swap the labels
+corresponding to Bob and Alice in the description of the state $\psi_2$
+and by reordering the terms, you see that the state is unchanged). \\
+
+Finally, let's check the density matrices properties:
+\begin{enumerate}
+	\item Clearly Hermitian;
+	\item $\Tr(\rho_{2A}) = 1/2+1/2 = 1$;
+	\item Let's compute the square to determine the state quality:
+	\[ \rho_{2A}^2 = \begin{pmatrix}
+		1/4 & 0 \\
+		0 & 1/4 \\
+	\end{pmatrix} \neq \rho_{2A}
+	\] and $\Tr(\rho_{2A}^2) = 1/2 < 1$: $\boxed{\text{$\psi_2$ is
+	a mixed state}}$;
+	\item The matrix is diagonal: clearly, all its eigenvalue (there's
+	a single degenerate eigenvalue $1/2$) are positive and $\leq 1$.
+\end{enumerate}
+
+\hr
+
+Moving on to the last one. Observe that this time, there is not symmetry
+between Alice and Bob matrices, so we'll have to compute them both.
+
+\begin{equation*}\begin{aligned}
+	\rho_{3A} &=&& \begin{pmatrix}
+		\psi_3^*(u,u)\psi_3(u,u) + \psi_3^*(u,d)\psi_3(u,d) &
+			\psi_3^*(d,u)\psi_3(u,u) + \psi_3^*(d,d)\psi_3(u,d) \\
+		\psi_3^*(u,u)\psi_3(d,u) + \psi_3^*(u,d)\psi_3(d,d)&
+			\psi_3^*(d,u)\psi_3(d,u) + \psi_3^*(d,d)\psi_3(d,d) \\
+	\end{pmatrix} \\
+	~ &=&& \begin{pmatrix}
+		(3/5)(3/5) + (4/5)(4/5) & (0)(3/5) + (0)(4/5) \\
+		(3/5)(0) + (4/5)(0) & (0)(0) + (0)(0) \\
+	\end{pmatrix} \\
+	~ &=&& \begin{pmatrix}
+		9/25+16/25 & 0 \\
+		0 & 0 \\
+	\end{pmatrix} \\
+	&=&& \boxed{\begin{pmatrix}
+		1 & 0 \\
+		0 & 0 \\
+	\end{pmatrix}}
+\end{aligned}\end{equation*}
+
+Regarding density matrices properties:
+\begin{enumerate}
+	\item Hermitian;
+	\item $\Tr(\rho_{3A}) = 1+0 = 1$;
+	\item $\rho_{3A}^2 = \rho_{3A}$ : $\boxed{\text{ $\psi_3$ is a pure
+	state}}$;
+	\item This is confirmed by the eigenvalues $1$ and $0$ (matrix
+	trivially diagonal).
+\end{enumerate}
+
+Remains Bob's matrix!
+
+\begin{equation*}\begin{aligned}
+	\rho_{3B} &=&& \begin{pmatrix}
+		\psi_3^*(u,u)\psi_3(u,u) + \psi_3^*(d,u)\psi_3(d,u) &
+			\psi_3^*(u,u)\psi_3(u,d) + \psi_3^*(d,u)\psi_3(d,d) \\
+		\psi_3^*(u,d)\psi_3(u,u) + \psi_3^*(d,d)\psi_3(d,u)&
+			\psi_3^*(u,d)\psi_3(u,d) + \psi_3^*(d,d)\psi_3(d,d) \\
+	\end{pmatrix} \\
+	~ &=&& \begin{pmatrix}
+		(3/5)(3/5) + (0)(0) & (3/5)(4/5) + (0)(0) \\
+		(4/5)(3/5) + (0)(0) & (4/5)(4/5) + (0)(0) \\
+	\end{pmatrix} \\
+	&=&& \boxed{\frac{1}{25}\begin{pmatrix}
+		9 & 12 \\
+		12 & 16 \\
+	\end{pmatrix}}
+\end{aligned}\end{equation*}
+
+One last time, let's check its density matrices properties:
+\begin{enumerate}
+	\item Clearly Hermitian;
+	\item $\Tr(\rho_{3B}) = 9/25 + 16/25 = 1$;
+	\item Let's square it to determine the state quality:
+	\begin{equation*}\begin{aligned}
+		\rho_{3B}^2 &=&& \frac{1}{25^2}\begin{pmatrix}
+			9\times9 + 12\times12 & 9\times12 + 12\times16 \\
+			12\times9 + 16\times12 & 12\times12 + 16\times16 \\
+		\end{pmatrix} \\
+		~ &=&& \frac{1}{25^2}\begin{pmatrix}
+			81 + 100 + 40 + 4 & 90+18 + 100 + 80 + 12 \\
+			90+18 + 100 + 80 + 12 & 100 + 40 + 4 + 100 + 120 + 36 \\
+		\end{pmatrix} \\
+		~ &=&& \frac{1}{25^2}\begin{pmatrix}
+			225 & 300 \\
+			300 & 400 \\
+		\end{pmatrix} \\
+		~ &=&& \frac{1}{25^2}\begin{pmatrix}
+			(4\times2+1)\times25 & 3\times4\times25 \\
+			3\times4\times25 & 4\times4\times25 \\
+		\end{pmatrix} \\
+		~ &=&& \frac1{25}\begin{pmatrix}
+			9 & 12 \\
+			12 & 16 \\
+		\end{pmatrix} = \rho_{3B}
+	\end{aligned}\end{equation*}
+	Thus $\Tr(\rho_{3B}^2) = \Tr(\rho_{3B}) = 1$ and
+	$\boxed{\text{ $\psi_3$ is a pure state}}$;
+	\item This implies again that its eigenvalues must be $0$ and $1$
+\end{enumerate}
+Let's compute the eigenvalues for practice, going a bit faster this
+time:
+\[
+	\begin{vmatrix}
+		9/25-\lambda & 12/25 \\
+		12/25 & 16/25-\lambda \\
+	\end{vmatrix} = 0 \Leftrightarrow
+	\left(
+		\left(\frac{9}{25}-\lambda\right)
+			\left(\frac{16}{25}-\lambda\right)
+		- \left(\frac{12}{25}\right)^2\right) = 0
+\]
+\[
+	\Leftrightarrow \lambda^2 - \lambda +
+		\frac{9\times16}{25^2} - \left(\frac{12}{25}\right)^2 = 0
+\]
+\[
+	\Leftrightarrow \lambda^2 - \lambda +
+		\frac{3\times3\times4\times4}{25^2}
+		-\frac{3\times4\times3\times4}{25^2} = 0
+\]
+\[
+	\Leftrightarrow \lambda(\lambda-1) = 0
+\]
+\[
+	\Leftrightarrow \boxed{\begin{cases}
+		\lambda = 0 \\
+		\lambda = 1 \\
+	\end{cases}}
+\]
+\end{document}
