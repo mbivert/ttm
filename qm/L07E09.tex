@@ -1,0 +1,287 @@
+\documentclass[solutions.tex]{subfiles}
+
+\xtitle
+
+\begin{document}
+\maketitle
+\begin{exercise} Given any Alice observable $\bm{A}$ and Bob observable
+$\bm{B}$, show that for a product state, the correlation $C(A, B)$ is zero.
+\end{exercise}
+
+Recall that we're in the context of a composite system $S_{AB}$ made from two
+state spaces, one corresponding to Alice, $S_A$, and one corresponding to Bob,
+$S_B$, mathematically tied by a tensor product. \\
+
+The correlation $C(\bm{A}, \bm{B})$ between two observables $\bm{A}$ and $\bm{B}$
+is defined as\footnote{The authors are a bit irregular in their use of boldface
+for operators; I'll try to do better, but things should be clear from the context}:
+\[
+	C(\bm{A}, \bm{B}) := \avg{\bm{AB}} - \avg{\bm{A}}\avg{\bm{B}}
+\]
+
+Remember that the authors proved\footnote{p106, section \textit{
+$4.7$ - Expectation values}} that the expected value
+$\avg{\bm{L}}$ of an observable $\bm{L}$ being
+in a state $\ket{\Psi}$ is:
+\[
+	\avg{\bm{L}} = \bra{\Psi}\bm{L}\ket{\Psi}
+\]
+
+\hr
+Here's a first derivation, where we use the following formula\footnote{p206,
+section \textit{$7.5$ - Entanglement for two spins}} defined for an
+observable $\bm{L}$, and a system described by a density matrix $\rho$:
+\[
+	\avg{\bm{L}} = \Tr(\rho\bm{L})
+\]
+Recall\footnote{p209, section \textit{$7.5$ - Entanglement for two spins}}
+ that for any operator $\bm{A}$ and $\bm{B}$, in particular,
+where $\bm{AB} \neq \bm{BA}$, we still have:
+\[
+	\Tr(\bm{AB}) = \Tr(\bm{BA})
+\]
+
+We also know\footnote{p202, section \textit{$7.5$ - Entanglement for two spins}}
+that, because we're dealing with \textit{a} product state, this can't be
+a mixed state (it cannot be expressed as a weighted sum of multiple
+states), i.e if we name $\ket{\Psi}$ that (pure) product state:
+\[
+	\rho = \ket{\Psi}\bra{\Psi}
+\]
+
+Finally\footnote{p207, section \textit{$7.5$ - Entanglement for two spins}},
+again because that product state is pure, we have $\rho^2 = \rho$. \\
+
+It follows that:
+\begin{equation*}\begin{aligned}
+	C(A, B) &:=&& \avg{\bm{AB}} - \avg{\bm{A}}\avg{\bm{B}} \\
+	~ &=&& Tr(\rho \bm{AB}) - \avg{\bm{A}}\avg{\bm{B}} \\
+	~ &=&& Tr(\rho^2\bm{A}\bm{B}) - \avg{\bm{A}}\avg{\bm{B}} \\
+	~ &=&& Tr(\rho(\bm{A}\rho\bm{B})) - \avg{\bm{A}}\avg{\bm{B}} \\
+	~ &=&& \avg{\bm{A}\rho\bm{B}} - \avg{\bm{A}}\avg{\bm{B}} \\
+	~ &=&& \bra{\Psi}\bm{A}\rho\bm{B}\ket{\Psi}
+		- \avg{\bm{A}}\avg{\bm{B}} \\
+	~ &=&& \bra{\Psi}\bm{A}\rho\bm{B}\ket{\Psi}
+		- \bra{\Psi}\bm{A}\underbrace{\ket{\Psi}\bra{\Psi}}_{\rho}
+			\bm{B}\ket{\Psi} \\
+	~ &=&& \boxed{0} \qed \\
+\end{aligned}\end{equation*}
+
+\hr
+
+Here's a second solution, rephrased from
+\href{https://leminimumtheorique.jimdofree.com/le%C3%A7on-7/exercice-7-9/}%
+{Michel Rennes's approach}. \\
+
+We start by expressing the expectation value in terms of an inner-product
+again, assuming we start in the state $\ket{\Psi}$:
+\[
+	\avg{\bm{AB}} = \bra{\Psi}\bm{AB}\ket{\Psi}
+\]
+
+Then, recall that $\bm{A}$ and $\bm{B}$ are two observables respectively
+from Alice and Bob' state spaces, which have been extended, as previously
+studied, so as to be able to act on a state vector $\ket{\Psi}$, taken from
+the composite system $S_{AB}$. \\
+
+We definitely need this to be able to express the correlation $C(\bm{A},\bm{B})$
+in terms of those inner-products, for otherwise, the second terms in the
+equation below applying $\bm{A}$ or $\bm{B}$ to $\ket{\Psi}$ wouldn't
+make any sense:
+\[
+	C(\bm{A}, \bm{B}) = \bra{\Psi}\bm{AB}\ket{\Psi}
+		- \bra{\Psi}\bm{A}\ket{\Psi}\bra{\Psi}\bm{B}\ket{\Psi}
+\]
+
+Hence there's an abuse of notation: with $\bm{I}_X$ being the
+identity operator on the space $S_X$:
+\[
+	\bm{A}\ "="\ \bm{A}\otimes\bm{I}_B;\quad
+	\bm{B}\ "="\ \bm{I}_A\otimes\bm{B}
+\]
+
+For clarity, I'll note $\bm{A}_A$ the observable $\bm{A}$
+expressed in the system $S_A$, and similarly for $\bm{B}_B$:
+\[
+	\bm{A}=\bm{A}_A\otimes\bm{I}_B;\quad
+	\bm{B}=\bm{I}_A\otimes\bm{B}_B
+\]
+
+Regarding $\ket{\Psi}$, this is a product state, and we know\footnote{%
+p164, section \textit{$6.5$ - Product states}} that it can be expressed
+as a tensor product of a state in $S_A$ and of a state in $S_B$:
+\[
+	\ket{\Psi} = \ket{\psi}\otimes\ket{\phi}
+\]
+
+We can then rewrite:
+\begin{equation*}\begin{aligned}
+	\avg{\bm{AB}} &=&& \bra{\Psi}\bm{AB}\ket{\Psi} \\
+	~ &=&& \left(\bra{\psi}\otimes\bra{\phi}\right)
+		\bm{AB}\left(\ket{\psi}\otimes\ket{\phi}\right) \\
+	~ &=&& \left(\bra{\psi}\otimes\bra{\phi}\right)
+		\bm{A}\left(
+			(\bm{I}_A\otimes\bm{B}_B)\left(\ket{\psi}\otimes\ket{\phi}\right)
+		\right) \\
+	~ &=&& \left(\bra{\psi}\otimes\bra{\phi}\right)
+		\bm{A}\left(\underbrace{\bm{I}_A\ket{\psi}}_{\ket{\psi}}
+			\otimes\bm{B}_B\ket{\phi}\right) \\
+	~ &=&& \left(\bra{\psi}\otimes\bra{\phi}\right)
+		\left(\bm{A}_A\ket{\psi}\otimes\bm{B}_B\ket{\phi}\right) \\
+\end{aligned}\end{equation*}
+
+Where I've skipped the development for the application of
+$\bm{A}$ (same procedure as for applying $\bm{B}$). Then,
+observe\footnote{It would be interesting to formalized that more thoroughly.
+If I'm not mistaken the idea is that the bras of $S_A\otimes S_B$ can be
+expressed as a combination of one bra from $S_A$ and one bra from $S_B$.
+More precisely, the bras being elements of the dual spaces, it's because
+of the following (canonical) isomorphism:
+$S_{AB}^* = (S_A\otimes S_B)^* \cong S_A^*\otimes S_B^*$, see for instance
+\url{https://planetmath.org/tensorproductofdualspacesisadualspaceoftensorproduct}}
+that $\bra{\psi}$ is an operator defined on $S_A$, and similarly for
+$\bra{\phi}$ being an operator defined on $S_B$. Their tensor product is
+then an operator defined on $S_{AB}$ and the usual rules for applying this
+combined operator hold:
+\begin{equation*}\begin{aligned}
+	\avg{\bm{AB}} &=&&
+		\left(\bra{\psi}\bm{A}_A\ket{\psi}\right)
+		\otimes
+		\left(\bra{\phi}\bm{B}_B\ket{\phi}\right) \\
+	~ &=&& \avg{\bm{A}}\avg{\bm{B}} \\
+\end{aligned}\end{equation*}
+
+Hence clearly, $\boxed{C(\bm{A},\bm{B}) :=
+\avg{\bm{AB}} - \avg{\bm{A}}\avg{\bm{B}} = 0}$.
+
+% ----------------------------------------------------------------------
+
+% I'm commenting this one out as it's still unfinished, but I
+% think it'd be an interesting exercise to finish it. The idea
+% is to redo the demonstration "fully", without relying much on
+% existing results, which are "inlined", so to speak.
+\iffalse
+\hr
+
+As stated previously, recall that $\bm{A}$ and $\bm{B}$ refer
+to "upgraded" operators from the subspace via the usual procedure:
+we can apply them on state vectors from $S_{AB}$ without issues. \\
+
+Let's take an ordered basis  $\{\ket{ab}\}$ of the product space,
+express $\ket{\Psi}$ in this basis, and compute $\bra{\Psi}$:
+\[
+	\ket{\Psi} = \sum_{ab}\psi(ab)\ket{ab};\qquad
+		\bra{\Psi} = \sum_{ab}\psi^*(ab)\bra{ab}
+\]
+Remember that we can then expand the expected values:
+\begin{equation*}\begin{aligned}
+	\avg{\bm{L}} &:=&& \bra{\Psi}\bm{L}\ket{\Psi} \\
+	~ &=&&
+		\left(\sum_{a'b'}\psi^*(a'b')\bra{a'b'}\right)
+		\bm{L}
+		\left(\sum_{ab}\psi(ab)\ket{ab}\right) \\
+	~ &=&& \sum_{ab,a'b'} \psi^*(a'b')\psi(ab)
+		\underbrace{\bra{a'b'}\bm{L}\ket{ab}}_{L_{a'b',ab}} \\
+	~ &=&& \sum_{ab,a'b'} \psi^*(a'b')\psi(ab)L_{a'b',ab} \\
+\end{aligned}\end{equation*}
+
+Furthermore, in the specific case where $\bm{L}$ is an operator
+from Alice's space extended to the product state space, say, $\bm{L} = \bm{A}$,
+we have:
+\[
+	\avg{\bm{A}} = \sum_{a,a',b}\psi^*(a'b)\psi(ab)A_{a'a}
+\]
+Similarly,
+\[
+	\avg{\bm{B}} = \sum_{b,b',a}\psi^*(ab')\psi(ab)B_{b'b}
+\]
+
+So we can rewrite the correlation as
+
+\begin{equation*}\begin{aligned}
+	C(A, B) &=&& \left(\sum_{ab,a'b'}\psi^*(a'b')(AB)_{a'b',ab}\psi(ab)\right)
+		-\left(
+			\sum_{a,a',b}\psi^*(a'b)\psi(ab)A_{a'a}
+		\right)
+		\left(
+			\sum_{b,b',a}\psi^*(ab')\psi(ab)B_{b'b}
+		\right)
+		\\
+	~ &=&&
+\end{aligned}\end{equation*}
+
+% TODO: from there I guess it's about following the reasoning on p205
+% to understand how to relate rho_AB and rho_A/rho_B (see p188 / previous
+% exercises for how to build composed operator via matrix), plus having
+% some terms going to zero when joining the sums?
+\fi
+
+\hr
+
+For completeness, here's one last solution, rephrased from
+\href{https://onedrive.live.com/redir?resid=21D08FA0C16B93A5!28241&authkey=!AAM3H-TDeYaAbaI&ithint=file\%2cpdf}{Filip Van Lijsebetten’s approach (p52)},
+which relies on the probabilistic definition of the average value. \\
+
+Remember that the average value of an observable $\bm{L}$ is
+(mathematically) defined\footnote{p105, section \textit{$4.7$ -
+Expectation values}} as:
+\[
+	\avg{\bm{L}} := \sum_i\lambda_iP(\lambda_i)
+\]
+
+Hence:
+\[
+	\avg{\bm{AB}} = \sum_{ab}\lambda_{ab}P(\lambda_{ab});\quad
+	\avg{\bm{A}} = \sum_a\lambda_aP(\lambda_a);\quad
+	\avg{\bm{B}} = \sum_b\lambda_bP(\lambda_b)
+\]
+
+Recall that the $ab$ corresponds to all labels created by concatenating
+all potential values for $a$ and $b$. This means that we'll have
+$\sum_{ab} = \sum_{a,b} := \sum_a\sum_b$. Let's rewrite the correlation
+$C(\bm{A},\bm{B})$:
+\begin{equation*}\begin{aligned}
+	C(\bm{A},\bm{B}) &:=&& \avg{\bm{AB}} - \avg{\bm{A}}\avg{\bm{B}} \\
+	~ &=&& \left(\sum_{ab}\lambda_{ab}P(\lambda_{ab})\right) -
+		\left(\sum_a\lambda_aP(\lambda_a)\right)
+		\left(\sum_b\lambda_bP(\lambda_b)\right) \\
+	~ &=&& \left(\sum_{ab}\lambda_{ab}P(\lambda_{ab})\right) -
+		\left(\sum_a\lambda_aP(\lambda_a)\left(\sum_b\lambda_bP(\lambda_b)\right)\right) \\
+	~ &=&&\left(\sum_{ab}\lambda_{ab}P(\lambda_{ab})\right) -
+		\left(\sum_a\sum_b\lambda_aP(\lambda_a)\lambda_bP(\lambda_b)\right) \\
+	~ &=&&\left(\sum_{ab}\lambda_{ab}P(\lambda_{ab})\right) -
+		\left(\sum_{a,b}\lambda_a\lambda_bP(\lambda_a)P(\lambda_b)\right) \\
+	~ &=&& \sum_{a,b}\Bigl(
+		\lambda_{ab}P(\lambda_{ab})-
+		\lambda_a\lambda_bP(\lambda_a)P(\lambda_b)
+	\Bigr) \\
+\end{aligned}\end{equation*}
+
+Now the notation is a bit confusing\footnote{I could have made things
+a bit clearer: for instance, we really have three different probability
+distributions, one for each state involved, but they are all denoted
+very similarly.}, but recall than $\lambda_{ab}$ corresponds
+to the value we get for our combined state (which occurs with a probability
+of $P(\lambda_{ab})$). And this precisely corresponds the fact that we
+have $\lambda_a$ in the subspace $S_A$ and $\lambda_b$ in the subspace $S_B$: so
+we can read it like $\lambda_{ab} \simeq \lambda_a\lambda_b$. Hence this
+factors as:
+\[
+	C(\bm{A},\bm{B}) = \sum_{a,b}
+		\lambda_{ab}\bigl(P(\lambda_{ab})-P(\lambda_a)P(\lambda_b)
+	\Bigr)
+\]
+
+\begin{remark} So far, we've essentially just restated with a different
+notation what we did in
+\href{https://github.com/mbivert/ttm/blob/master/qm/L06E01.pdf}{L06E01}
+\end{remark}
+
+Now by definition for a product state, there is independence between
+the two "events": the measurement of either $A$ or $B$ doesn't affect
+the other one. That is, $P(\lambda_{ab}) = P(\lambda_a)P(\lambda_b)$%
+\footnote{This is the definition of independence of events in ordinary
+probability theory: \url{https://en.wikipedia.org/wiki/Independence\_(probability\_theory)\#For_events}},
+hence the correlation really is zero. $\qed$
+
+\end{document}
