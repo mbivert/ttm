@@ -1,0 +1,177 @@
+\documentclass[solutions.tex]{subfiles}
+
+\xtitle
+
+\begin{document}
+\maketitle
+\begin{exercise} Verify that the state-vector in $7.30$ represents a completely
+untangled state.
+\end{exercise}
+Let's recall the state-vector from $7.30$, and let's call it $\ket{\Psi}$.
+\[
+	\ket{\Psi} = \alpha_u\ket{u,b} + \alpha_d\ket{d,b}
+\]
+As I've found this confusing, let me start by recalling
+a bit of vocabulary\footnote{See for instance: \url{https://www.researchgate.net/post/What-is-difference-between-mixed-state-and-mixed-entangled-state}}.
+A quantum state can be either \textbf{pure} or \textbf{mixed}: either its
+a single state, or a \textit{convex combination}\footnote{A fancy term
+you may find here and there: a linear combination of elements, where the
+scalars factors sums to $1$; see \url{https://en.wikipedia.org/wiki/Convex_combination}}
+of pure states. This is true for a "regular" state space, as for a state space built
+via a tensor products of two (or finitely many, by induction) other state
+spaces. \\
+
+Now there's a second qualification, that is only applicable for states
+which are taken from a state space made by glueing two (again, or finitely many)
+other state spaces: \textbf{entangled} states, and \textbf{disentangled} states. \\
+
+\textit{Mixed} and \textit{entangled} are definitely not synonymous: you can have
+a non-mixed (i.e. pure) entangled state for example. \\
+
+\begin{example} The state vector from $7.30$ is a pure state: this is \textit{not}
+a convex combination of states. But this tells us absolutely nothing regarding
+whether it's an entangled state. We know however that it makes sense to talk about
+it being entangled or not, as we're dealing with a combined system involving
+$(i)$ an apparatus and $(ii)$ a spin to be measured by said apparatus. \\
+
+We could test this purity by computing the density matrix $\rho$, and checking
+whether $\rho^2 = \rho$ or $\Tr(\rho) = 1$.
+\end{example}
+
+Let's clarify the vocabulary one step further: a \textbf{completely untangled state}
+\textit{is} a \textbf{product state}: that's a state where measurements on one subsystem
+affect in no ways the other subsystem(s). \\
+
+From there, we have a few different ways of proceeding.
+
+\hr
+
+The simplest approach is to remember that a state is a product state when it can
+be expressed via two components (well, or more, but we're in the case where
+there are two subsystems here: the apparatus, and the spin to be measured with the
+apparatus), one for each subsystem. Recall that $\ket{a,\alpha}$ really is a shortcut
+for $\ket{a}\otimes\keit{\alpha}$. This means, the prepared state really is:
+\[
+	\alpha_u\ket{u}\otimes\keit{b} + \alpha_d\ket{d}\otimes\keit{b}
+\]
+But the tensor product distributes\footnote{As is common in most Physics-centered
+introduction to Quantum Mechanics, the tensor product introduction is a bit
+hand-wavy. For a more rigorous development, see for instance
+\href{https://www.youtube.com/watch?v=OZ1WCyJmjgo&list=PLPH7f_7ZlzxQVx5jRjbfRGEzWY_upS5K6&index=14&pp=iAQB}{this video} by F. Schuller. Some subtleties such as the
+fact that the equivalence classes respect addition and scalar multiplication have
+been left as homework; there's a set of
+\href{https://drive.google.com/file/d/1I7rIH7Rtm0cCKVuLNeWfFMdKurX123x5/view}{notes}
+which contains the "missing" proofs.}, hence this simplifies as:
+\[
+	\left(\alpha_u\ket{u}+\alpha_d\ket{d}\right)\otimes\keit{b}
+\]
+
+As the combined state is normalized, we must have
+$\sqrt{\alpha_u^2+\alpha_d^2}=1$, which implies that the sub-state
+corresponding to the spin is also normalized. Trivially, the sub-state
+corresponding to the apparatus is also normalized. Hence, we've expressed
+our combined state as a tensor product of two normalized state,
+one for each subsystems: $\fbox{\text{this is a product state}}$. \\
+
+\hr
+
+A slightly more involved (calculus-wise) variant of this approach would be to
+rely on the general form of the product state\footnote{p164, section $6.5$ -
+\textit{Product states}} and to evaluate whether our state vector can be expressed
+in such a way. The general form can be computed, again using the distributive
+nature of the tensor product:
+
+\begin{equation*}\begin{aligned}
+	\ket{\text{product state}} &=&&
+		\biggl\{\alpha_u\ket{u}+\alpha_d\ket{d}\biggr\}
+		\otimes
+		\biggl\{\beta_b\keit{b}+\beta_+\keit{+1}+\beta_-\keit{-1}\biggr\} \\
+	~ &=&&
+		\alpha_u\ket{u}\otimes\biggl\{
+			\beta_b\keit{b}+\beta_+\keit{+1}+\beta_-\keit{-1}\biggr\}
+		+\alpha_d\ket{d}\biggl\{
+			\beta_b\keit{b}+\beta_+\keit{+1}+\beta_-\keit{-1}\biggr\} \\
+	~ &=&&
+		\alpha_u\beta_d\ket{u,b}+
+		\alpha_u\beta_+\ket{u,+1}+
+		\alpha_u\beta_-\ket{u,-1}+
+		\alpha_d\beta_d\ket{d,b}+
+		\alpha_d\beta_+\ket{d,+1}+
+		\alpha_d\beta_-\ket{d,-1}
+\end{aligned}\end{equation*}
+
+By setting:
+\[
+	\beta_d = 1; \beta_+ = \beta_- = 0
+\]
+
+We found back the state vector from $7.30$, retrospectively justifying the
+notation for $\alpha_u$ and $\alpha_d$. Because the subsystem states, must
+be normalized, the resulting combined state is also normalized.
+
+\hr
+
+However, and perhaps this is more in line with the author's intent, we've
+just saw\footnote{p$212$ and onward, section $7.7$ \textit{Tests for Entanglement}}
+two tests to check whether the state corresponding to a given a wave-function
+for a composite system is entangled or not. \\
+
+\hrr
+
+For the first criteria, we'd need to take any two arbitrary observables
+from each subsystem, say observable $\bm{A}$ and $\bm{B}$, and prove that
+their correlation $C(\bm{A}, \bm{B})$ is zero. But essentially, the proof
+will end up relying on the tensor product distributivity, rely on the
+density matrix (see just after), or essentially mimick the proofs of
+\href{https://github.com/mbivert/ttm/blob/master/qm/L07E09.pdf}{L07E09}. \\
+
+I don't think there's added value to develop it further here. \\
+
+\hrr
+
+The second technique is slightly more original: the idea is that, for any product
+state, the density matrix has exactly one non-zero eigenvalue, and that
+eigenvalue is exactly $1$. \\
+
+Recall that in
+\href{https://github.com/mbivert/ttm/blob/master/qm/L07E04.pdf}{L07E04}
+we've already determined Alice's density matrix:
+\[
+	\rho = \begin{pmatrix}
+		\alpha_u^*\alpha_u & \alpha_u^*\alpha_d \\
+		\alpha_d^*\alpha_u & \alpha_d^*\alpha_d \\
+	\end{pmatrix}
+\]
+Let's diagonalize it: as usual, we have the eigenvector/eigenvalue
+relationship:
+\[
+	\rho\ket{\lambda} = \lambda\ket{\lambda}
+	\Leftrightarrow
+	(\rho-I_2\lambda)\ket{\lambda} = 0
+\]
+Which implies that $\rho-I_2\lambda$ isn't invertible\footnote{Multiply
+both side of the equation by the inverse, and use the fact that
+an eigenvector cannot be the zero vector}, which translates
+to its determinant being equal to zero:
+\begin{equation*}\begin{aligned}
+	\begin{vmatrix}
+		\alpha_u^*\alpha_u-\lambda & \alpha_u^*\alpha_d \\
+		\alpha_d^*\alpha_u & \alpha_d^*\alpha_d-\lambda \\
+	\end{vmatrix} &=&& \biggl(
+		(\alpha_u^*\alpha_u-\lambda)(\alpha_d^*\alpha_d-\lambda)
+	\biggr)
+	-
+	\biggl(
+		\alpha_u^*\alpha_d\alpha_d^*\alpha_u
+	\biggr) \\
+	~ &=&& \biggl(
+		\alpha_u^*\alpha_u\alpha_d^*\alpha_d -\lambda(
+			\underbrace{\alpha_u^*\alpha_u+\alpha_d^*\alpha_d}_{%
+			=\braket{\Psi}{\Psi}=1}
+		) +\lambda^2
+	\biggr)-\alpha_u^*\alpha_d\alpha_d^*\alpha_u \\
+	~ &=&& \lambda(1-\lambda)
+\end{aligned}\end{equation*}
+Clearly, we have one non-zero eigenvalue which is exactly one: the criteria
+indeed applies, and the state must be non-entangled.
+\end{document}
