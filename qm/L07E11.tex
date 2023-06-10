@@ -1,0 +1,55 @@
+\documentclass[solutions.tex]{subfiles}
+
+\xtitle
+
+\begin{document}
+\maketitle
+\begin{exercise} Calculate Alice's density matrix for
+$\sigma_z$ for the "near-singlet" state.
+\end{exercise}
+The "near-singlet" state is characterized by the following state-vector:
+\[
+	\ket{\Psi} = \sqrt{0.6}\ket{ud} - \sqrt{0.4}\ket{du}
+\]
+Alice's density matrix is defined by its components in Eq. $7.20$%
+\footnote{p$205$, section $7.5$ \textit{Entanglement for Two Spins}}:
+\[
+	\rho_{a'a} = \sum_b\psi^*(a,b)\psi(a',b)
+\]
+Where $\psi(a,b)$ is the wave-function of the composite system, that we
+can extract from $\ket{\Psi}$:
+\[
+	\ket{\Psi} = \psi(u,u)\ket{uu}
+		+ \psi(u,d)\ket{ud}
+		+ \psi(d,u)\ket{du}
+		+ \psi(d,d)\ket{dd}
+	\Rightarrow \begin{cases}
+		\psi(u,u) = \psi(d,d) &= 0 \\
+		\psi(u,d) &= \sqrt{0.6} \\
+		\psi(d,u) &= -\sqrt{0.4} \\
+	\end{cases}
+\]
+Hence:
+\[
+	\rho = \begin{pmatrix}
+		\rho_{uu} & \rho_{ud} \\
+		\rho_{du} & \rho_{dd} \\
+	\end{pmatrix} = \begin{pmatrix}
+		\psi^*(u,u)\psi(u,u)+\psi^*(u,d)\psi(u,d)
+			& \psi^*(d,u)\psi(u,u)+\psi^*(d,d)\psi(u,d) \\
+		\psi^*(u,u)\psi(d,u) + \psi^*(u,d)\psi(d,d)
+			& \psi^*(d,u)\psi(d,u) + \psi^*(d,d)\psi(d,d)
+	\end{pmatrix} = \boxed{\begin{pmatrix}
+		0.6 & 0   \\
+		0   & 0.4 \\
+	\end{pmatrix}} \qed
+\]
+
+\begin{remark} I'm not sure what the authors expect regarding
+$\sigma_z$; we're asked to verify all numerical values in
+the next exercise, which likely should cover pretty much every
+intepretation (we'll even have to compute Alice's density matrix
+again, so as to check $\rho^2$/$\Tr(\rho^2)$).
+\end{remark}
+
+\end{document}
