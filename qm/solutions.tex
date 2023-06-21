@@ -32,6 +32,9 @@
 \usetikzlibrary{snakes,calc,patterns,angles,quotes,decorations.pathmorphing,math,decorations.pathreplacing,automata,arrows.meta,positioning,external}
 \tikzexternalize[prefix=tikz/]
 
+\usepackage{bashful}
+\usepackage{listings}
+
 \newcommand{\hr}{\noindent\rule{\textwidth}{0.4pt} \\}
 \newcommand{\hrr}{\begin{center}\noindent\rule{0.5\textwidth}{0.4pt} \\\end{center}}
 
@@ -48,6 +51,7 @@
 \newcommand{\brah}[1]{\{#1|}
 \newcommand{\keit}[1]{|#1\}}
 \newcommand{\braket}[2]{\left\langle #1 \middle| #2 \right\rangle}
+\newcommand{\ketbra}[2]{\left| #1 \right\rangle\left\langle #2 \right|}
 \newcommand{\innerprod}[2]{\left\langle #1 , #2 \right\rangle}
 \newcommand{\avg}[1]{\left\langle #1 \right\rangle}
 \newcommand{\Tr}{\text{Tr}}
@@ -191,6 +195,6 @@ in line with the general tone of the series.
 \subsection{The Quantum Sim: An Introduction to Bell's Theorem}
 \subsection{Entanglement Summary}
 \subfile{L07E11.tex}
-%\subfile{L07E12.tex}
+\subfile{L07E12.tex}
 \section{Particles and Waves}
 \end{document}
