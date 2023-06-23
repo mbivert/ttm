@@ -39,18 +39,16 @@ spaces, called the \textit{Spectral theorem}\footnote{See \url{
 https://ncatlab.org/nlab/show/spectral+theorem} and \url{
 https://en.wikipedia.org/wiki/Spectral_theorem}}. \\
 
-Now, I'm \textit{not} going to prove the the infinite dimension
+Now, I'm \textit{not} going to prove the infinite dimension
 version here. There's a good reason why quantum mechanics courses
 often start with spins: they don't require the generalized
-results, which demands heavy mathematical machinery (a copious
-amount of functional analysis, and in some formulation at least,
-the Lebesgue integral, hence portions of measure theory).
+results, which demands heavy mathematical machinery.
 You may want to refer to F. Schuller YouTube lectures on
 quantum mechanics\footnote{\url{
 https://www.youtube.com/watch?v=GbqA9Xn_iM0&list=PLPH7f_7ZlzxQVx5jRjbfRGEzWY_upS5K6
 }; see also the lectures notes (.pdf) made by a student (Simon Rea):
 \url{https://drive.google.com/file/d/1nchF1fRGSY3R3rP1QmjUg7fe28tAS428/view}}
-for a thorough development. \\
+for a deeper mathematical development. \\
 
 Finally, I'm going to use a mathematically inclined approach
 here (definitions/theorems/proofs), and as we won't need
@@ -142,12 +140,11 @@ which are not all zero, such that:
 	\sum_{i=0}^n \alpha_iL^i(\bm{v}) = \bm{0}_V \label{qm:L03E01:not-linindep}
 \end{equation}
 
-Here's the "subtle" part. You remember what a polynomial is right,
+Here's the "subtle" part. You remember what a polynomial is,
 something like: \[ x^2 - 2x + 1 \]
 
 You know it's customary to then consider this a function of
-a single variable $x$, which for instance, can range through
-the reals:
+a single variable $x$, which for instance, can be a real number:
 \[
 	L : \begin{pmatrix}
 		\mathbb{R} & \rightarrow & \mathbb{R} \\
@@ -174,7 +171,7 @@ This allows you to graph the polynomial and so forth:
 	\caption{$L(x) = x^2 - 2x + 1$}
 \end{figure}
 
-But that's kindergarten polynomials. The more "correct"
+But that's "kindergarten" polynomials so to speak. "Advanced"
 polynomials are \textit{not} functions of a real variable. Rather,
 we say that $L(x)$ or $L$ is a polynomial of a single
 variable/indeterminate\footnote{
@@ -216,7 +213,6 @@ is no notion of subtraction in a ring: the minus signs actually are
 part of the coefficients.} of polynomials of a single indeterminate
 over a field\footnote{\url{
 ttps://en.wikipedia.org/wiki/Field\_(mathematics)}} $\mathbb{F}$}.
-This means that mathematicians have defined a way
 This means that  $X^2 - 2X +1$ is actually a shortcut for:
 \[
 	1._{\mathbb{F}[X]}X^2 +_{\mathbb{F}[X]} (-2)._{\mathbb{F}[X]}X^1
@@ -310,7 +306,7 @@ purposes, it "is" a polynomial, and we can manipulate it as such.
 So we can apply the fundamental theorem of algebra\footnote{
 \url{https://en.wikipedia.org/wiki/Fundamental\_theorem\_of\_algebra}},
 we know that we can always factorize polynomials with
-complex coefficient as such:
+complex coefficients as such:
 \[
 	(\exists (c, \lambda_1, \ldots, \lambda_n)\in\mathbb{C}^{n+1}, c\neq 0),\
 		P(L) = c\prod_{i=0}^n (L-\lambda_i)
@@ -418,8 +414,8 @@ By our previous lemma, $H : V\rightarrow V$ must have at
 least one eigenvalue $\lambda\in\mathbb{C}$ associated to an eigenvector
 $\bm{v}\in V$. \\
 
-Pick $\{\bm{v}_1, \bm{v}_1, \ldots, \bm{v}_{k+1} \} \subset V$
-so that $\{\bm{v}, \bm{v}_1, \bm{v}_2, \ldots, \bm{v}_{k+1} \}$ is an
+Pick $\{\bm{v}, \bm{v}_2, \ldots, \bm{v}_{k+1} \} \subset V$
+so that $\{\bm{v}, \bm{v}_2, \bm{v}_3, \ldots, \bm{v}_{k+1} \}$ is an
 (ordered) basis of $V$\footnote{Start with $W=\{ \bm{v} \}$, and progressively
 augment it with elements of $V$ so that all elements in $W$ are linearly
 independent. If we can't select such elements no more, this mean we've
@@ -469,7 +465,7 @@ OK; let's start by what we know: $\bm{b}_1$ is an eigenvector for $H$ associated
 to $\lambda$, meaning:
 \[
 	H(\bm{b_1}) = \lambda\bm{b}_1
-		= \lambda\bm{b}_1 + \sum_{i=2}^{k+1} 0 \times \bm{e}_i
+		= \lambda\bm{b}_1 + \sum_{i=2}^{k+1} 0 \times \bm{b}_i
 		= \begin{pmatrix}
 			\lambda \\
 			0       \\
