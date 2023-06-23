@@ -9,7 +9,7 @@ Show that the inner product defined by Eq. $1.2$ satisfies all the
 axioms of inner products.
 \end{exercise}
 \hrr
-Let us recall the two axioms in question:
+Let us recall the two relevant axioms:
 \begin{axiom}\ \\
 $$ \bra{C} \Big( \ket{A} + \ket{B} \Big) = \braket{C}{A} + \braket{C}{B} $$
 \end{axiom}
@@ -36,7 +36,8 @@ And let us recall Eq. $1.2$ of the book:
 	\beta_4^*\alpha_4 + \beta_5^*\alpha_5 \\
 \end{align*}
 
-For the first axiom, considering $\bra{C} = (\gamma_i^*)$:
+For the first axiom, considering $\bra{C} =
+(\gamma_1^*\ \gamma_2^*\ \gamma_3^*\ \gamma_4^*\ \gamma_5^*)$:
 
 \begin{align*}
 \bra{C} \Big( \ket{A} + \ket{B} \Big) &=
@@ -82,7 +83,7 @@ For the first axiom, considering $\bra{C} = (\gamma_i^*)$:
 ~ &= \braket{C}{A} + \braket{C}{B} \qed
 \end{align*}
 
-Before diving into the second axiom, let us observe that for
+Before checking the second axiom, let us observe that for
 $(a, b) = (x_a+iy_a, x_b+iy_b) \in\mathbb{C}^2$:
 \begin{align*}
 	(ab)^* &= \Big((x_a+iy_a)\times(x_b+iy_b)\Big)^* \\
@@ -92,12 +93,14 @@ $(a, b) = (x_a+iy_a, x_b+iy_b) \in\mathbb{C}^2$:
 	~ &= a^*b^* \\
 \end{align*}
 
-Or, perhaps more simply using complex numbers' exponential's form:
+\begin{remark} We could have derived it using complex numbers'
+exponential's form:
 \begin{align*}
 	(ab)^* &= \Big(r_ar_be^{i(\theta_a+\theta_b)}\Big)^* \\
 	~ &= r_ar_be^{-i(\theta_a+\theta_b)} \\
 	~ &= a^*b^* \\
 \end{align*}
+\end{remark}
 
 Hence, regarding the second axiom:
 
