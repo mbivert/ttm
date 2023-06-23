@@ -39,13 +39,13 @@ $2.5$ and $2.6$ which defines $\ket{r}$ and $\ket{l}$:
 \end{align*}
 
 For clarity, let us recall that $\braket{u}{A}$ is the component
-of $\ket{A}$ on the orthonormal vector $\ket{u}$. This is because
-in a $(\ket{i})_{i\in F}$ \textit{orthonormal} basis we have:
+of $\ket{A}$ along the orthonormal vector $\ket{u}$. This is because
+in an \textit{orthonormal} basis $(\ket{i})_{i\in F}$ we have:
 
 \begin{align*}
 \ket{A} &= \sum_{i\in F} \alpha_i\ket{i} \\
 \Rightarrow \braket{j}{A} &= \bra{j}\sum_{i\in F} \alpha_i\ket{i}
-= \sum_{i\in F} \alpha_i\braket{j}{i}
+= \sum_{i\in F} \alpha_i\underbrace{\braket{j}{i}}_{=\delta_{ij}}
 = \alpha_j
 \end{align*}
 
@@ -178,50 +178,13 @@ without disturbing any of the constraints: orthogonality, probabilities,
 and the resulting vectors are still unitary. \\
 
 But as stated by the authors for $\ket{r}, \ket{l}$, measurable
-quantities are independant of any phase factors. So up to it, they
-seem to be unique so far. \\
+quantities are independant of any phase factors. Thus, so far,
+there seems to be unicity, up to such a phase factor. \\
 
-However, let's try to change the $i$'s place for instance in $\ket{i}$:
-\[
-	\ket{i} = \frac{i}{\sqrt2}\ket{u} + \frac{1}{\sqrt2}\ket{d}
-\]
-The vector is still unitary, we still have orthogonality with
-$\ket{o}$, and if you try to compute $\braket{i}{u}\braket{u}{i}$,
-$\braket{i}{d}\braket{d}{i}$, $\braket{i}{r}\braket{r}{i}$ or
-$\braket{i}{l}\braket{l}{i}$, you'll still have the same
-probablities.
-
-Now the question is, is this "swapping" of the $i$ a phase
-factor? Meaning, can encode this transformation as a multiplication
-by some $e^{i\theta}$, for some $\theta\in\mathbb{R}$? \\
-
-Well, the first term of $\ket{i}$ is multiplied by $i$; recall the
-definition of the complex exponential:
-\[
-	e^{i\theta} = \cos\theta + i\sin\theta
-\]
-So this means the first term is multiplied by
-\[
-	\exp(i\frac\pi2) = 0 + i
-\]
-The second term though, is multiplied by $-i$, this means, multiplied
-by:
-\[
-	\exp(-i\frac\pi2) = 0 + i\times(-1)
-\]
-
-So we've found a variant of $\ket{i}$, that cannot be obtained
-by multiplying $\ket{i}$ by a phase factor, and hence:\\
-
-\noindent\fbox{\parbox{\textwidth}{
-	\centering{The proposed solution is \textit{not} unique [up to a phase
-	factor].}
-}}
-
-\begin{remark} It may be interesting/possible to \textit{classify} all such
-variants, meaning, see how much variety there is / how much structure
-they share and so forth.
-% TODO?
+\begin{remark} I think some sort of dimensional argument might
+be required to rigorously prove that indeed there's no way to extract
+more than three pairs of mutually orthogonal vectors which have a
+inner-product to $1/2$, in a $\mathbb{C}$-vector space setting.
 \end{remark}
 
 \end{document}
