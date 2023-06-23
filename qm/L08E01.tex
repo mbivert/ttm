@@ -1,0 +1,152 @@
+\documentclass[solutions.tex]{subfiles}
+
+\xtitle
+
+\begin{document}
+\maketitle
+\begin{exercise} Prove that $\bm{X}$ and $\bm{D}$ are linear
+operators.
+\end{exercise}
+The two operators are defined on a Hilbert space $\mathcal{H}$ by:
+\[
+	\bm{X} : \begin{pmatrix}
+		\mathcal{H} &\rightarrow& \mathcal{H} \\
+		\psi & \mapsto &(x \mapsto x\psi(x)) \\
+	\end{pmatrix};\qquad
+	\bm{D} : \begin{pmatrix}
+		\mathcal{H} &\rightarrow& \mathcal{H} \\
+		\psi & \mapsto & (x \mapsto \frac{d}{dx}\psi(x)) \\
+	\end{pmatrix}
+\]
+Generally speaking, an operator $\bm{L} : \mathcal{H} \rightarrow \mathcal{H}$
+is said to be linear if those two axioms are verified:
+\[
+	(\forall \alpha\in\mathbb{C}),\, \bm{L}(\alpha\psi) = \alpha\bm{L}(\psi)
+\]
+\[
+	(\forall (\psi,\phi)\in\mathcal{H}^2),\, \bm{L}(\psi+\phi) = \bm{L}(\psi)+\bm{L}(\phi)
+\]
+
+\begin{remark} It's customary in quantum-mechanics to drop the parentheses when
+apply an operator, i.e. $\bm{L}\psi := \bm{L}(\psi)$; I'll keep them here
+for clarity. \\
+
+Furthermore, while the authors often use "$\psi(x)$" to denote a function, I'll
+be using $\psi$ instead, and reserve $\psi(x)$ to the result of the application of
+$\psi$ to the variable $x$, as is usual in mathematics. \\
+
+Finally, recall\footnote{The authors did it a bit quickly a few pages earlier,
+but I've done it more carefully in
+\href{https://github.com/mbivert/ttm/blob/master/qm/L03E01.pdf}{L03E01}} that
+addition and scalar-multiplication are defined pointwise%
+\footnote{\url{https://en.wikipedia.org/wiki/Pointwise}} on functions:
+\[
+	(\forall (\psi,\phi)\in\mathcal{H}),\quad
+		\psi+\phi := \Bigl(x \mapsto (\psi+\phi)(x) := \psi(x)+\phi(x)\Bigr)
+\]
+\[
+	(\forall (\psi,\alpha)\in\mathcal{H}\times\mathbb{C}),\quad
+		\alpha\psi := \Bigl(x \mapsto (\alpha\psi)(x) := \alpha\psi(x)\Bigr)
+\]
+To ease notation, I'll use the same symbols for e.g. the addition of complex
+numbers and the (pointwise) addition of functions. Don't hesitate to label
+them in your mind in case of doubt.
+\end{remark}
+
+Starting with $\bm{X}$ and the first axiom; let $x\in\mathbb{R}$,
+$\alpha\in\mathbb{C}$ and $\psi\in\mathcal{H}$:
+\begin{equation*}\begin{aligned}
+	(\bm{X}(\alpha\psi))(x) &=&& x\alpha\psi(x) \\
+	~ &=&& \alpha(x\psi(x)) \\
+	~ &=&& \alpha(\bm{X}\psi)(x)
+\end{aligned}\end{equation*}
+As this is true for any $x$, we can conclude:
+\[
+	\boxed{\bm{X}(\alpha\psi) = \alpha\bm{X}(\psi)}
+\]
+Moving on to the second axiom; let $x\in\mathbb{R}$ and $(\psi,\phi)\in\mathcal{H}^2$:
+\begin{equation*}\begin{aligned}
+	(\bm{X}(\psi+\phi))(x) &=&& x(\psi(x)+\phi(x)) \\
+	~ &=&& x\psi(x) + x\phi(x) \\
+	~ &=&& (\bm{X}(\psi))(x) + (\bm{X}(\phi))(x) \\
+	~ &=&& (\bm{X}(\psi) + \bm{X}(\phi))(x) \\
+\end{aligned}\end{equation*}
+Again, this is true for any $x$ and thus:
+\[
+	\boxed{\bm{X}(\psi+\phi) = \bm{X}(\psi) + \bm{X}(\phi)}
+\]
+
+\hr
+
+The second operator is a little more interesting; let $x\in\mathbb{R}$,
+$\alpha\in\mathbb{C}$ and $\psi\in\mathcal{H}$:
+\begin{equation*}\begin{aligned}
+	(\bm{D}(\alpha\psi))(x) &=&& (\frac{d}{dx}\alpha\psi)(x) \\
+	~ &=&& \alpha(\frac{d}{dx}\psi)(x) \\
+	~ &=&& \alpha(\bm{D}\psi)(x)
+\end{aligned}\end{equation*}
+
+You may be wondering why we're allowed to shift the $\alpha$ outside of the
+differential operator. Let me clarify this a little. The (real) differentiation
+operator is defined as a limit:
+\[
+	\frac{d}{dx}\psi(x) := \lim_{\epsilon\rightarrow 0}
+	\frac{\psi(x+\epsilon)-\psi(x)}{\epsilon} =: \psi'(x)
+\]
+
+So we can develop our previous equation as\footnote{Remember the
+pointwise definition of the scalar multiplication of a function.}:
+\[
+	\frac{d}{dx}(\alpha\psi(x)) = \lim_{\epsilon\rightarrow 0}
+	\frac{\alpha\psi(x+\epsilon)-\alpha\psi(x)}{\epsilon} =
+	\lim_{\epsilon\rightarrow 0}
+	\alpha\frac{\psi(x+\epsilon)-\psi(x)}{\epsilon}
+\]
+And thus all the difficulty is in knowing wether the $\alpha$ can
+"jump" outside of the limit. And the answer is yes\footnote{For a proof, have a look
+at \url{https://tutorial.math.lamar.edu/classes/calci/limitproofs.aspx}.}
+\textit{assuming the remaining limit exists.} Meaning we can as long as the
+following limit exists (it must converges to some fixed point in $\mathbb{C}$,
+or equivalently, is must not diverge to $\pm\infty$):
+\[
+	\lim_{\epsilon\rightarrow 0}
+	\frac{\psi(x+\epsilon)-\psi(x)}{\epsilon}
+\]
+This is equivalent to saying that we can do it as long as $\psi$ is differentiable.
+In a physics context, functions are often always assumed to be differentiable
+everywhere. Hence the first axiom indeed holds
+for $\bm{D}$:
+\[
+	\boxed{\bm{D}(\alpha\psi) = \alpha\bm{D}(\psi)}
+\]
+
+There's an analogue reasoning for the second axiom: let $x\in\mathbb{R}$ and
+$(\psi,\phi)\in\mathcal{H}^2$:
+\begin{equation*}\begin{aligned}
+	(\bm{D}(\psi+\phi))(x) &=&& \frac{d}{dx}(\psi+\phi)(x) \\
+	~ &=&& (\frac{d}{dx}\psi+ \frac{d}{dx}\phi)(x) \\
+	~ &=&& (\bm{D}(\psi) + \bm{D}(\phi))(x) \\
+\end{aligned}\end{equation*}
+
+Again we can rewrite the "questionable" line by expanding
+the differentiation as a limit while unwrapping the
+pointwise addition of functions:
+\begin{equation*}\begin{aligned}
+	(\frac{d}{dx}(\psi+\phi))(x) &=&& \lim_{\epsilon\rightarrow 0}
+	\frac{(\psi+\phi)(x+\epsilon)-(\psi+\psi)(x)}{\epsilon} \\
+	~ &=&& \lim_{\epsilon\rightarrow 0}
+	\frac{\psi(x+\epsilon)+\phi(x+\epsilon)-(\psi(x)+\phi(x))}{\epsilon} \\
+	~ &=&& \lim_{\epsilon\rightarrow 0}
+	\frac{\Bigl(\psi(x+\epsilon)-\psi(x)\Bigr)+\Bigr(\phi(x+\epsilon)-\phi(x)\Bigl)}{\epsilon} \\
+	~ &=&& \lim_{\epsilon\rightarrow 0}\Bigl(
+	\frac{\psi(x+\epsilon)-\psi(x)}{\epsilon}
+	+\frac{\phi(x+\epsilon)-\phi(x)}{\epsilon}\Bigr) \\
+\end{aligned}\end{equation*}
+Again, we can split the limit of a sum to a sum of limits\footnote{There's a proof on the
+same website as before}, \textit{as long as both limits converge}. Hence
+the second axioms holds as long as $\psi$ and $\phi$ are differentiable:
+\[
+	\boxed{\bm{D}(\psi+\phi) = \bm{D}(\psi) + \bm{D}(\phi)}
+\]
+
+\end{document}
