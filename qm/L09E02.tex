@@ -1,0 +1,48 @@
+\documentclass[solutions.tex]{subfiles}
+
+\xtitle
+
+\begin{document}
+\maketitle
+\begin{exercise} Prove Eq. $9.10$ by expanding each site and
+comparing the results.
+\end{exercise}
+Eq. $9.10$ is:
+\[
+	[\bm{P}^2, \bm{X}] = \bm{P}[\bm{P}, \bm{X}] + [\bm{P}, \bm{X}]\bm{P}
+\]
+We're trying to compute the "velocity" of a free particle, meaning, the time
+derivative of its position operator $\bm{X}$, which can be performed thanks
+to an earlier formula derived in section $4.9$ - \textit{Connections to classical
+mechanics}:
+\[
+	\frac{d}{dt}\avg{\bm{X}} = \frac{i}{\hbar}\avg{[\bm{H},\bm{X}]}
+\]
+To push the computation forward, we then need to compute $[\bm{H},\bm{X}]$,
+which is, for a free particle, up to a constant, equivalent to
+$[\bm{P}^2,\bm{X}]$. \\
+
+Recall that the \textit{commutator} measures how much two operators defined
+on a Hilbert space commute:
+\[
+	[\bm{A}, \bm{B}] := \bm{A}\bm{B} - \bm{B}\bm{A}
+\]
+Let's progressively expand both sides, keeping all expansions strictly equivalent:
+\begin{equation*}\begin{aligned}
+	~ &&
+		[\bm{P}^2, \bm{X}] &=&&
+		\bm{P}[\bm{P}, \bm{X}] + [\bm{P}, \bm{X}]\bm{P} \\
+	\Leftrightarrow &&
+		\bm{P}^2\bm{X} - \bm{X}\bm{P}^2 &=&&
+		\bm{P}(\bm{P}\bm{X} - \bm{X}\bm{P}) + (\bm{P}\bm{X} - \bm{X}\bm{P})\bm{P} \\
+	\Leftrightarrow &&
+		\bm{P}\bm{P}\bm{X} - \bm{X}\bm{P}\bm{P} &=&&
+		\bm{P}\bm{P}\bm{X} - \bm{P}\bm{X}\bm{P}
+			+ \bm{P}\bm{X}\bm{P} - \bm{X}\bm{P}\bm{P} \\
+	\Leftrightarrow &&
+		\bm{P}\bm{P}\bm{X} - \bm{X}\bm{P}\bm{P} &=&&
+		\bm{P}\bm{P}\bm{X} - \bm{X}\bm{P}\bm{P} \\
+	\Leftrightarrow && 0 &=&& 0 \\
+	\Leftrightarrow && \text{true} \qed
+\end{aligned}\end{equation*}
+\end{document}
