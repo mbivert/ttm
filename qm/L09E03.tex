@@ -1,0 +1,45 @@
+\documentclass[solutions.tex]{subfiles}
+
+\xtitle
+
+\begin{document}
+\maketitle
+\begin{exercise} Show that the right-hand side of Eq. $9.17$ simplifies
+to the right-hand side of Eq. $9.16$. \textit{Hint}: First expand the
+second term by taking the derivative of the product. Then look for
+cancellations.
+\end{exercise}
+Eq. $9.17$ and Eq. $9.16$ are respectively:
+\[
+	[\bm{V}(x), \bm{P}]\psi(x)
+		= V(x)(-i\hbar\frac{d}{dx})\psi(x) - (-i\hbar\frac{d}{dx})V(x)\psi(x)
+\]
+\[
+	[\bm{V}(x), \bm{P}] = i\hbar\frac{dV(x)}{dx}
+\]
+
+Let's start as suggested by expanding the second term of Eq. $9.17$,
+ignoring the $-i\hbar$ factor for now: this is a basic product
+rule application:
+\[
+	(\frac{d}{dx})(V(x)\psi(x)) =
+		\frac{dV(x)}{dx}\psi(x) + V(x)\frac{d\psi(x)}{dx}
+\]
+The second term will cancel with the first term of the RHS of Eq. $9.17$:
+\begin{equation*}\begin{aligned}
+	[\bm{V}(x), \bm{P}]\psi(x) &=&&
+		V(x)(-i\hbar\frac{d}{dx})\psi(x)
+			- (-i\hbar\frac{d}{dx})V(x)\psi(x)	\\
+		&=&& -i\hbar V(x)\frac{d\psi(x)}{dx} + i\hbar
+			\left(
+				\frac{dV(x)}{dx}\psi(x) + V(x)\frac{d\psi(x)}{dx}
+			\right) \\
+		~ &=&& i\hbar\frac{dV(x)}{dx}\psi(x)
+\end{aligned}\end{equation*}
+As long as $\psi(x)\neq0$, we can divide by $\psi(x)$, and indeed establish
+Eq. $9.16$:
+\[
+	\boxed{[\bm{V}(x), \bm{P}] = i\hbar\frac{dV(x)}{dx}} \qed
+\]
+
+\end{document}
