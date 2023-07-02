@@ -1,0 +1,27 @@
+\documentclass[solutions.tex]{subfiles}
+
+\xtitle
+
+\begin{document}
+\maketitle
+\begin{exercise} Find the second time derivative of $x$ in Eq. $10.9$,
+and thereby show that it solves Eq. $10.8$.
+\end{exercise}
+Eq. $10.9$ and $10.8$ respectively are:
+\[
+	x(t) = A\cos(\omega t)+B\sin(\omega t);\qquad
+	-\omega^2x(t) = \ddot{x}(t)
+\]
+Where I've systematically made the time-dependence explicit by
+replacing $x$ with $x(t)$. This is an elementary differentiation
+exercise that I think has already been performed in the previous
+volume on classical mechanics. Nevertheless:
+\begin{equation*}\begin{aligned}
+	\dot{x}(t) &=&& -A\omega\sin(\omega t)+B\omega\cos(\omega t) \\
+	\ddot{x}(t) &=&& -A\omega^2\cos(\omega t)-B\omega^2\sin(\omega t) \\
+	~ &=&& -\omega^2\underbrace{
+		(A\cos(\omega t) + B\sin(\omega t))
+	}_{=:x(t)} \\
+	~ &=&& -\omega^2x(t) \qed
+\end{aligned}\end{equation*}
+\end{document}
