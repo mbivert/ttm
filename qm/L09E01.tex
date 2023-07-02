@@ -1,0 +1,42 @@
+\documentclass[solutions.tex]{subfiles}
+
+\xtitle
+
+\begin{document}
+\maketitle
+\begin{exercise} Derive Eq. $9.7$ by plugging Eq. $9.6$ into
+Eq. $9.5$.
+\end{exercise}
+Let's recall in order,  Eq. $9.7$, Eq. $9.6$ and Eq. $9.5$:
+\[
+	E = p^2/2m;\qquad
+	\psi(x) = \exp{(ipx/\hbar)};\qquad
+	-\frac{\hbar^2}{2m}\frac{\partial^2\psi(x)}{\partial x^2} = E\psi(x)
+\]
+In that last equation, the RHS could be rewritten as $\bm{H}\ket{\Psi}$,
+where $\bm{H}$ is the "quantized" classical Hamiltonian corresponding
+to a free particle, that is, a particle not affected by a potential energy:
+the Hamiltonian is then built solely from the "quantized" kinetic energy. \\
+
+Eq. $9.6$ (the middle one) is a solution proposal to the ODE yielded by
+Eq. $9.5$ (the last one). Let's see how it goes:
+\begin{equation*}\begin{aligned}
+	~ &&
+		-\frac{\hbar^2}{2m}\frac{\partial^2\psi(x)}{\partial x^2}
+		&=&& E\psi(x) \\
+	\Leftrightarrow &&
+		-\frac{\hbar^2}{2m}\frac{\partial^2}{\partial x^2}\exp{(ipx/\hbar)}
+		&=&& E\psi(x) \\
+	\Leftrightarrow &&
+		-\frac{\hbar^2}{2m}\left(\frac{ip}{\hbar}\right)^2\underbrace{
+			\exp{(ipx/\hbar)}
+		}_{=:\psi(x)}
+		&=&& E\psi(x) \\
+	\Leftrightarrow &&
+		\frac{p^2}{2m}\psi(x) &=&& E\psi(x) \\
+\end{aligned}\end{equation*}
+And so indeed, at least as long as $\psi(x)\neq0$:
+\[
+	\boxed{E = p^2/2m} \qed
+\]
+\end{document}
