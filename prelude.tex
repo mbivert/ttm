@@ -1,0 +1,81 @@
+% define \vtitle{} (volume title) before \input{}ing
+
+\author{M. Bivert}
+\title{The Theoretical Minimum \\
+	{\Large \vtitle{} - Solutions} \\
+	{\footnotesize Last version: %
+		\href{https://tales.mbivert.com/on-the-theoretical-minimum-solutions/}%
+		{tales.mbivert.com/on-the-theoretical-minimum-solutions/} or %
+		\href{https://github.com/mbivert/ttm}{github.com/mbivert/ttm}}
+}
+
+\usepackage{subfiles}
+
+\usepackage[margin=1in]{geometry}
+\usepackage{hyperref}
+
+% \noindent everywhere
+\setlength\parindent{0pt}
+
+\usepackage{mathtools}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{bm}
+\usepackage{amssymb}
+
+\usepackage{stmaryrd}
+
+\usepackage{float} % \begin{figure}[H]
+
+\usepackage{tikz}
+\usetikzlibrary{
+	snakes,calc,patterns,angles,quotes,
+	decorations.pathmorphing,math,
+	decorations.pathreplacing,automata,
+	arrows.meta,positioning,external
+}
+\usepackage{pgfplots}
+\tikzexternalize[prefix=tikz/]
+\pgfplotsset{compat=newest}
+
+\usepackage{bashful}
+\usepackage{listings}
+
+\newcommand{\hr}{\noindent\rule{\textwidth}{0.4pt} \\}
+\newcommand{\hrr}{\begin{center}\noindent\rule{0.5\textwidth}{0.4pt} \\\end{center}}
+
+\newtheorem{axiom}{Axiom}
+\newtheorem{definition}{Definition}
+\newtheorem{remark}{Remark}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{exercise}{Exercise}
+\newtheorem{example}{Example}
+
+\newcommand{\bra}[1]{\langle #1|}
+\newcommand{\ket}[1]{|#1\rangle}
+\newcommand{\brah}[1]{\{#1|}
+\newcommand{\keit}[1]{|#1\}}
+\newcommand{\braket}[2]{\left\langle #1 \middle| #2 \right\rangle}
+\newcommand{\ketbra}[2]{\left| #1 \right\rangle\left\langle #2 \right|}
+\newcommand{\innerprod}[2]{\left\langle #1 , #2 \right\rangle}
+\newcommand{\avg}[1]{\left\langle #1 \right\rangle}
+\newcommand{\Tr}{\text{Tr}}
+\newcommand\omicron{o}
+\newcommand\Omicron{O}
+\newcommand{\uvec}[1]{\bm{\hat{#1}}}
+\newcommand{\norm}[1]{\lVert #1 \rVert}
+\newcommand{\abs}[1]{\lvert #1 \rvert}
+\newcommand{\harpoon}{\overset{\rightharpoonup}}
+\newcommand{\intint}[1]{\llbracket #1 \rrbracket}
+
+% \title for subfiles
+\newcommand{\xtitle}{\title{The Theoretical Minimum \\
+	{\Large \vtitle{} - Solutions} \\
+	{\large \jobname} \\
+	{\footnotesize Last version: %
+		\href{https://tales.mbivert.com/on-the-theoretical-minimum-solutions/}%
+		{tales.mbivert.com/on-the-theoretical-minimum-solutions/} or %
+		\href{https://github.com/mbivert/ttm}{github.com/mbivert/ttm}}
+}}
