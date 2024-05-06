@@ -42,7 +42,7 @@ https://en.wikipedia.org/wiki/Spectral_theorem}}. \\
 Now, I'm \textit{not} going to prove the infinite dimension
 version here. There's a good reason why quantum mechanics courses
 often start with spins: they don't require the generalized
-results, which demands heavy mathematical machinery.
+result, which demands heavy mathematical machinery.
 You may want to refer to F. Schuller YouTube lectures on
 quantum mechanics\footnote{\url{
 https://www.youtube.com/watch?v=GbqA9Xn_iM0&list=PLPH7f_7ZlzxQVx5jRjbfRGEzWY_upS5K6
@@ -56,7 +56,7 @@ it, I won't be using the bra-ket notation.
 
 \hrr
 
-To fix things, here's the theorem we're going to prove (I'll slightly
+To clarify, here's the theorem we're going to prove (I'll slightly
 restate it with minor adjustments later on):
 
 \begin{theorem} Let $H : V \rightarrow V$ be a Hermitian operator on a
@@ -96,9 +96,9 @@ non-zero, no such restrictions are imposed on the eigenvalues.
 \end{remark}
 
 \begin{definition} Two vectors $\bm{p}$ and $\bm{q}$ from
-a vector space $V$ over a field $\mathbb{F}$ equipped with
-an inner product $\innerprod{.}{.}$ are said to be orthogonal
-(with respect to the inner-product) whenever:
+a vector space $V$ over a field $\mathbb{F}$, where $V$ is
+equipped with an inner product $\innerprod{.}{.}$ are said to
+be orthogonal (with respect to the inner-product) whenever:
 \[
 	\boxed{\innerprod{\bm{p}}{\bm{q}} = 0_{\mathbb{F}}}
 \]
@@ -133,8 +133,8 @@ where:
 	}_{i\in\mathbb{N}\text{ times}}
 \]
 It's a set of $n+1$ vectors, but the space is $n$ dimensional, so
-its vectors are \textit{not} all linearly independent. This
-means there's a set of $(\alpha_0, \alpha_1, \ldots, \alpha_n)\in\mathbb{C}^n$
+the vectors are \textit{not} all linearly independent. This
+means there's a set of $(\alpha_0, \alpha_1, \ldots, \alpha_n)\in\mathbb{C}^{n+1}$
 which are not all zero, such that:
 \begin{equation}
 	\sum_{i=0}^n \alpha_iL^i(\bm{v}) = \bm{0}_V \label{qm:L03E01:not-linindep}
